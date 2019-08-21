@@ -14,3 +14,8 @@ Admin 키 : 4194e8d9c960805d8943b4ce5c136cbd
 서비스 url: http://localhost:8080
 Callback url:  http://localhost:8080/team1/wte/main.eat (임의로 정의)
 
+구글 로그인 API
+클라이언트 ID :  594879915525-eftcqhdi5ejnj8jnktvhkl7lc8ibl239.apps.googleusercontent.com
+클라이언트 보안 비밀 :  MskDORqg_igZznQ5CDXrhns6
+승인된 자바스크립트 원본: http://localhost:8080
+승인된 리디렉션 URI:  http://localhost:8080/team1/wte/main.eat (임의로 정의)
