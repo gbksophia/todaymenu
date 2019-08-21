@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/apitest/")
 public class APITest {
-		
+
+	//http://localhost:8080/eatoday/apitest/mapapi2.do
 	@RequestMapping("mapapi2.do")
 	public String mapapi2(HttpServletRequest request) {
 		String kwd = request.getParameter("kwd");
