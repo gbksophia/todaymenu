@@ -15,7 +15,7 @@ public class csvTest {
 	
 	//http://localhost:8080/eatoday/csvtest/2bc.do
 	@RequestMapping("2bc.do")
-	public String score(Model model, HttpServletRequest request) throws Exception {
+	public String tbc(Model model, HttpServletRequest request) throws Exception {
 		RConnection conn = new RConnection();
 
 		REXP x = conn.eval("tbc <- read.csv('D:/R/2bc.csv')");
