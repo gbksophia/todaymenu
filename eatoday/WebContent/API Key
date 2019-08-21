@@ -1,9 +1,16 @@
 https://github.com/muzmj/todaymenu.git
 
-카카오 JavaScript 키
-112ecff57900a2dd120c152f6c326b7b
 
-네이버
-클라이언트 아이디: Cx67Lt8pxRV1TmZqj4c8
+카카오 API
+사이트 도메인: http://localhost:8080
+네이티브 앱 키 : 827cbab3f950f1631bd5a251b5d39961
+REST API 키 : 01c66a34b87dc890c7525086c74a3fe4
+JavaScript 키 : 112ecff57900a2dd120c152f6c326b7b <- 이거사용
+Admin 키 : 4194e8d9c960805d8943b4ce5c136cbd
+
+네이버 API
+클라이언트 아이디 :  Cx67Lt8pxRV1TmZqj4c8
 클라이언트 Secret :  CeJd355Iux
+서비스 url: http://localhost:8080
+Callback url:  http://localhost:8080/team1/wte/main.eat (임의로 정의)
 
