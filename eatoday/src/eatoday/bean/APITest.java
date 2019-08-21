@@ -17,5 +17,11 @@ public class APITest {
 		return "/apitest/mapapi2";
 	}
 	
+	@RequestMapping("googleapi.do")
+	public String googletest(HttpServletRequest request) {
+
+		return "/google/googletest";
+	}
+	
 }
 
