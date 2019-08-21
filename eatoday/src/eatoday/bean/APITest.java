@@ -16,4 +16,6 @@ public class APITest {
 		request.setAttribute("kwd", kwd);
 		return "/apitest/mapapi2";
 	}
+	
 }
+

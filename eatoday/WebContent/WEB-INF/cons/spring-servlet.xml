@@ -11,30 +11,15 @@
 						http://www.springframework.org/schema/aop
 						http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
-		<!-- 패키지 내의 모든 클래스를 스캔 --> 
+	<!-- 패키지 내의 모든 클래스를 스캔 --> 
 	<context:component-scan base-package="eatoday.bean"/>
 
-		<!-- 주소의 생략할 부분 -->
+	<!-- 주소의 생략할 부분 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
-
-		<!-- MyBatis -->
-	<bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource"
-		p:driverClassName="oracle.jdbc.driver.OracleDriver"
-		p:url="jdbc:oracle:thin:@nullmaster.iptime.org:1521:xe"
-		p:username="class06"
-		p:password="class06"
-		destroy-method="close"/>
 	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="configLocation" value="/WEB-INF/mybatis/mybatis-config.xml"/>
-	</bean>
-		
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
+	
 
 </beans>
