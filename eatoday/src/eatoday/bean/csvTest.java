@@ -32,6 +32,13 @@ public class csvTest {
 			}
 			System.out.println();
 		}
+		
+		
+
+		int size = list.size();
+		model.addAttribute("size", size);
+		model.addAttribute("s",s);
+		
 		conn.close();
 		return "/csvtest/2bc";
 	}
