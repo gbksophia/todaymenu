@@ -20,43 +20,67 @@ public class csvTest {
 	@RequestMapping("2bc.do")
 	public String tbc(Model model, HttpServletRequest request) throws Exception {
 		RConnection conn = new RConnection();
-		conn.eval("tbc <- read.csv('D:/R/2bc.csv')");
-//		REXP tbc = conn.eval("tbc <- read.csv('D:/R/2bc.csv')");
-//		RList list = x.asList();
+		REXP tbc = conn.eval("tbc <- read.csv('D:/R/2bc.csv')");
 		
-//		String [][] s = new String[list.size()][]; //[...][] : 가변배열
-//		for(int i=0; i<list.size(); i++) {
-//			s[i] = list.at(i).asStrings();
+//		REXP te = conn.eval("tbc$text");
+//		String [] tex= te.asStrings();
+//		List<String> text= new ArrayList<String>();
+//		for (String tt : tex) {
+//			System.out.println(tt);
+//			text.add(tt);
+//			model.addAttribute("text", text);
 //		}
-//		for(int i=0; i<list.size(); i++) {
-//			for(int j=0; j<list.at(0).length(); j++) {
-//				System.out.print(s[i][j]+" ");
-//			}
-//			System.out.println();
+		
+//		REXP ma = conn.eval("tbc$mate");
+//		String [] mat= ma.asStrings();
+//		List<String> mate= new ArrayList<String>();
+//		for (String mm : mat) {
+//			System.out.println(mm);
+//			mate.add(mm);
+//			model.addAttribute("mate", mate);
 //		}
-		REXP ma = conn.eval("tbc$mate");
-		String [] mat= ma.asStrings();
-		
-		List<String> mate= new ArrayList<String>();
-		for (String mm : mat) {
-			System.out.println(mm);
-			mate.add(mm);
-			model.addAttribute("mate", mate);
-		}
-		
-		REXP te = conn.eval("tbc$text");
-		String [] tex= te.asStrings();
-		
-		List<String> text= new ArrayList<String>();
-		for (String tt : tex) {
-			System.out.println(tt);
-			text.add(tt);
-			model.addAttribute("text", text);
-		}
 
-
+		RList list = tbc.asList();
+		model.addAttribute("number",list.at(0).length());
+				
+		for (int i=0; i<list.at(0).length()+1; i++) {
+			REXP te = conn.eval("tbc$text["+i+"]");
+			String [] tex= te.asStrings();
+			List<String> text= new ArrayList<String>();
+			for (String tt : tex) {
+				System.out.println(tt);
+				text.add(tt);
+				model.addAttribute("text", text);
+			}
+			
+			REXP ma = conn.eval("tbc$mate["+i+"]");
+			String [] mat= ma.asStrings();
+			List<String> mate= new ArrayList<String>();
+			for (String mm : mat) {
+				System.out.println(mm);
+				mate.add(mm);
+				model.addAttribute("mate", mate);
+			}
+			
+			REXP p = conn.eval("tbc$pro["+i+"]");
+			String [] pr= p.asStrings();
+			List<String> pro= new ArrayList<String>();
+			for (String pp : pr) {
+				System.out.println(pp);
+				pro.add(pp);
+				model.addAttribute("pro", pro);
+			}
+			System.out.println();
+		}
 		
 		conn.close();
 		return "/csvtest/2bc";
+	}
+	
+	//http://localhost:8080/eatoday/csvtest/csvdb.do
+	@RequestMapping("csvdb.do")
+	public String csvdb() throws Exception {
+		
+		return "/csvtest/csvdb";
 	}
 }
