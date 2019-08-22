@@ -20,7 +20,7 @@ public class APITest {
 	@RequestMapping("googleapi.do")
 	public String googletest(HttpServletRequest request) {
 
-		return "/google/googletest";
+		return "/apitest/googletest";
 	}
 	
 }
