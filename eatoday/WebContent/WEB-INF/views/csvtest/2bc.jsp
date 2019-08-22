@@ -5,14 +5,24 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>2bc csv test</title>
 </head>
 <body>
-2bc csv test page <br/>
 ${size} <br/>
 ${s}
 
+<table>
+	<tr>
+		<td>${text}<br/></td>
+	</tr>
+	<tr>
+		<td>${mate}<br/></td>
+	</tr>
+</table>
 
+
+<c:forEach begin="0" end="${size}" step="1" var="i">
+</c:forEach>
 
 </body>
 </html>
