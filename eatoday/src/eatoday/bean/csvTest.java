@@ -84,14 +84,15 @@ public class csvTest {
 	//http://localhost:8080/eatoday/csvtest/showdb.do
 	@RequestMapping("showdb.do")
 	public String showdb(Model model, HttpServletRequest request) throws Exception {
-		int count = 0;
 		try {
-			count = (Integer)sql.selectOne("eatoday.count");
+			//TestVO tbcvo = new TestVO();
+			int count = (Integer)sql.selectOne("eatoday.count");
+			ArrayList tbc = new ArrayList();
+			List tbcList = sql.selectList("eatoday.select");
 			
-			ArrayList tbcList = new ArrayList();
-			List tbc = sql.selectList("eatoday.select", tbcList);
+			System.out.println(tbcList);
 
-			model.addAttribute("tbc", tbc);
+			model.addAttribute("tbcList", tbcList);
 			model.addAttribute("count", count);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -99,13 +100,6 @@ public class csvTest {
 		return "/csvtest/showdb";
 	}
 }
-
-
-
-
-
-
-
 
 
 

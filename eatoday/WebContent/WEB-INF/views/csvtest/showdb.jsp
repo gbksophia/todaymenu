@@ -7,10 +7,13 @@
 </head>
 <body>
 <c:forEach begin="0" end="${count}" step="1" var="i"> 
+<c:set var="tbc" value="${tbcList[i]}" />
 	<table border="1">
 		<tr><td>${tbc.getText()}</td></tr>
 		<tr><td>${tbc.getMate()}</td></tr>
+		<tr><td>${tbc.getPro()}</td></tr>
 	</table>
+	<br/>
 </c:forEach>
 </body>
 </html>
