@@ -19,7 +19,7 @@
 	</filter-mapping>
 
 	<servlet>
-		<servlet-name>spring</servlet-name>
+		<servlet-name>eatoday</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -30,7 +30,7 @@
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>spring</servlet-name>
+		<servlet-name>eatoday</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
