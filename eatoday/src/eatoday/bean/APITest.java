@@ -24,5 +24,10 @@ public class APITest {
 		return "/apitest/googletest";
 	}
 	
+	//http://localhost:8080/eatoday/apitest/map.do
+	@RequestMapping("map.do")
+	public String map() {
+		return "/apitest/map";
+	}
 }
 

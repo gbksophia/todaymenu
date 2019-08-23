@@ -24,7 +24,7 @@ public class csvTest {
 	private SqlSessionTemplate sql = null;
 	
 	//http://localhost:8080/eatoday/csvtest/2bc.do
-	@RequestMapping("2bc.do")
+	@RequestMapping("2bc.do") //¿Ã∞≈æ»æ∏
 	public String tbc(Model model, HttpServletRequest request) throws Exception {
 		RConnection conn = new RConnection();
 		REXP tbc = conn.eval("tbc <- read.csv('D:/R/2bc.csv')");
@@ -57,7 +57,7 @@ public class csvTest {
 			request.setCharacterEncoding("UTF-8");
 			TestVO tbcvo = new TestVO();
 			RConnection conn = new RConnection();
-			REXP tbc = conn.eval("tbc <- read.csv('D:/R/2bc.csv')");
+			REXP tbc = conn.eval("tbc <- read.csv('D:/R/2bc_final.csv')");
 			RList list = tbc.asList();
 			
 			String [][] s = new String[list.size()][];
