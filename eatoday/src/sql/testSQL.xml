@@ -7,4 +7,11 @@
 		insert into tbc values (tbc_seq.nextval, #{text}, #{mate}, #{pro})
 	</insert>
 
+	<select id="select" resultType="vo">
+		select * from tbc order by num
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(*) from tbc
+	</select>
 </mapper>
