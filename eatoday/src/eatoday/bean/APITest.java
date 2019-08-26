@@ -10,24 +10,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class APITest {
 
 	//http://localhost:8080/eatoday/apitest/mapapi2.do
-	@RequestMapping("mapapi2.do")
-	public String mapapi2(HttpServletRequest request) {
+	@RequestMapping("map_kwd.do")
+	public String map_kwd(HttpServletRequest request) {
 		String kwd = request.getParameter("kwd");
-		
 		request.setAttribute("kwd", kwd);
-		return "/apitest/mapapi2";
+		return "/apitest/map_kwd";
 	}
 	
 	@RequestMapping("googleapi.do")
 	public String googletest(HttpServletRequest request) {
-
 		return "/apitest/googletest";
 	}
 	
-	//http://localhost:8080/eatoday/apitest/map.do
-	@RequestMapping("map.do")
-	public String map() {
-		return "/apitest/map";
+	//http://localhost:8080/eatoday/apitest/map_geo.do
+	@RequestMapping("map_geo.do")
+	public String map_geo() {
+		return "/apitest/map_geo";
 	}
+	
+	//http://localhost:8080/eatoday/apitest/map_cat.do
+	@RequestMapping("map_cat.do")
+	public String map_cat() {
+		return "/apitest/map_cat";
+	}
+	
+	//http://localhost:8080/eatoday/apitest/map_gc.do
+	@RequestMapping("map_gc.do")
+	public String map_gc() {
+		return "/apitest/map_gc";
+	}
+	
 }
 

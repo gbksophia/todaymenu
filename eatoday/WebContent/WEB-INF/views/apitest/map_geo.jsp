@@ -11,7 +11,7 @@
 <p style="margin-top:-12px">
     <b>Chrome 브라우저는 https 환경에서만 geolocation을 지원합니다.</b> 참고해주세요.
 </p>
-<div id="map" style="width:100%;height:350px;"></div>
+<div id="map" style="width:100%;height:700px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=112ecff57900a2dd120c152f6c326b7b"></script>
 <script>
