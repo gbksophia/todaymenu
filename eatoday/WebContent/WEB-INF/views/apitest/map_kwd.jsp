@@ -66,7 +66,7 @@ function displayMarker(place) {
 }
 </script>
 
-<form action="mapapi2.do" name="search" onsubmit="inputkwd()">
+<form action="map_kwd.do" name="search">
 	search:<input type="text" name="kwd"/>
 	<input type="submit" value="SUBMIT"/>
 </form>
