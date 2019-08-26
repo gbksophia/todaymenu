@@ -25,12 +25,12 @@ public class APITest {
 		return "/apitest/mapapi3";
 	}
 	
-<<<<<<< HEAD
 	//http://localhost:8080/eatoday/apitest/map.do
 	@RequestMapping("map.do")
 	public String map() {
 		return "/apitest/map";
-=======
+	}
+
 	@RequestMapping("googleapi.do")
 	public String googletest(HttpServletRequest request) {
 		return "/apitest/googletest";
@@ -40,7 +40,7 @@ public class APITest {
 	@RequestMapping("map_geo.do")
 	public String map_geo() {
 		return "/apitest/map_geo";
->>>>>>> branch 'master' of https://github.com/muzmj/todaymenu.git
+
 	}
 	
 	//http://localhost:8080/eatoday/apitest/map_cat.do
