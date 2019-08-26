@@ -11,7 +11,9 @@ public class kakaologin {
 	
 	@RequestMapping("kakaologin.do")
 	public String kakaologin(HttpServletRequest request) {
+		String kwd = request.getParameter("kwd");
 		
+		request.setAttribute("kwd", kwd);
 		return "/kakaologin/kakaologin";
 	}
 	

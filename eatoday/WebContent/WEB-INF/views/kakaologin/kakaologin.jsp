@@ -31,13 +31,14 @@
        var userEmail = res.kaccount_email;   //유저의 이메일
        var userNickName = res.properties.nickname; //유저가 등록한 별명
        var userProfile_image = res.properties.profile_image;
-       var userAge = res.kakao_account_gender;
+       //var userBirthday = res.kakao_account.has_birthday;
        
        console.log(userID);
        console.log(userEmail);
        console.log(userNickName);
        console.log(userProfile_image);
-       console.log(userAge);
+       console.log(authObj.access_token);
+       
       },
       fail: function(error) {
        alert(JSON.stringify(error));
@@ -48,7 +49,13 @@
      alert(JSON.stringify(err));
     }
    });
+   
     //]]>
-  </script>
+
+   </script>
+  <form action = "kakaologin.do" method = "post">
+  <input type = "hidden" value = "userID">
+  </form>
+  ${vo.userID }
 </body>
 </html>

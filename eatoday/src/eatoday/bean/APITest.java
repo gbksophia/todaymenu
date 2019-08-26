@@ -18,6 +18,14 @@ public class APITest {
 		return "/apitest/mapapi2";
 	}
 	
+	@RequestMapping("mapapi3.do")
+	public String mapapi3(HttpServletRequest request) {
+		String kwd = request.getParameter("kwd");
+		
+		request.setAttribute("kwd", kwd);
+		return "/apitest/mapapi3";
+	}
+	
 	@RequestMapping("googleapi.do")
 	public String googletest(HttpServletRequest request) {
 
