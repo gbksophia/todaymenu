@@ -9,7 +9,7 @@
           <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">About Us!!</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p>오늘 뭐먹지</p>
               <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -21,7 +21,7 @@
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Recent Blog</h2>
               <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+                <a class="blog-img mr-4" style="background-image: url(/eatoday/resource/images/logo.png);"></a>
                 <div class="text">
                   <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
                   <div class="meta">
@@ -32,7 +32,7 @@
                 </div>
               </div>
               <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
+                <a class="blog-img mr-4" style="background-image: url(/eatoday/resource/images/logo2.png);"></a>
                 <div class="text">
                   <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
                   <div class="meta">
