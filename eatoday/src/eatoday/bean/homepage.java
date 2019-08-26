@@ -64,4 +64,9 @@ public class homepage {
 		return "/homepage/shop";
 	}
 	
+	@RequestMapping("login.eat")
+	public String login() {
+		return "/homepage/login";
+	}
+	
 }
