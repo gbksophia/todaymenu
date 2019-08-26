@@ -31,33 +31,7 @@
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
   </head>
   <body>
-  	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light sleep scrolled awake" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.eat">오 늘<small>뭐먹지?</small></a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="menu.do" class="nav-link">Menu</a></li>
-	          <li class="nav-item"><a href="services.do" class="nav-link">Services</a></li>
-	          <li class="nav-item"><a href="blog.do" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="about.do" class="nav-link">About</a></li>
-	          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.eat">Shop</a>
-                <a class="dropdown-item" href="product-single.eat">Single Product</a>
-                <a class="dropdown-item" href="room.eat">Cart</a>
-                <a class="dropdown-item" href="checkout.eat">Checkout</a>
-              </div>
-            </li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item cart"><a href="cart.html" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
-	        </ul>
-	      </div>
-		  </div>
-	  </nav>
+  	<jsp:include page="header.jsp" />
     <!-- END nav -->
 
     <section class="home-slider owl-carousel">
@@ -111,118 +85,387 @@
     </section>
 
     <section class="ftco-intro">
-    	<div class="container-wrap">
-    		<div class="wrap d-md-flex align-items-xl-end">
-	    	
-    		</div>
-    	</div>
+    	
     </section>
 
     <section class="ftco-about d-md-flex">
-    	<div class="one-half img" style="background-image: url(images/about.jpg);"></div>
-    	<div class="one-half ftco-animate">
-    		<div class="overlap">
-	        <div class="heading-section ftco-animate ">
-	        	<span class="subheading">Discover</span>
-	          <h2 class="mb-4">Our Story</h2>
-	        </div>
-	        <div>
-	  				<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didnât take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
-	  			</div>
-  			</div>
-    	</div>
+    
     </section>
 
-    <section class="ftco-section ftco-services">
-    	<div class="container">
-    		<div class="row">
-          <div class="col-md-4 ftco-animate">
-            <div class="media d-block text-center block-6 services">
-              <div class="icon d-flex justify-content-center align-items-center mb-5">
-              	<span class="flaticon-choices"></span>
-              </div>
-              <div class="media-body">
-                <h3 class="heading">Easy to Order</h3>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-              </div>
-            </div>      
-          </div>
-          <div class="col-md-4 ftco-animate">
-            <div class="media d-block text-center block-6 services">
-              <div class="icon d-flex justify-content-center align-items-center mb-5">
-              	<span class="flaticon-delivery-truck"></span>
-              </div>
-              <div class="media-body">
-                <h3 class="heading">Fastest Delivery</h3>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-              </div>
-            </div>      
-          </div>
-          <div class="col-md-4 ftco-animate">
-            <div class="media d-block text-center block-6 services">
-              <div class="icon d-flex justify-content-center align-items-center mb-5">
-              	<span class="flaticon-coffee-bean"></span></div>
-              <div class="media-body">
-                <h3 class="heading">Quality Coffee</h3>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-              </div>
-            </div>    
-          </div>
+
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
+			<div class="overlay"></div>
+      <div class="container">
+        <div class="row justify-content-center">
+
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-10">
+                                <form class="form-wrap mt-4">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <input type="text" placeholder="메뉴를 검색하세요!" class="btn-group1">
+                                        <button type="submit" class="btn-form"><span class="icon-magnifier search-icon"></span>SEARCH<i class="pe-7s-angle-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+</div>
+</div>
+</section>
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
+			<div class="overlay"></div>
+      <div class="container">
+        <div class="row justify-content-center">
+        			<h1>알고보는 맛집 리스트</h1><br/>
+        	
+        	<!--============================= FIND PLACES =============================-->
+
+    <section class="main-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="find-place-img_wrap">
+                        <div class="grid">
+                            <figure class="effect-ruby">
+                                <img src="/eatoday/resource/images/find-place1.jpg" class="img-fluid" alt="img13" />
+                                <figcaption>
+                                    <h5>한식</h5>
+                                    <p>385 Listings</p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row find-img-align">
+                        <div class="col-md-12">
+                            <div class="find-place-img_wrap">
+                                <div class="grid">
+                                    <figure class="effect-ruby">
+                                        <img src="/eatoday/resource/images/find-place2.jpg" class="img-fluid" alt="img13" />
+                                        <figcaption>
+                                            <h5>중국집</h5>
+                                            <p>210 Listings</p>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="find-place-img_wrap">
+                                <div class="grid">
+                                    <figure class="effect-ruby">
+                                        <img src="/eatoday/resource/images/find-place3.jpg" class="img-fluid" alt="img13" />
+                                        <figcaption>
+                                            <h5>양식 </h5>
+                                            <p>114 Listings</p>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row find-img-align">
+                        <div class="col-md-12">
+                            <div class="find-place-img_wrap">
+                                <div class="grid">
+                                    <figure class="effect-ruby">
+                                        <img src="/eatoday/resource/images/find-place4.jpg" class="img-fluid" alt="img13" />
+                                        <figcaption>
+                                            <h5>일식 </h5>
+                                            <p>577 Listings</p>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="find-place-img_wrap">
+                                <div class="grid">
+                                    <figure class="effect-ruby">
+                                        <img src="/eatoday/resource/images/find-place5.jpg" class="img-fluid" alt="img13" />
+                                        <figcaption>
+                                            <h5>퓨전 </h5>
+                                            <p>79 Listings</p>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    	</div>
+    </section>
+    <!--//END FIND PLACES -->
+        	
+        	
+        	
+        	
+        </div>
+      </div>
     </section>
 
-    <section class="ftco-section">
-    	<div class="container">
-    		<div class="row align-items-center">
-    			<div class="col-md-6 pr-md-5">
-    				<div class="heading-section text-md-right ftco-animate">
-	          	<span class="subheading">Discover</span>
-	            <h2 class="mb-4">Our Menu</h2>
-	            <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-	            <p><a href="#" class="btn btn-primary btn-outline-primary px-4 py-3">View Full Menu</a></p>
-	          </div>
-    			</div>
-    			<div class="col-md-6">
-    				<div class="row">
-    					<div class="col-md-6">
-    						<div class="menu-entry">
-		    					<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
-		    				</div>
-    					</div>
-    					<div class="col-md-6">
-    						<div class="menu-entry mt-lg-4">
-		    					<a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
-		    				</div>
-    					</div>
-    					<div class="col-md-6">
-    						<div class="menu-entry">
-		    					<a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
-		    				</div>
-    					</div>
-    					<div class="col-md-6">
-    						<div class="menu-entry mt-lg-4">
-		    					<a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
-		    				</div>
-    					</div>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
+
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
+			<div class="overlay"></div>
+      <div class="container">
+        <div class="row justify-content-center">
+        			<h1>해먹기</h1><br/>
+        	<div class="row">
+
+                <!-- Small Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-small-receipe-area d-flex">
+                        <!-- Receipe Thumb -->
+                        <div class="receipe-thumb">
+                            <img src="/eatoday/resource/images/sr1.jpg" alt="">
+                        </div>
+                        <!-- Receipe Content -->
+                        <div class="receipe-content">
+                            <span>January 04, 2018</span>
+                            <a href="receipe-post.html">
+                                <h5>Homemade italian pasta</h5>
+                            </a>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                            <p>2 Comments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-small-receipe-area d-flex">
+                        <!-- Receipe Thumb -->
+                        <div class="receipe-thumb">
+                            <img src="/eatoday/resource/images/sr2.jpg" alt="">
+                        </div>
+                        <!-- Receipe Content -->
+                        <div class="receipe-content">
+                            <span>January 04, 2018</span>
+                            <a href="receipe-post.html">
+                                <h5>Baked Bread</h5>
+                            </a>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                            <p>2 Comments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-small-receipe-area d-flex">
+                        <!-- Receipe Thumb -->
+                        <div class="receipe-thumb">
+                            <img src="/eatoday/resource/images/sr3.jpg" alt="">
+                        </div>
+                        <!-- Receipe Content -->
+                        <div class="receipe-content">
+                            <span>January 04, 2018</span>
+                            <a href="receipe-post.html">
+                                <h5>Scalops on salt</h5>
+                            </a>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                            <p>2 Comments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-small-receipe-area d-flex">
+                        <!-- Receipe Thumb -->
+                        <div class="receipe-thumb">
+                            <img src="/eatoday/resource/images/sr4.jpg" alt="">
+                        </div>
+                        <!-- Receipe Content -->
+                        <div class="receipe-content">
+                            <span>January 04, 2018</span>
+                            <a href="receipe-post.html">
+                                <h5>Fruits on plate</h5>
+                            </a>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                            <p>2 Comments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-small-receipe-area d-flex">
+                        <!-- Receipe Thumb -->
+                        <div class="receipe-thumb">
+                            <img src="/eatoday/resource/images/sr5.jpg" alt="">
+                        </div>
+                        <!-- Receipe Content -->
+                        <div class="receipe-content">
+                            <span>January 04, 2018</span>
+                            <a href="receipe-post.html">
+                                <h5>Macaroons</h5>
+                            </a>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                            <p>2 Comments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-small-receipe-area d-flex">
+                        <!-- Receipe Thumb -->
+                        <div class="receipe-thumb">
+                            <img src="/eatoday/resource/images/sr6.jpg" alt="">
+                        </div>
+                        <!-- Receipe Content -->
+                        <div class="receipe-content">
+                            <span>January 04, 2018</span>
+                            <a href="receipe-post.html">
+                                <h5>Chocolate tart</h5>
+                            </a>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                            <p>2 Comments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-small-receipe-area d-flex">
+                        <!-- Receipe Thumb -->
+                        <div class="receipe-thumb">
+                            <img src="/eatoday/resource/images/sr7.jpg" alt="">
+                        </div>
+                        <!-- Receipe Content -->
+                        <div class="receipe-content">
+                            <span>January 04, 2018</span>
+                            <a href="receipe-post.html">
+                                <h5>Berry Desert</h5>
+                            </a>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                            <p>2 Comments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-small-receipe-area d-flex">
+                        <!-- Receipe Thumb -->
+                        <div class="receipe-thumb">
+                            <img src="/eatoday/resource/images/sr8.jpg" alt="">
+                        </div>
+                        <!-- Receipe Content -->
+                        <div class="receipe-content">
+                            <span>January 04, 2018</span>
+                            <a href="receipe-post.html">
+                                <h5>Zucchini Grilled on peper</h5>
+                            </a>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                            <p>2 Comments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-small-receipe-area d-flex">
+                        <!-- Receipe Thumb -->
+                        <div class="receipe-thumb">
+                            <img src="/eatoday/resource/images/sr9.jpg" alt="">
+                        </div>
+                        <!-- Receipe Content -->
+                        <div class="receipe-content">
+                            <span>January 04, 2018</span>
+                            <a href="receipe-post.html">
+                                <h5>Chicken Salad</h5>
+                            </a>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                            <p>2 Comments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
     </section>
+
+
 
     <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
       <div class="container">
         <div class="row justify-content-center">
         	<div class="col-md-10">
+        	    <h1>우리의 레시피 갯수는?!</h1><br/>
         		<div class="row">
+
 		          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 text-center">
 		              <div class="text">
 		              	<div class="icon"><span class="flaticon-coffee-cup"></span></div>
 		              	<strong class="number" data-number="100">0</strong>
-		              	<span>Coffee Branches</span>
+		              	<span>한식</span>
 		              </div>
 		            </div>
 		          </div>
@@ -231,7 +474,7 @@
 		              <div class="text">
 		              	<div class="icon"><span class="flaticon-coffee-cup"></span></div>
 		              	<strong class="number" data-number="85">0</strong>
-		              	<span>Number of Awards</span>
+		              	<span>중식</span>
 		              </div>
 		            </div>
 		          </div>
@@ -240,7 +483,7 @@
 		              <div class="text">
 		              	<div class="icon"><span class="flaticon-coffee-cup"></span></div>
 		              	<strong class="number" data-number="10567">0</strong>
-		              	<span>Happy Customer</span>
+		              	<span>일식</span>
 		              </div>
 		            </div>
 		          </div>
@@ -249,7 +492,7 @@
 		              <div class="text">
 		              	<div class="icon"><span class="flaticon-coffee-cup"></span></div>
 		              	<strong class="number" data-number="900">0</strong>
-		              	<span>Staff</span>
+		              	<span>양식</span>
 		              </div>
 		            </div>
 		          </div>
@@ -259,386 +502,8 @@
       </div>
     </section>
 
-    <section class="ftco-section">
-    	<div class="container">
-    		<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section ftco-animate text-center">
-          	<span class="subheading">Discover</span>
-            <h2 class="mb-4">Best Coffee Sellers</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          </div>
-        </div>
-        <div class="row">
-        	<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
-    				</div>
-        	</div>
-        	<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
-    				</div>
-        	</div>
-        	<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
-    				</div>
-        	</div>
-        	<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
-    				</div>
-        	</div>
-        </div>
-    	</div>
-    </section>
 
-    <section class="ftco-gallery">
-    	<div class="container-wrap">
-    		<div class="row no-gutters">
-					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-1.jpg);">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-    						<span class="icon-search"></span>
-    					</div>
-						</a>
-					</div>
-					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-2.jpg);">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-    						<span class="icon-search"></span>
-    					</div>
-						</a>
-					</div>
-					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-3.jpg);">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-    						<span class="icon-search"></span>
-    					</div>
-						</a>
-					</div>
-					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-4.jpg);">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-    						<span class="icon-search"></span>
-    					</div>
-						</a>
-					</div>
-        </div>
-    	</div>
-    </section>
-
-		<section class="ftco-menu">
-    	<div class="container">
-    		<div class="row justify-content-center mb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-          	<span class="subheading">Discover</span>
-            <h2 class="mb-4">Our Products</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          </div>
-        </div>
-    		<div class="row d-md-flex">
-	    		<div class="col-lg-12 ftco-animate p-md-5">
-		    		<div class="row">
-		          <div class="col-md-12 nav-link-wrap mb-5">
-		            <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-		              <a class="nav-link active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Main Dish</a>
-
-		              <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Drinks</a>
-
-		              <a class="nav-link" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Desserts</a>
-		            </div>
-		          </div>
-		          <div class="col-md-12 d-flex align-items-center">
-		            
-		            <div class="tab-content ftco-animate" id="v-pills-tabContent">
-
-		              <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
-		              	<div class="row">
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dish-1.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Grilled Beef</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dish-2.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Grilled Beef</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dish-3.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Grilled Beef</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              	</div>
-		              </div>
-
-		              <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
-		                <div class="row">
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-1.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Lemonade Juice</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-2.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Pineapple Juice</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-3.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Soda Drinks</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              	</div>
-		              </div>
-
-		              <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
-		                <div class="row">
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-1.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-2.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-3.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              	</div>
-		              </div>
-		            </div>
-		          </div>
-		        </div>
-		      </div>
-		    </div>
-    	</div>
-    </section>
-
-    <section class="ftco-section img" id="ftco-testimony" style="background-image: url(images/bg_1.jpg);"  data-stellar-background-ratio="0.5">
-    	<div class="overlay"></div>
-	    <div class="container">
-	      <div class="row justify-content-center mb-5">
-	        <div class="col-md-7 heading-section text-center ftco-animate">
-	        	<span class="subheading">Testimony</span>
-	          <h2 class="mb-4">Customers Says</h2>
-	          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-	        </div>
-	      </div>
-	    </div>
-	    <div class="container-wrap">
-	      <div class="row d-flex no-gutters">
-	        <div class="col-lg align-self-sm-end ftco-animate">
-	          <div class="testimony">
-	             <blockquote>
-	                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small.&rdquo;</p>
-	              </blockquote>
-	              <div class="author d-flex mt-4">
-	                <div class="image mr-3 align-self-center">
-	                  <img src="images/person_1.jpg" alt="">
-	                </div>
-	                <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
-	              </div>
-	          </div>
-	        </div>
-	        <div class="col-lg align-self-sm-end">
-	          <div class="testimony overlay">
-	             <blockquote>
-	                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-	              </blockquote>
-	              <div class="author d-flex mt-4">
-	                <div class="image mr-3 align-self-center">
-	                  <img src="images/person_2.jpg" alt="">
-	                </div>
-	                <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
-	              </div>
-	          </div>
-	        </div>
-	        <div class="col-lg align-self-sm-end ftco-animate">
-	          <div class="testimony">
-	             <blockquote>
-	                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small  line of blind text by the name. &rdquo;</p>
-	              </blockquote>
-	              <div class="author d-flex mt-4">
-	                <div class="image mr-3 align-self-center">
-	                  <img src="images/person_3.jpg" alt="">
-	                </div>
-	                <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
-	              </div>
-	          </div>
-	        </div>
-	        <div class="col-lg align-self-sm-end">
-	          <div class="testimony overlay">
-	             <blockquote>
-	                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however.&rdquo;</p>
-	              </blockquote>
-	              <div class="author d-flex mt-4">
-	                <div class="image mr-3 align-self-center">
-	                  <img src="images/person_2.jpg" alt="">
-	                </div>
-	                <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
-	              </div>
-	          </div>
-	        </div>
-	        <div class="col-lg align-self-sm-end ftco-animate">
-	          <div class="testimony">
-	            <blockquote>
-	              <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small  line of blind text by the name. &rdquo;</p>
-	            </blockquote>
-	            <div class="author d-flex mt-4">
-	              <div class="image mr-3 align-self-center">
-	                <img src="images/person_3.jpg" alt="">
-	              </div>
-	              <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-	    </div>
-	  </section>
-
-    <section class="ftco-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section ftco-animate text-center">
-            <h2 class="mb-4">Recent from blog</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          </div>
-        </div>
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-              </a>
-              <div class="text py-4 d-block">
-              	<div class="meta">
-                  <div><a href="#">Sept 10, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">The Delicious Pizza</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-              </a>
-              <div class="text py-4 d-block">
-              	<div class="meta">
-                  <div><a href="#">Sept 10, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">The Delicious Pizza</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-              </a>
-              <div class="text py-4 d-block">
-              	<div class="meta">
-                  <div><a href="#">Sept 10, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">The Delicious Pizza</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-		
+		<!--  
 		<section class="ftco-appointment">
 			<div class="overlay"></div>
     	<div class="container-wrap">
@@ -687,85 +552,9 @@
     		</div>
     	</div>
     </section>
-
-    <footer class="ftco-footer ftco-section img">
-    	<div class="overlay"></div>
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">About Us</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Recent Blog</h2>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-6 mb-5 mb-md-5">
-             <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">Services</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Cooked</a></li>
-                <li><a href="#" class="py-2 d-block">Deliver</a></li>
-                <li><a href="#" class="py-2 d-block">Quality Foods</a></li>
-                <li><a href="#" class="py-2 d-block">Mixed</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
-        </div>
-      </div>
-    </footer>
+-->
     
-  
+      <jsp:include page="footer.jsp" />
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
