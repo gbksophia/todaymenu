@@ -1,7 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Coffee - Free Bootstrap 4 Template by Colorlib</title>
+    <title>오늘 뭐 먹지?</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -9,46 +11,46 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
 
-    <link rel="stylesheet" href="resource/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/animate.css">
     
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/magnific-popup.css">
 
-    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/aos.css">
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/jquery.timepicker.css">
 
     
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/style.css">
   </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Coffee<small>Blend</small></a>
+	      <a class="navbar-brand" href="index.do">오 늘<small>뭐먹지?</small></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
-	          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+	          <li class="nav-item active"><a href="index.do" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="menu.do" class="nav-link">Menu</a></li>
+	          <li class="nav-item"><a href="services.do" class="nav-link">Services</a></li>
+	          <li class="nav-item"><a href="blog.do" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="about.do" class="nav-link">About</a></li>
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.html">Shop</a>
-                <a class="dropdown-item" href="product-single.html">Single Product</a>
-                <a class="dropdown-item" href="room.html">Cart</a>
-                <a class="dropdown-item" href="checkout.html">Checkout</a>
+              	<a class="dropdown-item" href="shop.do">Shop</a>
+                <a class="dropdown-item" href="product-single.do">Single Product</a>
+                <a class="dropdown-item" href="room.do">Cart</a>
+                <a class="dropdown-item" href="checkout.do">Checkout</a>
               </div>
             </li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
@@ -60,7 +62,7 @@
     <!-- END nav -->
 
     <section class="home-slider owl-carousel">
-      <div class="slider-item" style="background-image: url(images/bg_1.jpg);">
+      <div class="slider-item" style="background-image: url(/eatoday/resource/images/bg7.jpg);">
       	<div class="overlay"></div>
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -76,7 +78,7 @@
         </div>
       </div>
 
-      <div class="slider-item" style="background-image: url(images/bg_2.jpg);">
+      <div class="slider-item" style="background-image: url(/eatoday/resource/images/r5.jpg);">
       	<div class="overlay"></div>
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -92,7 +94,7 @@
         </div>
       </div>
 
-      <div class="slider-item" style="background-image: url(images/bg_3.jpg);">
+      <div class="slider-item" style="background-image: url(/eatoday/resource/images/breadcumb4.jpg);">
       	<div class="overlay"></div>
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -112,69 +114,7 @@
     <section class="ftco-intro">
     	<div class="container-wrap">
     		<div class="wrap d-md-flex align-items-xl-end">
-	    		<div class="info">
-	    			<div class="row no-gutters">
-	    				<div class="col-md-4 d-flex ftco-animate">
-	    					<div class="icon"><span class="icon-phone"></span></div>
-	    					<div class="text">
-	    						<h3>000 (123) 456 7890</h3>
-	    						<p>A small river named Duden flows by their place and supplies.</p>
-	    					</div>
-	    				</div>
-	    				<div class="col-md-4 d-flex ftco-animate">
-	    					<div class="icon"><span class="icon-my_location"></span></div>
-	    					<div class="text">
-	    						<h3>198 West 21th Street</h3>
-	    						<p>	203 Fake St. Mountain View, San Francisco, California, USA</p>
-	    					</div>
-	    				</div>
-	    				<div class="col-md-4 d-flex ftco-animate">
-	    					<div class="icon"><span class="icon-clock-o"></span></div>
-	    					<div class="text">
-	    						<h3>Open Monday-Friday</h3>
-	    						<p>8:00am - 9:00pm</p>
-	    					</div>
-	    				</div>
-	    			</div>
-	    		</div>
-	    		<div class="book p-4">
-	    			<h3>Book a Table</h3>
-	    			<form action="#" class="appointment-form">
-	    				<div class="d-md-flex">
-		    				<div class="form-group">
-		    					<input type="text" class="form-control" placeholder="First Name">
-		    				</div>
-		    				<div class="form-group ml-md-4">
-		    					<input type="text" class="form-control" placeholder="Last Name">
-		    				</div>
-	    				</div>
-	    				<div class="d-md-flex">
-		    				<div class="form-group">
-		    					<div class="input-wrap">
-		            		<div class="icon"><span class="ion-md-calendar"></span></div>
-		            		<input type="text" class="form-control appointment_date" placeholder="Date">
-	            		</div>
-		    				</div>
-		    				<div class="form-group ml-md-4">
-		    					<div class="input-wrap">
-		            		<div class="icon"><span class="ion-ios-clock"></span></div>
-		            		<input type="text" class="form-control appointment_time" placeholder="Time">
-	            		</div>
-		    				</div>
-		    				<div class="form-group ml-md-4">
-		    					<input type="text" class="form-control" placeholder="Phone">
-		    				</div>
-	    				</div>
-	    				<div class="d-md-flex">
-	    					<div class="form-group">
-		              <textarea name="" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
-		            </div>
-		            <div class="form-group ml-md-4">
-		              <input type="submit" value="Appointment" class="btn btn-white py-3 px-4">
-		            </div>
-	    				</div>
-	    			</form>
-	    		</div>
+	    	
     		</div>
     	</div>
     </section>
@@ -188,7 +128,7 @@
 	          <h2 class="mb-4">Our Story</h2>
 	        </div>
 	        <div>
-	  				<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
+	  				<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didnât take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
 	  			</div>
   			</div>
     	</div>
@@ -832,23 +772,23 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.timepicker.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
+  <script src="/eatoday/resource/js/jquery.min.js"></script>
+  <script src="/eatoday/resource/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/eatoday/resource/js/popper.min.js"></script>
+  <script src="/eatoday/resource/js/bootstrap.min.js"></script>
+  <script src="/eatoday/resource/js/jquery.easing.1.3.js"></script>
+  <script src="/eatoday/resource/js/jquery.waypoints.min.js"></script>
+  <script src="/eatoday/resource/js/jquery.stellar.min.js"></script>
+  <script src="/eatoday/resource/js/owl.carousel.min.js"></script>
+  <script src="/eatoday/resource/js/jquery.magnific-popup.min.js"></script>
+  <script src="/eatoday/resource/js/aos.js"></script>
+  <script src="/eatoday/resource/js/jquery.animateNumber.min.js"></script>
+  <script src="/eatoday/resource/js/bootstrap-datepicker.js"></script>
+  <script src="/eatoday/resource/js/jquery.timepicker.min.js"></script>
+  <script src="/eatoday/resource/js/scrollax.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
+  <script src="/eatoday/resource/js/google-map.js"></script>
+  <script src="/eatoday/resource/js/main.js"></script>
     
   </body>
 </html>
