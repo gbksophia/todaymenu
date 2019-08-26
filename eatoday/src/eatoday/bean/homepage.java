@@ -9,57 +9,57 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/homepage/")
 public class homepage {
 	
-	@RequestMapping("index.do")
+	@RequestMapping("index.eat")
 	public String index() {
 		return "/homepage/index";
 	}
 	
-	@RequestMapping("about.do")
+	@RequestMapping("about.eat")
 	public String about() {
 		return "/homepage/about";
 	}
 	
-	@RequestMapping("blog-single.do")
+	@RequestMapping("blog-single.eat")
 	public String blogSingle() {
 		return "/homepage/blog-single";
 	}
 	
-	@RequestMapping("blog.do")
+	@RequestMapping("blog.eat")
 	public String blog() {
 		return "/homepage/blog";
 	}
 	
-	@RequestMapping("cart.do")
+	@RequestMapping("cart.eat")
 	public String cart() {
 		return "/homepage/cart";
 	}
 	
-	@RequestMapping("checkout.do")
+	@RequestMapping("checkout.eat")
 	public String checkout() {
 		return "/homepage/checkout";
 	}
 	
-	@RequestMapping("contact.do")
+	@RequestMapping("contact.eat")
 	public String contact() {
 		return "/homepage/contact";
 	}
 	
-	@RequestMapping("menu.do")
+	@RequestMapping("menu.eat")
 	public String menu() {
 		return "/homepage/menu";
 	}
 	
-	@RequestMapping("product-single.do")
+	@RequestMapping("product-single.eat")
 	public String productSingle() {
 		return "/homepage/product-single";
 	}
 	
-	@RequestMapping("services.do")
+	@RequestMapping("services.eat")
 	public String services() {
 		return "/homepage/services";
 	}
 	
-	@RequestMapping("shop.do")
+	@RequestMapping("shop.eat")
 	public String shop() {
 		return "/homepage/shop";
 	}
