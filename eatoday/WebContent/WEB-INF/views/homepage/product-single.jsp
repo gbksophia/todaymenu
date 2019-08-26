@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,50 +10,50 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
     
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/magnific-popup.css">
 
-    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/aos.css">
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/jquery.timepicker.css">
 
     
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/style.css">
   </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Coffee<small>Blend</small></a>
+	      <a class="navbar-brand" href="index.eat">Coffee<small>Blend</small></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
-	          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="index.eat" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="menu.eat" class="nav-link">Menu</a></li>
+	          <li class="nav-item"><a href="services.eat" class="nav-link">Services</a></li>
+	          <li class="nav-item"><a href="blog.eat" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="about.eat" class="nav-link">About</a></li>
 	          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+              <a class="nav-link dropdown-toggle" href="room.eat" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.html">Shop</a>
-                <a class="dropdown-item" href="product-single.html">Single Product</a>
-                <a class="dropdown-item" href="cart.html">Cart</a>
-                <a class="dropdown-item" href="checkout.html">Checkout</a>
+              	<a class="dropdown-item" href="shop.eat">Shop</a>
+                <a class="dropdown-item" href="product-single.eat">Single Product</a>
+                <a class="dropdown-item" href="cart.eat">Cart</a>
+                <a class="dropdown-item" href="checkout.eat">Checkout</a>
               </div>
             </li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item cart"><a href="cart.html" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
+	          <li class="nav-item"><a href="contact.eat" class="nav-link">Contact</a></li>
+	          <li class="nav-item cart"><a href="cart.eat" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
 	        </ul>
 	      </div>
 		  </div>
@@ -68,7 +69,7 @@
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
             	<h1 class="mb-3 mt-5 bread">Product Detail</h1>
-	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Product Detail</span></p>
+	            <p class="breadcrumbs"><span class="mr-2"><a href="index.eat">Home</a></span> <span>Product Detail</span></p>
             </div>
 
           </div>
@@ -86,7 +87,7 @@
     				<h3>Creamy Latte Coffee</h3>
     				<p class="price"><span>$4.90</span></p>
     				<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-    				<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.
+    				<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didnât take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.
 						</p>
 						<div class="row mt-4">
 							<div class="col-md-6">
@@ -117,7 +118,7 @@
 	             	</span>
 	          	</div>
           	</div>
-          	<p><a href="cart.html" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
+          	<p><a href="cart.eat" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
     			</div>
     		</div>
     	</div>
@@ -264,23 +265,23 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.timepicker.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
+  <script src="/eatoday/resource/js/jquery.min.js"></script>
+  <script src="/eatoday/resource/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/eatoday/resource/js/popper.min.js"></script>
+  <script src="/eatoday/resource/js/bootstrap.min.js"></script>
+  <script src="/eatoday/resource/js/jquery.easing.1.3.js"></script>
+  <script src="/eatoday/resource/js/jquery.waypoints.min.js"></script>
+  <script src="/eatoday/resource/js/jquery.stellar.min.js"></script>
+  <script src="/eatoday/resource/js/owl.carousel.min.js"></script>
+  <script src="/eatoday/resource/js/jquery.magnific-popup.min.js"></script>
+  <script src="/eatoday/resource/js/aos.js"></script>
+  <script src="/eatoday/resource/js/jquery.animateNumber.min.js"></script>
+  <script src="/eatoday/resource/js/bootstrap-datepicker.js"></script>
+  <script src="/eatoday/resource/js/jquery.timepicker.min.js"></script>
+  <script src="/eatoday/resource/js/scrollax.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
+  <script src="/eatoday/resource/js/google-map.js"></script>
+  <script src="/eatoday/resource/js/main.js"></script>
 
   <script>
 		$(document).ready(function(){

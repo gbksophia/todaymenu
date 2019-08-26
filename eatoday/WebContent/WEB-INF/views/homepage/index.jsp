@@ -33,7 +33,7 @@
   <body>
   	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light sleep scrolled awake" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.do">오 늘<small>뭐먹지?</small></a>
+	      <a class="navbar-brand" href="index.eat">오 늘<small>뭐먹지?</small></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -46,10 +46,10 @@
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.do">Shop</a>
-                <a class="dropdown-item" href="product-single.do">Single Product</a>
-                <a class="dropdown-item" href="room.do">Cart</a>
-                <a class="dropdown-item" href="checkout.do">Checkout</a>
+              	<a class="dropdown-item" href="shop.eat">Shop</a>
+                <a class="dropdown-item" href="product-single.eat">Single Product</a>
+                <a class="dropdown-item" href="room.eat">Cart</a>
+                <a class="dropdown-item" href="checkout.eat">Checkout</a>
               </div>
             </li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
