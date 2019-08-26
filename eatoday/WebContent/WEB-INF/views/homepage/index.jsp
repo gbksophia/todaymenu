@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
   </head>
   <body>
-  	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+  	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light sleep scrolled awake" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="index.eat">오 늘<small>뭐먹지?</small></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,11 +39,10 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.eat" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="menu.eat" class="nav-link">Menu</a></li>
-	          <li class="nav-item"><a href="services.eat" class="nav-link">Services</a></li>
-	          <li class="nav-item"><a href="blog.eat" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="about.eat" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="menu.do" class="nav-link">Menu</a></li>
+	          <li class="nav-item"><a href="services.do" class="nav-link">Services</a></li>
+	          <li class="nav-item"><a href="blog.do" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="about.do" class="nav-link">About</a></li>
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -71,7 +70,7 @@
             	<span class="subheading">Welcome</span>
               <h1 class="mb-4">The Best Coffee Testing Experience</h1>
               <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+              <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
             </div>
 
           </div>
@@ -87,7 +86,7 @@
             	<span class="subheading">Welcome</span>
               <h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
               <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+              <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
             </div>
 
           </div>
@@ -103,7 +102,7 @@
             	<span class="subheading">Welcome</span>
               <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
               <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+              <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
             </div>
 
           </div>

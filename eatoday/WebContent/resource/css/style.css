@@ -7306,13 +7306,13 @@ h1, h2, h3, h4, h5,
   color: #c49b63 !important; }
 
 .ftco-navbar-light {
-  background: transparent !important;
+  background: #000;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: 3;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+  border-bottom: 1px solid rgba(0, 0, 0); }
   @media (max-width: 991.98px) {
     .ftco-navbar-light {
       background: #000 !important;
