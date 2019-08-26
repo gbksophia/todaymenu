@@ -18,12 +18,6 @@ public class APITest {
 		return "/apitest/mapapi2";
 	}
 	
-	@RequestMapping("googleapi.do")
-	public String googletest(HttpServletRequest request) {
-
-		return "/apitest/googletest";
-	}
-	
 	//http://localhost:8080/eatoday/apitest/map.do
 	@RequestMapping("map.do")
 	public String map() {
