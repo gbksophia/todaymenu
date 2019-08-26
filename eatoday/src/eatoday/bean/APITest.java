@@ -32,6 +32,5 @@ public class APITest {
 		return "/apitest/googletest";
 	}
 	
-	
 }
 
