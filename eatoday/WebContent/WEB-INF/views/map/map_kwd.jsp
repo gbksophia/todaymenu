@@ -161,19 +161,19 @@ function displayMarker(place) {
 
     // 마커에 클릭이벤트를 등록합니다
     kakao.maps.event.addListener(marker, 'click', function() {
-        var content = '<div class="placeinfo">' +
-                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
+    	var content = '<div class="placeinfo">' +
+						'<a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
 
     if (place.road_address_name) {
-        content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
-                    '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
+        content += '<span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
+                   '<span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
     }  else {
-        content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
+        content += '<span title="' + place.address_name + '">' + place.address_name + '</span>';
     }                
    
-    content += '    <span class="tel">' + place.phone + '</span>' + 
-                '</div>' + 
-                '<div class="after"></div>';
+    content += '<span class="tel">'
+        		 + place.phone + '</span>' + '</div>'
+        		  + '<div class="after"></div>';
 
     contentNode.innerHTML = content;
     placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
