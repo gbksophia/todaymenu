@@ -6,43 +6,39 @@
 	<title>오늘 뭐먹지? 로그인</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+	<!-- 로그인 css -->
 	<link rel="icon" type="image/png" href="/eatoday/resource/login/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/vendor/animate/animate.css">
-<!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/css/main.css">
-<!--원래 css-->
-<link rel="stylesheet" href="/eatoday/resource/css/style.css">
-<style>
-.fa-naver:before{
-	font-family : Arial;
-	font-weight: bold;
-	content: 'N';
-}
-
-.fa-kakao:before{
-	font-family : Arial;
-	font-weight : bold;
-	color : black;
-	content : "K"
-}
-</style>
+	<!--원래 css-->
+	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
+	
+	<!-- 소셜 로그인 버튼 css -->
+	<style>
+	.fa-naver:before{
+		font-family : Arial;
+		font-weight: bold;
+		content: 'N';
+	}
+	
+	.fa-kakao:before{
+		font-family : Arial;
+		font-weight : bold;
+		color : black;
+		content : "K"
+	}
+	</style>
+	<!-- 카카오 로그인 script -->
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	
 </head>
 <body>
 	<jsp:include page="../homepage/header.jsp" />
@@ -90,17 +86,40 @@
 							Social Login
 						</span>
 					</div>
-
+					
+					
+					<!-- 네이버 로그인 -->
+					
 					<div class="flex-c-m">
 						<a href="#" class="login100-social-item bg1">
-							<i class="fa fa-naver"></i>
+							<img src = "/eatoday/resource/images/naver.JPG" width = "55">
 						</a>
-
-						<a href="/eatoday/kakaologin/kakaologin.eat" class="login100-social-item bg2">
-							
-							<img src= "/eatoday/resource/images/kakao.jpg" style ="width:55px;">
+						
+						<!-- 카카오 로그인 -->
+						<a id="custom-login-btn" href="javascript:loginWithKakao()">
+						<img src="/eatoday/resource/images/kakao.jpg" width="55"/>
 						</a>
-
+						<script type='text/javascript'>
+						  //<![CDATA[
+						    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+						    Kakao.init('80a9e86ee162fbf07ba5299ada0e85a0');
+						    function loginWithKakao() {
+						      // 로그인 창을 띄웁니다.
+						      Kakao.Auth.login({
+						        success: function(authObj) {
+						          alert(JSON.stringify(authObj));
+						        },
+						        fail: function(err) {
+						          alert(JSON.stringify(err));
+						        }
+						      });
+						    };
+						  //]]>
+						</script>
+						
+						
+						<!-- 구글 로그인 -->
+						
 						<a href="/eatoday/homepage/index.eat" class="login100-social-item bg3">
 							<i class="fa fa-google"></i>
 						</a>
