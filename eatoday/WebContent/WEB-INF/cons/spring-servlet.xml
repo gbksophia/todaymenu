@@ -13,7 +13,6 @@
 
 	<!-- 패키지 내의 모든 클래스를 스캔 --> 
 	<context:component-scan base-package="eatoday.bean"/>
-
 	<!-- 주소의 생략할 부분 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"/>
