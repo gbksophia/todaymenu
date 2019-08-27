@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/homepage/")
 public class homepage {
 	
+	//http://localhost:8080/eatoday/homepage/index.eat
 	@RequestMapping("index.eat")
 	public String index() {
 		return "/homepage/index";
