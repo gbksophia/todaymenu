@@ -66,11 +66,6 @@ public class homepage {
 		return "/homepage/shop";
 	}
 	
-	@RequestMapping("login.eat")
-	public String login() {
-		return "/homepage/login";
-	}
-	
 	// index.jsp에서 검색한 결과 표시 - map_kwd.jsp included
 	@RequestMapping("searchResult.eat")
 	public String searchResult(HttpServletRequest request) {
