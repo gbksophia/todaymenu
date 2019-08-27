@@ -29,6 +29,82 @@
     <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
+    
+    <link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style>
+    
+    
+    /*********************************************SEARCH INPUT************/
+@import
+   url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
+
+/* Base styling */
+.search_body {
+   width: 430px;
+   @import
+   url("https://fonts.googleapis.com/css?family=Raleway:400,700,900");
+   margin : 0 auto;
+     font-family   :'Raleway',sans-serif;
+}
+
+.search__input {
+   width: 90%; /*검색 창 길이*/
+   padding: 12px 24px; /*검색 입력 값 안의 padding*/
+   background-color: transparent;
+   transition: transform 250ms ease-in-out;
+   font-size: 20px;
+   line-height: 18px;
+   color: white;
+   background-color: transparent;
+   background-image:
+      url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+   background-repeat: no-repeat;
+   background-size: 18px 18px;
+   background-position: 95% center;
+   border-radius: 50px;
+   border: 3px solid pink;
+   transition: all 250ms ease-in-out;
+   backface-visibility: hidden;
+   transform-style: preserve-3d;
+}
+
+.search__input::placeholder {
+   color: rgba(87, 87, 86, 0.8);
+   /* text-transform: uppercase;*/
+   letter-spacing: 1.5px;
+}
+
+.search__input:hover, .search__input:focus {
+   padding: 12px 0;
+   outline: 0;
+   border: 1px solid transparent;
+   border-bottom: 2px solid pink;
+   border-radius: 0;
+   background-position: 100% center;
+}
+    </style>
+    
+    <script type = "text/javascript">
+    function searchCheck() {
+        var str = document.getElementById('search');
+        var blank = /^[\s]/g;
+
+        //검색어 입력필수
+        if (str.value == '' || str.value == null) {
+           alert("검색어를 입력하세요.");
+           return false;
+        }
+
+        //공백금지
+        if (blank.test(str.value) == true) {
+           alert("제대로 좀 입력하세요.")
+           return false;
+        }
+     }
+
+    </script>
   </head>
   <body>
   	<jsp:include page="header.jsp" />
@@ -92,25 +168,21 @@
     
     </section>
 
-
+<!--  검색  -->
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
-			<div class="overlay"></div>
       <div class="container">
-        <div class="row justify-content-center">
 
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-md-10">
-                                <form class="form-wrap mt-4">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <input type="text" placeholder="메뉴를 검색하세요!" class="btn-group1">
-                                        <button type="submit" class="btn-form"><span class="icon-magnifier search-icon"></span>SEARCH<i class="pe-7s-angle-right"></i></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                                 <div class="hd_column2">
+            <div class=".search_body">
+               <form name="searchBar" action="/hmjm/Home/search.jsp"
+                  onSubmit="return searchCheck();">
+                  <input type="text" name="search" id="search" class="search__input"
+                     placeholder="배우고싶은 수업 또는 튜터를 검색해보세요!">
+                  <input type = "submit" value = "검색">
+               </form>
+            </div>
 
-
-</div>
+         </div>
 </div>
 </section>
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
