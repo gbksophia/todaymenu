@@ -11,7 +11,8 @@ public class homepage {
 	
 	//http://localhost:8080/eatoday/homepage/index.eat
 	@RequestMapping("index.eat")
-	public String index() {
+	public String index(HttpServletRequest request) {
+		String search = request.getParameter("search");
 		return "/homepage/index";
 	}
 	
@@ -70,4 +71,10 @@ public class homepage {
 		return "/homepage/login";
 	}
 	
+	// index.jsp에서 검색한 결과 표시 - map_kwd.jsp included
+	@RequestMapping("searchResult.eat")
+	public String searchResult(HttpServletRequest request) {
+		String search = request.getParameter("search");
+		return "/homepage/searchResult";
+	}
 }

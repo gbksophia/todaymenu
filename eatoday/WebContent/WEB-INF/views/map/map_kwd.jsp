@@ -7,7 +7,7 @@
     
 </head>
 <body>
-<div id="map" style="width:100%;height:350px;"></div>
+<div id="map" style="width:100%;height:500px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=112ecff57900a2dd120c152f6c326b7b&libraries=services"></script>
 <script>
@@ -66,8 +66,8 @@ function displayMarker(place) {
 }
 </script>
 
-<form action="map_kwd.do" name="search">
-	search:<input type="text" name="kwd"/>
+<form action="/eatoday/homepage/searchResult.eat" name="search">
+	search:<input type="text" name="search"/>
 	<input type="submit" value="SUBMIT"/>
 </form>
 </body>
