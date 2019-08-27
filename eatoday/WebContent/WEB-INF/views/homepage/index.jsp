@@ -174,10 +174,10 @@
 
                                  <div class="hd_column2">
             <div class=".search_body">
-               <form name="searchBar" action="/hmjm/Home/search.jsp"
+               <form name="searchBar" action="searchResult.eat"
                   onSubmit="return searchCheck();">
                   <input type="text" name="search" id="search" class="search__input"
-                     placeholder="배우고싶은 수업 또는 튜터를 검색해보세요!">
+                     placeholder="식당 검색 하시던지 말던지">
                   <input type = "submit" value = "검색">
                </form>
             </div>
