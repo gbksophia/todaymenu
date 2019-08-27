@@ -44,7 +44,7 @@
        alert(JSON.stringify(error));
       }
      });
-    },
+    ,
     fail: function(err) {
      alert(JSON.stringify(err));
     }
