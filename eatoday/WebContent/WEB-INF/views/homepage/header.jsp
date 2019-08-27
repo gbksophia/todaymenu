@@ -20,7 +20,7 @@
                 <a class="dropdown-item" href="/eatoday/homepage/checkout.eat">양식</a>
               </div>
             </li>
-	          <li class="nav-item"><a href="/eatoday/homepage/contact.eat" class="nav-link">Contact</a></li>
+	          <li class="nav-item"><a href="contact.eat" class="nav-link">Contact</a></li>
 	          <li class="nav-item"><a href="/eatoday/loginpage/login.eat" class="nav-link">log in</a></li>
 	          <li class="nav-item cart"><a href="cart.eat" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
 	        </ul>
