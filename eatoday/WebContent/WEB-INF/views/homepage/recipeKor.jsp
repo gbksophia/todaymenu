@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -58,7 +59,7 @@
 		    		<div class="row">
 		          <div class="col-md-12 nav-link-wrap mb-5">
 		            <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-		            	<a class="nav-link active" id="v-pills-0-tab" data-toggle="pill" href="#v-pills-0" role="tab" aria-controls="v-pills-0" aria-selected="true">Coffee</a>
+		            	<a class="nav-link active" id="v-pills-0-tab" data-toggle="pill" href="#v-pills-0" role="tab" aria-controls="v-pills-0" aria-selected="true">김치 장아찌</a>
 
 		              <a class="nav-link" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="false">Main Dish</a>
 
@@ -73,50 +74,23 @@
 
 		              <div class="tab-pane fade show active" id="v-pills-0" role="tabpanel" aria-labelledby="v-pills-0-tab">
 		              	<div class="row">
+		              	
+						<c:forEach begin="0" end="${count}" step="1" var="i">
+		              	<c:set var = "rcp" value = "${recipeList[i]}" />
+		              	<c:if test = "${rcp.getCate() == 10}">
 		              		<div class="col-md-3">
 						        		<div class="menu-entry">
 						    					<a href="#" class="img" style="background-image: url(/eatoday/resource/images/menu-1.jpg);"></a>
 						    					<div class="text text-center pt-4">
-						    						<h3><a href="product-single.eat">Coffee Capuccino</a></h3>
+						    						<h3><a href="product-single.eat">${rcp.getName() }</a></h3>
 						    						<p>A small river named Duden flows by their place and supplies</p>
 						    						<p class="price"><span>$5.90</span></p>
 						    						<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
 						    					</div>
 						    				</div>
 						        	</div>
-						        	<div class="col-md-3">
-						        		<div class="menu-entry">
-						    					<a href="#" class="img" style="background-image: url(/eatoday/resource/images/menu-2.jpg);"></a>
-						    					<div class="text text-center pt-4">
-						    						<h3><a href="product-single.eat">Coffee Capuccino</a></h3>
-						    						<p>A small river named Duden flows by their place and supplies</p>
-						    						<p class="price"><span>$5.90</span></p>
-						    						<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-						    					</div>
-						    				</div>
-						        	</div>
-						        	<div class="col-md-3">
-						        		<div class="menu-entry">
-						    					<a href="#" class="img" style="background-image: url(/eatoday/resource/images/menu-3.jpg);"></a>
-						    					<div class="text text-center pt-4">
-						    						<h3><a href="product-single.eat">Coffee Capuccino</a></h3>
-						    						<p>A small river named Duden flows by their place and supplies</p>
-						    						<p class="price"><span>$5.90</span></p>
-						    						<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-						    					</div>
-						    				</div>
-						        	</div>
-						        	<div class="col-md-3">
-						        		<div class="menu-entry">
-						    					<a href="#" class="img" style="background-image: url(/eatoday/resource/images/menu-4.jpg);"></a>
-						    					<div class="text text-center pt-4">
-						    						<h3><a href="product-single.eat">Coffee Capuccino</a></h3>
-						    						<p>A small river named Duden flows by their place and supplies</p>
-						    						<p class="price"><span>$5.90</span></p>
-						    						<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-						    					</div>
-						    				</div>
-						        	</div>
+						        	</c:if>
+						        	</c:forEach>
 		              	</div>
 		              </div>
 
@@ -133,61 +107,7 @@
 		              				</div>
 		              			</div>
 		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/dish-2.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Grilled Beef</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/dish-3.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Grilled Beef</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/dish-4.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Grilled Beef</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/dish-5.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Grilled Beef</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/dish-6.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Grilled Beef</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
+
 		              	</div>
 		              </div>
 

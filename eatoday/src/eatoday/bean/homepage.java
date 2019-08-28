@@ -1,13 +1,22 @@
 package eatoday.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import eatoday.vo.dbManageVO;
 @Controller
 @RequestMapping("/homepage/")
 public class homepage {
+	
+	@Autowired
+	private SqlSessionTemplate sql = null;
 	
 	//http://localhost:8080/eatoday/homepage/index.eat
 	@RequestMapping("index.eat")
@@ -63,7 +72,20 @@ public class homepage {
 	}
 	
 	@RequestMapping("recipeKor.eat")
-	public String recipeKor() {
+	public String showdb(Model model, HttpServletRequest request) throws Exception {
+		try {
+			int count = (Integer)sql.selectOne("eatoday.count");
+			ArrayList rcp = new ArrayList();
+			List rcpList = sql.selectList("eatoday.select");
+			
+			System.out.println(count);
+			//System.out.println(rcpList);
+
+			model.addAttribute("recipeList", rcpList);
+			model.addAttribute("count", count);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "/homepage/recipeKor";
 	}
 	
