@@ -77,14 +77,14 @@
 		              	
 						<c:forEach begin="0" end="${count}" step="1" var="i">
 		              	<c:set var = "rcp" value = "${recipeList[i]}" />
-		              	<c:if test = "${rcp.getCate() == 10}">
+		              	<c:if test = "${rcp.getCate() == 1}">
 		              		<div class="col-md-3">
 						        		<div class="menu-entry">
 						    					<a href="#" class="img" style="background-image: url(/eatoday/resource/images/menu-1.jpg);"></a>
 						    					<div class="text text-center pt-4">
 						    						<h3><a href="product-single.eat">${rcp.getName() }</a></h3>
-						    						<p>A small river named Duden flows by their place and supplies</p>
-						    						<p class="price"><span>$5.90</span></p>
+						    						<!--  <p>A small river named Duden flows by their place and supplies</p>
+						    						<p class="price"><span>$5.90</span></p>-->
 						    						<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
 						    					</div>
 						    				</div>
@@ -282,7 +282,6 @@
   <script src="/eatoday/resource/js/bootstrap-datepicker.js"></script>
   <script src="/eatoday/resource/js/jquery.timepicker.min.js"></script>
   <script src="/eatoday/resource/js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="/eatoday/resource/js/google-map.js"></script>
   <script src="/eatoday/resource/js/main.js"></script>
     
