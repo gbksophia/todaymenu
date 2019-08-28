@@ -11,4 +11,9 @@ public class googlelogin {
 	public String googlelogin() {
 		return "/googlelogin/googlelogin";
 	}
+	
+	@RequestMapping("google.do")
+	public String google() {
+		return "/googlelogin/google";
+	}
 }
