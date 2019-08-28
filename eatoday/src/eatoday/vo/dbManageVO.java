@@ -1,22 +1,30 @@
 package eatoday.vo;
 
-public class TestVO {
+public class dbManageVO {
 	
 	private int num;
-	private String text;
+	private String cate;
+	private String name;
 	private String mate;
 	private String pro;
+	
 	public int getNum() {
 		return num;
 	}
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getText() {
-		return text;
+	public String getCate() {
+		return cate;
 	}
-	public void setText(String text) {
-		this.text = text;
+	public void setCate(String cate) {
+		this.cate = cate;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getMate() {
 		return mate;
@@ -30,5 +38,7 @@ public class TestVO {
 	public void setPro(String pro) {
 		this.pro = pro;
 	}
+	
+	
 
 }

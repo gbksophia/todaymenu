@@ -14,11 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import eatoday.vo.TestVO;
+import eatoday.vo.dbManageVO;
 
 @Controller
 @RequestMapping("/csvtest/")
-public class csvTest {
+public class dbManage {
 	
 	@Autowired
 	private SqlSessionTemplate sql = null;
@@ -28,9 +28,9 @@ public class csvTest {
 	public String csvdb(HttpServletRequest request) throws Exception {
 		try {
 			request.setCharacterEncoding("UTF-8");
-			TestVO tbcvo = new TestVO();
+			dbManageVO rcpvo = new dbManageVO();
 			RConnection conn = new RConnection();
-			REXP tbc = conn.eval("tbc <- read.csv('D:/R/2bc_final.csv')");
+			REXP tbc = conn.eval("tbc <- read.csv('D:/R/recipe.csv')");
 			RList list = tbc.asList();
 			
 			String [][] s = new String[list.size()][];
@@ -39,12 +39,13 @@ public class csvTest {
 			}
 			
 			for(int j=0; j<list.at(0).length(); j++) {
-				tbcvo.setText(s[1][j]);
-				tbcvo.setMate(s[2][j]);
-				tbcvo.setPro(s[3][j]);
-				sql.insert("eatoday.insert", tbcvo);
+				rcpvo.setCate(s[1][j]);
+				rcpvo.setName(s[3][j]);
+				rcpvo.setMate(s[4][j]);
+				rcpvo.setPro(s[5][j]);
+				sql.insert("eatoday.insert", rcpvo);
 			}
-			System.out.println("CSV -> SQL");
+			System.out.println("CSV -> DB");
 
 			conn.close();
 		} catch (Exception e) {
@@ -58,14 +59,14 @@ public class csvTest {
 	@RequestMapping("showdb.eat")
 	public String showdb(Model model, HttpServletRequest request) throws Exception {
 		try {
-			//TestVO tbcvo = new TestVO();
 			int count = (Integer)sql.selectOne("eatoday.count");
-			ArrayList tbc = new ArrayList();
-			List tbcList = sql.selectList("eatoday.select");
+			ArrayList rcp = new ArrayList();
+			List rcpList = sql.selectList("eatoday.select");
 			
-			System.out.println(tbcList);
+			System.out.println(count);
+			//System.out.println(rcpList);
 
-			model.addAttribute("tbcList", tbcList);
+			model.addAttribute("recipeList", rcpList);
 			model.addAttribute("count", count);
 		} catch (Exception e) {
 			e.printStackTrace();

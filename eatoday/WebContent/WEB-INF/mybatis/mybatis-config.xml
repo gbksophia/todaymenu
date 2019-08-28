@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="vo" type="eatoday.vo.TestVO"/>
+		<typeAlias alias="vo" type="eatoday.vo.dbManageVO"/>
 	</typeAliases>
 	
 	<mappers>

@@ -3,17 +3,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>db->jsp</title>
 </head>
 <body>
-<c:forEach begin="0" end="${count}" step="1" var="i"> 
-<c:set var="tbc" value="${tbcList[i]}" />
+<h1>${count}</h1>
+<%-- <c:forEach begin="0" end="${count}" step="1" var="i">
+<c:set var="rcp" value="${recipeList[i]}" />
 	<table border="1">
-		<tr><td>${tbc.getText()}</td></tr>
-		<tr><td>${tbc.getMate()}</td></tr>
-		<tr><td>${tbc.getPro()}</td></tr>
+		<tr><td>${rcp.getCate()}</td></tr>
+		<tr><td>${rcp.getName()}</td></tr>
+		<tr><td>${rcp.getMate()}</td></tr>
+		<tr><td>${rcp.getPro()}</td></tr>
 	</table>
 	<br/>
-</c:forEach>
+</c:forEach> --%>
+
+
+	<c:forEach begin="0" end="${count}" step="1" var="i">
+	<c:set var="rcp" value="${recipeList[i]}" />
+	<c:if test="${rcp.getCate() == 10}">
+		<table border="1">
+			<tr><td>${rcp.getCate()}</td></tr>
+			<tr><td>${rcp.getName()}</td></tr>
+			<tr><td>${rcp.getMate()}</td></tr>
+			<tr><td>${rcp.getPro()}</td></tr>
+		</table>
+		<br/>
+		</c:if>
+	</c:forEach>
+
+asdasd
 </body>
 </html>
