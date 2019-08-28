@@ -22,5 +22,8 @@
         console.log("ID Token: " + id_token);
       }
     </script>
+
+
   </body>
 </html>
+
