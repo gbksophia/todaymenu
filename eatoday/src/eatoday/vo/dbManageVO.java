@@ -7,6 +7,8 @@ public class dbManageVO {
 	private String name;
 	private String mate;
 	private String pro;
+	private String orgname;
+	private String newname;
 	
 	public int getNum() {
 		return num;
@@ -38,7 +40,17 @@ public class dbManageVO {
 	public void setPro(String pro) {
 		this.pro = pro;
 	}
-	
-	
+	public String getOrgname() {
+		return orgname;
+	}
+	public void setOrgname(String orgname) {
+		this.orgname = orgname;
+	}
+	public String getNewname() {
+		return newname;
+	}
+	public void setNewname(String newname) {
+		this.newname = newname;
+	}
 
 }
