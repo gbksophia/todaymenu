@@ -23,35 +23,8 @@ public class csvTest {
 	@Autowired
 	private SqlSessionTemplate sql = null;
 	
-	//http://localhost:8080/eatoday/csvtest/2bc.do
-	@RequestMapping("2bc.do") //¿Ã∞≈æ»æ∏
-	public String tbc(Model model, HttpServletRequest request) throws Exception {
-		RConnection conn = new RConnection();
-		REXP tbc = conn.eval("tbc <- read.csv('D:/R/2bc.csv')");
-		RList list = tbc.asList();
-		model.addAttribute("number",list.at(0).length());
-		
-		String [][] s = new String[list.size()][];
-		for (int i=0; i<list.size(); i++) {
-			s[i] = list.at(i).asStrings();
-		}
-		
-		for (int i=0; i<list.size(); i++) {
-			for(int j=0; j<list.at(0).length(); j++) {
-				model.addAttribute("text", s[1][j]);
-				model.addAttribute("mate", s[2][j]);
-				model.addAttribute("pro", s[3][j]);
-				System.out.println(s[1][j]);
-			}
-		}
-		System.out.println("CSV -> JSP");
-		
-		conn.close();
-		return "/csvtest/2bc";
-	}
-	
-	//http://localhost:8080/eatoday/csvtest/csvdb.do
-	@RequestMapping("csvdb.do")
+	//http://localhost:8080/eatoday/csvtest/csvdb.eat
+	@RequestMapping("csvdb.eat")
 	public String csvdb(HttpServletRequest request) throws Exception {
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -81,8 +54,8 @@ public class csvTest {
 		return "/csvtest/csvdb";
 	}
 	
-	//http://localhost:8080/eatoday/csvtest/showdb.do
-	@RequestMapping("showdb.do")
+	//http://localhost:8080/eatoday/csvtest/showdb.eat
+	@RequestMapping("showdb.eat")
 	public String showdb(Model model, HttpServletRequest request) throws Exception {
 		try {
 			//TestVO tbcvo = new TestVO();

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/kakaologin/")
 public class kakaologin {
 	
-	@RequestMapping("kakaologin.do")
+	@RequestMapping("kakaologin.eat")
 	public String kakaologin(HttpServletRequest request) {
 		String kwd = request.getParameter("kwd");
 		
