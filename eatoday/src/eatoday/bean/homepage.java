@@ -50,7 +50,13 @@ public class homepage {
 	public String recipeChn() {
 		return "/homepage/recipeChn";
 	}
-	
+
+	@RequestMapping("test.eat")
+	public String test() {
+		
+		return "/homepage/test";
+	}
+
 	@RequestMapping("recipeJpn.eat")
 	public String recipeJpn() {
 		return "/homepage/recipeJpn";
