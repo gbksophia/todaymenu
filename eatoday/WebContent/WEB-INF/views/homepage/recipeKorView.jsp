@@ -50,8 +50,36 @@
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
             
-		              	<c:set var = "a" value = "${s }"/>
-            	<h1 class="mb-3 mt-5 bread">${a}</h1>
+		         <c:set var = "a" value = "${cate }"/>     	
+		         <c:choose>
+		         <c:when test = "${cate == 1 }"><h1 class="mb-3 mt-5 bread">밥요리</h1></c:when>
+		         <c:when test = "${cate == 2 }"><h1 class="mb-3 mt-5 bread">국&탕</h1></c:when>
+		         <c:when test = "${cate == 3 }"><h1 class="mb-3 mt-5 bread">찌개&전골</h1></c:when>
+		         <c:when test = "${cate == 4 }"><h1 class="mb-3 mt-5 bread">밑반찬</h1></c:when>
+		         <c:when test = "${cate == 5 }"><h1 class="mb-3 mt-5 bread">볶음요리</h1></c:when>
+		         <c:when test = "${cate == 6 }"><h1 class="mb-3 mt-5 bread">구이(고기/생선)</h1></c:when>
+		         <c:when test = "${cate == 7 }"><h1 class="mb-3 mt-5 bread">찜&조림</h1></c:when>
+		         <c:when test = "${cate == 8 }"><h1 class="mb-3 mt-5 bread">손님상</h1></c:when>
+		         <c:when test = "${cate == 9 }"><h1 class="mb-3 mt-5 bread">아이반찬</h1></c:when>
+		         <c:when test = "${cate == 10 }"><h1 class="mb-3 mt-5 bread">김치 장아찌</h1></c:when>
+		         <c:when test = "${cate == 11 }"><h1 class="mb-3 mt-5 bread">도시락</h1></c:when>
+		         <c:when test = "${cate == 12 }"><h1 class="mb-3 mt-5 bread">튀김</h1></c:when>
+		         <c:when test = "${cate == 13 }"><h1 class="mb-3 mt-5 bread">면요리</h1></c:when>
+		         <c:when test = "${cate == 14 }"><h1 class="mb-3 mt-5 bread">샐러드</h1></c:when>
+		         <c:when test = "${cate == 15 }"><h1 class="mb-3 mt-5 bread">김밥&초밥</h1></c:when>
+		         <c:when test = "${cate == 16 }"><h1 class="mb-3 mt-5 bread">야식&술안주</h1></c:when>
+		         <c:when test = "${cate == 17 }"><h1 class="mb-3 mt-5 bread">스파게티</h1></c:when>
+		         <c:when test = "${cate == 18 }"><h1 class="mb-3 mt-5 bread">간식&분식</h1></c:when>
+		         <c:when test = "${cate == 19 }"><h1 class="mb-3 mt-5 bread">토스트&샌드위치</h1></c:when>
+		         <c:when test = "${cate == 20 }"><h1 class="mb-3 mt-5 bread">베이킹</h1></c:when>
+		         <c:when test = "${cate == 21 }"><h1 class="mb-3 mt-5 bread">디저트</h1></c:when>
+		         <c:when test = "${cate == 22 }"><h1 class="mb-3 mt-5 bread">주스&음료</h1></c:when>
+		         <c:when test = "${cate == 23 }"><h1 class="mb-3 mt-5 bread">술&칵테일</h1></c:when>
+		         <c:when test = "${cate == 24 }"><h1 class="mb-3 mt-5 bread">명절요리</h1></c:when>
+		         <c:when test = "${cate == 25 }"><h1 class="mb-3 mt-5 bread">기타요리</h1></c:when>
+		         
+		         </c:choose>
+            	
 	            <p class="breadcrumbs"><span class="mr-2"><a href="index.eat">Home</a></span> <span>Shop</span></p>
             </div>
 
@@ -123,14 +151,12 @@
 						        	</c:forEach>
 		              	</div>
 		              </div>
-
-		              	</div>
-		              </div>
-
 		            </div>
 		          </div>
 		        </div>
 		      </div>
+		    </div>
+    	</div>
     </section>
 
     <jsp:include page="footer.jsp" />

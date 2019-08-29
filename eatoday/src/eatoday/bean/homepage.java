@@ -1,5 +1,6 @@
 package eatoday.bean;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,17 +74,52 @@ public class homepage {
 	
 	@RequestMapping("recipeKor.eat")
 	public String showdb(Model model, HttpServletRequest request) throws Exception {
+			int pageSize = 10;
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			String pageNum = request.getParameter("pageNum");
+			if(pageNum == null) {
+				pageNum = "1";
+			}
+			int currentPage = Integer.parseInt(pageNum);
+			int startRow = (currentPage-1)*pageSize+1;
+			int endRow = currentPage*pageSize;
+			int count1 = 0;
+			int number = 0;
 		try {
+			count1 = (Integer)sql.selectOne("eatoday.count1");
+			if(count1>0) {
+				ArrayList recipe = new ArrayList();
+				recipe.add(startRow);
+				recipe.add(endRow);
+				List recipeList = sql.selectList("eatoday.select", recipe);
+				model.addAttribute("recipeList", recipeList);
+			}
+			
+			number = count1-(currentPage-1)*pageSize;
+			int pageCount = count1/pageSize+(count1%pageSize == 0?0:1);
+			int startPage = (int)(currentPage/10)*10+1;
+			int pageBlock = 10;
+			int endPage = startPage+pageBlock-1;
+			if(endPage > pageCount) {
+				endPage = pageCount;
+			}
+			
+			
 			int count = (Integer)sql.selectOne("eatoday.count");
 			ArrayList rcp = new ArrayList();
 			List rcpList = sql.selectList("eatoday.select");
 			
 			System.out.println(count);
 			//System.out.println(rcpList);
-
+	         model.addAttribute("count1", count1);
+	         model.addAttribute("startPage", startPage);
+	         model.addAttribute("endPage", endPage);
+	         model.addAttribute("PageCount", pageCount);
+	         model.addAttribute("number", number);
+	         model.addAttribute("currentPage", currentPage);
+	         model.addAttribute("sdf", sdf);
 			model.addAttribute("recipeList", rcpList);
 			model.addAttribute("count", count);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -104,7 +140,7 @@ public class homepage {
 
 			model.addAttribute("recipeList", rcpList);
 			model.addAttribute("count", count);
-			model.addAttribute("s",s);
+			model.addAttribute("cate",s);
 
 		} catch (Exception e) {
 			e.printStackTrace();

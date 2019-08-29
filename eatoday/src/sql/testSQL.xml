@@ -15,4 +15,8 @@
 		select count(*) from recipe
 	</select>
 	
+	<select id = "count1" resultType="int">
+		select count(*) from recipe where cate = 23
+	</select>
+	
 </mapper>
