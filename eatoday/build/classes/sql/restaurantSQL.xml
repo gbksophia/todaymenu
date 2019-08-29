@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="restaurant">
+	<insert id="insert" parameterType="rvo">
+		insert into restaurant(num, store, area1, area2, addr, tel, cate) values (restaurant_seq.nextval, #{store}, #{area1}, #{area2}, #{addr}, #{tel}, #{cate})
+	</insert>
+
+	<select id="select" resultType="rvo">
+		select * from restaurant order by num
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(*) from restaurant
+	</select>
+</mapper>
