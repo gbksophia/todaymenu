@@ -83,11 +83,35 @@ public class homepage {
 
 			model.addAttribute("recipeList", rcpList);
 			model.addAttribute("count", count);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "/homepage/recipeKor";
 	}
+	
+	
+	@RequestMapping("recipeKorView.eat")
+	public String recipeKorView(Model model, HttpServletRequest request) throws Exception {
+		try {
+			int count = (Integer)sql.selectOne("eatoday.count");
+			ArrayList rcp = new ArrayList();
+			List rcpList = sql.selectList("eatoday.select");
+			
+			String s = request.getParameter("cate");
+			System.out.println(count);
+			//System.out.println(rcpList);
+
+			model.addAttribute("recipeList", rcpList);
+			model.addAttribute("count", count);
+			model.addAttribute("s",s);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "/homepage/recipeKorView";
+	}
+	
 	
 	@RequestMapping("recipeWst.eat")
 	public String recipeWst() {
@@ -96,8 +120,11 @@ public class homepage {
 
 	// index.jsp에서 검색한 결과 표시 - map_kwd.jsp included
 	@RequestMapping("searchResult.eat")
-	public String searchResult(HttpServletRequest request) {
+	public String searchResult(HttpServletRequest request, Model model) {
 		String search = request.getParameter("search");
+		
+		String s = request.getParameter("cate");
+		model.addAttribute("s",s);
 		return "/homepage/searchResult";
 	}
 }

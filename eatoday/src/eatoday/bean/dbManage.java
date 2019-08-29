@@ -62,6 +62,7 @@ public class dbManage {
 	public String showdb(Model model, HttpServletRequest request) throws Exception {
 		try {
 			int count = (Integer)sql.selectOne("eatoday.count");
+			int rowCount = (Integer)sql.selectOne("eatoday.rowCount");
 			ArrayList rcp = new ArrayList();
 			List rcpList = sql.selectList("eatoday.select");
 			
@@ -70,6 +71,7 @@ public class dbManage {
 
 			model.addAttribute("recipeList", rcpList);
 			model.addAttribute("count", count);
+			model.addAttribute("rowCount", rowCount);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

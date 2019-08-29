@@ -14,4 +14,5 @@
 	<select id="count" resultType="int">
 		select count(*) from recipe
 	</select>
+	
 </mapper>
