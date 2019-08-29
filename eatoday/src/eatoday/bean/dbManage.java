@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import eatoday.vo.dbManageVO;
+import eatoday.vo.restaurantVO;
 
 @Controller
 @RequestMapping("/csvtest/")
@@ -46,7 +47,7 @@ public class dbManage {
 				rcpvo.setPro(s[5][j]);
 				sql.insert("eatoday.insert", rcpvo);
 			}
-			System.out.println("CSV -> DB");
+			System.out.println("recipe CSV -> DB");
 
 			conn.close();
 		} catch (Exception e) {
@@ -74,6 +75,61 @@ public class dbManage {
 		}
 		return "/csvtest/showdb";
 	}
+	
+	//http://localhost:8080/eatoday/csvtest/restdb.eat
+	@RequestMapping("restdb.eat")
+	public String restdb(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			restaurantVO restVO = new restaurantVO();
+			RConnection conn = new RConnection();
+			REXP rest = conn.eval("rest <- read.csv('D:/R/restaurant.csv')");
+			RList list = rest.asList();
+			
+			String [][] s = new String[list.size()][];
+			for (int i=0; i<list.size(); i++) {
+				s[i] = list.at(i).asStrings();
+			}
+			
+			for(int j=0; j<list.at(0).length(); j++) {
+				//restVO.setCnum(s[0][j]);
+				restVO.setStore(s[1][j]);
+				restVO.setArea1(s[2][j]);
+				restVO.setArea2(s[3][j]);
+				restVO.setAddr(s[4][j]);
+				restVO.setTel(s[5][j]);
+				restVO.setCate(s[6][j]);
+				sql.insert("restaurant.insert", restVO);
+				//System.out.println(s[2][j]);
+			}
+			System.out.println("restaurant CSV -> DB");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "/csvtest/restdb";
+	}
+	
+	//http://localhost:8080/eatoday/csvtest/showrest.eat
+	@RequestMapping("showrest.eat")
+	public String showrest(Model model, HttpServletRequest request) throws Exception {
+		try {
+			int count = (Integer)sql.selectOne("restaurant.count");
+			ArrayList rest = new ArrayList();
+			List restList = sql.selectList("restaurant.select");
+			
+			System.out.println(count);
+			//System.out.println(rcpList);
+
+			model.addAttribute("restList", restList);
+			model.addAttribute("count", count);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "/csvtest/showrest";
+	}
+	
+	
 }
 
 
