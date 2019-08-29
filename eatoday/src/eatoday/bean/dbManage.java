@@ -40,6 +40,7 @@ public class dbManage {
 			
 			for(int j=0; j<list.at(0).length(); j++) {
 				rcpvo.setCate(s[1][j]);
+				rcpvo.setCnum(s[2][j]);
 				rcpvo.setName(s[3][j]);
 				rcpvo.setMate(s[4][j]);
 				rcpvo.setPro(s[5][j]);
