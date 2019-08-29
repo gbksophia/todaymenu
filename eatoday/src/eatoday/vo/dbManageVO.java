@@ -3,6 +3,7 @@ package eatoday.vo;
 public class dbManageVO {
 	
 	private int num;
+	private String cnum;
 	private String cate;
 	private String name;
 	private String mate;
@@ -51,6 +52,12 @@ public class dbManageVO {
 	}
 	public void setNewname(String newname) {
 		this.newname = newname;
+	}
+	public String getCnum() {
+		return cnum;
+	}
+	public void setCnum(String cnum) {
+		this.cnum = cnum;
 	}
 
 }
