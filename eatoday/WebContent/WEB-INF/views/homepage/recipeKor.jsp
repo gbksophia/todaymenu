@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,7 +47,8 @@
           <div class="row slider-text justify-content-center align-items-center">
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
-            	<h1 class="mb-3 mt-5 bread">한식 레시피</h1>
+            
+            	<h1 class="mb-3 mt-5 bread">${rowCount }</h1>
 	            <p class="breadcrumbs"><span class="mr-2"><a href="index.eat">Home</a></span> <span>Shop</span></p>
             </div>
 
@@ -59,13 +65,33 @@
 		    		<div class="row">
 		          <div class="col-md-12 nav-link-wrap mb-5">
 		            <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-		            	<a class="nav-link active" id="v-pills-0-tab" data-toggle="pill" href="#v-pills-0" role="tab" aria-controls="v-pills-0" aria-selected="true">김치 장아찌</a>
-
-		              <a class="nav-link" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="false">Main Dish</a>
-
-		              <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Drinks</a>
-
-		              <a class="nav-link" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Desserts</a>
+		            
+		              <a class="nav-link" id="v-pills-0-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "1"></c:param></c:url>" role="tab" aria-selected="false">밥요리</a>
+		              <a class="nav-link" id="v-pills-1-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "2"></c:param></c:url>" role="tab" aria-selected="false">국&탕</a>
+		              <a class="nav-link" id="v-pills-2-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "3"></c:param></c:url>" role="tab" aria-selected="false">찌개&전골</a>
+		              <a class="nav-link" id="v-pills-3-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "4"></c:param></c:url>" role="tab" aria-selected="false">밑반찬</a>
+		              <a class="nav-link" id="v-pills-4-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "5"></c:param></c:url>" role="tab" aria-selected="false">볶음요리</a>
+		              <a class="nav-link" id="v-pills-5-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "6"></c:param></c:url>" role="tab" aria-selected="false">구이(고기/생선)</a>
+		              <a class="nav-link" id="v-pills-6-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "7"></c:param></c:url>" role="tab" aria-selected="false">찜&조림</a>
+		              <a class="nav-link" id="v-pills-7-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "8"></c:param></c:url>" role="tab" aria-selected="false">손님상</a>
+		              <a class="nav-link" id="v-pills-8-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "9"></c:param></c:url>" role="tab" aria-selected="false">아이 반찬</a>
+		              <a class="nav-link" id="v-pills-9-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "10"></c:param></c:url>" role="tab" aria-selected="false">김치 장아찌</a>
+		              <a class="nav-link" id="v-pills-10-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "11"></c:param></c:url>" role="tab" aria-selected="false">도시락</a>
+		              <a class="nav-link" id="v-pills-11-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "12"></c:param></c:url>" role="tab" aria-selected="false">튀김</a>
+		              <a class="nav-link" id="v-pills-12-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "13"></c:param></c:url>" role="tab" aria-selected="false">면요리</a>
+		              <a class="nav-link" id="v-pills-13-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "14"></c:param></c:url>" role="tab" aria-selected="false">샐러드</a>
+		              <a class="nav-link" id="v-pills-14-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "15"></c:param></c:url>" role="tab" aria-selected="false">김밥&초밥</a>
+		              <a class="nav-link" id="v-pills-15-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "16"></c:param></c:url>" role="tab" aria-selected="false">야식&술안주</a>
+		              <a class="nav-link" id="v-pills-16-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "17"></c:param></c:url>" role="tab" aria-selected="false">스파게티</a>
+		              <a class="nav-link" id="v-pills-17-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "18"></c:param></c:url>" role="tab" aria-selected="false">간식&분식</a>
+		              <a class="nav-link" id="v-pills-18-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "19"></c:param></c:url>" role="tab" aria-selected="false">토스트&샌드위치</a>
+		              <a class="nav-link" id="v-pills-19-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "20"></c:param></c:url>" role="tab" aria-selected="false">베이킹</a>
+		              <a class="nav-link" id="v-pills-20-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "21"></c:param></c:url>" role="tab" aria-selected="false">디저트</a>
+		              <a class="nav-link" id="v-pills-21-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "22"></c:param></c:url>" role="tab" aria-selected="false">주스&음료</a>
+		              <a class="nav-link" id="v-pills-22-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "23"></c:param></c:url>" role="tab" aria-selected="false">술&칵테일</a>
+		              <a class="nav-link" id="v-pills-23-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "24"></c:param></c:url>" role="tab" aria-selected="false">명절요리</a>
+		              <a class="nav-link" id="v-pills-24-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "25"></c:param></c:url>" role="tab" aria-selected="false">기타요리</a>
+		            
 		            </div>
 		          </div>
 		          <div class="col-md-12 d-flex align-items-center">
@@ -93,171 +119,13 @@
 						        	</c:forEach>
 		              	</div>
 		              </div>
-
-		              <div class="tab-pane fade" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
-		                <div class="row">
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/dish-1.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Grilled Beef</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-
-		              	</div>
-		              </div>
-
-		              <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
-		                <div class="row">
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/drink-1.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Lemonade Juice</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/drink-2.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Pineapple Juice</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/drink-3.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Soda Drinks</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/drink-4.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Lemonade Juice</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/drink-5.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Pineapple Juice</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/drink-6.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Soda Drinks</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              	</div>
-		              </div>
-
-		              <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
-		                <div class="row">
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/dessert-1.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/dessert-2.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/dessert-3.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/dessert-4.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/dessert-5.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/eatoday/resource/images/dessert-6.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="product-single.eat">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              	</div>
 		              </div>
 		            </div>
 		          </div>
 		        </div>
 		      </div>
 		    </div>
-    	</div>
+
     </section>
 
     <jsp:include page="footer.jsp" />
