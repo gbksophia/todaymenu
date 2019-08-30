@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import eatoday.vo.dbManageVO;
+//import eatoday.vo.dbManageVO;
 @Controller
 @RequestMapping("/homepage/")
 public class homepage {
@@ -86,12 +86,12 @@ public class homepage {
 			int count1 = 0;
 			int number = 0;
 		try {
-			count1 = (Integer)sql.selectOne("eatoday.count1");
+			count1 = (Integer)sql.selectOne("recipe.count1");
 			if(count1>0) {
 				ArrayList recipe = new ArrayList();
 				recipe.add(startRow);
 				recipe.add(endRow);
-				List recipeList = sql.selectList("eatoday.select", recipe);
+				List recipeList = sql.selectList("recipe.select", recipe);
 				model.addAttribute("recipeList", recipeList);
 			}
 			
@@ -105,9 +105,9 @@ public class homepage {
 			}
 			
 			
-			int count = (Integer)sql.selectOne("eatoday.count");
+			int count = (Integer)sql.selectOne("recipe.count");
 			ArrayList rcp = new ArrayList();
-			List rcpList = sql.selectList("eatoday.select");
+			List rcpList = sql.selectList("recipe.select");
 			
 			System.out.println(count);
 			//System.out.println(rcpList);
@@ -130,9 +130,9 @@ public class homepage {
 	@RequestMapping("recipeKorView.eat")
 	public String recipeKorView(Model model, HttpServletRequest request) throws Exception {
 		try {
-			int count = (Integer)sql.selectOne("eatoday.count");
+			int count = (Integer)sql.selectOne("recipe.count");
 			ArrayList rcp = new ArrayList();
-			List rcpList = sql.selectList("eatoday.select");
+			List rcpList = sql.selectList("recipe.select");
 			
 			String s = request.getParameter("cate");
 			System.out.println(count);
