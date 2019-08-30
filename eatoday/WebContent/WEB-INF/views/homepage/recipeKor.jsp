@@ -33,7 +33,7 @@
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
-            	<h1 class="mb-3 mt-5 bread">${count1 }</h1>
+            	<h1 class="mb-3 mt-5 bread">레시피를 찾아보세요</h1>
 	            <p class="breadcrumbs"><span class="mr-2"><a href="index.eat">Home</a></span> <span>Shop</span></p>
             </div>
           </div>
@@ -86,7 +86,7 @@
 						        		<div class="menu-entry">
 						    					<a href="#" class="img" style="background-image: url(/eatoday/resource/images/menu-1.jpg);"></a>
 						    					<div class="text text-center pt-4">
-						    						<h3><a href="product-single.eat">${rcp.getName() }</a></h3>
+						    						<h3><a href="product-single.eat">${rcp.getTitle() }</a></h3>
 						    						<!--  <p>A small river named Duden flows by their place and supplies</p>
 						    						<p class="price"><span>$5.90</span></p>-->
 						    						<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
