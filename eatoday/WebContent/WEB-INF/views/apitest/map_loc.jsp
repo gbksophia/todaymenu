@@ -58,8 +58,16 @@ if (navigator.geolocation) {
         };
         geocoder.coord2RegionCode(lon, lat, callbackaa);
 
-        console.log(lat);
-        console.log(lon);
+        var callbackss = function(result, status) {
+            if (status === kakao.maps.services.Status.OK) {
+                console.log(result[0].address.x);
+                console.log(result[0].address.y);
+            }
+        };
+        geocoder.addressSearch('해남군 송지면', callbackss);
+
+        document.getElementById('lat').innerHTML=lat;
+        document.getElementById('lon').innerHTML=lon;
         
 /////            
       });
@@ -99,5 +107,7 @@ function displayMarker(locPosition, message) {
 </script>
 <p id="addr"></p>
 <p id="addr2"></p>
+<p id="lat"></p>
+<p id="lon"></p>
 </body>
 </html>
