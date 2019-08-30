@@ -135,6 +135,7 @@ public class homepage {
 			List rcpList = sql.selectList("recipe.select");
 			
 			String s = request.getParameter("cate");
+			
 			System.out.println(count);
 			//System.out.println(rcpList);
 

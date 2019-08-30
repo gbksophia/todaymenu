@@ -81,15 +81,15 @@
 		              	<div class="row"> 	
 						<c:forEach begin="0" end="${count}" step="1" var="i">
 		              	<c:set var = "rcp" value = "${recipeList[i]}" />
-		              	<c:if test = "${rcp.getCate() == 20}">
+		              	<c:if test = "${rcp.getCate() == 1}">
 		              		<div class="col-md-3">
 						        		<div class="menu-entry">
-						    					<a href="#" class="img" style="background-image: url(/eatoday/resource/images/menu-1.jpg);"></a>
+						    					<a href="#" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcp.getMain_name()});"></a>
 						    					<div class="text text-center pt-4">
 						    						<h3><a href="product-single.eat">${rcp.getTitle() }</a></h3>
 						    						<!--  <p>A small river named Duden flows by their place and supplies</p>
 						    						<p class="price"><span>$5.90</span></p>-->
-						    						<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
+						    						<p><a href="cart.eat" class="btn btn-primary btn-outline-primary">자세히보기</a></p>
 						    					</div>
 						    				</div>
 						        	</div>
