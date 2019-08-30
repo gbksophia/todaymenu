@@ -61,11 +61,7 @@ public class homepage {
 		return "/homepage/recipeChn";
 	}
 
-	@RequestMapping("test.eat")
-	public String test() {
-		
-		return "/homepage/test";
-	}
+
 
 	@RequestMapping("recipeJpn.eat")
 	public String recipeJpn() {
@@ -106,6 +102,7 @@ public class homepage {
 			
 			
 			int count = (Integer)sql.selectOne("recipe.count");
+			
 			ArrayList rcp = new ArrayList();
 			List rcpList = sql.selectList("recipe.select");
 			
@@ -135,20 +132,38 @@ public class homepage {
 			List rcpList = sql.selectList("recipe.select");
 			
 			String s = request.getParameter("cate");
-			
+			String a = request.getParameter("abc");
 			System.out.println(count);
 			//System.out.println(rcpList);
 
 			model.addAttribute("recipeList", rcpList);
 			model.addAttribute("count", count);
 			model.addAttribute("cate",s);
-
+			model.addAttribute("abc", a);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "/homepage/recipeKorView";
 	}
 	
+	@RequestMapping("recipeDetail.eat")
+	public String recipeDetail(Model model, HttpServletRequest request) throws Exception {
+		int count = (Integer)sql.selectOne("recipe.count");
+		ArrayList rcp = new ArrayList();
+		List rcpList = sql.selectList("recipe.select");
+		
+		String s = request.getParameter("cate");
+		String a = request.getParameter("abc");
+		System.out.println(count);
+		//System.out.println(rcpList);
+
+		model.addAttribute("recipeList", rcpList);
+		model.addAttribute("count", count);
+		model.addAttribute("cate",s);
+		model.addAttribute("abc", a);
+		
+		return "/homepage/recipeDetail";
+	}
 	
 	@RequestMapping("recipeWst.eat")
 	public String recipeWst() {
@@ -164,6 +179,8 @@ public class homepage {
 		model.addAttribute("s",s);
 		return "/homepage/searchResult";
 	}
+	
+	
 }
 
 
