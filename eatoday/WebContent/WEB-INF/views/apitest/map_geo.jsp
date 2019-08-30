@@ -1,77 +1,76 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>geolocationÀ¸·Î ¸¶Ä¿ Ç¥½ÃÇÏ±â</title>
+    <title>geolocationìœ¼ë¡œ ë§ˆì»¤ í‘œì‹œí•˜ê¸°</title>
     
 </head>
 <body>
 <p style="margin-top:-12px">
-    <b>Chrome ºê¶ó¿ìÀú´Â https È¯°æ¿¡¼­¸¸ geolocationÀ» Áö¿øÇÕ´Ï´Ù.</b> Âü°íÇØÁÖ¼¼¿ä.
+    <b>Chrome ë¸Œë¼ìš°ì €ëŠ” https í™˜ê²½ì—ì„œë§Œ geolocationì„ ì§€ì›í•©ë‹ˆë‹¤.</b> ì°¸ê³ í•´ì£¼ì„¸ìš”.
 </p>
 <div id="map" style="width:100%;height:700px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=112ecff57900a2dd120c152f6c326b7b"></script>
 <script>
-var mapContainer = document.getElementById('map'), // Áöµµ¸¦ Ç¥½ÃÇÒ div 
+var mapContainer = document.getElementById('map'), // ì§€ë„ë¥¼ í‘œì‹œí•  div 
     mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // ÁöµµÀÇ Áß½ÉÁÂÇ¥
-        level: 10 // ÁöµµÀÇ È®´ë ·¹º§ 
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // ì§€ë„ì˜ ì¤‘ì‹¬ì¢Œí‘œ
+        level: 10 // ì§€ë„ì˜ í™•ëŒ€ ë ˆë²¨ 
     }; 
 
-var map = new kakao.maps.Map(mapContainer, mapOption); // Áöµµ¸¦ »ı¼ºÇÕ´Ï´Ù
+var map = new kakao.maps.Map(mapContainer, mapOption); // ì§€ë„ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
 
-// HTML5ÀÇ geolocationÀ¸·Î »ç¿ëÇÒ ¼ö ÀÖ´ÂÁö È®ÀÎÇÕ´Ï´Ù 
+// HTML5ì˜ geolocationìœ¼ë¡œ ì‚¬ìš©í•  ìˆ˜ ìˆëŠ”ì§€ í™•ì¸í•©ë‹ˆë‹¤ 
 if (navigator.geolocation) {
     
-    // GeoLocationÀ» ÀÌ¿ëÇØ¼­ Á¢¼Ó À§Ä¡¸¦ ¾ò¾î¿É´Ï´Ù
+    // GeoLocationì„ ì´ìš©í•´ì„œ ì ‘ì† ìœ„ì¹˜ë¥¼ ì–»ì–´ì˜µë‹ˆë‹¤
     navigator.geolocation.getCurrentPosition(function(position) {
         
-        var lat = position.coords.latitude, // À§µµ
-            lon = position.coords.longitude; // °æµµ
+        var lat = position.coords.latitude, // ìœ„ë„
+            lon = position.coords.longitude; // ê²½ë„
         
-        var locPosition = new kakao.maps.LatLng(lat, lon), // ¸¶Ä¿°¡ Ç¥½ÃµÉ À§Ä¡¸¦ geolocationÀ¸·Î ¾ò¾î¿Â ÁÂÇ¥·Î »ı¼ºÇÕ´Ï´Ù
-            message = '<div style="padding:5px;">¿©±â¿¡ °è½Å°¡¿ä?!</div>'; // ÀÎÆ÷À©µµ¿ì¿¡ Ç¥½ÃµÉ ³»¿ëÀÔ´Ï´Ù
+        var locPosition = new kakao.maps.LatLng(lat, lon), // ë§ˆì»¤ê°€ í‘œì‹œë  ìœ„ì¹˜ë¥¼ geolocationìœ¼ë¡œ ì–»ì–´ì˜¨ ì¢Œí‘œë¡œ ìƒì„±í•©ë‹ˆë‹¤
+            message = '<div style="padding:5px;">ì—¬ê¸°ì— ê³„ì‹ ê°€ìš”?!</div>'; // ì¸í¬ìœˆë„ìš°ì— í‘œì‹œë  ë‚´ìš©ì…ë‹ˆë‹¤
         
-        // ¸¶Ä¿¿Í ÀÎÆ÷À©µµ¿ì¸¦ Ç¥½ÃÇÕ´Ï´Ù
+        // ë§ˆì»¤ì™€ ì¸í¬ìœˆë„ìš°ë¥¼ í‘œì‹œí•©ë‹ˆë‹¤
         displayMarker(locPosition, message);
             
       });
     
-} else { // HTML5ÀÇ GeoLocationÀ» »ç¿ëÇÒ ¼ö ¾øÀ»¶§ ¸¶Ä¿ Ç¥½Ã À§Ä¡¿Í ÀÎÆ÷À©µµ¿ì ³»¿ëÀ» ¼³Á¤ÇÕ´Ï´Ù
+} else { // HTML5ì˜ GeoLocationì„ ì‚¬ìš©í•  ìˆ˜ ì—†ì„ë•Œ ë§ˆì»¤ í‘œì‹œ ìœ„ì¹˜ì™€ ì¸í¬ìœˆë„ìš° ë‚´ìš©ì„ ì„¤ì •í•©ë‹ˆë‹¤
     
     var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-        message = 'geolocationÀ» »ç¿ëÇÒ¼ö ¾ø¾î¿ä..'
+        message = 'geolocationì„ ì‚¬ìš©í• ìˆ˜ ì—†ì–´ìš”..'
         
     displayMarker(locPosition, message);
 }
 
-// Áöµµ¿¡ ¸¶Ä¿¿Í ÀÎÆ÷À©µµ¿ì¸¦ Ç¥½ÃÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù
+// ì§€ë„ì— ë§ˆì»¤ì™€ ì¸í¬ìœˆë„ìš°ë¥¼ í‘œì‹œí•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤
 function displayMarker(locPosition, message) {
 
-    // ¸¶Ä¿¸¦ »ı¼ºÇÕ´Ï´Ù
+    // ë§ˆì»¤ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
     var marker = new kakao.maps.Marker({  
         map: map, 
         position: locPosition
     }); 
     
-    var iwContent = message, // ÀÎÆ÷À©µµ¿ì¿¡ Ç¥½ÃÇÒ ³»¿ë
+    var iwContent = message, // ì¸í¬ìœˆë„ìš°ì— í‘œì‹œí•  ë‚´ìš©
         iwRemoveable = true;
 
-    // ÀÎÆ÷À©µµ¿ì¸¦ »ı¼ºÇÕ´Ï´Ù
+    // ì¸í¬ìœˆë„ìš°ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
     var infowindow = new kakao.maps.InfoWindow({
         content : iwContent,
         removable : iwRemoveable
     });
     
-    // ÀÎÆ÷À©µµ¿ì¸¦ ¸¶Ä¿À§¿¡ Ç¥½ÃÇÕ´Ï´Ù 
+    // ì¸í¬ìœˆë„ìš°ë¥¼ ë§ˆì»¤ìœ„ì— í‘œì‹œí•©ë‹ˆë‹¤ 
     infowindow.open(map, marker);
     
-    // Áöµµ Áß½ÉÁÂÇ¥¸¦ Á¢¼ÓÀ§Ä¡·Î º¯°æÇÕ´Ï´Ù
+    // ì§€ë„ ì¤‘ì‹¬ì¢Œí‘œë¥¼ ì ‘ì†ìœ„ì¹˜ë¡œ ë³€ê²½í•©ë‹ˆë‹¤
     map.setCenter(locPosition);      
-}    
+}
 </script>
 </body>
 </html>

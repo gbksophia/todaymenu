@@ -41,5 +41,11 @@ public class APITest {
 		return "/apitest/map_cat";
 	}
 	
+	//http://localhost:8080/eatoday/apitest/map_loc.eat
+	@RequestMapping("map_loc.eat")
+	public String map_loc(HttpServletRequest request) {
+		return "/apitest/map_loc";
+	}
+	
 }
 
