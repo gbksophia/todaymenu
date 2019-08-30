@@ -58,12 +58,12 @@ public class dbManage {
 		return "/csvtodb/recipedb";
 	}
 	
-	//http://localhost:8080/eatoday/csvtodb/showdb.eat
+	//http://localhost:8080/eatoday/csvtodb/showreci.eat
 	@RequestMapping("showreci.eat")
 	public String showdb(Model model, HttpServletRequest request) throws Exception {
 		try {
 			int count = (Integer)sql.selectOne("recipe.count");
-			int rowCount = (Integer)sql.selectOne("recipe.rowCount");
+//			int rowCount = (Integer)sql.selectOne("recipe.rowCount");
 			ArrayList rcp = new ArrayList();
 			List rcpList = sql.selectList("recipe.select");
 			
@@ -72,7 +72,7 @@ public class dbManage {
 
 			model.addAttribute("recipeList", rcpList);
 			model.addAttribute("count", count);
-			model.addAttribute("rowCount", rowCount);
+//			model.addAttribute("rowCount", rowCount);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

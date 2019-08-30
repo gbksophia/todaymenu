@@ -7,31 +7,23 @@
 </head>
 <body>
 <h1>${count}</h1>
-<%-- <c:forEach begin="0" end="${count}" step="1" var="i">
-<c:set var="rcp" value="${recipeList[i]}" />
-	<table border="1">
-		<tr><td>${rcp.getCate()}</td></tr>
-		<tr><td>${rcp.getName()}</td></tr>
-		<tr><td>${rcp.getMate()}</td></tr>
-		<tr><td>${rcp.getPro()}</td></tr>
-	</table>
-	<br/>
-</c:forEach> --%>
 
-
+Recipe List
 	<c:forEach begin="0" end="${count}" step="1" var="i">
 	<c:set var="rcp" value="${recipeList[i]}" />
 	<c:if test="${rcp.getCate() == 10}">
 		<table border="1">
-			<tr><td>${rcp.getCate()}</td></tr>
-			<tr><td>${rcp.getName()}</td></tr>
-			<tr><td>${rcp.getMate()}</td></tr>
-			<tr><td>${rcp.getPro()}</td></tr>
+			<tr><td>cate: ${rcp.getCate()}</td></tr>
+			<tr><td>con_num: ${rcp.getCon_num()}</td></tr>
+			<tr><td>main_name: ${rcp.getMain_name()}</td></tr>
+			<tr><td>title: ${rcp.getTitle()}</td></tr>
+			<tr><td>mate: ${rcp.getMate()}</td></tr>
+			<tr><td>pro: ${rcp.getPro()}</td></tr>
 		</table>
 		<br/>
 		</c:if>
 	</c:forEach>
 
-asdasd
+
 </body>
 </html>
