@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/googlelogin/")
 public class googlelogin {
 
-	@RequestMapping("googlelogin.do")
+	@RequestMapping("googlelogin.eat")
 	public String googlelogin() {
 		return "/googlelogin/googlelogin";
 	}
 	
-	@RequestMapping("google.do")
+	@RequestMapping("google.eat")
 	public String google() {
 		return "/googlelogin/google";
 	}
+	
 }

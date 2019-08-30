@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="997770960334-5h8mg1iog55jplehu6dg4u75j0766cl6.apps.googleusercontent.com">
 
 <script>
 function onSignIn(googleUser) {
@@ -21,6 +21,35 @@ function onSignIn(googleUser) {
 
 </head>
 <body>
+
+  <div id="my-signin2"></div>
+  <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+
+
+
+
+
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
 <a href="#" onclick="signOut();">Sign out</a>
