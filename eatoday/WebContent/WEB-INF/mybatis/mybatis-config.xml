@@ -4,12 +4,12 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="vo" type="eatoday.vo.dbManageVO"/>
+		<typeAlias alias="vo" type="eatoday.vo.recipeVO"/>
 		<typeAlias alias="rvo" type="eatoday.vo.restaurantVO"/>
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="/sql/testSQL.xml"/>
+		<mapper resource="/sql/recipeSQL.xml"/>
 		<mapper resource="/sql/restaurantSQL.xml"/>
 	</mappers>
 </configuration>

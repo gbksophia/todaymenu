@@ -14,22 +14,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import eatoday.vo.dbManageVO;
+import eatoday.vo.recipeVO;
 import eatoday.vo.restaurantVO;
 
 @Controller
-@RequestMapping("/csvtest/")
+@RequestMapping("/csvtodb/")
 public class dbManage {
 	
 	@Autowired
 	private SqlSessionTemplate sql = null;
 	
-	//http://localhost:8080/eatoday/csvtest/csvdb.eat
-	@RequestMapping("csvdb.eat")
+	//http://localhost:8080/eatoday/csvtodb/recipedb.eat
+	@RequestMapping("recipedb.eat")
 	public String csvdb(HttpServletRequest request) throws Exception {
 		try {
 			request.setCharacterEncoding("UTF-8");
-			dbManageVO rcpvo = new dbManageVO();
+			recipeVO rcpvo = new recipeVO();
 			RConnection conn = new RConnection();
 			REXP tbc = conn.eval("tbc <- read.csv('D:/R/recipe.csv')");
 			RList list = tbc.asList();
@@ -41,11 +41,12 @@ public class dbManage {
 			
 			for(int j=0; j<list.at(0).length(); j++) {
 				rcpvo.setCate(s[1][j]);
-				rcpvo.setCnum(s[2][j]);
-				rcpvo.setName(s[3][j]);
-				rcpvo.setMate(s[4][j]);
-				rcpvo.setPro(s[5][j]);
-				sql.insert("eatoday.insert", rcpvo);
+				rcpvo.setCon_num(s[2][j]);
+				rcpvo.setMain_name(s[3][j]);
+				rcpvo.setTitle(s[4][j]);
+				rcpvo.setMate(s[5][j]);
+				rcpvo.setPro(s[6][j]);
+				sql.insert("recipe.insert", rcpvo);
 			}
 			System.out.println("recipe CSV -> DB");
 
@@ -54,17 +55,17 @@ public class dbManage {
 			e.printStackTrace();
 		}
 
-		return "/csvtest/csvdb";
+		return "/csvtodb/recipedb";
 	}
 	
-	//http://localhost:8080/eatoday/csvtest/showdb.eat
-	@RequestMapping("showdb.eat")
+	//http://localhost:8080/eatoday/csvtodb/showdb.eat
+	@RequestMapping("showreci.eat")
 	public String showdb(Model model, HttpServletRequest request) throws Exception {
 		try {
-			int count = (Integer)sql.selectOne("eatoday.count");
-			int rowCount = (Integer)sql.selectOne("eatoday.rowCount");
+			int count = (Integer)sql.selectOne("recipe.count");
+			int rowCount = (Integer)sql.selectOne("recipe.rowCount");
 			ArrayList rcp = new ArrayList();
-			List rcpList = sql.selectList("eatoday.select");
+			List rcpList = sql.selectList("recipe.select");
 			
 			System.out.println(count);
 			//System.out.println(rcpList);
@@ -75,10 +76,10 @@ public class dbManage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/csvtest/showdb";
+		return "/csvtodb/showreci";
 	}
 	
-	//http://localhost:8080/eatoday/csvtest/restdb.eat
+	//http://localhost:8080/eatoday/csvtodb/restdb.eat
 	@RequestMapping("restdb.eat")
 	public String restdb(HttpServletRequest request) {
 		try {
@@ -109,10 +110,10 @@ public class dbManage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/csvtest/restdb";
+		return "/csvtodb/restdb";
 	}
 	
-	//http://localhost:8080/eatoday/csvtest/showrest.eat
+	//http://localhost:8080/eatoday/csvtodb/showrest.eat
 	@RequestMapping("showrest.eat")
 	public String showrest(Model model, HttpServletRequest request) throws Exception {
 		try {
@@ -128,7 +129,7 @@ public class dbManage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/csvtest/showrest";
+		return "/csvtodb/showrest";
 	}
 	
 	

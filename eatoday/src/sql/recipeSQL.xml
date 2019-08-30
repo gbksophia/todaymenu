@@ -2,13 +2,14 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="eatoday">
+<mapper namespace="recipe">
 	<insert id="insert" parameterType="vo">
-		insert into recipe(num, cate, cnum, name, mate, pro) values (recipe_seq.nextval, #{cate}, #{cnum}, #{name}, #{mate}, #{pro})
+		insert into recipe(cate, con_num, main_name, title, mate, pro) 
+		values (#{cate}, #{con_num}, #{main_name}, #{title}, #{mate}, #{pro})
 	</insert>
 
 	<select id="select" resultType="vo">
-		select * from recipe order by num
+		select * from recipe
 	</select>
 	
 	<select id="count" resultType="int">
