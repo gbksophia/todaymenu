@@ -5,6 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="vo" type="eatoday.vo.recipeVO"/>
+		<typeAlias alias="ivo" type="eatoday.vo.recipeImgVO"/>
 		<typeAlias alias="rvo" type="eatoday.vo.restaurantVO"/>
 	</typeAliases>
 	

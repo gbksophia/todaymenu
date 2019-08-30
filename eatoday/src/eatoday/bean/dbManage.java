@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import eatoday.vo.recipeImgVO;
 import eatoday.vo.recipeVO;
 import eatoday.vo.restaurantVO;
 
@@ -24,6 +25,7 @@ public class dbManage {
 	@Autowired
 	private SqlSessionTemplate sql = null;
 	
+		// 레시피 내용, 메인이미지를 recipe DB에 입력
 	//http://localhost:8080/eatoday/csvtodb/recipedb.eat
 	@RequestMapping("recipedb.eat")
 	public String csvdb(HttpServletRequest request) throws Exception {
@@ -58,6 +60,7 @@ public class dbManage {
 		return "/csvtodb/recipedb";
 	}
 	
+		// DB의 레시피 정보를 출력하는 테스트 페이지
 	//http://localhost:8080/eatoday/csvtodb/showreci.eat
 	@RequestMapping("showreci.eat")
 	public String showdb(Model model, HttpServletRequest request) throws Exception {
@@ -79,6 +82,39 @@ public class dbManage {
 		return "/csvtodb/showreci";
 	}
 	
+		// 레시피 조리법을 DB에 입력
+	//http://localhost:8080/eatoday/csvtodb/reciimg.eat
+	@RequestMapping("reciimg")
+	public String reciimg(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			recipeImgVO rimgvo = new recipeImgVO();
+			RConnection conn = new RConnection();
+			REXP rimg = conn.eval("tbc <- read.csv('D:/R/recipe_img.csv')");
+			RList list = rimg.asList();
+			
+			String [][] s = new String[list.size()][];
+			for (int i=0; i<list.size(); i++) {
+				s[i] = list.at(i).asStrings();
+			}
+			
+			for(int j=0; j<list.at(0).length(); j++) {
+				rimgvo.setCon_num(s[1][j]);
+				rimgvo.setImg1(s[2][j]);
+				rimgvo.setImg2(s[3][j]);
+				sql.insert("recipe.imginsert", rimgvo);
+				//System.out.println(s[3][j]);
+			}
+			System.out.println("recipeIMG CSV -> DB");
+
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "/csvtodb/reciimg";
+	}
+	
+		// 레스토랑 정보를 restaurant DB에 입력
 	//http://localhost:8080/eatoday/csvtodb/restdb.eat
 	@RequestMapping("restdb.eat")
 	public String restdb(HttpServletRequest request) {
@@ -113,6 +149,7 @@ public class dbManage {
 		return "/csvtodb/restdb";
 	}
 	
+		// DB의 레스토랑 정보를 출력하는 테스트 페이지 
 	//http://localhost:8080/eatoday/csvtodb/showrest.eat
 	@RequestMapping("showrest.eat")
 	public String showrest(Model model, HttpServletRequest request) throws Exception {
