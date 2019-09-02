@@ -3,13 +3,11 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>geolocation으로 마커 표시하기</title>
+    <title>geo+addr+latlon</title>
     
 </head>
 <body>
-<p style="margin-top:-12px">
-    <b>Chrome 브라우저는 https 환경에서만 geolocation을 지원합니다.</b> 참고해주세요.
-</p>
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <div id="map" style="width:100%;height:700px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=112ecff57900a2dd120c152f6c326b7b&libraries=services"></script>
@@ -17,7 +15,7 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 10 // 지도의 확대 레벨 
+        level: 3 // 지도의 확대 레벨 
     }; 
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -36,6 +34,7 @@ if (navigator.geolocation) {
         
         // 마커와 인포윈도우를 표시합니다
         displayMarker(locPosition, message);
+        
 /////
         var geocoder = new kakao.maps.services.Geocoder();
 
@@ -43,33 +42,46 @@ if (navigator.geolocation) {
         var callback = function(result, status) {
             if (status === kakao.maps.services.Status.OK) {
                 console.log('그런 너를 마주칠까 ' + result[0].address.address_name + '을 못가');
-
-                document.getElementById('addr').innerHTML=result[0].address.address_name;
+                //document.getElementById('addr2').value=result[0].address.address_name;
             }
         };
         geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 
-         var callbackaa = function(result, status) {
+          var callbackaa = function(result, status) {
             if (status === kakao.maps.services.Status.OK) {
-                console.log('지역 명칭 : ' + result[0].address_name);
-                //console.log('행정구역 코드 : ' + result[0].code);
-                document.getElementById('addr2').innerHTML=result[0].address_name;
+
+                var spot = result[0].address_name;
+				var area1 = result[0].region_1depth_name;
+				var area2 = result[0].region_2depth_name;
+				var area3 = result[0].region_3depth_name;
+				var allData = { "spot":spot, "area1":area1,"area2":area2, "area3":area3 };
+                console.log('지역 명칭 : ' + area1);
+
+                console.log('d1: '+result[0].region_1depth_name);
+                console.log('d2: '+result[0].region_2depth_name);
+                console.log('d3: '+result[0].region_3depth_name);
+                
+                //document.getElementById('addr2').innerHTML='내위치2: '+result[0].address_name;
+                document.getElementById('d1t').value=result[0].region_1depth_name;
+                document.getElementById('addr2').value=result[0].address_name;
+
+                document.getElementById('d1').innerHTML=result[0].region_1depth_name;
+                document.getElementById('d2').innerHTML=result[0].region_2depth_name;
+                document.getElementById('d3').innerHTML=result[0].region_3depth_name;
+
+				/* var ddd = new Object();
+				ddd.d1 = result[0].region_1depth_name;
+				ddd.d2 = result[0].region_2depth_name;
+				ddd.d3 = result[0].region_3depth_name;
+
+				var jsonText = JSON.stringify(ddd, "\t");
+				document.write(jsonText); */
+	            				                               
             }
         };
         geocoder.coord2RegionCode(lon, lat, callbackaa);
+/////
 
-        var callbackss = function(result, status) {
-            if (status === kakao.maps.services.Status.OK) {
-                console.log(result[0].address.x);
-                console.log(result[0].address.y);
-            }
-        };
-        geocoder.addressSearch('해남군 송지면', callbackss);
-
-        document.getElementById('lat').innerHTML=lat;
-        document.getElementById('lon').innerHTML=lon;
-        
-/////            
       });
     
 } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
@@ -104,10 +116,23 @@ function displayMarker(locPosition, message) {
     // 지도 중심좌표를 접속위치로 변경합니다
     map.setCenter(locPosition);      
 }
+
+$.ajax({
+	type : "post",
+	url : "test.eat",
+	data : allData,
+	success : function(data){
+		alert(data);
+	}
+});
 </script>
-<p id="addr"></p>
-<p id="addr2"></p>
-<p id="lat"></p>
-<p id="lon"></p>
+<form action="test.eat">
+	<input type="text" id="addr2" name="addr2" />
+	<input type="submit" value="asdasdasd"/>
+</form>
+<input type="text" id="d1t" name="d1t" />
+<p id="d1"></p>
+<p id="d2"></p>
+<p id="d3"></p>
 </body>
 </html>
