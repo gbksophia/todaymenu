@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import = "java.net.URLEncoder" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +41,12 @@
 		 <c:set var = "rcp" value = "${recipeList[i]}" />
  			<c:if test = "${rcp.getCon_num() == abc }">
     <section class="home-slider owl-carousel">
-
+<%
+String abc = request.getParameter("abc");
+Cookie c = new Cookie("cookie", abc);
+c.setMaxAge(60*60*24);
+response.addCookie(c);
+%>
 
       <div class="slider-item" style="background-image: url(/eatoday/resource/RecipeImages/${rcp.getMain_name()});">
       	<div class="overlay"></div>
@@ -58,27 +65,58 @@
     </section>
 
 
-	
+	</c:if>
+	</c:forEach>
     <section class="ftco-section">
       <div class="container">
         <div class="row">
           <div class="col-md-8 ftco-animate">
             <h2 class="mb-3">재료</h2>
-            <p>
-              <img src="images/image_1.jpg" alt="" class="img-fluid">
-              ${rcp.getMate() }
+<p>
+		<c:forEach begin="0" end="${count}" step="1" var="i">
+		 <c:set var = "rcp" value = "${recipeList[i]}" />
+		 <c:if test = "${rcp.getCon_num() == abc }">
+             <c:set var = "str" value = "${rcp.getMate() }"/>
+             <c:forEach var = "spt" items = "${fn:replace(str, 'next', '<br>') }" varStatus = "status">
+             <img src="images/image_2.jpg" alt="" class="img-fluid">
+             ${spt }
+            
+             </c:forEach>
+              </c:if>
+             </c:forEach>
+             
             </p>
-            <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
+            
             <h2 class="mb-3 mt-5">조리법</h2>
             
-            <p>
-              <img src="images/image_2.jpg" alt="" class="img-fluid">
-              ${rcp.getPro() }
+            <c:forEach begin="0" end="10000" step="1" var="i">
+				<c:set var = "rcpro" value = "${recipeListPro[i]}" />
+					<c:if test = "${rcpro.getCon_num() == abc }">
+					<%--
+						<img src="/eatoday/resource/RecipePro/${rcpro.getImg1() }" alt="" class="img-fluid">
+						<img src="/eatoday/resource/RecipePro/${rcpro.getImg2() }" alt="" class="img-fluid">
+			 --%>
+			 <h3>${rcpro.getImg1() }</h3>
+			 <h3>${rcpro.getImg2() }</h3>
+			</c:if>
+			
+			
+			
+			
+			</c:forEach>
+             <p>
+             		<c:forEach begin="0" end="${count}" step="1" var="i">
+		 <c:set var = "rcp" value = "${recipeList[i]}" />
+		 <c:if test = "${rcp.getCon_num() == abc }">
+             <c:set var = "str" value = "${rcp.getPro() }"/>
+             <c:forEach var = "spt" items = "${fn:replace(str, 'next', '<br><br>') }" varStatus = "status">
+             <img src="images/image_2.jpg" alt="" class="img-fluid">
+             ${spt }
+             </c:forEach>
+             </c:if>
+             </c:forEach>
             </p>
-            <p>Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.</p>
-            <p>Odit voluptatibus, eveniet vel nihil cum ullam dolores laborum, quo velit commodi rerum eum quidem pariatur! Quia fuga iste tenetur, ipsa vel nisi in dolorum consequatur, veritatis porro explicabo soluta commodi libero voluptatem similique id quidem? Blanditiis voluptates aperiam non magni. Reprehenderit nobis odit inventore, quia laboriosam harum excepturi ea.</p>
-            <p>Adipisci vero culpa, eius nobis soluta. Dolore, maxime ullam ipsam quidem, dolor distinctio similique asperiores voluptas enim, exercitationem ratione aut adipisci modi quod quibusdam iusto, voluptates beatae iure nemo itaque laborum. Consequuntur et pariatur totam fuga eligendi vero dolorum provident. Voluptatibus, veritatis. Beatae numquam nam ab voluptatibus culpa, tenetur recusandae!</p>
-            <p>Voluptas dolores dignissimos dolorum temporibus, autem aliquam ducimus at officia adipisci quasi nemo a perspiciatis provident magni laboriosam repudiandae iure iusto commodi debitis est blanditiis alias laborum sint dolore. Dolores, iure, reprehenderit. Error provident, pariatur cupiditate soluta doloremque aut ratione. Harum voluptates mollitia illo minus praesentium, rerum ipsa debitis, inventore?</p>
+            <%-- 
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">Life</a>
@@ -87,17 +125,7 @@
                 <a href="#" class="tag-cloud-link">Travel</a>
               </div>
             </div>
-            
-            <div class="about-author d-flex">
-              <div class="bio align-self-md-center mr-5">
-                <img src="images/person_4.jpg" alt="Image placeholder" class="img-fluid mb-4">
-              </div>
-              <div class="desc align-self-md-center">
-                <h3>Lance Smith</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-              </div>
-            </div>
-
+--%>
 
             <div class="pt-5 mt-5">
               <h3 class="mb-5">6 Comments</h3>
@@ -212,7 +240,9 @@
             </div>
 
           </div> <!-- .col-md-8 -->
+
           <div class="col-md-4 sidebar ftco-animate">
+          <%-- 
             <div class="sidebar-box">
               <form action="#" class="search-form">
                 <div class="form-group">
@@ -223,53 +253,66 @@
                 </div>
               </form>
             </div>
+--%>
+
+			 <c:set var = "c" value = "${cookie.cookie.value }"/>  
+						<c:forEach begin="0" end="${count}" step="1" var="i">
+		              	<c:set var = "rca" value = "${recipeList[i]}" />
+		              	<c:if test = "${rca.getCon_num() == c}">
+            
+
+            <div class="sidebar-box ftco-animate">
+              <h3>Recent Recipe</h3>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url(/eatoday/resource/RecipeImages/${rca.getMain_name()});"></a>
+                <div class="text">
+                  <h3 class="heading"><a href="<c:url value = "recipeDetail.eat"><c:param name = "abc" value = "${rca.getCon_num()}"></c:param></c:url>">${rca.getTitle() }</a></h3>
+                  <div class="meta">
+                    <div><a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "abc" value = "${rca.getCon_num()}"></c:param></c:url>">자세히보기</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="sidebar-box ftco-animate">
               <div class="categories">
                 <h3>Categories</h3>
                 <c:forEach begin = "1" end = "25" var = "j" step = "1">
              
-                <li><a href="/eatoday/homepage/recipeKorView.eat?cate=${j}">${j} 누르면 카테고리 이동<span>(12)</span></a></li>
+                <li><a href="/eatoday/homepage/recipeKorView.eat?cate=${j}">
+                <c:if test = "${j == 1}">밥요리<span>(${count1 })</span></c:if>
+                <c:if test = "${j == 2}">국&탕<span>(${count })</span></c:if>
+                <c:if test = "${j == 3}">찌개&전골</c:if>
+                <c:if test = "${j == 4}">밑반찬</c:if>
+                <c:if test = "${j == 5}">볶음요리</c:if>
+                <c:if test = "${j == 6}">구이(고기/생선)</c:if>
+                <c:if test = "${j == 7}">찜&조림</c:if>
+                <c:if test = "${j == 8}">손님상</c:if>
+                <c:if test = "${j == 9}">아이반찬</c:if>
+                <c:if test = "${j == 10}">김치 장아찌</c:if>
+                <c:if test = "${j == 11}">도시락</c:if>
+                <c:if test = "${j == 12}">튀김</c:if>
+                <c:if test = "${j == 13}">면요리</c:if>
+                <c:if test = "${j == 14}">샐러드</c:if>
+                <c:if test = "${j == 15}">김밥&초밥</c:if>
+                <c:if test = "${j == 16}">야식&술안주</c:if>
+                <c:if test = "${j == 17}">스파게티</c:if>
+                <c:if test = "${j == 18}">간식&분식</c:if>
+                <c:if test = "${j == 19}">토스트&샌드위치</c:if>
+                <c:if test = "${j == 20}">베이킹</c:if>
+                <c:if test = "${j == 21}">디저트</c:if>
+                <c:if test = "${j == 22}">주스&음료</c:if>
+                <c:if test = "${j == 23}">술&칵테일</c:if>
+                <c:if test = "${j == 24}">명절요리</c:if>
+                <c:if test = "${j == 25}">기타요리</c:if>
+                </a></li>
   			 </c:forEach>	
               </div>
             </div>
 
-            <div class="sidebar-box ftco-animate">
-              <h3>Recent Blog</h3>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+             	            </c:if>
+            </c:forEach>           
+<%--
             <div class="sidebar-box ftco-animate">
               <h3>Tag Cloud</h3>
               <div class="tagcloud">
@@ -283,7 +326,7 @@
                 <a href="#" class="tag-cloud-link">drinks</a>
               </div>
             </div>
-
+ --%>
             <div class="sidebar-box ftco-animate">
               <h3>Paragraph</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
@@ -293,8 +336,7 @@
         </div>
       </div>
     </section> <!-- .section -->
-	          	</c:if>
-	</c:forEach>
+
    <jsp:include page="footer.jsp" />
   
 

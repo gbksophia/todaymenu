@@ -149,8 +149,10 @@ public class homepage {
 	@RequestMapping("recipeDetail.eat")
 	public String recipeDetail(Model model, HttpServletRequest request) throws Exception {
 		int count = (Integer)sql.selectOne("recipe.count");
+		int count1 = (Integer)sql.selectOne("recipe.count1");
 		ArrayList rcp = new ArrayList();
 		List rcpList = sql.selectList("recipe.select");
+		List rcpListPro = sql.selectList("recipe.selectPro");
 		
 		String s = request.getParameter("cate");
 		String a = request.getParameter("abc");
@@ -161,7 +163,8 @@ public class homepage {
 		model.addAttribute("count", count);
 		model.addAttribute("cate",s);
 		model.addAttribute("abc", a);
-		
+		model.addAttribute("count1", count1);
+		model.addAttribute("recipeListPro", rcpListPro);
 		return "/homepage/recipeDetail";
 	}
 	

@@ -13,6 +13,10 @@
 	<select id="select" resultType="vo">
 		select * from recipe
 	</select>
+	
+	<select id = "selectPro" resultType="ivo">
+		select * from recipe_pro
+	</select>
 
 		<!-- 레시피 갯수 카운트 -->	
 	<select id="count" resultType="int">
@@ -20,7 +24,7 @@
 	</select>
 	
 		<!-- 레시피 카테고리 선택 -->
-	<select id = "count1" resultType="int">
+	<select id = "count1" resultType="int" parameterType = "vo">
 		select count(*) from recipe where cate = 23
 	</select>
 
