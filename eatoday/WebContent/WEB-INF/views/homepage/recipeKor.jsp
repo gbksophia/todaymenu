@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ page import = "java.net.URLDecoder" %>
+<%@ page import = "java.net.URI" %>
 
+<%
+	Cookie [] ck = request.getCookies();
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +38,14 @@
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
-            	<h1 class="mb-3 mt-5 bread">레시피를 찾아보세요</h1>
+                             <c:set var = "c" value = "${cookie.cookie.value }"/>  
+						<c:forEach begin="0" end="${count}" step="1" var="i">
+		              	<c:set var = "rca" value = "${recipeList[i]}" />
+		              	<c:if test = "${rca.getCon_num() == c}">
+            
+            <h1 class="mb-3 mt-5 bread">레시피를 찾아보세요</h1>
+            	            </c:if>
+            </c:forEach>
 	            <p class="breadcrumbs"><span class="mr-2"><a href="index.eat">Home</a></span> <span>Shop</span></p>
             </div>
           </div>
@@ -79,6 +91,7 @@
 		            <div class="tab-content ftco-animate" id="v-pills-tabContent">
 		              <div class="tab-pane fade show active" id="v-pills-0" role="tabpanel" aria-labelledby="v-pills-0-tab">
 		              	<div class="row"> 	
+		              	
 						<c:forEach begin="0" end="${count}" step="1" var="i">
 		              	<c:set var = "rcp" value = "${recipeList[i]}" />
 		              	<c:if test = "${rcp.getCate() == 1}">
