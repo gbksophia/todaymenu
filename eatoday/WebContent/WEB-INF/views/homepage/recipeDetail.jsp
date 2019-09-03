@@ -86,36 +86,38 @@ response.addCookie(c);
              </c:forEach>
              
             </p>
-            
             <h2 class="mb-3 mt-5">조리법</h2>
+
             
+            <div class="vcard bio">
             <c:forEach begin="0" end="10000" step="1" var="i">
 				<c:set var = "rcpro" value = "${recipeListPro[i]}" />
 					<c:if test = "${rcpro.getCon_num() == abc }">
-					<%--
-						<img src="/eatoday/resource/RecipePro/${rcpro.getImg1() }" alt="" class="img-fluid">
-						<img src="/eatoday/resource/RecipePro/${rcpro.getImg2() }" alt="" class="img-fluid">
-			 --%>
-			 <h3>${rcpro.getImg1() }</h3>
-			 <h3>${rcpro.getImg2() }</h3>
+						<img src="/eatoday/resource/RecipePro/${rcpro.getImg1() }" alt="" class="img-fluid" width = "300px" height = "300px">
+						<br><br>
+						<img src="/eatoday/resource/RecipePro/${rcpro.getImg2() }" alt="" class="img-fluid" width = "300px" height = "300px">
+						<br><br>
 			</c:if>
 			
-			
+
 			
 			
 			</c:forEach>
-             <p>
+</div>
+<div class="comment-body">
+             					<p>
              		<c:forEach begin="0" end="${count}" step="1" var="i">
 		 <c:set var = "rcp" value = "${recipeList[i]}" />
 		 <c:if test = "${rcp.getCon_num() == abc }">
              <c:set var = "str" value = "${rcp.getPro() }"/>
-             <c:forEach var = "spt" items = "${fn:replace(str, 'next', '<br><br>') }" varStatus = "status">
+             <c:forEach var = "spt" items = "${fn:replace(str, 'next', '<br><br><br>') }" varStatus = "status">
              <img src="images/image_2.jpg" alt="" class="img-fluid">
              ${spt }
              </c:forEach>
              </c:if>
              </c:forEach>
             </p>
+            </div>
             <%-- 
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
@@ -240,6 +242,7 @@ response.addCookie(c);
             </div>
 
           </div> <!-- .col-md-8 -->
+
 
           <div class="col-md-4 sidebar ftco-animate">
           <%-- 
