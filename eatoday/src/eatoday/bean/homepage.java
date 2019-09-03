@@ -106,7 +106,6 @@ public class homepage {
 			ArrayList rcp = new ArrayList();
 			List rcpList = sql.selectList("recipe.select");
 			
-			System.out.println(count);
 			//System.out.println(rcpList);
 	         model.addAttribute("count1", count1);
 	         model.addAttribute("startPage", startPage);
@@ -133,7 +132,6 @@ public class homepage {
 			
 			String s = request.getParameter("cate");
 			String a = request.getParameter("abc");
-			System.out.println(count);
 			//System.out.println(rcpList);
 
 			model.addAttribute("recipeList", rcpList);
@@ -156,7 +154,6 @@ public class homepage {
 		
 		String s = request.getParameter("cate");
 		String a = request.getParameter("abc");
-		System.out.println(count);
 		//System.out.println(rcpList);
 
 		model.addAttribute("recipeList", rcpList);
