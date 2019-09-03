@@ -1,14 +1,16 @@
 package eatoday.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import eatoday.vo.restaurantVO;
 
 @Controller
 @RequestMapping("/apitest/")
@@ -50,23 +52,28 @@ public class APITest {
 	}
 	
 	//http://localhost:8080/eatoday/apitest/map_loc.eat
-	//@RequestMapping(value="map_loc.eat", produces="text/json; charset=utf-8", method= RequestMethod.POST)
 	@RequestMapping("map_loc.eat")
-	public String map_loc(HttpServletRequest request) {
-//		try {
-//			request.setCharacterEncoding("UTF-8");
-			//sql.selectOne("restaurant.search");
-			String d1 = request.getParameter("1dt");
-//			String d2 = request.getParameter("d2");
-//			String d3 = request.getParameter("d3");
-//			
-			System.out.println(d1);
-//			System.out.println(d2);
-//			System.out.println(d3);
+	public String map_loc(String d1, String d2 , String d3, Model model) {
+		if (d1!=null) {
+			System.out.println("==d1=="+d1);
+			System.out.println("==d2=="+d2);
+			System.out.println("==d3=="+d3);
 			
-//		}catch (Exception e) {
-//			e.printStackTrace();
-//		}
+//			ArrayList addr = new ArrayList();
+//			addr.add(d1);
+//			addr.add(d2);
+//			List resList = sql.selectList("restaurant.search", addr);
+//			System.out.println(resList);
+//			model.addAttribute("res", resList);
+			
+			restaurantVO restVO = new restaurantVO();
+			restVO.setAddr(d1);
+			restVO.setArea2(d2);
+			List resList = sql.selectList("restaurant.search", restVO);
+			System.out.println(resList);
+			model.addAttribute("res", resList);
+		}
+
 		return "/apitest/map_loc";
 	}
 	
@@ -74,8 +81,7 @@ public class APITest {
 	@RequestMapping("test.eat")
 	public String test(HttpServletRequest request) {
 		
-		String a = request.getParameter("area1");
-		System.out.println(a);
+		
 		
 		
 		return "/apitest/test";
@@ -89,6 +95,7 @@ public class APITest {
 	public String time() {
 		return "/apitest/time";
 	}
+		
 	
 }
 

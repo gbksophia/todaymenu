@@ -67,7 +67,7 @@ public class dbManage {
 		try {
 			int count = (Integer)sql.selectOne("recipe.count");
 //			int rowCount = (Integer)sql.selectOne("recipe.rowCount");
-			ArrayList rcp = new ArrayList();
+//			ArrayList rcp = new ArrayList();
 			List rcpList = sql.selectList("recipe.select");
 			
 			System.out.println(count);
@@ -155,11 +155,11 @@ public class dbManage {
 	public String showrest(Model model, HttpServletRequest request) throws Exception {
 		try {
 			int count = (Integer)sql.selectOne("restaurant.count");
-			ArrayList rest = new ArrayList();
+//			ArrayList rest = new ArrayList();
 			List restList = sql.selectList("restaurant.select");
 			
 			System.out.println(count);
-			//System.out.println(rcpList);
+//			System.out.println(rcpList);
 
 			model.addAttribute("restList", restList);
 			model.addAttribute("count", count);
