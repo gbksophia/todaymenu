@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>오늘 뭐먹지? 로그인</title>
+	<title>오늘 뭐먹지? 회원가입</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- 로그인 css -->
@@ -40,97 +40,60 @@
 	</style>
 	<!-- 카카오 로그인 script -->
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-	
+	<script>
+		function sign() {
+				document.frm.action ="signPro.eat";
+				document.frm.method= "post";
+				document.frm.submit();
+			}
+	</script>
 </head>
 <body>
 	<jsp:include page="../homepage/header.jsp" />
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('/eatoday/resource/images/bg_4.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style = "margin-top : 100px">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" name="frm">
 					<span class="login100-form-title p-b-49">
-						Login
+						Sign
 					</span>
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-						<span class="label-input100">ID</span>
-						<input class="input100" type="text" name="username" placeholder="Type your username">
+						<span class="label-input100">아이디</span>
+						<input class="input100" type="text" name="id" placeholder="Type your username">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="pass" placeholder="Type your password">
+						<span class="label-input100">비밀번호</span>
+						<input class="input100" type="password" name="pw" placeholder="Type your password">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					
+					<div data-validate = "Like Food">
+						<span class="label-input100">선호</span>
+						<br>
+						<input type="checkbox" name="food" value="kor" />한식 &nbsp;
+						<input type="checkbox" name="food" value="china" />중식 &nbsp;
+						<input type="checkbox" name="food" value="japan" />일식 &nbsp;
+						<input type="checkbox" name="food" value="european" />양식 &nbsp;
+						<input type="checkbox" name="food" value="bunsig" />분식 &nbsp;
+						<input type="checkbox" name="food" value="cafe" />카페 &nbsp; <br>
+						<input type="checkbox" name="food" value="fm" />패밀리 레스토랑 &nbsp;
+						<input type="checkbox" name="food" value="ff" />뷔페 &nbsp;
+					</div>
+					 
+					
 					<div class="text-left p-t-8 p-b-31">
-						<a href="#">
-							아이디 찾기
-						</a>
-						&nbsp;|&nbsp;
-						<a href = "#">
-						비밀번호 찾기
-						</a>
 					</div>
 					
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-								Login
+							<button class="login100-form-btn" onclick="sign()">
+								Sign
 							</button>
 						</div>
-					</div>
-
-					<div class="txt1 text-center p-t-54 p-b-20">
-						<span>
-							Social Login
-						</span>
-					</div>
-					
-					
-					<!-- 네이버 로그인 -->
-					
-					<div class="flex-c-m">
-						<a href="${url}" class="login100-social-item bg1">
-							<img src = "/eatoday/resource/images/naver.JPG" width = "55">
-						</a>
-						
-						<!-- 카카오 로그인 -->
-						<a id="custom-login-btn" href="javascript:loginWithKakao()">
-						<img src="/eatoday/resource/images/kakao.jpg" width="55"/>
-						</a>
-						<script type='text/javascript'>
-						  //<![CDATA[
-						    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-						    Kakao.init('80a9e86ee162fbf07ba5299ada0e85a0');
-						    function loginWithKakao() {
-						      // 로그인 창을 띄웁니다.
-						      Kakao.Auth.login({
-						        success: function(authObj) {
-						          alert(JSON.stringify(authObj));
-						        },
-						        fail: function(err) {
-						          alert(JSON.stringify(err));
-						        }
-						      });
-						    };
-						  //]]>
-						</script>
-						
-						
-						<!-- 구글 로그인 -->
-						
-						<a href="/eatoday/homepage/index.eat" class="login100-social-item bg3">
-							<i class="fa fa-google"></i>
-						</a>
-					</div>
-
-					<div class="txt1 text-center p-t-54 p-b-20">
-						<a href="sign.eat" class="txt2">
-							Sign Up
-						</a>
 					</div>
 				</form>
 			</div>
