@@ -73,7 +73,7 @@ if (navigator.geolocation) {
 					success : function(data){
 						//alert("완료!!");
 						}
-				});			
+				});
 		
 			}
 		};
@@ -115,9 +115,9 @@ function displayMarker(locPosition, message) {
 }
 </script>
 
-<c:forEach begin="0" end="${count}" step="1" var="i">
+<c:forEach begin="0" end="10" step="1" var="i">
 	<c:set var="rest" value="${resList[i]}" />
-	<c:if test="${rest.getCate() == '쇼핑'}">
+	
 		<table border="1">
 			<tr><td>${rest.getCnum()}</td></tr>
 			<tr><td>${rest.getStore()}</td></tr>
@@ -128,7 +128,7 @@ function displayMarker(locPosition, message) {
 			<tr><td>${rest.getCate()}</td></tr>
 		</table>
 		<br/>
-	</c:if>
+	
 </c:forEach>
 
 

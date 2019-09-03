@@ -71,31 +71,16 @@ public class APITest {
 			restVO.setArea2(d2);
 			List resList = sql.selectList("restaurant.search", restVO);
 			System.out.println(resList);
-			model.addAttribute("res", resList);
+			model.addAttribute("resList", resList);
 		}
 
 		return "/apitest/map_loc";
 	}
-	
-	
+		
 	@RequestMapping("test.eat")
 	public String test(HttpServletRequest request) {
-		
-		
-		
-		
 		return "/apitest/test";
 	}
-	
-	@RequestMapping("date.eat")
-	public String date() {
-		return "/apitest/date";
-	}
-	@RequestMapping("time.eat")
-	public String time() {
-		return "/apitest/time";
-	}
-		
 	
 }
 
