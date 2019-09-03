@@ -90,7 +90,7 @@ public class dbManage {
 			request.setCharacterEncoding("UTF-8");
 			recipeImgVO rimgvo = new recipeImgVO();
 			RConnection conn = new RConnection();
-			REXP rimg = conn.eval("tbc <- read.csv('D:/R/recipe_img.csv')");
+			REXP rimg = conn.eval("tbc <- read.csv('C:/recipe_img.csv')");
 			RList list = rimg.asList();
 			
 			String [][] s = new String[list.size()][];
