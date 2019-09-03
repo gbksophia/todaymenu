@@ -19,6 +19,9 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
+	<!-- naver로그인 -->
+	<bean id="NaverLoginBO" class="eatoday.bean.NaverLoginBO"/>
+	
 	
 	<!-- MyBatis -->
 	<bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource"
