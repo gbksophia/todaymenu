@@ -15,7 +15,7 @@
 		select count(*) from restaurant
 	</select>
 	
-	<select id="search" parameterType="rvo" resultType="rvo">
-		select * from (select * from restaurant where addr like '%'||#{addr}||'%') where area2 like '%'||#{area2}||'%'
+	<select id="search" parameterType="list" resultType="rvo">
+		select * from (select * from restaurant where addr like '%'||#{list[0]}||'%') where area2 like '%'||#{list[1]}||'%'
 	</select>
 </mapper>
