@@ -127,7 +127,7 @@
 						
 						<!-- 구글 로그인 -->
 						
-						<a href="javascript:loginWithGoogle()" class="login100-social-item bg3">
+						<a href="javascript:void(0);" onclick="loginWithGoogle();"class="login100-social-item bg3">
 							<i class="fa fa-google"></i>
 						</a>
 						<script>
@@ -138,31 +138,45 @@
 										client_id: '594879915525-eftcqhdi5ejnj8jnktvhkl7lc8ibl239.apps.googleusercontent.com'
 									})
 								    gauth.then(function(){
-										console.log('googleAuth success'); 
-										getGoogleInfo();
+										console.log('googleAuth success'); 		
+										checkloginStatus();				
 									}, function(){
 										console.log('googleAuth fail');  									
 									});
 								  });
-
+							
 							}
 
-							function getGoogleInfo(){
+							function checkloginStatus(){
+								var gloginState=gauth.isSignedIn.get();
+								console.log(gloginState);
 								var gname=gauth.currentUser.get().getBasicProfile().getName();
-								var gemail=gauth.currentUser.get().getBasicProfile().getEmail()
-								console.log('구글사용자:'+gname);
-								console.log('구글이메일:'+gemail);
-							}
+								var gemail=gauth.currentUser.get().getBasicProfile().getEmail(); 
+								if(gauth.isSignedIn.get()){
+									console.log('로그인 상태:logined');   
+									console.log(gname+'님');  
+									console.log('구글 사용자 이메일:'+gemail);  
+									gauth.signOut().then(function(){console.log('로그아웃 완료');});
+								}else{
+									console.log('로그인 상태:logouted');  
+									gauth.signIn({prompt:'select_account'}).then(function(){
+										console.log('gauth.signIn() 로그인 완료');
+										console.log('구글 사용자 이름:'+gname);  
+										console.log('구글 사용자 이메일:'+gemail);  
+									});  
+								}
 
-							$.ajax({
-								type : "post",
-								url : "/eatoday/googlelogin/googlelogin.eat",
-								data : {gname : gname,
-										 gemail : gemail }, 
-								success : function(data){
-									//alert("완료!!");
-									}
-							});
+								$.ajax({
+									type : "post",
+									url : "/eatoday/googlelogin/googlelogin.eat",
+									data : {gloginState : gloginState,
+											 gname : gname,
+											 gemail : gemail }, 
+									success : function(data){
+										//alert("완료!!");
+										}
+								});								
+							}
 							
 						</script>
 						
