@@ -63,16 +63,17 @@ if (navigator.geolocation) {
 				var d1 = result[0].region_1depth_name;
 				var d2 = result[0].region_2depth_name;
 				var d3 = result[0].region_3depth_name;
-
+				
 				$.ajax({
 					type : "post",
 					url : "/eatoday/apitest/map_loc.eat",
+					dataType : "json",
 					data : { d1 : d1,
 							 d2 : d2,
 							 d3 : d3 }, 
 					success : function(data){
 						//alert("완료!!");
-						}
+					}
 				});
 		
 			}
@@ -113,10 +114,14 @@ function displayMarker(locPosition, message) {
     // 지도 중심좌표를 접속위치로 변경합니다
     map.setCenter(locPosition);      
 }
+
+
 </script>
 
+<p id="res"></p>
+
 <c:forEach begin="0" end="10" step="1" var="i">
-	<c:set var="rest" value="${resList[i]}" />
+	<c:set var="rest" value="${restList[i]}" />
 	
 		<table border="1">
 			<tr><td>${rest.getCnum()}</td></tr>
@@ -130,6 +135,7 @@ function displayMarker(locPosition, message) {
 		<br/>
 	
 </c:forEach>
+
 
 
 </body>

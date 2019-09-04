@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import eatoday.vo.restaurantVO;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/apitest/")
@@ -53,32 +52,28 @@ public class APITest {
 	
 	//http://localhost:8080/eatoday/apitest/map_loc.eat
 	@RequestMapping("map_loc.eat")
+	//@ResponseBody
 	public String map_loc(String d1, String d2 , String d3, Model model) {
 		if (d1!=null) {
 			System.out.println("==d1=="+d1);
 			System.out.println("==d2=="+d2);
 			System.out.println("==d3=="+d3);
 			
-//			ArrayList addr = new ArrayList();
-//			addr.add(d1);
-//			addr.add(d2);
-//			List resList = sql.selectList("restaurant.search", addr);
-//			System.out.println(resList);
-//			model.addAttribute("res", resList);
+			ArrayList addr = new ArrayList();
+			addr.add(d1);
+			addr.add(d2);
+			List restList = sql.selectList("restaurant.search", addr);
+			System.out.println(restList.get(1));
 			
-			restaurantVO restVO = new restaurantVO();
-			restVO.setAddr(d1);
-			restVO.setArea2(d2);
-			List resList = sql.selectList("restaurant.search", restVO);
-			System.out.println(resList);
-			model.addAttribute("resList", resList);
+			model.addAttribute("restList", restList);
 		}
 
 		return "/apitest/map_loc";
 	}
 		
 	@RequestMapping("test.eat")
-	public String test(HttpServletRequest request) {
+	public String test() {
+		
 		return "/apitest/test";
 	}
 	

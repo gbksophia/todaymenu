@@ -93,9 +93,11 @@ response.addCookie(c);
             <c:forEach begin="0" end="10000" step="1" var="i">
 				<c:set var = "rcpro" value = "${recipeListPro[i]}" />
 					<c:if test = "${rcpro.getCon_num() == abc }">
-						<img src="/eatoday/resource/RecipePro/${rcpro.getImg1() }" alt="" class="img-fluid" width = "300px" height = "300px">
+						<img src="/eatoday/resource/RecipePro/${rcpro.getImg1() }" alt="" class="img-fluid" width = "400px" height = "200px">
+						<h3>${rcpro.getImg1() }</h3>
 						<br><br>
-						<img src="/eatoday/resource/RecipePro/${rcpro.getImg2() }" alt="" class="img-fluid" width = "300px" height = "300px">
+						<img src="/eatoday/resource/RecipePro/${rcpro.getImg2() }" alt="" class="img-fluid" width = "400px" height = "200px">
+						<h3>${rcpro.getImg1() }</h3>
 						<br><br>
 			</c:if>
 			
@@ -280,37 +282,19 @@ response.addCookie(c);
             <div class="sidebar-box ftco-animate">
               <div class="categories">
                 <h3>${j}Categories</h3>
-                
-                <c:forEach begin = "1" end = "25" var = "j" step = "1">
-             
-                <li><a href="/eatoday/homepage/recipeKorView.eat?cate=${j}">
-                <c:if test = "${j == 1}">밥요리<span>(${count1 })</span></c:if>
-                <c:if test = "${j == 2}">국&탕<span>(${count })</span></c:if>
-                <c:if test = "${j == 3}">찌개&전골</c:if>
-                <c:if test = "${j == 4}">밑반찬</c:if>
-                <c:if test = "${j == 5}">볶음요리</c:if>
-                <c:if test = "${j == 6}">구이(고기/생선)</c:if>
-                <c:if test = "${j == 7}">찜&조림</c:if>
-                <c:if test = "${j == 8}">손님상</c:if>
-                <c:if test = "${j == 9}">아이반찬</c:if>
-                <c:if test = "${j == 10}">김치 장아찌</c:if>
-                <c:if test = "${j == 11}">도시락</c:if>
-                <c:if test = "${j == 12}">튀김</c:if>
-                <c:if test = "${j == 13}">면요리</c:if>
-                <c:if test = "${j == 14}">샐러드</c:if>
-                <c:if test = "${j == 15}">김밥&초밥</c:if>
-                <c:if test = "${j == 16}">야식&술안주</c:if>
-                <c:if test = "${j == 17}">스파게티</c:if>
-                <c:if test = "${j == 18}">간식&분식</c:if>
-                <c:if test = "${j == 19}">토스트&샌드위치</c:if>
-                <c:if test = "${j == 20}">베이킹</c:if>
-                <c:if test = "${j == 21}">디저트</c:if>
-                <c:if test = "${j == 22}">주스&음료</c:if>
-                <c:if test = "${j == 23}">술&칵테일</c:if>
-                <c:if test = "${j == 24}">명절요리</c:if>
-                <c:if test = "${j == 25}">기타요리</c:if>
-                </a></li>
-  			 </c:forEach>	
+                <br><br>
+                <p>
+             		<c:forEach begin="0" end="${count}" step="1" var="i">
+		 <c:set var = "rcp" value = "${recipeList[i]}" />
+		 <c:if test = "${rcp.getCon_num() == abc }">
+             <c:set var = "str" value = "${rcp.getPro() }"/>
+             <c:forEach var = "spt" items = "${fn:replace(str, 'next', '<br><br>') }" varStatus = "status">
+             <img src="images/image_2.jpg" alt="" class="img-fluid">
+             ${spt }
+             </c:forEach>
+             </c:if>
+             </c:forEach>
+            </p>
               </div>
             </div>
 
@@ -330,11 +314,12 @@ response.addCookie(c);
                 <a href="#" class="tag-cloud-link">drinks</a>
               </div>
             </div>
- --%>
+ --%><%--
             <div class="sidebar-box ftco-animate">
               <h3>Paragraph</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
             </div>
+             --%>
           </div>
 
         </div>

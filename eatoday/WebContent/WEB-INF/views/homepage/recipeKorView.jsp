@@ -43,7 +43,7 @@
 
     <section class="home-slider owl-carousel">
 
-      <div class="slider-item" style="background-image: url(/eatoday/resource/images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+      <div class="slider-item" style="background-image: url(/eatoday/resource/images/recipe_bg.jpg);" data-stellar-background-ratio="0.5">
       	<div class="overlay"></div>
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center">
@@ -76,7 +76,6 @@
 		         <c:when test = "${cate == 22 }"><h1 class="mb-3 mt-5 bread">주스&음료</h1></c:when>
 		         <c:when test = "${cate == 23 }"><h1 class="mb-3 mt-5 bread">술&칵테일</h1></c:when>
 		         <c:when test = "${cate == 24 }"><h1 class="mb-3 mt-5 bread">명절요리</h1></c:when>
-		         <c:when test = "${cate == 25 }"><h1 class="mb-3 mt-5 bread">기타요리</h1></c:when>
 		         
 		         </c:choose>
             	
@@ -121,7 +120,6 @@
 		              <a class="nav-link" id="v-pills-21-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "22"></c:param></c:url>" role="tab" aria-selected="false">주스&음료</a>
 		              <a class="nav-link" id="v-pills-22-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "23"></c:param></c:url>" role="tab" aria-selected="false">술&칵테일</a>
 		              <a class="nav-link" id="v-pills-23-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "24"></c:param></c:url>" role="tab" aria-selected="false">명절요리</a>
-		              <a class="nav-link" id="v-pills-24-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "25"></c:param></c:url>" role="tab" aria-selected="false">기타요리</a>
 		            
 		            </div>
 		          </div>
