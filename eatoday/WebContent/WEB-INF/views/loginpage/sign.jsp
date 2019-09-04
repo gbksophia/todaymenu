@@ -21,6 +21,29 @@
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 	<!--원래 css-->
 	
+	<script>
+		function sign(){
+			var frm = document.frm;
+			var id = frm.id;
+			var pw = frm.pw;
+			var email = /[@]/;
+			if(id.value==""){
+				id.focus();
+				return false;
+				} else if(pw.value==""){
+				pw.focus();
+				return false;
+				} else if(!email.test(id.value)){
+					alert("이메일 형식이 아닙니다.");
+					id.focus();
+					return false;
+					}else {
+					document.frm.action ="signPro.eat";
+					document.frm.method= "post";
+					document.frm.submit();
+					}
+			}
+	</script>
 	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
 	
 	<!-- 소셜 로그인 버튼 css -->
@@ -40,13 +63,6 @@
 	</style>
 	<!-- 카카오 로그인 script -->
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-	<script>
-		function sign() {
-				document.frm.action ="signPro.eat";
-				document.frm.method= "post";
-				document.frm.submit();
-			}
-	</script>
 </head>
 <body>
 	<jsp:include page="../homepage/header.jsp" />
@@ -60,7 +76,7 @@
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
 						<span class="label-input100">아이디</span>
-						<input class="input100" type="text" name="id" placeholder="Type your username">
+						<input class="input100" type="email" name="id" placeholder="example@ex.com">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
@@ -90,7 +106,7 @@
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" onclick="sign()">
+							<button class="login100-form-btn" onclick="return sign()">
 								Sign
 							</button>
 						</div>

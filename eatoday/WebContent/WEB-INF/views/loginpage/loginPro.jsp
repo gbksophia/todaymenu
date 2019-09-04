@@ -5,7 +5,7 @@
 	<c:when test="${result ==1 }">
 		<script>
 			alert("${id}님 환영합니다.");
-			location= "index.eat";
+			location= "/eatoday/homepage/index.eat";
 		</script>
 	</c:when>	
 	<c:otherwise>

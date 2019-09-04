@@ -6,4 +6,12 @@
 	<insert id="insert" parameterType="mvo">
 		insert into mem values(mem_seq.nextval, #{id}, #{pw}, #{kor},#{china},#{japan},#{european},#{bunsig},#{cafe},#{etc})
 	</insert>
+	
+	<select id="loginCheck" parameterType="mvo" resultType="int">
+		select count(*) from mem where id=#{id} and pw=#{pw}
+ 	</select>
+ 	
+ 	<select id="idCheck" parameterType="String" resultType="int">
+ 		select count(*) from mem where id=#{value}
+ 	</select>
 </mapper>

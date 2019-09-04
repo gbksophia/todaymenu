@@ -26,6 +26,7 @@ public class loginpage {
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO = naverLoginBO;
 	}
+	private String apiResult= null;
 	
 	@RequestMapping("login.eat")
 	public String login(Model model,HttpSession session, String gloginState, String gname, String gemail) {
@@ -35,18 +36,25 @@ public class loginpage {
 		
 		model.addAttribute("url",naverAuthUrl);
 		
-		if(gloginState=="true") {
-			System.out.println(gname);
-			System.out.println(gemail);
-		}
-		
 		return "/loginpage/login";
 	}
 	
-		//회원가입
+	// 로그인 Pro
+	@RequestMapping("loginPro.eat")
+	public String loginPro(Model model,HttpSession session,memberVO vo) {
+		int result = sql.selectOne("member.loginCheck",vo);
+		if(result ==1) {
+			session.setAttribute("loginID", vo);
+		}
+		
+		model.addAttribute("result",result);
+		model.addAttribute("id",vo.getId());
+		return "/loginpage/loginPro";
+	}
+	
+		//회원가입 폼
 		@RequestMapping("sign.eat")
 		public String sign() {
-				
 		 return "/loginpage/sign";
 	}
 		
@@ -54,7 +62,11 @@ public class loginpage {
 		@RequestMapping("signPro.eat")
 		public String signPro(Model model,HttpServletRequest request,memberVO vo) throws Exception {
 			String [] food = request.getParameterValues("food");
-			request.setCharacterEncoding("EUC-KR");
+			int result = sql.selectOne("member.idCheck",vo.getId());
+			
+			// 중복 확인
+			if (result==0) {
+			if(food != null) {
 			for (String val : food) {
 				if(val.equals("kor")) {
 					vo.setKor(5);
@@ -79,7 +91,21 @@ public class loginpage {
 					vo.setEtc(5);
 				}
 			}
+		}
 			sql.insert("member.insert",vo);
+		} 
+		model.addAttribute("result",result);
 		 return "/loginpage/signPro";
 	}
+	// 네이버 콜백
+	@RequestMapping("callback.eat")
+	public String callback(Model model,@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException{
+		OAuth2AccessToken oauthToken;
+		oauthToken = naverLoginBO.getAccessToken(session, code, state);
+		// 로그인 사용자 정보 읽어오기
+		apiResult = naverLoginBO.getUserProfile(oauthToken);
+		model.addAttribute("result",apiResult);
+			
+			return "/loginpage/naverSuccess";
+		}
 }
