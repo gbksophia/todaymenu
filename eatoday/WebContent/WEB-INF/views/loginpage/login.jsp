@@ -22,7 +22,13 @@
 	<!--원래 css-->
 	
 	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
-	
+	<script>
+		function login(){
+			document.frm.action = "loginPro.eat";
+			document.frm.method="post";
+			document.frm.submit();
+			}
+	</script>
 	<!-- 소셜 로그인 버튼 css -->
 	<style>
 	.fa-naver:before{
@@ -52,20 +58,20 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('/eatoday/resource/images/bg_4.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style = "margin-top : 100px">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" name="frm">
 					<span class="login100-form-title p-b-49">
 						Login
 					</span>
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
 						<span class="label-input100">ID</span>
-						<input class="input100" type="text" name="username" placeholder="Type your username">
+						<input class="input100" type="text" name="id" placeholder="Type your username">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
 						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="pass" placeholder="Type your password">
+						<input class="input100" type="password" name="pw" placeholder="Type your password">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					
@@ -75,14 +81,14 @@
 						</a>
 						&nbsp;|&nbsp;
 						<a href = "#">
-						비밀번호 찾기
+						비밀번호 찾rl
 						</a>
 					</div>
 					
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
+							<button class="login100-form-btn" onclick="login()">
 								Login
 							</button>
 						</div>
@@ -148,25 +154,31 @@
 							}
 
 							function checkloginStatus(){
-								var gloginState=gauth.isSignedIn.get();
-								console.log(gloginState);
-								var gname=gauth.currentUser.get().getBasicProfile().getName();
-								var gemail=gauth.currentUser.get().getBasicProfile().getEmail(); 
-								
+								window.gloginState=gauth.isSignedIn.get();
+								console.log('gloginState:'+gloginState);
+
 								if(gloginState=='false'){
 									console.log('로그인 상태:logouted');  
 									gauth.signIn({prompt:'select_account'}).then(function(){
 										console.log('gauth.signIn() 로그인 완료');
-										console.log('구글 사용자 이름:'+gname);  
-										console.log('구글 사용자 이메일:'+gemail);  
+										getGoogleInfo();
+										//console.log('구글 사용자 이름:'+profile.getName());  
+										//console.log('구글 사용자 이메일:'+profile.getEmail());  
 									});  
 								}else{
 									console.log('로그인 상태:logined');   
 									console.log(gname+'님');  
-									console.log('구글 사용자 이메일:'+gemail);  
+									console.log('구글 사용자 이메일:'+profile.getEmail());  
 									gauth.signOut().then(function(){console.log('로그아웃 완료');});
 								}
+				
+							}
 
+							function getGoogleInfo(){
+								var gUser=gauth.currentUser.get();
+								window.profile=gUser.getBasicProfile();
+								window.gname=profile.getName();
+								window.gemail=profile.getEmail();
 
 								$.ajax({
 									type : "post",
@@ -177,7 +189,8 @@
 									success : function(data){
 										//alert("완료!!");
 										}
-								});								
+								});	
+								
 							}
 							
 						</script>
