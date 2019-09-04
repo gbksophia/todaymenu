@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<title>¿À´Ã ¹¹¸ÔÁö? ·Î±×ÀÎ</title>
+	<title>ì˜¤ëŠ˜ ë­ë¨¹ì§€? ë¡œê·¸ì¸</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- ·Î±×ÀÎ css -->
+	<!-- ë¡œê·¸ì¸ css -->
 	<link rel="icon" type="image/png" href="/eatoday/resource/login/images/icons/favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/eatoday/resource/login/css/main.css">
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
-	<!--¿ø·¡ css-->
+	<!--ì›ë˜ css-->
 	
 	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
 	<script>
@@ -29,7 +29,7 @@
 			document.frm.submit();
 			}
 	</script>
-	<!-- ¼Ò¼È ·Î±×ÀÎ ¹öÆ° css -->
+	<!-- ì†Œì…œ ë¡œê·¸ì¸ ë²„íŠ¼ css -->
 	<style>
 	.fa-naver:before{
 		font-family : Arial;
@@ -44,10 +44,10 @@
 		content : "K"
 	}
 	</style>
-	<!-- Ä«Ä«¿À ·Î±×ÀÎ script -->
+	<!-- ì¹´ì¹´ì˜¤ ë¡œê·¸ì¸ script -->
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	
-	<!-- ±¸±Û ·Î±×ÀÎ script -->
+	<!-- êµ¬ê¸€ ë¡œê·¸ì¸ script -->
 	<script src="https://apis.google.com/js/platform.js" async defer></script><base>
 	<!-- Ajax -->
 	<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -77,11 +77,11 @@
 					
 					<div class="text-left p-t-8 p-b-31">
 						<a href="#">
-							¾ÆÀÌµğ Ã£±â
+							ì•„ì´ë”” ì°¾ê¸°
 						</a>
 						&nbsp;|&nbsp;
 						<a href = "#">
-						ºñ¹Ğ¹øÈ£ Ã£±â
+						ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 						</a>
 					</div>
 					
@@ -101,23 +101,23 @@
 					</div>
 					
 					
-					<!-- ³×ÀÌ¹ö ·Î±×ÀÎ -->
+					<!-- ë„¤ì´ë²„ ë¡œê·¸ì¸ -->
 					
 					<div class="flex-c-m">
 						<a href="${url}" class="login100-social-item bg1">
 							<img src = "/eatoday/resource/images/naver.JPG" width = "55">
 						</a>
 						
-						<!-- Ä«Ä«¿À ·Î±×ÀÎ -->
+						<!-- ì¹´ì¹´ì˜¤ ë¡œê·¸ì¸ -->
 						<a id="custom-login-btn" href="javascript:loginWithKakao()">
 						<img src="/eatoday/resource/images/kakao.jpg" width="55"/>
 						</a>
 						<script type='text/javascript'>
 						  //<![CDATA[
-						    // »ç¿ëÇÒ ¾ÛÀÇ JavaScript Å°¸¦ ¼³Á¤ÇØ ÁÖ¼¼¿ä.
+						    // ì‚¬ìš©í•  ì•±ì˜ JavaScript í‚¤ë¥¼ ì„¤ì •í•´ ì£¼ì„¸ìš”.
 						    Kakao.init('80a9e86ee162fbf07ba5299ada0e85a0');
 						    function loginWithKakao() {
-						      // ·Î±×ÀÎ Ã¢À» ¶ç¿ó´Ï´Ù.
+						      // ë¡œê·¸ì¸ ì°½ì„ ë„ì›ë‹ˆë‹¤.
 						      Kakao.Auth.login({
 						        success: function(authObj) {
 						          alert(JSON.stringify(authObj));
@@ -131,7 +131,7 @@
 						</script>
 						
 						
-						<!-- ±¸±Û ·Î±×ÀÎ -->
+						<!-- êµ¬ê¸€ ë¡œê·¸ì¸ -->
 						
 						<a href="javascript:void(0);" onclick="loginWithGoogle();"class="login100-social-item bg3">
 							<i class="fa fa-google"></i>
@@ -141,14 +141,14 @@
 								console.log('init');
 								gapi.load('auth2', function() {
 									console.log('auth2');
-									window.gauth=gapi.auth2.init({   //window.¸¦ ºÙÀÌ¸é ¾îµğ¼­³ª »ç¿ë°¡´ÉÇÑ Àü¿ªº¯¼ö·Î º¯°æ!
+									window.gauth=gapi.auth2.init({   //window.ë¥¼ ë¶™ì´ë©´ ì–´ë””ì„œë‚˜ ì‚¬ìš©ê°€ëŠ¥í•œ ì „ì—­ë³€ìˆ˜ë¡œ ë³€ê²½!
 										client_id: '594879915525-eftcqhdi5ejnj8jnktvhkl7lc8ibl239.apps.googleusercontent.com'
 									})
 								    gauth.then(function(){
 										console.log('googleAuth success'); 	
-										gauth.isSignedIn.get();	
-										window.gloginState;
-										glogin(gauth.isSignedIn.get());				
+										gauth.isSignedIn.get();	 //êµ¬ê¸€ ë¡œê·¸ì¸ ìƒíƒœ ì¡°íšŒ (true=ë¡œê·¸ì¸, false=ë¡œê·¸ì•„ì›ƒ)
+										window.gloginState;		//êµ¬ê¸€ ë¡œê·¸ì¸ ìƒíƒœ ë³€ìˆ˜....
+										glogin(gauth.isSignedIn.get());		//êµ¬ê¸€ ë¡œê·¸ì¸í•˜ëŠ” ë©”ì„œë“œ í˜¸ì¶œ		
 									}, function(){
 										console.log('googleAuth fail');  									
 									});
@@ -156,34 +156,39 @@
 							
 							}
 
+							//êµ¬ê¸€ ë¡œê·¸ì¸ í•˜ê¸°
 							function glogin(gloginState){
 								//window.gloginState=gauth.isSignedIn.get();
 								//console.log('gloginState:'+gloginState);
-								if(gloginState==false){
-									console.log('·Î±×ÀÎ »óÅÂ:logouted');  
-									gauth.signIn({prompt:'select_account'}).then(function(){
-										console.log('gauth.signIn() ·Î±×ÀÎ ¿Ï·á');
-										var gUser=gauth.currentUser.get();
-										window.profile=gUser.getBasicProfile();
-										window.gname=profile.getName();
-										window.gemail=profile.getEmail();
-										var pw = gemail.split('@')[0];
-										gauth.signOut().then(function(){
-											console.log('·Î±×¾Æ¿ô ¿Ï·á');
+								
+								//ë¡œê·¸ì•„ì›ƒ ìƒíƒœì¼ ë–„
+								if(gloginState==false){ 
+									console.log('ë¡œê·¸ì¸ ìƒíƒœ:logouted');  
+									gauth.signIn({prompt:'select_account'}).then(function(){ //ë¡œê·¸ì¸ í•˜ê¸°
+										console.log('gauth.signIn() ë¡œê·¸ì¸ ì™„ë£Œ');
+										var gUser=gauth.currentUser.get(); //êµ¬ê¸€ ë¡œê·¸ì¸ í•œ ìœ ì €
+										window.profile=gUser.getBasicProfile(); //ìœ ì €ì˜ ê°œì¸ì •ë³´
+										window.gname=profile.getName(); //ìœ ì €ì˜ ì´ë¦„
+										window.gemail=profile.getEmail(); //ìœ ì €ì˜ ì´ë©”ì¼
+										var pw = gemail.split('@')[0]; //mem DBì— ì €ì¥í•  pwë¥¼ ìœ„í•œ ì´ë©”ì¼ split
+										gauth.signOut().then(function(){ //ë¡œê·¸ì•„ì›ƒ í•´ì£¼ê¸°
+											console.log('ë¡œê·¸ì•„ì›ƒ ì™„ë£Œ');
 											gauth.disconnect();
 											
 										});
 										location = "/eatoday/loginpage/signPro.eat?id="+gemail+"&pw="+pw;
-										console.log('±¸±Û »ç¿ëÀÚ ÀÌ¸§:'+gname);  
-										console.log('±¸±Û »ç¿ëÀÚ ÀÌ¸ŞÀÏ:'+gemail);  
+										console.log('êµ¬ê¸€ ì‚¬ìš©ì ì´ë¦„:'+gname);  
+										console.log('êµ¬ê¸€ ì‚¬ìš©ì ì´ë©”ì¼:'+gemail);  
 										console.log('===============================================');
-									});  
-								}else{
-									console.log('·Î±×ÀÎ »óÅÂ:logined');   
-									//console.log(gname+'´Ô');  
-									//console.log('±¸±Û »ç¿ëÀÚ ÀÌ¸ŞÀÏ:'+gemail);  
-									gauth.signOut().then(function(){
-										console.log('·Î±×¾Æ¿ô ¿Ï·á');
+									}); 
+									
+								//ë¡œê·¸ì¸ ìƒíƒœì¼ ë•Œ 
+								}else{ 
+									console.log('ë¡œê·¸ì¸ ìƒíƒœ:logined');   
+									//console.log(gname+'ë‹˜');  
+									//console.log('êµ¬ê¸€ ì‚¬ìš©ì ì´ë©”ì¼:'+gemail);  
+									gauth.signOut().then(function(){  //ë¡œê·¸ì•„ì›ƒ í•´ì£¼ê¸°
+										console.log('ë¡œê·¸ì•„ì›ƒ ì™„ë£Œ');
 										gauth.disconnect();
 										console.log('===============================================');
 									});
@@ -196,7 +201,7 @@
 											 gname : gname,
 											 gemail : gemail }, 
 									success : function(data){
-										//alert("¿Ï·á!!");
+										//alert("ì™„ë£Œ!!");
 										}
 								});	
 								
