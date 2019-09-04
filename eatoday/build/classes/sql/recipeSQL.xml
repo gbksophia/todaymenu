@@ -25,7 +25,7 @@
 	
 		<!-- 레시피 카테고리 선택 -->
 	<select id = "count1" resultType="int" parameterType = "vo">
-		select count(*) from recipe where cate = 23
+		select count(*) from recipe where cate = #{cate}
 	</select>
 
 		<!-- 레시피 조리법 이미지 입력 -->
