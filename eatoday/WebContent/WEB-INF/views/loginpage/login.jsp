@@ -158,7 +158,7 @@
 
 							//구글 로그인 하기
 							function glogin(gloginState){
-								//window.gloginState=gauth.isSignedIn.get();
+								window.gloginYN=gauth.isSignedIn.get();
 								//console.log('gloginState:'+gloginState);
 								
 								//로그아웃 상태일 떄
@@ -197,7 +197,7 @@
 								$.ajax({
 									type : "post",
 									url : "/eatoday/loginpage/login.eat",
-									data : {gloginState : gloginState,
+									data : {gloginYN : gloginYN,
 											 gname : gname,
 											 gemail : gemail }, 
 									success : function(data){
