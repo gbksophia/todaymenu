@@ -70,6 +70,7 @@ public class homepage {
 	
 	@RequestMapping("recipeKor.eat")
 	public String showdb(Model model, HttpServletRequest request) throws Exception {
+	      
 			int pageSize = 10;
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String pageNum = request.getParameter("pageNum");

@@ -279,7 +279,8 @@ response.addCookie(c);
 
             <div class="sidebar-box ftco-animate">
               <div class="categories">
-                <h3>Categories</h3>
+                <h3>${j}Categories</h3>
+                
                 <c:forEach begin = "1" end = "25" var = "j" step = "1">
              
                 <li><a href="/eatoday/homepage/recipeKorView.eat?cate=${j}">
