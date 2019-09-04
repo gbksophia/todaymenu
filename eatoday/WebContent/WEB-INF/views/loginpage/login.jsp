@@ -163,7 +163,7 @@
 								
 								//로그아웃 상태일 떄
 								if(gloginState==false){ 
-									console.log('로그인 상태:logouted');  
+									console.log('현재 상태:logouted');  
 									gauth.signIn({prompt:'select_account'}).then(function(){ //로그인 하기
 										console.log('gauth.signIn() 로그인 완료');
 										var gUser=gauth.currentUser.get(); //구글 로그인 한 유저
@@ -184,7 +184,7 @@
 									
 								//로그인 상태일 때 
 								}else{ 
-									console.log('로그인 상태:logined');   
+									console.log('현재 상태:logined');   
 									//console.log(gname+'님');  
 									//console.log('구글 사용자 이메일:'+gemail);  
 									gauth.signOut().then(function(){  //로그아웃 해주기
