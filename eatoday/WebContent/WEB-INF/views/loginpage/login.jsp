@@ -152,19 +152,21 @@
 								console.log(gloginState);
 								var gname=gauth.currentUser.get().getBasicProfile().getName();
 								var gemail=gauth.currentUser.get().getBasicProfile().getEmail(); 
-								if(gauth.isSignedIn.get()){
-									console.log('로그인 상태:logined');   
-									console.log(gname+'님');  
-									console.log('구글 사용자 이메일:'+gemail);  
-									gauth.signOut().then(function(){console.log('로그아웃 완료');});
-								}else{
+								
+								if(gloginState=='false'){
 									console.log('로그인 상태:logouted');  
 									gauth.signIn({prompt:'select_account'}).then(function(){
 										console.log('gauth.signIn() 로그인 완료');
 										console.log('구글 사용자 이름:'+gname);  
 										console.log('구글 사용자 이메일:'+gemail);  
 									});  
+								}else{
+									console.log('로그인 상태:logined');   
+									console.log(gname+'님');  
+									console.log('구글 사용자 이메일:'+gemail);  
+									gauth.signOut().then(function(){console.log('로그아웃 완료');});
 								}
+
 
 								$.ajax({
 									type : "post",
