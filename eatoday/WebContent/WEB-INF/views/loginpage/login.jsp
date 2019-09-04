@@ -41,6 +41,11 @@
 	<!-- 카카오 로그인 script -->
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	
+	<!-- 구글 로그인 script -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script><base>
+	<!-- Ajax -->
+	<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+	
 </head>
 <body>
 	<jsp:include page="../homepage/header.jsp" />
@@ -122,9 +127,45 @@
 						
 						<!-- 구글 로그인 -->
 						
-						<a href="/eatoday/homepage/index.eat" class="login100-social-item bg3">
+						<a href="javascript:loginWithGoogle()" class="login100-social-item bg3">
 							<i class="fa fa-google"></i>
 						</a>
+						<script>
+							function loginWithGoogle(){
+								gapi.load('auth2', function() {
+									console.log('auth2');
+									window.gauth=gapi.auth2.init({   //window.를 붙이면 어디서나 사용가능한 전역변수로 변경!
+										client_id: '594879915525-eftcqhdi5ejnj8jnktvhkl7lc8ibl239.apps.googleusercontent.com'
+									})
+								    gauth.then(function(){
+										console.log('googleAuth success'); 
+										getGoogleInfo();
+									}, function(){
+										console.log('googleAuth fail');  									
+									});
+								  });
+
+							}
+
+							function getGoogleInfo(){
+								var gname=gauth.currentUser.get().getBasicProfile().getName();
+								var gemail=gauth.currentUser.get().getBasicProfile().getEmail()
+								console.log('구글사용자:'+gname);
+								console.log('구글이메일:'+gemail);
+							}
+
+							$.ajax({
+								type : "post",
+								url : "/eatoday/googlelogin/googlelogin.eat",
+								data : {gname : gname,
+										 gemail : gemail }, 
+								success : function(data){
+									//alert("완료!!");
+									}
+							});
+							
+						</script>
+						
 					</div>
 
 					<div class="txt1 text-center p-t-54 p-b-20">

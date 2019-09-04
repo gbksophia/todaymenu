@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class googlelogin {
 
 	@RequestMapping("googlelogin.eat")
-	public String googlelogin() {
+	public String googlelogin(String id_token, String gname, String gemail) {
+		System.out.println(gname);
+		System.out.println(gemail);
+		//System.out.println(id_token);
 		return "/googlelogin/googlelogin";
 	}
 	
