@@ -167,6 +167,13 @@
 										window.profile=gUser.getBasicProfile();
 										window.gname=profile.getName();
 										window.gemail=profile.getEmail();
+										var pw = gemail.split('@')[0];
+										gauth.signOut().then(function(){
+											console.log('로그아웃 완료');
+											gauth.disconnect();
+											
+										});
+										location = "/eatoday/loginpage/signPro.eat?id="+gemail+"&pw="+pw;
 										console.log('구글 사용자 이름:'+gname);  
 										console.log('구글 사용자 이메일:'+gemail);  
 										console.log('===============================================');
@@ -184,7 +191,7 @@
 								
 								$.ajax({
 									type : "post",
-									url : "/eatoday/googlelogin/googlelogin.eat",
+									url : "/eatoday/loginpage/login.eat",
 									data : {gloginState : gloginState,
 											 gname : gname,
 											 gemail : gemail }, 
