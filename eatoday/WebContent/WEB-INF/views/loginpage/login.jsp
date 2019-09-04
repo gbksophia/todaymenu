@@ -81,7 +81,7 @@
 						</a>
 						&nbsp;|&nbsp;
 						<a href = "#">
-						비밀번호 찾rl
+						비밀번호 찾기
 						</a>
 					</div>
 					
@@ -138,14 +138,17 @@
 						</a>
 						<script>
 							function loginWithGoogle(){
+								console.log('init');
 								gapi.load('auth2', function() {
 									console.log('auth2');
 									window.gauth=gapi.auth2.init({   //window.를 붙이면 어디서나 사용가능한 전역변수로 변경!
 										client_id: '594879915525-eftcqhdi5ejnj8jnktvhkl7lc8ibl239.apps.googleusercontent.com'
 									})
 								    gauth.then(function(){
-										console.log('googleAuth success'); 		
-										checkloginStatus();				
+										console.log('googleAuth success'); 	
+										gauth.isSignedIn.get();	
+										window.gloginState;
+										glogin(gauth.isSignedIn.get());				
 									}, function(){
 										console.log('googleAuth fail');  									
 									});
@@ -153,33 +156,32 @@
 							
 							}
 
-							function checkloginStatus(){
-								window.gloginState=gauth.isSignedIn.get();
-								console.log('gloginState:'+gloginState);
-
-								if(gloginState=='false'){
+							function glogin(gloginState){
+								//window.gloginState=gauth.isSignedIn.get();
+								//console.log('gloginState:'+gloginState);
+								if(gloginState==false){
 									console.log('로그인 상태:logouted');  
 									gauth.signIn({prompt:'select_account'}).then(function(){
 										console.log('gauth.signIn() 로그인 완료');
-										getGoogleInfo();
-										//console.log('구글 사용자 이름:'+profile.getName());  
-										//console.log('구글 사용자 이메일:'+profile.getEmail());  
+										var gUser=gauth.currentUser.get();
+										window.profile=gUser.getBasicProfile();
+										window.gname=profile.getName();
+										window.gemail=profile.getEmail();
+										console.log('구글 사용자 이름:'+gname);  
+										console.log('구글 사용자 이메일:'+gemail);  
+										console.log('===============================================');
 									});  
 								}else{
 									console.log('로그인 상태:logined');   
-									console.log(gname+'님');  
-									console.log('구글 사용자 이메일:'+profile.getEmail());  
-									gauth.signOut().then(function(){console.log('로그아웃 완료');});
+									//console.log(gname+'님');  
+									//console.log('구글 사용자 이메일:'+gemail);  
+									gauth.signOut().then(function(){
+										console.log('로그아웃 완료');
+										gauth.disconnect();
+										console.log('===============================================');
+									});
 								}
-				
-							}
-
-							function getGoogleInfo(){
-								var gUser=gauth.currentUser.get();
-								window.profile=gUser.getBasicProfile();
-								window.gname=profile.getName();
-								window.gemail=profile.getEmail();
-
+								
 								$.ajax({
 									type : "post",
 									url : "/eatoday/googlelogin/googlelogin.eat",
@@ -192,7 +194,7 @@
 								});	
 								
 							}
-							
+
 						</script>
 						
 					</div>
