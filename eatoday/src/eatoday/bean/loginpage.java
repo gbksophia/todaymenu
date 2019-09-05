@@ -32,7 +32,6 @@ public class loginpage {
 	public String login(Model model,HttpSession session, String gloginState, String gname, String gemail) {
 		/*네이버아이디로 인증 URL을 생성하기 위해 naverLoginDO클래스와 getAuthorizationUrl메소드 호출*/
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		System.out.println("네이버:"+naverAuthUrl);
 		
 		model.addAttribute("url",naverAuthUrl);
 		
@@ -106,6 +105,6 @@ public class loginpage {
 		apiResult = naverLoginBO.getUserProfile(oauthToken);
 		model.addAttribute("result",apiResult);
 			
-			return "/loginpage/naverSuccess";
+		return "/loginpage/naverSuccess";
 		}
 }

@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import eatoday.vo.recipeImgVO;
+import eatoday.vo.recipeVO;
 //import eatoday.vo.dbManageVO;
 @Controller
 @RequestMapping("/homepage/")
@@ -68,9 +71,12 @@ public class homepage {
 		return "/homepage/recipeJpn";
 	}
 	
-	@RequestMapping("recipeKor.eat")
+	/*@RequestMapping("recipeKor.eat")
 	public String showdb(Model model, HttpServletRequest request) throws Exception {
-	      
+	      	
+		
+			// 카테고리 유무 확인
+			String cate = request.getParameter("cate");
 			int pageSize = 10;
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String pageNum = request.getParameter("pageNum");
@@ -82,8 +88,12 @@ public class homepage {
 			int endRow = currentPage*pageSize;
 			int count1 = 0;
 			int number = 0;
-		try {
+		
+			if(cate != null) {
 			count1 = (Integer)sql.selectOne("recipe.count1");
+			} else {
+				
+			}
 			if(count1>0) {
 				ArrayList recipe = new ArrayList();
 				recipe.add(startRow);
@@ -117,52 +127,47 @@ public class homepage {
 	         model.addAttribute("sdf", sdf);
 			model.addAttribute("recipeList", rcpList);
 			model.addAttribute("count", count);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			model.addAttribute("cate", cate);
+		
 		return "/homepage/recipeKor";
-	}
-	
+	} */	
 	
 	@RequestMapping("recipeKorView.eat")
 	public String recipeKorView(Model model, HttpServletRequest request) throws Exception {
-		try {
-			int count = (Integer)sql.selectOne("recipe.count");
-			ArrayList rcp = new ArrayList();
-			List rcpList = sql.selectList("recipe.select");
+		String cate = request.getParameter("cate");
+		int count = (Integer)sql.selectOne("recipe.count");
+		ArrayList rcp = new ArrayList();
+		List rcpList = sql.selectList("recipe.select",cate);
 			
-			String s = request.getParameter("cate");
-			String a = request.getParameter("abc");
-			//System.out.println(rcpList);
+		//System.out.println(rcpList);
 
-			model.addAttribute("recipeList", rcpList);
-			model.addAttribute("count", count);
-			model.addAttribute("cate",s);
-			model.addAttribute("abc", a);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		model.addAttribute("recipeList", rcpList);
+		model.addAttribute("count", count);
+		model.addAttribute("cate",cate);
+		
+		 
 		return "/homepage/recipeKorView";
 	}
 	
 	@RequestMapping("recipeDetail.eat")
 	public String recipeDetail(Model model, HttpServletRequest request) throws Exception {
-		int count = (Integer)sql.selectOne("recipe.count");
-		int count1 = (Integer)sql.selectOne("recipe.count1");
-		ArrayList rcp = new ArrayList();
-		List rcpList = sql.selectList("recipe.select");
-		List rcpListPro = sql.selectList("recipe.selectPro");
+		String cnum = request.getParameter("cnum");
 		
-		String s = request.getParameter("cate");
-		String a = request.getParameter("abc");
-		//System.out.println(rcpList);
-
-		model.addAttribute("recipeList", rcpList);
-		model.addAttribute("count", count);
-		model.addAttribute("cate",s);
-		model.addAttribute("abc", a);
-		model.addAttribute("count1", count1);
-		model.addAttribute("recipeListPro", rcpListPro);
+		
+		// 해당 레시피 정보
+		recipeVO vo = sql.selectOne("recipe.info",cnum);
+		String [] pro = vo.getPro().split("next"); // 조리법 분리
+		int proCount = pro.length; // for문 돌릴값
+		// 레시피 해당 이미지 set
+		List ivo = sql.selectList("recipe.imgselect", cnum);
+		
+		
+		
+		model.addAttribute("pro",pro);
+		model.addAttribute("proCount",proCount);
+		model.addAttribute("ivo",ivo);
+		model.addAttribute("rvo",vo);
+		
 		return "/homepage/recipeDetail";
 	}
 	
