@@ -35,26 +35,17 @@
   </head>
   <body>
 <jsp:include page="header.jsp" />
-    <!-- END nav -->
-     <c:set var = "abc" value = "${abc }"/>  
-		<c:forEach begin="0" end="${count}" step="1" var="i">
-		 <c:set var = "rcp" value = "${recipeList[i]}" />
- 			<c:if test = "${rcp.getCon_num() == abc }">
-    <section class="home-slider owl-carousel">
-<%
-String abc = request.getParameter("abc");
-Cookie c = new Cookie("cookie", abc);
-c.setMaxAge(60*60*24);
-response.addCookie(c);
-%>
+    <!-- END nav --> 
+        <section class="home-slider owl-carousel">
 
-      <div class="slider-item" style="background-image: url(/eatoday/resource/RecipeImages/${rcp.getMain_name()});">
+
+      <div class="slider-item" style="background-image: url(/eatoday/resource/RecipeImages/${rvo.getMain_name()});">
       	<div class="overlay"></div>
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center">
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
-            	<h1 class="mb-3 mt-5 bread">${rcp.getTitle() }</h1>
+            	<h1 class="mb-3 mt-5 bread">${rvo.getTitle() }</h1>
 	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="blog.html">Blog</a></span> <span>Blog Single</span></p>
             </div>
 
@@ -63,55 +54,51 @@ response.addCookie(c);
       </div>
 
     </section>
-
-
-	</c:if>
-	</c:forEach>
     <section class="ftco-section">
       <div class="container">
         <div class="row">
           <div class="col-md-8 ftco-animate">
             <h2 class="mb-3">재료</h2>
 <p>
-		<c:forEach begin="0" end="${count}" step="1" var="i">
-		 <c:set var = "rcp" value = "${recipeList[i]}" />
-		 <c:if test = "${rcp.getCon_num() == abc }">
-             <c:set var = "str" value = "${rcp.getMate() }"/>
+		     <c:set var = "str" value = "${rvo.getMate() }"/>
              <c:forEach var = "spt" items = "${fn:replace(str, 'next', '<br>') }" varStatus = "status">
              <img src="images/image_2.jpg" alt="" class="img-fluid">
              ${spt }
-            
              </c:forEach>
-              </c:if>
-             </c:forEach>
+        
+   
              
             </p>
             <h2 class="mb-3 mt-5">조리법</h2>
 
             
             <div class="vcard bio">
-            <c:forEach begin="0" end="10000" step="1" var="i">
-				<c:set var = "rcpro" value = "${recipeListPro[i]}" />
-					<c:if test = "${rcpro.getCon_num() == abc }">
-						<img src="/eatoday/resource/RecipePro/${rcpro.getImg1() }" alt="" class="img-fluid" width = "400px" height = "200px">
-						<h3>${rcpro.getImg1() }</h3>
-						<br><br>
-						<img src="/eatoday/resource/RecipePro/${rcpro.getImg2() }" alt="" class="img-fluid" width = "400px" height = "200px">
-						<h3>${rcpro.getImg1() }</h3>
-						<br><br>
-			</c:if>
-			
-
-			
-			
+            
+            <c:forEach begin="1" end="${proCount }" step="1" var="i">
+            	<c:if test="${i==1 }">
+            	<c:set var = "j" value = "0" />
+            	</c:if>
+				<c:set var = "rcpro" value = "${pro[i-1]}" />
+				<c:choose>
+				<c:when test="${i%2 == 1 }">
+				<c:set var = "img" value = "${ivo[j]}" />
+				<img src="/eatoday/resource/RecipePro/${img.getImg1() }" alt="" class="img-fluid" width = "400px" height = "200px">
+				</c:when>
+				<c:otherwise>
+				<img src="/eatoday/resource/RecipePro/${img.getImg2() }" alt="" class="img-fluid" width = "400px" height = "200px">
+				<c:set var = "j" value = "${j+1 }" />
+				</c:otherwise>
+				</c:choose>
+				<h3>${rcpro }</h3>
+				<br><br>
 			</c:forEach>
 </div>
 <div class="comment-body">
              					<p>
              		<c:forEach begin="0" end="${count}" step="1" var="i">
-		 <c:set var = "rcp" value = "${recipeList[i]}" />
-		 <c:if test = "${rcp.getCon_num() == abc }">
-             <c:set var = "str" value = "${rcp.getPro() }"/>
+		 <c:set var = "rvo" value = "${recipeList[i]}" />
+		 <c:if test = "${rvo.getCon_num() == abc }">
+             <c:set var = "str" value = "${rvo.getPro() }"/>
              <c:forEach var = "spt" items = "${fn:replace(str, 'next', '<br><br><br>') }" varStatus = "status">
              <img src="images/image_2.jpg" alt="" class="img-fluid">
              ${spt }
@@ -285,9 +272,9 @@ response.addCookie(c);
                 <br><br>
                 <p>
              		<c:forEach begin="0" end="${count}" step="1" var="i">
-		 <c:set var = "rcp" value = "${recipeList[i]}" />
-		 <c:if test = "${rcp.getCon_num() == abc }">
-             <c:set var = "str" value = "${rcp.getPro() }"/>
+		 <c:set var = "rvo" value = "${recipeList[i]}" />
+		 <c:if test = "${rvo.getCon_num() == abc }">
+             <c:set var = "str" value = "${rvo.getPro() }"/>
              <c:forEach var = "spt" items = "${fn:replace(str, 'next', '<br><br>') }" varStatus = "status">
              <img src="images/image_2.jpg" alt="" class="img-fluid">
              ${spt }

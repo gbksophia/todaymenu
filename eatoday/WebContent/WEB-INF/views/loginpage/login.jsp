@@ -119,8 +119,27 @@
 						    function loginWithKakao() {
 						      // 로그인 창을 띄웁니다.
 						      Kakao.Auth.login({
+						    	scope: "account_email",
 						        success: function(authObj) {
-						          alert(JSON.stringify(authObj));
+						          Kakao.API.request({
+						              url: '/v2/user/me',
+						              success: function(res) {
+						                console.log('JSON.stringify(res) = '+JSON.stringify(res));
+						                var userID = res.id;      //유저의 카카오톡 고유 id
+						                var kEmail = res.kakao_account.email;   //유저의 이메일
+						                var kpw = kEmail.split('@')[0];
+						                var userNickName = res.properties.nickname; //유저가 등록한 별명					                
+					               		console.log('userID='+userID);
+						                console.log('kEmail='+kEmail);
+						                console.log('userNickName='+userNickName);
+						                location = "/eatoday/loginpage/signPro.eat?id="+kEmail+"&pw="+kpw;
+						                Kakao.Auth.logout();
+						                console.log('Kakao.Auth.logout()');
+						              },
+						              fail: function(error) {
+						                alert(JSON.stringify(error));
+						              }
+						            });
 						        },
 						        fail: function(err) {
 						          alert(JSON.stringify(err));
