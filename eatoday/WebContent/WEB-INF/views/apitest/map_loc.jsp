@@ -22,8 +22,9 @@ var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니
 
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
-    
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+
+
+    // GeoLocation을 이용해서 접속 위치를 얻어옵니다 (위치 정보)
 	navigator.geolocation.getCurrentPosition(function(position) {
         
 		var lat = position.coords.latitude, // 위도
@@ -63,22 +64,8 @@ if (navigator.geolocation) {
 				var d1 = result[0].region_1depth_name;
 				var d2 = result[0].region_2depth_name;
 				var d3 = result[0].region_3depth_name;
-				
-				$.ajax({
-					type : "post",
-					url : "/eatoday/apitest/map_loc.eat",
-					//url : "/eatoday/apitest/test.eat",
-					//dataType : "json",
-					data : { d1 : d1,
-							 d2 : d2,
-							 d3 : d3 }, 
-					success : function(data){
-						alert("완료!!");
-					},
-					error : function(){
-						alert("error");
-					}
-				});
+
+				//location = "test.eat?d1="+d1+"&d2="+d2;
 			}
 		};
 		geocoder.coord2RegionCode(lon, lat, callback2);
@@ -120,8 +107,8 @@ function displayMarker(locPosition, message) {
 
 
 </script>
-
-map_loc<br/>
+${d1 }
+<%-- map_loc<br/>
 <div id="resultList">
 	<c:forEach begin="0" end="10" step="1" var="i">
 		<c:set var="rest" value="${restList[i]}" />
@@ -139,6 +126,6 @@ map_loc<br/>
 		
 	</c:forEach>
 </div>
-
+ --%>
 </body>
 </html>

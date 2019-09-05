@@ -71,6 +71,7 @@ public class APITest {
 //				request.setAttribute("d1", d1);
 //				request.setAttribute("d2", d2);
 				model.addAttribute("restList", restList);
+				model.addAttribute("d1", d1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -79,21 +80,21 @@ public class APITest {
 	}
 		
 	@RequestMapping("test.eat")
-	public String test(Model model, HttpServletRequest request) {
+	public String test(Model model, HttpServletRequest request,String d1, String d2 , String d3) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			
-			//System.out.println("test d1: "+d1);
-			//System.out.println("test d2: "+d2);
+			System.out.println("test d1: "+d1);
+			System.out.println("test d2: "+d2);
 			
-			String d1 = "서울특별시";
-			String d2 = "관악구";
-			ArrayList addr = new ArrayList();
-			addr.add(d1);
-			addr.add(d2);
-			List restList = sql.selectList("restaurant.search", addr);
-			System.out.println("test list: "+restList.get(1));
-			model.addAttribute("restList", restList);
+//			String d1 = "서울특별시";
+//			String d2 = "관악구";
+			
+		//	List restList = sql.selectList("restaurant.search", addr);
+		//	System.out.println("test list: "+restList.get(1));
+			model.addAttribute("d1", d1);
+			model.addAttribute("d2", d2);
+			model.addAttribute("d3", d3);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
