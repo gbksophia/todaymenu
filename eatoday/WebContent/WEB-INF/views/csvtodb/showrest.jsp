@@ -21,7 +21,7 @@
 
 	<c:forEach begin="0" end="${count}" step="1" var="i">
 	<c:set var="rest" value="${restList[i]}" />
-	<c:if test="${rest.getCate() == '¼îÇÎ'}">
+	<c:if test="${rest.getCate() == 'ÇÑ½Ä'}">
 		<table border="1">
 			<tr><td>${rest.getCnum()}</td></tr>
 			<tr><td>${rest.getStore()}</td></tr>

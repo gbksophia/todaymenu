@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/apitest/")
@@ -53,26 +54,49 @@ public class APITest {
 	//http://localhost:8080/eatoday/apitest/map_loc.eat
 	@RequestMapping("map_loc.eat")
 	//@ResponseBody
-	public String map_loc(String d1, String d2 , String d3, Model model) {
-		if (d1!=null) {
-			System.out.println("==d1=="+d1);
-			System.out.println("==d2=="+d2);
-			System.out.println("==d3=="+d3);
-			
-			ArrayList addr = new ArrayList();
-			addr.add(d1);
-			addr.add(d2);
-			List restList = sql.selectList("restaurant.search", addr);
-			System.out.println(restList.get(1));
-			
-			model.addAttribute("restList", restList);
+	public String map_loc(String d1, String d2 , String d3, Model model, HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			if (d1!=null) {
+				System.out.println("map_loc: "+d1);
+				System.out.println("map_loc: "+d2);
+				System.out.println("map_loc: "+d3);
+				
+				ArrayList addr = new ArrayList();
+				addr.add(d1);
+				addr.add(d2);
+				List restList = sql.selectList("restaurant.search", addr);
+				System.out.println(restList.get(1));
+				
+//				request.setAttribute("d1", d1);
+//				request.setAttribute("d2", d2);
+				model.addAttribute("restList", restList);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
 		return "/apitest/map_loc";
 	}
 		
 	@RequestMapping("test.eat")
-	public String test() {
+	public String test(Model model, HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			
+			//System.out.println("test d1: "+d1);
+			//System.out.println("test d2: "+d2);
+			
+			String d1 = "서울특별시";
+			String d2 = "관악구";
+			ArrayList addr = new ArrayList();
+			addr.add(d1);
+			addr.add(d2);
+			List restList = sql.selectList("restaurant.search", addr);
+			System.out.println("test list: "+restList.get(1));
+			model.addAttribute("restList", restList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "/apitest/test";
 	}

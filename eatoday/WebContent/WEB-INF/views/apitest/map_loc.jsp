@@ -67,15 +67,18 @@ if (navigator.geolocation) {
 				$.ajax({
 					type : "post",
 					url : "/eatoday/apitest/map_loc.eat",
-					dataType : "json",
+					//url : "/eatoday/apitest/test.eat",
+					//dataType : "json",
 					data : { d1 : d1,
 							 d2 : d2,
 							 d3 : d3 }, 
 					success : function(data){
-						//alert("완료!!");
+						alert("완료!!");
+					},
+					error : function(){
+						alert("error");
 					}
 				});
-		
 			}
 		};
 		geocoder.coord2RegionCode(lon, lat, callback2);
@@ -118,25 +121,24 @@ function displayMarker(locPosition, message) {
 
 </script>
 
-<p id="res"></p>
-
-<c:forEach begin="0" end="10" step="1" var="i">
-	<c:set var="rest" value="${restList[i]}" />
-	
-		<table border="1">
-			<tr><td>${rest.getCnum()}</td></tr>
-			<tr><td>${rest.getStore()}</td></tr>
-			<tr><td>${rest.getArea1()}</td></tr>
-			<tr><td>${rest.getArea2()}</td></tr>
-			<tr><td>${rest.getAddr()}</td></tr>
-			<tr><td>${rest.getTel()}</td></tr>
-			<tr><td>${rest.getCate()}</td></tr>
-		</table>
-		<br/>
-	
-</c:forEach>
-
-
+map_loc<br/>
+<div id="resultList">
+	<c:forEach begin="0" end="10" step="1" var="i">
+		<c:set var="rest" value="${restList[i]}" />
+		
+			<table border="1">
+				<tr><td>${rest.getNum()}</td></tr>
+				<tr><td>${rest.getStore()}</td></tr>
+				<tr><td>${rest.getArea1()}</td></tr>
+				<tr><td>${rest.getArea2()}</td></tr>
+				<tr><td>${rest.getAddr()}</td></tr>
+				<tr><td>${rest.getTel()}</td></tr>
+				<tr><td>${rest.getCate()}</td></tr>
+			</table>
+			<br/>
+		
+	</c:forEach>
+</div>
 
 </body>
 </html>
