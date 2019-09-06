@@ -88,11 +88,11 @@ public class APITest {
 				System.out.println("map_loc: "+d2);
 				System.out.println("map_loc: "+d3);
 								
-				String id = "qqq";
+				String id = "yhy1298@naver.com"; //임시 아이디
 				
 				int gnum = sql.selectOne("restaurant.greatest", id);
-				String cate = sql.selectOne("restaurant.cate", gnum);
-				if (cate.equals("CAFE")) {
+				String cate = sql.selectOne("restaurant.cate", gnum); //이거 리스트나 배열로 수정해야됨
+				if (cate.equals("CAFE")) { //컬럼 이름 한글로 변환 추가해야됨
 					cate="카페";
 				}
 				kwd = d3+cate;
