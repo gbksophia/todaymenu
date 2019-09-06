@@ -18,4 +18,17 @@
 	<select id="search" parameterType="list" resultType="rvo">
 		select * from (select * from restaurant where addr like '%'||#{list[0]}||'%') where area2 like '%'||#{list[1]}||'%'
 	</select>
+	
+	<!-- 가장 선호하는 카테고리의 값 -->
+	<select id="greatest" parameterType="String" resultType="int">
+		select greatest (kor, china, japan, european, bunsig, cafe, etc) from mem where id=#{id}
+	</select>
+	
+	<!-- 위 값과 일치하는 카테고리의 이름 -->
+	<select id="cate" parameterType="int" resultType="String">
+		WITH t AS (SELECT kor, china, japan, european, bunsig, cafe, etc FROM mem)
+    	SELECT * FROM t
+    	UNPIVOT (yn FOR cnm IN (kor, china, japan, european, bunsig, cafe, etc))
+		WHERE yn = #{value}
+	</select>
 </mapper>

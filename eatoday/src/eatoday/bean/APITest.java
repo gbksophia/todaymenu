@@ -80,26 +80,36 @@ public class APITest {
 	}
 		
 	@RequestMapping("test.eat")
-	public String test(Model model, HttpServletRequest request,String d1, String d2 , String d3) {
+	public String test(Model model, HttpServletRequest request) {
 		try {
 			request.setCharacterEncoding("UTF-8");
+			String cate2 = "";
+			String id = "qqq";
 			
-			System.out.println("test d1: "+d1);
-			System.out.println("test d2: "+d2);
+			int greatest = sql.selectOne("restaurant.greatest", id);
+			System.out.println(greatest);
 			
-//			String d1 = "서울특별시";
-//			String d2 = "관악구";
+			String cate = sql.selectOne("restaurant.cate", greatest);
+			System.out.println(cate);
+			if (cate.equals("CAFE")) {
+				cate="카페";
+			}
+			System.out.println(cate);
+			model.addAttribute("gnum", greatest);
+			model.addAttribute("cate", cate);
 			
-		//	List restList = sql.selectList("restaurant.search", addr);
-		//	System.out.println("test list: "+restList.get(1));
-			model.addAttribute("d1", d1);
-			model.addAttribute("d2", d2);
-			model.addAttribute("d3", d3);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return "/apitest/test";
+	}
+	
+	@RequestMapping("map_kwd2.eat")
+	public String map_kwd2(HttpServletRequest request) {
+		String search = request.getParameter("search");
+		request.setAttribute("kwd", search);
+		return "/apitest/map_kwd2";
 	}
 	
 }
