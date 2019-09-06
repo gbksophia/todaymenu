@@ -54,6 +54,8 @@ public class memberpage {
 		System.out.println(pw);
 		System.out.println(pw2);
 		if (pw.equals(pw2)) {
+			vo.setId(id);
+			vo.setPw(pw);
 			sql.update("member.update",vo);
 			result = 0;
 		} 
