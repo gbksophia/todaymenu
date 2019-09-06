@@ -9,24 +9,49 @@
 </head>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-document.write("asdasd");
+//var list = [{"num":num, "store":store, "area1":area1, "area2":area2, "addr":addr, "tel":tel, "cate":cate}];
+var list = [];
+
+$.ajax({
+	type : "post",
+	//url : "/eatoday/apitest/map_loc.eat",
+	url : "/eatoday/apitest/test.eat",
+	dataType : "json",
+	contentType : 'application/json',
+	data : JSON.stringify(list), 
+	success : function(data){
+		
+		alert("완료!!");
+	},
+	error : function(){
+		list = ["${restList}"],	
+		console.log(list),
+		$.each(list, function(key, value){
+			alert(key+":"+value);
+			});
+		alert("error");
+	}
+});
 </script>
 <body>
 test.jsp<br/>
 
-<c:forEach begin="0" end="10" step="1" var="i">
-	<c:set var="rest" value="${restList[i]}" />
-	<table border="1" id="resultList">
-		<tr><td>${rest.getNum()}</td></tr>
-		<tr><td>${rest.getStore()}</td></tr>
-		<tr><td>${rest.getArea1()}</td></tr>
-		<tr><td>${rest.getArea2()}</td></tr>
-		<tr><td>${rest.getAddr()}</td></tr>
-		<tr><td>${rest.getTel()}</td></tr>
-		<tr><td>${rest.getCate()}</td></tr>
-	</table>
-	<br/>
-</c:forEach>
+	<c:forEach begin="0" end="10" step="1" var="i">
+		<c:set var="rest" value="${restList[i]}" />
+		
+			<table border="1" id="resultList">
+				<tr><td>${rest.getNum()}</td></tr>
+				<tr><td>${rest.getStore()}</td></tr>
+				<tr><td>${rest.getArea1()}</td></tr>
+				<tr><td>${rest.getArea2()}</td></tr>
+				<tr><td>${rest.getAddr()}</td></tr>
+				<tr><td>${rest.getTel()}</td></tr>
+				<tr><td>${rest.getCate()}</td></tr>
+			</table>
+			<br/>
+		
+	</c:forEach>
+
 
 </body>
 </html>

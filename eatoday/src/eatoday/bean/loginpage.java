@@ -29,7 +29,7 @@ public class loginpage {
 	private String apiResult= null;
 	
 	@RequestMapping("login.eat")
-	public String login(Model model,HttpSession session, String gloginYN, String gname, String gemail) {
+	public String login(Model model,HttpSession session) {
 		/*네이버아이디로 인증 URL을 생성하기 위해 naverLoginDO클래스와 getAuthorizationUrl메소드 호출*/
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		
@@ -43,7 +43,7 @@ public class loginpage {
 	public String loginPro(Model model,HttpSession session,memberVO vo) {
 		int result = sql.selectOne("member.loginCheck",vo);
 		if(result ==1) {
-			session.setAttribute("loginID", vo);
+			session.setAttribute("loginID", vo.getId());
 		}
 		
 		model.addAttribute("result",result);

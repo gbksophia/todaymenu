@@ -24,8 +24,8 @@ public class homepage {
 	
 	//http://localhost:8080/eatoday/homepage/index.eat
 	@RequestMapping("index.eat")
-	public String index(HttpServletRequest request) {
-		String search = request.getParameter("search");
+	public String index() {
+		
 		return "/homepage/index";
 	}
 	

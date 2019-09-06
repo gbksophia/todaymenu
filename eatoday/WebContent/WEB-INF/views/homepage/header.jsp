@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -21,7 +21,12 @@
               </div>
             </li>
 	          <li class="nav-item"><a href="contact.eat" class="nav-link">Contact</a></li>
-	          <li class="nav-item"><a href="/eatoday/loginpage/login.eat" class="nav-link">log in</a></li>
+	          <c:if test="${sessionScope.loginID == null}">
+	          	<li class="nav-item"><a href="/eatoday/loginpage/login.eat" class="nav-link">login</a></li>
+	          </c:if>
+	          <c:if test="${sessionScope.loginID != null}">
+	          	<li class="nav-item"><a href="/eatoday/loginpage/login.eat" class="nav-link">logout</a></li>
+	          </c:if>
 	          <li class="nav-item cart"><a href="cart.eat" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
 	        </ul>
 	      </div>
