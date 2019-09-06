@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 	<insert id="insert" parameterType="mvo">
-		insert into mem values(mem_seq.nextval, #{id}, #{pw}, #{kor},#{china},#{japan},#{european},#{bunsig},#{cafe},#{etc})
+		insert into mem values(mem_seq.nextval, #{id}, #{pw}, #{kor},#{china},#{japan},#{european},#{bunsig},#{cafe},#{etc},#{rice},#{soup},#{jeongol},#{side},#{shake},#{gui},#{jjim},#{guest},#{children},#{kimchi},#{dosi},#{fry},#{noodle},#{salad},#{drink},#{spa},#{snack},#{toast},#{baking},#{dessert},#{juice},#{cocktail},#{holiday}")
 	</insert>
 	
 	<select id="loginCheck" parameterType="mvo" resultType="int">
@@ -14,4 +14,16 @@
  	<select id="idCheck" parameterType="String" resultType="int">
  		select count(*) from mem where id=#{value}
  	</select>
+ 	
+ 	<select id="info" parameterType="String" resultType="mvo">
+ 		select * from mem where id=#{value}
+ 	</select>
+ 	
+ 	<delete id="delete" parameterType="String">
+ 		delete from mem where id=#{value}
+ 	</delete>
+ 	
+ 	<update id="update" parameterType="mvo">
+ 		update mem set pw=#{pw} where id=#{id}
+ 	</update>
 </mapper>

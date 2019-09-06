@@ -60,14 +60,15 @@ public class loginpage {
 		//회원가입 Pro
 		@RequestMapping("signPro.eat")
 		public String signPro(Model model,HttpServletRequest request,memberVO vo) throws Exception {
-			String sid = request.getParameter("id");
-			String spw = request.getParameter("pw");
-			int social=Integer.parseInt(request.getParameter("social"));
+			//String id = request.getParameter("id");
+			//String pw = request.getParameter("pw");
+			//int social=Integer.parseInt(request.getParameter("social"));
 			String [] food = request.getParameterValues("food");
 			int result = sql.selectOne("member.idCheck",vo.getId());
 			
 			// 중복 확인
 			if (result==0) {
+
 			if(food != null) {
 			for (String val : food) {
 				if(val.equals("kor")) {
@@ -96,11 +97,11 @@ public class loginpage {
 		}
 			sql.insert("member.insert",vo);
 		} 
-		model.addAttribute("result",result);				
-		model.addAttribute("sid",sid);
-		model.addAttribute("spw",spw);
-		model.addAttribute("social",social);
-
+		model.addAttribute("result",result);			
+		model.addAttribute("vo",vo);	
+		//model.addAttribute("sid",sid);
+		//model.addAttribute("spw",spw);
+		//model.addAttribute("social",social);
 		 return "/loginpage/signPro";
 	}
 	// 네이버 콜백
@@ -124,4 +125,17 @@ public class loginpage {
 		return "loginpage/Foodselect";
 	}
 	
+	@RequestMapping("CheckSocial.eat")
+	public String CheckSocial(HttpServletRequest request, Model model, memberVO vo) {
+		String id=request.getParameter("id");
+		String pw=request.getParameter("pw");
+		System.out.println(id);
+		System.out.println(pw);
+		model.addAttribute("id",id);
+		model.addAttribute("pw",pw);
+		int result = sql.selectOne("member.idCheck",id);
+		System.out.print(result);
+		model.addAttribute("result",result);	
+		return "loginpage/CheckSocial";
+	}
 }
