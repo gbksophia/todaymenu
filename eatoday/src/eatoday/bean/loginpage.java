@@ -88,11 +88,70 @@ public class loginpage {
 				}
 				if(val.equals("cafe")) {
 					vo.setCafe(5);
-				}
-				
+				}				
 				if(val.equals("fm") || val.equals("ff")) {
 					vo.setEtc(5);
 				}
+				
+				if(val.equals("rice")) {
+					vo.setRice(5);
+				} 
+				if(val.equals("jeongol")) {
+					vo.setJeongol(5);
+				}
+				if(val.equals("side")) {
+					vo.setSide(5);
+				} 
+				if(val.equals("shake")) {
+					vo.setShake(5);
+				}
+				if(val.equals("gui")) {
+					vo.setGui(5);
+				}
+				if(val.equals("jjim")) {
+					vo.setJjim(5);
+				}				
+				if(val.equals("guest")) {
+					vo.setGuest(5);
+				}
+				if(val.equals("children")) {
+					vo.setChildren(5);
+				}	
+				if(val.equals("dosi")) {
+					vo.setDosi(5);
+				}	
+				if(val.equals("fry")) {
+					vo.setFry(5);
+				}	
+				if(val.equals("guest")) {
+					vo.setGuest(5);
+				}	
+				if(val.equals("guest")) {
+					vo.setGuest(5);
+				}	
+				if(val.equals("guest")) {
+					vo.setGuest(5);
+				}	
+				
+				if(val.equals("guest")) {
+					vo.setGuest(5);
+				}					
+				if(val.equals("guest")) {
+					vo.setGuest(5);
+				}	
+				if(val.equals("guest")) {
+					vo.setGuest(5);
+				}	
+				if(val.equals("guest")) {
+					vo.setGuest(5);
+				}	
+				if(val.equals("guest")) {
+					vo.setGuest(5);
+				}	
+				
+				if(val.equals("guest")) {
+					vo.setGuest(5);
+				}	
 			}
 		}
 			sql.insert("member.insert",vo);

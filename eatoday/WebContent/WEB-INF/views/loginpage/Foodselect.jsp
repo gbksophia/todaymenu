@@ -47,7 +47,7 @@
 					<input type="hidden" name="pw" value=${pw} />
 					<input type="hidden" name="social" value="1" />
 					<div data-validate = "Like Food">
-						<span class="label-input100">선호</span>
+						<span class="label-input100">선호 식당</span>
 						<br>
 						<input type="checkbox" name="food" value="kor" />한식 &nbsp;
 						<input type="checkbox" name="food" value="china" />중식 &nbsp;
@@ -57,6 +57,33 @@
 						<input type="checkbox" name="food" value="cafe" />카페 &nbsp; <br>
 						<input type="checkbox" name="food" value="fm" />패밀리 레스토랑 &nbsp;
 						<input type="checkbox" name="food" value="ff" />뷔페 &nbsp;
+					</div>
+					
+					<div data-validate = "Like Food2">
+						<span class="label-input100">선호 음식</span>
+						<br>
+						<input type="checkbox" name="food" value="rice" />밥요리(김밥,초밥 포함) &nbsp;
+						<input type="checkbox" name="food" value="soup" />국&탕 &nbsp;
+						<input type="checkbox" name="food" value="jeongol" />찌개&전골 &nbsp;
+						<input type="checkbox" name="food" value="side" />밑반찬 &nbsp;
+						<input type="checkbox" name="food" value="shake" />볶음요리 &nbsp;
+						<input type="checkbox" name="food" value="gui" />구이(고기/생선) &nbsp; 
+						<input type="checkbox" name="food" value="jjim" />찜&조림 &nbsp;
+						<input type="checkbox" name="food" value="guest" />손님상 &nbsp;
+						<input type="checkbox" name="food" value="children" />아이반찬 &nbsp;
+						<input type="checkbox" name="food" value="dosi" />도시락 &nbsp;
+						<input type="checkbox" name="food" value="fry" />튀김 &nbsp;
+						<input type="checkbox" name="food" value="noodle" />면요리 &nbsp;
+						<input type="checkbox" name="food" value="salad" />샐러드 &nbsp;
+						<input type="checkbox" name="food" value="spa" />스파게티 &nbsp;
+						<input type="checkbox" name="food" value="snack" />간식/분식 &nbsp;
+						<input type="checkbox" name="food" value="toast" />토스트&샌드위치 &nbsp; 
+						<input type="checkbox" name="food" value="baking" />베이킹 &nbsp;
+						<input type="checkbox" name="food" value="dessert" />디저트 &nbsp;
+						<input type="checkbox" name="food" value="juice" />주스&음료 &nbsp;
+						<input type="checkbox" name="food" value="cocktail" />술&칵테일 &nbsp;
+						<input type="checkbox" name="food" value="holiday" />명절요리 &nbsp;
+						<input type="checkbox" name="food" value="drink" />드링크??(삭제예정..아마도) &nbsp;<br>
 					</div>
 					 
 					

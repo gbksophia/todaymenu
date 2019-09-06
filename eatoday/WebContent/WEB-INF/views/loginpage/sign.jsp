@@ -98,6 +98,19 @@
 						<input type="checkbox" name="food" value="fm" />패밀리 레스토랑 &nbsp;
 						<input type="checkbox" name="food" value="ff" />뷔페 &nbsp;
 					</div>
+					
+					<div data-validate = "Like FoodRes">
+						<span class="label-input100">선호</span>
+						<br>
+						<input type="checkbox" name="food" value="kor" />한식 &nbsp;
+						<input type="checkbox" name="food" value="china" />중식 &nbsp;
+						<input type="checkbox" name="food" value="japan" />일식 &nbsp;
+						<input type="checkbox" name="food" value="european" />양식 &nbsp;
+						<input type="checkbox" name="food" value="bunsig" />분식 &nbsp;
+						<input type="checkbox" name="food" value="cafe" />카페 &nbsp; <br>
+						<input type="checkbox" name="food" value="fm" />패밀리 레스토랑 &nbsp;
+						<input type="checkbox" name="food" value="ff" />뷔페 &nbsp;
+					</div>
 					 
 					
 					<div class="text-left p-t-8 p-b-31">
