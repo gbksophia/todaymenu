@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 	<insert id="insert" parameterType="mvo">
-		insert into mem values(mem_seq.nextval, #{id}, #{pw}, #{kor},#{china},#{japan},#{european},#{bunsig},#{cafe},#{etc})
+		insert into mem values(mem_seq.nextval, #{id}, #{pw}, #{kor},#{china},#{japan},#{european},#{bunsig},#{cafe},#{etc},#{rice},#{soup},#{jeongol},#{side},#{shake},#{gui},#{jjim},#{guest},#{children},#{kimchi},#{dosi},#{fry},#{noodle},#{salad},#{drink},#{spa},#{snack},#{toast},#{baking},#{dessert},#{juice},#{cocktail},#{holiday}")
 	</insert>
 	
 	<select id="loginCheck" parameterType="mvo" resultType="int">
