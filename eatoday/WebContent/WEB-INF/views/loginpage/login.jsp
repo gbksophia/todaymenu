@@ -132,7 +132,7 @@
 					               		console.log('userID='+userID);
 						                console.log('kEmail='+kEmail);
 						                console.log('userNickName='+userNickName);
-						                location = "/eatoday/loginpage/signPro.eat?id="+kEmail+"&pw="+kpw;
+						                location = "/eatoday/loginpage/Foodselect.eat?id="+kEmail+"&pw="+kpw;
 						                Kakao.Auth.logout();
 						                console.log('Kakao.Auth.logout()');
 						              },
@@ -195,7 +195,7 @@
 											gauth.disconnect();
 											
 										});
-										location = "/eatoday/loginpage/signPro.eat?id="+gemail+"&pw="+pw;
+										location = "/eatoday/loginpage/Foodselect.eat?id="+gemail+"&pw="+pw;
 										console.log('구글 사용자 이름:'+gname);  
 										console.log('구글 사용자 이메일:'+gemail);  
 										console.log('===============================================');

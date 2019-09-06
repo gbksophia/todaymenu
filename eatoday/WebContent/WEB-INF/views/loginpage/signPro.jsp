@@ -3,10 +3,18 @@
 
 <c:choose>
 	<c:when test="${result ==0 }">
+	<c:if test="${social ==1}">
 		<script>
 			alert("가입이 완료 되었습니다.");
-			location= "login.eat";
+			location= "loginPro.eat?id="+${sid}+"&pw="+${spw}+";"
 		</script>
+	</c:if>
+	<c:if test="${social !=1}">
+		<script>
+			alert("가입이 완료 되었습니다.");
+			location= "loginPro.eat";
+		</script>
+		</c:if>
 	</c:when>	
 	<c:otherwise>
 		<script>

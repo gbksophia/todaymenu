@@ -60,6 +60,9 @@ public class loginpage {
 		//회원가입 Pro
 		@RequestMapping("signPro.eat")
 		public String signPro(Model model,HttpServletRequest request,memberVO vo) throws Exception {
+			String sid = request.getParameter("id");
+			String spw = request.getParameter("pw");
+			int social=Integer.parseInt(request.getParameter("social"));
 			String [] food = request.getParameterValues("food");
 			int result = sql.selectOne("member.idCheck",vo.getId());
 			
@@ -93,7 +96,11 @@ public class loginpage {
 		}
 			sql.insert("member.insert",vo);
 		} 
-		model.addAttribute("result",result);
+		model.addAttribute("result",result);				
+		model.addAttribute("sid",sid);
+		model.addAttribute("spw",spw);
+		model.addAttribute("social",social);
+
 		 return "/loginpage/signPro";
 	}
 	// 네이버 콜백
@@ -107,4 +114,14 @@ public class loginpage {
 			
 		return "/loginpage/naverSuccess";
 		}
+	
+	@RequestMapping("Foodselect.eat")
+	public String Foodselect(HttpServletRequest request, Model model) {
+		String id=request.getParameter("id");
+		String pw=request.getParameter("pw");
+		model.addAttribute("id",id);
+		model.addAttribute("pw",pw);
+		return "loginpage/Foodselect";
+	}
+	
 }

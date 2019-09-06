@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,24 +25,9 @@
 	<script>
 		function sign(){
 			var frm = document.frm;
-			var id = frm.id;
-			var pw = frm.pw;
-			var email = /[@]/;
-			if(id.value==""){
-				id.focus();
-				return false;
-				} else if(pw.value==""){
-				pw.focus();
-				return false;
-				} else if(!email.test(id.value)){
-					alert("이메일 형식이 아닙니다.");
-					id.focus();
-					return false;
-					}else {
-					document.frm.action ="signPro.eat";
-					document.frm.method= "post";
-					document.frm.submit();
-					}
+			document.frm.action ="signPro.eat";
+			document.frm.method= "post";
+			document.frm.submit();
 			}
 	</script>
 	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
@@ -71,21 +57,12 @@
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style = "margin-top : 100px">
 				<form class="login100-form validate-form" name="frm">
 					<span class="login100-form-title p-b-49">
-						Sign-Up
+						선호도
 					</span>
-
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-						<span class="label-input100">아이디</span>
-						<input class="input100" type="email" name="id" placeholder="example@ex.com">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<span class="label-input100">비밀번호</span>
-						<input class="input100" type="password" name="pw" placeholder="Type your password">
-						<span class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
 					
+					<input type="hidden" name="id" value=${id} />
+					<input type="hidden" name="pw" value=${pw} />
+					<input type="hidden" name="social" value="1" />
 					<div data-validate = "Like Food">
 						<span class="label-input100">선호</span>
 						<br>
