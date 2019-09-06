@@ -14,4 +14,16 @@
  	<select id="idCheck" parameterType="String" resultType="int">
  		select count(*) from mem where id=#{value}
  	</select>
+ 	
+ 	<select id="info" parameterType="String" resultType="mvo">
+ 		select * from mem where id=#{value}
+ 	</select>
+ 	
+ 	<delete id="delete" parameterType="String">
+ 		delete from mem where id=#{value}
+ 	</delete>
+ 	
+ 	<update id="update" parameterType="mvo">
+ 		update mem set pw=#{pw} where id=#{id}
+ 	</update>
 </mapper>
