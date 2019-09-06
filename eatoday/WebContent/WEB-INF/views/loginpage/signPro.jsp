@@ -3,10 +3,11 @@
 
 <c:choose>
 	<c:when test="${result ==0 }">
-		<script>
-			alert("가입이 완료 되었습니다.");
-			location= "loginPro.eat";
-		</script>
+		<c:redirect url="loginPro.eat">
+			<c:param name="id" value="${vo.getId()}"/>
+			<c:param name="pw" value="${vo.getPw()}"/>
+			<c:param name="sign" value="1"/>
+		</c:redirect>
 	</c:when>	
 	<c:otherwise>
 		<script>

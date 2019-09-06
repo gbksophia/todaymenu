@@ -3,13 +3,16 @@
 
 <c:choose>
 	<c:when test="${result ==0 }">
-		<script>
-			location= "Foodselect.eat?id="+${id}+"&pw="+${pw}";
-		</script>
+		<c:redirect url="Foodselect.eat">
+			<c:param name="id" value="${id }"/>
+			<c:param name="pw" value="${pw }"/>
+		</c:redirect>
 	</c:when>	
 	<c:otherwise>
-		<script>
-			location= "loginPro.eat?id="+${id}+"&pw="+${pw}";
-		</script>
+		<c:redirect url="loginPro.eat">
+		<c:param name="id" value="${id }"/>
+		<c:param name="pw" value="${pw }"/>
+		<c:param name="sign" value="0"/>
+	</c:redirect>
 	</c:otherwise>
 </c:choose>

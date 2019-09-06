@@ -40,7 +40,9 @@ public class loginpage {
 	
 	// 로그인 Pro
 	@RequestMapping("loginPro.eat")
-	public String loginPro(Model model,HttpSession session,memberVO vo) {
+	public String loginPro(Model model,HttpSession session,memberVO vo,int sign) {
+	
+		
 		int result = sql.selectOne("member.loginCheck",vo);
 		if(result ==1) {
 			session.setAttribute("loginID", vo.getId());
@@ -48,6 +50,7 @@ public class loginpage {
 		
 		model.addAttribute("result",result);
 		model.addAttribute("id",vo.getId());
+		model.addAttribute("sign",sign);
 		return "/loginpage/loginPro";
 	}
 	
@@ -60,9 +63,6 @@ public class loginpage {
 		//회원가입 Pro
 		@RequestMapping("signPro.eat")
 		public String signPro(Model model,HttpServletRequest request,memberVO vo) throws Exception {
-			//String id = request.getParameter("id");
-			//String pw = request.getParameter("pw");
-			//int social=Integer.parseInt(request.getParameter("social"));
 			String [] food = request.getParameterValues("food");
 			int result = sql.selectOne("member.idCheck",vo.getId());
 			
@@ -97,11 +97,9 @@ public class loginpage {
 		}
 			sql.insert("member.insert",vo);
 		} 
-		model.addAttribute("result",result);			
-		model.addAttribute("vo",vo);	
-		//model.addAttribute("sid",sid);
-		//model.addAttribute("spw",spw);
-		//model.addAttribute("social",social);
+		model.addAttribute("result",result);	
+		model.addAttribute("vo",vo);
+		
 		 return "/loginpage/signPro";
 	}
 	// 네이버 콜백
@@ -126,16 +124,11 @@ public class loginpage {
 	}
 	
 	@RequestMapping("CheckSocial.eat")
-	public String CheckSocial(HttpServletRequest request, Model model, memberVO vo) {
-		String id=request.getParameter("id");
-		String pw=request.getParameter("pw");
-		System.out.println(id);
-		System.out.println(pw);
+	public String CheckSocial(String id, String pw, Model model, memberVO vo) {
+		int result = sql.selectOne("member.idCheck",id);
+		model.addAttribute("result",result);
 		model.addAttribute("id",id);
 		model.addAttribute("pw",pw);
-		int result = sql.selectOne("member.idCheck",id);
-		System.out.print(result);
-		model.addAttribute("result",result);	
 		return "loginpage/CheckSocial";
 	}
 }

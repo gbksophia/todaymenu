@@ -25,7 +25,7 @@ h3 {
 	$(document).ready(function() {
 		var id = ${result}.response.email;
 		var pw = id.split('@')[0];
-		location = "/eatoday/loginpage/signPro.eat?id="+id+"&pw="+pw;
+		location = "/eatoday/loginpage/CheckSocial.eat?id="+id+"&pw="+pw;
 	  });
 </script>
 
