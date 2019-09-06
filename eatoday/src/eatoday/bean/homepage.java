@@ -179,10 +179,10 @@ public class homepage {
 	// index.jsp에서 검색한 결과 표시 - map_kwd.jsp included
 	@RequestMapping("searchResult.eat")
 	public String searchResult(HttpServletRequest request, Model model) {
-		String search = request.getParameter("search");
-		
-		String s = request.getParameter("cate");
-		model.addAttribute("s",s);
+//		String search = request.getParameter("search");
+//		
+//		String s = request.getParameter("cate");
+//		model.addAttribute("s",s);
 		return "/homepage/searchResult";
 	}
 	

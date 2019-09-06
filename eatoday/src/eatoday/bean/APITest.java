@@ -53,51 +53,64 @@ public class APITest {
 	
 	//http://localhost:8080/eatoday/apitest/map_loc.eat
 	@RequestMapping("map_loc.eat")
-	//@ResponseBody
 	public String map_loc(String d1, String d2 , String d3, Model model, HttpServletRequest request) {
+//		try {
+//			request.setCharacterEncoding("UTF-8");
+//			if (d1!=null) {
+//				System.out.println("map_loc: "+d1);
+//				System.out.println("map_loc: "+d2);
+//				System.out.println("map_loc: "+d3);
+//								
+//				String id = "qqq";
+//				
+//				int gnum = sql.selectOne("restaurant.greatest", id);
+//				String cate = sql.selectOne("restaurant.cate", gnum);
+//				if (cate.equals("CAFE")) {
+//					cate="카페";
+//				}
+//				String kwd = d3+cate;
+//				System.out.println(kwd);
+//				
+//				model.addAttribute("kwd", kwd);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		return "/apitest/map_loc";
+	}
+	@RequestMapping("map_loc2.eat")
+	public String map_loc2(String d1, String d2 , String d3, Model model, HttpServletRequest request) {
+		String kwd ="";
 		try {
 			request.setCharacterEncoding("UTF-8");
 			if (d1!=null) {
 				System.out.println("map_loc: "+d1);
 				System.out.println("map_loc: "+d2);
 				System.out.println("map_loc: "+d3);
+								
+				String id = "qqq";
 				
-				ArrayList addr = new ArrayList();
-				addr.add(d1);
-				addr.add(d2);
-				List restList = sql.selectList("restaurant.search", addr);
-				System.out.println(restList.get(1));
+				int gnum = sql.selectOne("restaurant.greatest", id);
+				String cate = sql.selectOne("restaurant.cate", gnum);
+				if (cate.equals("CAFE")) {
+					cate="카페";
+				}
+				kwd = d3+cate;
 				
-//				request.setAttribute("d1", d1);
-//				request.setAttribute("d2", d2);
-				model.addAttribute("restList", restList);
-				model.addAttribute("d1", d1);
+				model.addAttribute("kwd", kwd);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/apitest/map_loc";
+		return "/apitest/map_kwd";
 	}
 		
 	@RequestMapping("test.eat")
 	public String test(Model model, HttpServletRequest request) {
 		try {
 			request.setCharacterEncoding("UTF-8");
-			String cate2 = "";
-			String id = "qqq";
-			
-			int greatest = sql.selectOne("restaurant.greatest", id);
-			System.out.println(greatest);
-			
-			String cate = sql.selectOne("restaurant.cate", greatest);
-			System.out.println(cate);
-			if (cate.equals("CAFE")) {
-				cate="카페";
-			}
-			System.out.println(cate);
-			model.addAttribute("gnum", greatest);
-			model.addAttribute("cate", cate);
-			
+			String kwd = "이태원 맛집";
+			model.addAttribute("kwd", kwd);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -105,11 +118,10 @@ public class APITest {
 		return "/apitest/test";
 	}
 	
-	@RequestMapping("map_kwd2.eat")
-	public String map_kwd2(HttpServletRequest request) {
-		String search = request.getParameter("search");
-		request.setAttribute("kwd", search);
-		return "/apitest/map_kwd2";
+	@RequestMapping("map_kwd.eat")
+	public String map_kwd(HttpServletRequest request) {
+		
+		return "/apitest/map_kwd";
 	}
 	
 }
