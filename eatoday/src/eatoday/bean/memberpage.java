@@ -26,6 +26,12 @@ public class memberpage {
 		return "/member/information";
 	}
 	
+	@RequestMapping("logout.eat")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "/member/logout";
+	}
+	
 	@RequestMapping("remove.eat")
 	public String remove(memberVO vo, Model model,HttpSession session) {
 		int result = sql.selectOne("member.loginCheck",vo);
