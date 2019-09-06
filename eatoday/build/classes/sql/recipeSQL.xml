@@ -29,7 +29,7 @@
 	</select>
 	
 		<!-- 레시피 카테고리 선택 -->
-	<select id = "count1" resultType="int" parameterType = "vo">
+	<select id = "count1" resultType="int" parameterType = "int">
 		select count(*) from recipe where cate = #{cate}
 	</select>
 
