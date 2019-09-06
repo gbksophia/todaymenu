@@ -132,9 +132,10 @@
 					               		console.log('userID='+userID);
 						                console.log('kEmail='+kEmail);
 						                console.log('userNickName='+userNickName);
-						                location = "/eatoday/loginpage/Foodselect.eat?id="+kEmail+"&pw="+kpw;
-						                Kakao.Auth.logout();
-						                console.log('Kakao.Auth.logout()');
+						                location= "/eatoday/loginpage/CheckSocial.eat?id="+kEmail+"&pw="+kpw;
+    
+						                //Kakao.Auth.logout();
+						                //console.log('Kakao.Auth.logout()');
 						              },
 						              fail: function(error) {
 						                alert(JSON.stringify(error));
@@ -190,12 +191,12 @@
 										window.gname=profile.getName(); //유저의 이름
 										window.gemail=profile.getEmail(); //유저의 이메일
 										var pw = gemail.split('@')[0]; //mem DB에 저장할 pw를 위한 이메일 split
-										gauth.signOut().then(function(){ //로그아웃 해주기
-											console.log('로그아웃 완료');
-											gauth.disconnect();
+										//gauth.signOut().then(function(){ //로그아웃 해주기
+											//console.log('로그아웃 완료');
+											//gauth.disconnect();
 											
-										});
-										location = "/eatoday/loginpage/Foodselect.eat?id="+gemail+"&pw="+pw;
+										//});
+										location = "/eatoday/loginpage/CheckSocial.eat?id="+gemail+"&pw="+pw;
 										console.log('구글 사용자 이름:'+gname);  
 										console.log('구글 사용자 이메일:'+gemail);  
 										console.log('===============================================');
@@ -215,10 +216,9 @@
 								
 								$.ajax({
 									type : "post",
-									url : "/eatoday/loginpage/login.eat",
-									data : {gloginYN : gloginYN,
-											 gname : gname,
-											 gemail : gemail }, 
+									url : "/eatoday/loginpage/CheckSocial.eat",
+									data : {gname : gname,
+											 pw : pw }, 
 									success : function(data){
 										//alert("완료!!");
 										}

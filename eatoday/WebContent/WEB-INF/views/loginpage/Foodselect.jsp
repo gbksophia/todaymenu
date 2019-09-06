@@ -32,23 +32,6 @@
 	</script>
 	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
 	
-	<!-- 소셜 로그인 버튼 css -->
-	<style>
-	.fa-naver:before{
-		font-family : Arial;
-		font-weight: bold;
-		content: 'N';
-	}
-	
-	.fa-kakao:before{
-		font-family : Arial;
-		font-weight : bold;
-		color : black;
-		content : "K"
-	}
-	</style>
-	<!-- 카카오 로그인 script -->
-	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
 	<jsp:include page="../homepage/header.jsp" />
