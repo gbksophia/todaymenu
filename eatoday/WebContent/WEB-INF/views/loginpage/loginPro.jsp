@@ -6,7 +6,7 @@
 	<c:when test="${result ==1 }">
 		<c:if test="${sign ==1 }">  
 			<script>
-			alert("회원가입 성공!당신의 비밀번호는 ${pw}입니다. 비밀번호는 개인정보 페이지에서 수정 가능합니다.");
+			alert("회원가입 성공!");
 			location= "/eatoday/homepage/index.eat";
 		</script>
 		</c:if>

@@ -87,7 +87,7 @@
 					</div>
 				
 					<div data-validate = "Like Food">
-						<span class="label-input100">선호</span>
+						<span class="label-input100">선호 식당</span>
 						<br>
 						<input type="checkbox" name="food" value="kor" />한식 &nbsp;
 						<input type="checkbox" name="food" value="china" />중식 &nbsp;
@@ -117,11 +117,11 @@
 						<input type="checkbox" name="food" value="salad" />샐러드 &nbsp;
 						<input type="checkbox" name="food" value="drink" />야식&술안주 &nbsp;
 						<input type="checkbox" name="food" value="spa" />스파게티 &nbsp;
-						<input type="checkbox" name="food" value="snack" />간식/분식 &nbsp;
-						<input type="checkbox" name="food" value="toast" />토스트&샌드위치 &nbsp; 
+						<input type="checkbox" name="food" value="snack" />간식/분식 &nbsp;<br />
+						<input type="checkbox" name="food" value="toast" />토스트&샌드위치 
 						<input type="checkbox" name="food" value="baking" />베이킹 &nbsp;
-						<input type="checkbox" name="food" value="dessert" />디저트 &nbsp;
-						<input type="checkbox" name="food" value="juice" />주스&음료 &nbsp;<br />
+						<input type="checkbox" name="food" value="dessert" />디저트 &nbsp;<br />
+						<input type="checkbox" name="food" value="juice" />주스&음료 &nbsp;
 						<input type="checkbox" name="food" value="cocktail" />술&칵테일 &nbsp;
 						<input type="checkbox" name="food" value="holiday" />명절요리 &nbsp;
 					</div>
