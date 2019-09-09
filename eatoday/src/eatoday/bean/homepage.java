@@ -1,5 +1,6 @@
 package eatoday.bean;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import eatoday.vo.recipeImgVO;
+import eatoday.vo.recipeReviewVO;
 import eatoday.vo.recipeVO;
 //import eatoday.vo.dbManageVO;
 @Controller
@@ -247,7 +251,7 @@ public class homepage {
 	@RequestMapping("recipeDetail.eat")
 	public String recipeDetail(Model model, HttpServletRequest request) throws Exception {
 		String cnum = request.getParameter("cnum");
-		
+		int recount = sql.selectOne("recipe.ReviewCount",cnum);
 		
 		// 해당 레시피 정보
 		recipeVO vo = sql.selectOne("recipe.info",cnum);
@@ -256,13 +260,16 @@ public class homepage {
 		// 레시피 해당 이미지 set
 		List ivo = sql.selectList("recipe.imgselect", cnum);
 		
-		
+		//레시피 리뷰 가져오기
+		List revo = sql.selectList("recipe.reviewSelect",cnum);
 		
 		model.addAttribute("pro",pro);
-		model.addAttribute("proCount",proCount);
 		model.addAttribute("ivo",ivo);
 		model.addAttribute("rvo",vo);
-		
+		model.addAttribute("revo",revo);
+		model.addAttribute("recount",recount);
+		model.addAttribute("proCount",proCount);
+		model.addAttribute("recount",recount);
 		return "/homepage/recipeDetail";
 	}
 	
@@ -270,6 +277,48 @@ public class homepage {
 	public String recipeWst() {
 		return "/homepage/recipeWst";
 	}
+	
+	//댓글 쓰기
+	@RequestMapping("recipeRePro.eat")
+	public String recipeRePro(MultipartHttpServletRequest request,Model model) throws Exception{
+		request.setCharacterEncoding("UTF-8");
+		MultipartFile mf = request.getFile("img");
+		String orgName = mf.getOriginalFilename();
+		System.out.println(orgName);
+		recipeReviewVO vo = new recipeReviewVO();
+		if(orgName != "") {
+		//이미지 업로드
+		String path = request.getRealPath("//resource//RecipeReview");
+		String ext = orgName.substring(orgName.lastIndexOf('.'));
+		sql.insert("recipe.ImgcountInsert");
+		int num = sql.selectOne("recipe.ImgCount");
+			
+		String newName = "image"+num+ext;
+		File copyFile = new File(path +"//"+ newName);
+		mf.transferTo(copyFile);
+		
+		vo.setImg(newName);
+		}	else {
+			vo.setImg("");
+		}
+			
+		// 댓글 db 정보
+		String cnum = request.getParameter("cnum");
+		String id = request.getParameter("id");
+		String nick = request.getParameter("nick");
+		String text = request.getParameter("text");
+		
+		vo.setCnum(cnum);
+		vo.setId(id);
+		vo.setNick(nick);
+		vo.setText(text);
+		
+		sql.insert("recipe.recipeReview",vo);
+		model.addAttribute("cnum",cnum);
+			
+			return "/homepage/recipeRePro";
+		}
+	
 
 	// index.jsp에서 검색한 결과 표시 - map_kwd.jsp included
 	@RequestMapping("searchResult.eat")

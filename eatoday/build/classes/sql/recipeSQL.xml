@@ -51,5 +51,5 @@
     	UNPIVOT (yn FOR cnm IN (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, drink, spa, snack, toast, baking, dessert, juice, cocktail, holiday))
 		WHERE yn = #{value}
 	</select>
- 
+ 	
 </mapper>

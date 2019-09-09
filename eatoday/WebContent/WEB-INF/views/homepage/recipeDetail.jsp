@@ -89,24 +89,10 @@
 				<c:set var = "j" value = "${j+1 }" />
 				</c:otherwise>
 				</c:choose>
-				<h4>${rcpro }</h4>
+			<p>  ${rcpro } </p>
 				<br><br>
 			</c:forEach>
 </div>
-<div class="comment-body">
-             					<p>
-             		<c:forEach begin="0" end="${count}" step="1" var="i">
-		 <c:set var = "rvo" value = "${recipeList[i]}" />
-		 <c:if test = "${rvo.getCon_num() == abc }">
-             <c:set var = "str" value = "${rvo.getPro() }"/>
-             <c:forEach var = "spt" items = "${fn:replace(str, 'next', '<br><br><br>') }" varStatus = "status">
-             <img src="images/image_2.jpg" alt="" class="img-fluid">
-             ${spt }
-             </c:forEach>
-             </c:if>
-             </c:forEach>
-            </p>
-            </div>
             <%-- 
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
@@ -119,118 +105,53 @@
 --%>
 
             <div class="pt-5 mt-5">
-              <h3 class="mb-5">6 Comments</h3>
+              <h3 class="mb-5">${recount} Comments</h3>
               <ul class="comment-list">
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="images/person_1.jpg" alt="Image placeholder">
-                  </div>
+              	<c:forEach var="recipeReviewVO" items="${revo }">
+              	 <li class="comment">
                   <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
+                  <h3>${recipeReviewVO.nick }</h3>
+                  <div class="meta">${recipeReviewVO.reg_date }</div>
+                  <p>${recipeReviewVO.text }</p>
+                  <c:if test="${recipeReviewVO.img != null }">
+                  	<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img }" height="400px">
+                  </c:if>
+                   <div class="text-right">
+                    <img src="/eatoday/resource/images/like.png" height="20px">
+                   </div> 
+                  </div>  
                 </li>
-
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-
-                  <ul class="children">
-                    <li class="comment">
-                      <div class="vcard bio">
-                        <img src="images/person_1.jpg" alt="Image placeholder">
-                      </div>
-                      <div class="comment-body">
-                        <h3>John Doe</h3>
-                        <div class="meta">June 27, 2018 at 2:21pm</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                        <p><a href="#" class="reply">Reply</a></p>
-                      </div>
-
-
-                      <ul class="children">
-                        <li class="comment">
-                          <div class="vcard bio">
-                            <img src="images/person_1.jpg" alt="Image placeholder">
-                          </div>
-                          <div class="comment-body">
-                            <h3>John Doe</h3>
-                            <div class="meta">June 27, 2018 at 2:21pm</div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                            <p><a href="#" class="reply">Reply</a></p>
-                          </div>
-
-                            <ul class="children">
-                              <li class="comment">
-                                <div class="vcard bio">
-                                  <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                  <h3>John Doe</h3>
-                                  <div class="meta">June 27, 2018 at 2:21pm</div>
-                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                  <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                              </li>
-                            </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-                </li>
+              	</c:forEach>
               </ul>
               <!-- END comment-list -->
-              
+             <!-- 댓글 달기 -->
               <div class="comment-form-wrap pt-5">
-                <h3 class="mb-5">Leave a comment</h3>
-                <form action="#">
+                <form action="recipeRePro.eat" method="post" enctype="multipart/form-data">
+                	<input type="hidden" name="cnum" value="${rvo.getCon_num() }">
+                	<input type="hidden" name="id" value="${sessionScope.loginID }">
                   <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" class="form-control" id="name">
+                    <textarea name="text" id="text" cols="30" rows="10" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
+                  </div>
+                  
+                  <div class="form-group">
+                    <input  class="form-control" type="text" name="nick"  placeholder="닉네임" />
+                  </div>
+                  
+                  <div class="form-group">
+                    <input type="file" name="img"  />
                   </div>
                   <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" class="form-control" id="email">
-                  </div>
-                  <div class="form-group">
-                    <label for="website">Website</label>
-                    <input type="url" class="form-control" id="website">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-                  </div>
-                  <div class="form-group">
+                  	<div class="text-right">
                     <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                  </div>
                   </div>
 
                 </form>
               </div>
-            </div>
 
-          </div> <!-- .col-md-8 -->
+          </div> 
+          
+          <!-- .col-md-8 -->
 
 
           <div class="col-md-4 sidebar ftco-animate">
