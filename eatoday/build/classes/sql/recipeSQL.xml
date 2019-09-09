@@ -51,5 +51,28 @@
     	UNPIVOT (yn FOR cnm IN (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday))
 		WHERE yn = #{value}
 	</select>
+ 	<!-- 레시피 리뷰 이미지 이름 숫자 카운트 업 -->
+ 	<insert id="ImgcountInsert">
+ 		insert into fileNum values(fileNum_seq.nextval)
+ 	</insert>
  	
+ 	<!-- 레시피 리뷰 이미지 이름 숫자 카운트 가져오기 -->
+ 	<select id="ImgCount" resultType="int">
+ 		select max(num) from fileNum
+ 	</select>
+ 	
+ 	<!-- 레시피 리뷰 쓰기 -->
+ 	<insert id="recipeReview" parameterType="irvo">
+ 		insert into recipe_re(num,cnum,id,nick,text,img,reg_date) values (recipe_re_seq.nextval,#{cnum},#{id},#{nick},#{text},#{img},sysdate)
+ 	</insert>
+ 	
+ 	<!-- 레시피 리뷰 갯수 -->
+ 	<select id="ReviewCount" parameterType="String" resultType="int">
+ 		select count(*) from recipe_re where cnum=#{value}
+ 	</select>
+ 	
+ 	<!-- 레시피 리뷰 가져오기 -->
+ 	<select id="reviewSelect" parameterType="String" resultType="irvo">
+ 	   select * from recipe_re where cnum=#{value}
+ 	</select>
 </mapper>
