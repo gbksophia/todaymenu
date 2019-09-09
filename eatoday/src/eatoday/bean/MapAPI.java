@@ -97,5 +97,12 @@ public class MapAPI {
 		}
 		return "/map/map_lf_t";
 	}
+	
+	// 식당 위치 지도
+	@RequestMapping("map_kwd_rest.eat")
+	public String map_kwd_rest(HttpServletRequest request, String search) {
+		
+		return "/map/map_kwd_rest";
+	}
 
 }

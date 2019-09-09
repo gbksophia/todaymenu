@@ -37,4 +37,9 @@
 	<select id="restetc" resultType="rvo">
 		select * from restaurant where cate not in ('한식', '중식', '일식', '양식', '분식', '카페')
 	</select>
+	
+	<!-- 레시피 정보 출력 -->
+	<select id="info" resultType="rvo" parameterType="String">
+		select * from restaurant where cnum=#{cnum}
+	</select>
 </mapper>

@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import eatoday.vo.recipeImgVO;
 import eatoday.vo.recipeReviewVO;
 import eatoday.vo.recipeVO;
+import eatoday.vo.restaurantVO;
 //import eatoday.vo.dbManageVO;
 @Controller
 @RequestMapping("/homepage/")
@@ -337,7 +338,7 @@ public class homepage {
 			request.setCharacterEncoding("UTF-8");
 			int count = (Integer)sql.selectOne("restaurant.count");
 			String cate = request.getParameter("cate");
-			//ArrayList rest = new ArrayList();
+			ArrayList rest = new ArrayList();
 			List restList = null;
 			System.out.println("1"+cate);
 		
@@ -348,11 +349,9 @@ public class homepage {
 				System.out.println("3"+cate);
 				restList = sql.selectList("restaurant.select", cate);
 			}
-			System.out.println("4"+cate);
-
+			model.addAttribute("cate", cate);
 			model.addAttribute("restList", restList);
 			model.addAttribute("count", count);
-			model.addAttribute("cate", cate);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -360,7 +359,23 @@ public class homepage {
 	}
 	
 	@RequestMapping("restaurantDetail.eat")
-	public String restaurantDetail() {
+	public String restaurantDetail(HttpServletRequest request, Model model) {
+		String cnum = request.getParameter("cnum");
+		//int recount = sql.selectOne("recipe.ReviewCount",cnum);
+		
+		// 해당 식당 정보
+		restaurantVO rvo = sql.selectOne("restaurant.info", cnum);
+
+		//레시피 리뷰 가져오기
+		//List revo = sql.selectList("recipe.reviewSelect",cnum);
+		
+		//model.addAttribute("pro",pro);
+		//model.addAttribute("ivo",ivo);
+		model.addAttribute("rvo", rvo);
+		//model.addAttribute("revo",revo);
+		//model.addAttribute("recount",recount);
+		//model.addAttribute("proCount",proCount);
+
 		return "/homepage/restaurantDetail";
 	}
 	
