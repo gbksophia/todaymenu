@@ -159,8 +159,6 @@ public class homepage {
 		return "/homepage/recipeChn";
 	}
 
-
-
 	@RequestMapping("recipeJpn.eat")
 	public String recipeJpn() {
 		return "/homepage/recipeJpn";
@@ -279,6 +277,11 @@ public class homepage {
 //		String s = request.getParameter("cate");
 //		model.addAttribute("s",s);
 		return "/homepage/searchResult";
+	}
+	
+	@RequestMapping("favoriteRestaurant.eat")
+	public String favoriteRestaurant() {
+		return "/homepage/favoriteRestaurant";
 	}
 	
 	
