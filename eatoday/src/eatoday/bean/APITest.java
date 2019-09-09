@@ -52,31 +52,9 @@ public class APITest {
 	}
 	
 	//http://localhost:8080/eatoday/apitest/map_loc.eat
-	@RequestMapping("map_loc.eat")
-	public String map_loc(String d1, String d2 , String d3, Model model, HttpServletRequest request) {
-//		try {
-//			request.setCharacterEncoding("UTF-8");
-//			if (d1!=null) {
-//				System.out.println("map_loc: "+d1);
-//				System.out.println("map_loc: "+d2);
-//				System.out.println("map_loc: "+d3);
-//								
-//				String id = "qqq";
-//				
-//				int gnum = sql.selectOne("restaurant.greatest", id);
-//				String cate = sql.selectOne("restaurant.cate", gnum);
-//				if (cate.equals("CAFE")) {
-//					cate="Ä«Æä";
-//				}
-//				String kwd = d3+cate;
-//				System.out.println(kwd);
-//				
-//				model.addAttribute("kwd", kwd);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		return "/apitest/map_loc";
+	@RequestMapping("map_lf.eat")
+	public String map_lf() {
+		return "/apitest/map_lf";
 	}
 	@RequestMapping("map_loc2.eat")
 	public String map_loc2(String d1, String d2 , String d3, Model model, HttpServletRequest request) {
@@ -143,7 +121,7 @@ public class APITest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/apitest/map_kwd";
+		return "/apitest/map_lf_t";
 	}
 		
 	@RequestMapping("test.eat")

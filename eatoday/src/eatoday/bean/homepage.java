@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import eatoday.vo.recipeImgVO;
+import eatoday.vo.recipeReviewNiceVO;
 import eatoday.vo.recipeReviewVO;
 import eatoday.vo.recipeVO;
 //import eatoday.vo.dbManageVO;
@@ -281,7 +282,6 @@ public class homepage {
 		request.setCharacterEncoding("UTF-8");
 		MultipartFile mf = request.getFile("img");
 		String orgName = mf.getOriginalFilename();
-		System.out.println(orgName);
 		recipeReviewVO vo = new recipeReviewVO();
 		if(orgName != "") {
 		//이미지 업로드
@@ -298,24 +298,43 @@ public class homepage {
 		}	else {
 			vo.setImg("");
 		}
-			
+		
 		// 댓글 db 정보
 		String cnum = request.getParameter("cnum");
 		String id = request.getParameter("id");
 		String nick = request.getParameter("nick");
 		String text = request.getParameter("text");
-		
+		if(nick.equals("")) {
+			nick = "익명";
+		}
 		vo.setCnum(cnum);
 		vo.setId(id);
 		vo.setNick(nick);
 		vo.setText(text);
-		
+		vo.setNice(0);
 		sql.insert("recipe.recipeReview",vo);
 		model.addAttribute("cnum",cnum);
 			
 			return "/homepage/recipeRePro";
 		}
 	
+	
+	@RequestMapping("nice.eat")
+	public String nice(recipeReviewVO vo,Model model) {
+		recipeReviewNiceVO nivo = new recipeReviewNiceVO();
+		String likeImg;
+		nivo.setRenum(vo.getNum());
+		nivo.setId(vo.getId());
+		int result = sql.selectOne("recipe.reviewCheck",nivo);
+		System.out.println(result);
+		if(result == 0) {
+			sql.insert("recipe.reviewNiceInsert",nivo);
+			likeImg = "like2.png";
+		} else {
+			likeImg = "like.png";
+		}
+		return likeImg;
+	}
 
 	// index.jsp에서 검색한 결과 표시 - map_kwd.jsp included
 	@RequestMapping("searchResult.eat")

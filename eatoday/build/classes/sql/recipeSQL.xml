@@ -75,4 +75,14 @@
  	<select id="reviewSelect" parameterType="String" resultType="irvo">
  	   select * from recipe_re where cnum=#{value} order by reg_date desc
  	</select>
+ 	
+ 	<!-- 레시피 리뷰 체크 -->
+ 	<select id="reviewCheck" parameterType="irnvo" resultType="int">
+ 		select count(*) from recipe_re_nice where renum=#{renum} and id=#{id}
+ 	</select>
+ 	
+ 	<!-- 레시피 리뷰 쪼아요 -->
+ 	<insert id="reviewNiceInsert" parameterType="irnvo">
+ 		insert into recipe_re_nice values (recipe_re_nice_seq.nextval, #{id}, #{renum})
+ 	</insert>
 </mapper>

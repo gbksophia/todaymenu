@@ -32,7 +32,11 @@
     <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
+   
+
   </head>
+  
+ 
   <body>
 <jsp:include page="header.jsp" />
     <!-- END nav --> 
@@ -108,6 +112,7 @@
               <h3 class="mb-5">${recount} Comments</h3>
               <ul class="comment-list">
               	<c:forEach var="recipeReviewVO" items="${revo }">
+              	<c:set var="likeImg" value="javascript:imgcheck('${recipeReviewVO.getNum() }')"/>
               	 <li class="comment">
                   <div class="comment-body">
                   <h3>${recipeReviewVO.nick }</h3>
@@ -117,7 +122,9 @@
                   	<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img }" height="400px">
                   </c:if>
                    <div class="text-right">
-                    <img src="/eatoday/resource/images/like.png" height="20px">
+                   <a >
+                    <img id="likeImg" src="/eatoday/resource/images/${likeImg }" height="20px">
+                   </a>
                    </div> 
                   </div>  
                 </li>
@@ -126,7 +133,16 @@
               <!-- END comment-list -->
              <!-- 댓글 달기 -->
               <div class="comment-form-wrap pt-5">
-                <form action="recipeRePro.eat" method="post" enctype="multipart/form-data">
+              	<c:choose>
+              		<c:when test="${sessionScope.loginID == null }">
+              			<form>
+              			<div class="form-group">
+              				<input class="btn py-3 px-4 btn-primary" type="button" value="로그인 후 댓글 쓰기 가능" onclick="location='/eatoday/loginpage/login.eat'">
+              				</div>
+              			</form>
+              		</c:when>
+              		<c:otherwise>
+              		 <form action="recipeRePro.eat" method="post" enctype="multipart/form-data">
                 	<input type="hidden" name="cnum" value="${rvo.getCon_num() }">
                 	<input type="hidden" name="id" value="${sessionScope.loginID }">
                   <div class="form-group">
@@ -147,6 +163,8 @@
                   </div>
 
                 </form>
+              		</c:otherwise>
+              	</c:choose>
               </div>
 
           </div> 
@@ -255,9 +273,21 @@
   <script src="/eatoday/resource/js/bootstrap-datepicker.js"></script>
   <script src="/eatoday/resource/js/jquery.timepicker.min.js"></script>
   <script src="/eatoday/resource/js/scrollax.min.js"></script>
-
   <script src="/eatoday/resource/js/google-map.js"></script>
   <script src="/eatoday/resource/js/main.js"></script>
-    
+   <script>
+  function imgcheck(renum) {
+	  var id = '${sessionScope.loginID}';
+      $.ajax({
+          url: "nice.eat",
+          type: "post",
+          data: {id : id, renum : renum
+              },
+          suc3cess: function(data) {
+        	  $("#likeImg").html(data);
+          }
+      });
+  }
+  </script>
   </body>
 </html>
