@@ -81,23 +81,64 @@ public class APITest {
 	@RequestMapping("map_loc2.eat")
 	public String map_loc2(String d1, String d2 , String d3, Model model, HttpServletRequest request) {
 		String kwd ="";
+		String cate = "";
 		try {
 			request.setCharacterEncoding("UTF-8");
 			if (d1!=null) {
-				System.out.println("map_loc: "+d1);
-				System.out.println("map_loc: "+d2);
+//				System.out.println("map_loc: "+d1);
+//				System.out.println("map_loc: "+d2);
 				System.out.println("map_loc: "+d3);
-								
-				String id = "yhy1298@naver.com"; //임시 아이디
+
+				String id = "testid"; //임시 아이디
 				
 				int gnum = sql.selectOne("restaurant.greatest", id);
-				String cate = sql.selectOne("restaurant.cate", gnum); //이거 리스트나 배열로 수정해야됨
-				if (cate.equals("CAFE")) { //컬럼 이름 한글로 변환 추가해야됨
-					cate="카페";
-				}
-				kwd = d3+cate;
+				//String cate = sql.selectOne("restaurant.cate", gnum); //이거 리스트나 배열로 수정해야됨
+				List cates = sql.selectList("restaurant.cate", gnum);
+//				for (int i=0; i<cates.size(); i++) {
+//					cate = (String)cates.get(i);
+//					System.out.println(cate);
+//					if (cate.equals("KOR")) {
+//						cate="한식";
+//					} else if (cate.equals("CHINA")) {
+//						cate="중식";
+//					} else if (cate.equals("JAPAN")) {
+//						cate="일식";
+//					} else if (cate.equals("EUROPEAN")) {
+//						cate="양식";
+//					} else if (cate.equals("BUNSIG")) {
+//						cate="분식";
+//					} else if (cate.equals("CAFE")) {
+//						cate="카페";
+//					} else if (cate.equals("ETC")) {
+//						cate="식당";
+//					}
+//					System.out.println(cate);
+//				}
 				
+				// 선호 식당종류가 중복일 경우 선호식당을 랜덤으로 검색				
+				int rand = (int)(Math.random()*cates.size());
+				cate = (String)cates.get(rand);
+				if (cate.equals("KOR")) {
+					cate="한식";
+				} else if (cate.equals("CHINA")) {
+					cate="중식";
+				} else if (cate.equals("JAPAN")) {
+					cate="일식";
+				} else if (cate.equals("EUROPEAN")) {
+					cate="양식";
+				} else if (cate.equals("BUNSIG")) {
+					cate="분식";
+				} else if (cate.equals("CAFE")) {
+					cate="카페";
+				} else if (cate.equals("ETC")) {
+					cate="식당";
+				}
+					
+				kwd = d3+cate;
+				System.out.println(kwd);
 				model.addAttribute("kwd", kwd);
+
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
