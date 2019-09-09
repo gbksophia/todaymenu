@@ -14,10 +14,10 @@
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="/eatoday/homepage/restaurant.eat" id="dropdown04" aria-haspopup="true" aria-expanded="false">restaurant</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="/eatoday/homepage/recipeKor.eat">한식</a>
-                <a class="dropdown-item" href="/eatoday/homepage/recipeJpn.eat">일식</a>
+              	<a class="dropdown-item" href="/eatoday/homepage/favoriteRestaurant.eat">선호식당</a>
+                <!-- <a class="dropdown-item" href="/eatoday/homepage/recipeJpn.eat">일식</a>
                 <a class="dropdown-item" href="/eatoday/homepage/recipeChn.eat">중식</a>
-                <a class="dropdown-item" href="/eatoday/homepage/recipeWst.eat">양식</a>
+                <a class="dropdown-item" href="/eatoday/homepage/recipeWst.eat">양식</a> -->
               </div>
             </li>
 	          <li class="nav-item"><a href="contact.eat" class="nav-link">Contact</a></li>
