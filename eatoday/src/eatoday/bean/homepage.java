@@ -34,9 +34,11 @@ public class homepage {
 			
 			
 			int greatest = sql.selectOne("recipe.greatest",id);
+			//recipe.greatest=mem 테이블에서 가장 선호하는 카테고리의 값
 			System.out.println(greatest);
 			
 			String cate = sql.selectOne("recipe.cate", greatest);
+			//recipe.cate=mem 테이블에서 가장 선호하는 카테고리의 이름
 			System.out.println(cate);
 
 			if(cate.equals("RICE")) {

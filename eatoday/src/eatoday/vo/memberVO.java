@@ -25,7 +25,6 @@ public class memberVO {
 	private int fry;
 	private int noodle;
 	private int salad;
-	private int drink;
 	private int spa;
 	private int snack;
 	private int toast;
@@ -34,6 +33,7 @@ public class memberVO {
 	private int juice;
 	private int holiday;
 	private int cocktail;
+	private int drink;
 	
 	public int getNum() {
 		return num;
@@ -173,12 +173,6 @@ public class memberVO {
 	public void setSalad(int salad) {
 		this.salad = salad;
 	}
-	public int getDrink() {
-		return drink;
-	}
-	public void setDrink(int drink) {
-		this.drink = drink;
-	}
 	public int getSpa() {
 		return spa;
 	}
@@ -232,7 +226,12 @@ public class memberVO {
 	}
 	public void setKimchi(int kimchi) {
 		this.kimchi = kimchi;
+	}	
+	public int getDrink() {
+		return drink;
 	}
-	
+	public void setDrink(int drink) {
+		this.drink = drink;
+	}
 	
 }
