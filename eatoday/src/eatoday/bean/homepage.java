@@ -320,7 +320,7 @@ public class homepage {
 	
 	
 	@RequestMapping("nice.eat")
-	public String nice(recipeReviewVO vo,Model model) {
+	public String nice(recipeReviewVO vo) {
 		recipeReviewNiceVO nivo = new recipeReviewNiceVO();
 		String likeImg;
 		nivo.setRenum(vo.getNum());
@@ -333,7 +333,8 @@ public class homepage {
 		} else {
 			likeImg = "like.png";
 		}
-		return likeImg;
+		System.out.println(likeImg);
+		return "/homepage/nice";
 	}
 
 	// index.jsp에서 검색한 결과 표시 - map_kwd.jsp included
