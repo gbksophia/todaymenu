@@ -10,7 +10,7 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="/eatoday/homepage/recipeKorView.eat?cate=1" class="nav-link">recipe</a></li>
+	          <li class="nav-item"><a href="/eatoday/homepage/recipeListView.eat?cate=1" class="nav-link">recipe</a></li>
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="/eatoday/homepage/restaurant.eat" id="dropdown04" aria-haspopup="true" aria-expanded="false">restaurant</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">

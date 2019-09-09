@@ -128,10 +128,10 @@ public class homepage {
 		return "/homepage/index";
 	}
 	
-	@RequestMapping("recipe.eat")
-	public String recipe() {
-		return "/homepage/recipe";
-	}
+//	@RequestMapping("recipeList.eat")
+//	public String recipe() {
+//		return "/homepage/recipe";
+//	}
 	
 	@RequestMapping("blog-single.eat")
 	public String blogSingle() {
@@ -158,15 +158,15 @@ public class homepage {
 		return "/homepage/services";
 	}
 	
-	@RequestMapping("recipeChn.eat")
-	public String recipeChn() {
-		return "/homepage/recipeChn";
-	}
-
-	@RequestMapping("recipeJpn.eat")
-	public String recipeJpn() {
-		return "/homepage/recipeJpn";
-	}
+//	@RequestMapping("recipeChn.eat")
+//	public String recipeChn() {
+//		return "/homepage/recipeChn";
+//	}
+//
+//	@RequestMapping("recipeJpn.eat")
+//	public String recipeJpn() {
+//		return "/homepage/recipeJpn";
+//	}
 	
 	/*@RequestMapping("recipeKor.eat")
 	public String showdb(Model model, HttpServletRequest request) throws Exception {
@@ -229,7 +229,7 @@ public class homepage {
 		return "/homepage/recipeKor";
 	} */	
 	
-	@RequestMapping("recipeKorView.eat")
+	@RequestMapping("recipeListView.eat")
 	public String recipeKorView(Model model, HttpServletRequest request) throws Exception {
 		String cate = request.getParameter("cate");
 		int count = (Integer)sql.selectOne("recipe.count");
@@ -241,9 +241,8 @@ public class homepage {
 		model.addAttribute("recipeList", rcpList);
 		model.addAttribute("count", count);
 		model.addAttribute("cate",cate);
-		
 		 
-		return "/homepage/recipeKorView";
+		return "/homepage/recipeListView";
 	}
 	
 	@RequestMapping("recipeDetail.eat")
@@ -271,10 +270,10 @@ public class homepage {
 		return "/homepage/recipeDetail";
 	}
 	
-	@RequestMapping("recipeWst.eat")
-	public String recipeWst() {
-		return "/homepage/recipeWst";
-	}
+//	@RequestMapping("recipeWst.eat")
+//	public String recipeWst() {
+//		return "/homepage/recipeWst";
+//	}
 	
 	//댓글 쓰기
 	@RequestMapping("recipeRePro.eat")
@@ -321,13 +320,10 @@ public class homepage {
 	// index.jsp에서 검색한 결과 표시 - map_kwd.jsp included
 	@RequestMapping("searchResult.eat")
 	public String searchResult(HttpServletRequest request, Model model) {
-//		String search = request.getParameter("search");
-//		
-//		String s = request.getParameter("cate");
-//		model.addAttribute("s",s);
 		return "/homepage/searchResult";
 	}
 	
+	//접속위치 중심 선호식당 표시
 	@RequestMapping("favoriteRestaurant.eat")
 	public String favoriteRestaurant() {
 		return "/homepage/favoriteRestaurant";

@@ -96,30 +96,30 @@
 		          <div class="col-md-12 nav-link-wrap mb-5">
 		            <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 		            
-		              <a class="nav-link" id="v-pills-0-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "1"></c:param></c:url>" role="tab" aria-selected="false">밥요리</a>
-		              <a class="nav-link" id="v-pills-1-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "2"></c:param></c:url>" role="tab" aria-selected="false">국&탕</a>
-		              <a class="nav-link" id="v-pills-2-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "3"></c:param></c:url>" role="tab" aria-selected="false">찌개&전골</a>
-		              <a class="nav-link" id="v-pills-3-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "4"></c:param></c:url>" role="tab" aria-selected="false">밑반찬</a>
-		              <a class="nav-link" id="v-pills-4-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "5"></c:param></c:url>" role="tab" aria-selected="false">볶음요리</a>
-		              <a class="nav-link" id="v-pills-5-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "6"></c:param></c:url>" role="tab" aria-selected="false">구이(고기/생선)</a>
-		              <a class="nav-link" id="v-pills-6-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "7"></c:param></c:url>" role="tab" aria-selected="false">찜&조림</a>
-		              <a class="nav-link" id="v-pills-7-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "8"></c:param></c:url>" role="tab" aria-selected="false">손님상</a>
-		              <a class="nav-link" id="v-pills-8-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "9"></c:param></c:url>" role="tab" aria-selected="false">아이 반찬</a>
-		              <a class="nav-link" id="v-pills-9-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "10"></c:param></c:url>" role="tab" aria-selected="false">김치 장아찌</a>
-		              <a class="nav-link" id="v-pills-10-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "11"></c:param></c:url>" role="tab" aria-selected="false">도시락</a>
-		              <a class="nav-link" id="v-pills-11-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "12"></c:param></c:url>" role="tab" aria-selected="false">튀김</a>
-		              <a class="nav-link" id="v-pills-12-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "13"></c:param></c:url>" role="tab" aria-selected="false">면요리</a>
-		              <a class="nav-link" id="v-pills-13-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "14"></c:param></c:url>" role="tab" aria-selected="false">샐러드</a>
-		              <a class="nav-link" id="v-pills-14-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "15"></c:param></c:url>" role="tab" aria-selected="false">김밥&초밥</a>
-		              <a class="nav-link" id="v-pills-15-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "16"></c:param></c:url>" role="tab" aria-selected="false">야식&술안주</a>
-		              <a class="nav-link" id="v-pills-16-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "17"></c:param></c:url>" role="tab" aria-selected="false">스파게티</a>
-		              <a class="nav-link" id="v-pills-17-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "18"></c:param></c:url>" role="tab" aria-selected="false">간식&분식</a>
-		              <a class="nav-link" id="v-pills-18-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "19"></c:param></c:url>" role="tab" aria-selected="false">토스트&샌드위치</a>
-		              <a class="nav-link" id="v-pills-19-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "20"></c:param></c:url>" role="tab" aria-selected="false">베이킹</a>
-		              <a class="nav-link" id="v-pills-20-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "21"></c:param></c:url>" role="tab" aria-selected="false">디저트</a>
-		              <a class="nav-link" id="v-pills-21-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "22"></c:param></c:url>" role="tab" aria-selected="false">주스&음료</a>
-		              <a class="nav-link" id="v-pills-22-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "23"></c:param></c:url>" role="tab" aria-selected="false">술&칵테일</a>
-		              <a class="nav-link" id="v-pills-23-tab" href="<c:url value = "/homepage/recipeKorView.eat"><c:param name = "cate" value = "24"></c:param></c:url>" role="tab" aria-selected="false">명절요리</a>
+		              <a class="nav-link" id="v-pills-0-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "1"></c:param></c:url>" role="tab" aria-selected="false">밥요리</a>
+		              <a class="nav-link" id="v-pills-1-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "2"></c:param></c:url>" role="tab" aria-selected="false">국&탕</a>
+		              <a class="nav-link" id="v-pills-2-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "3"></c:param></c:url>" role="tab" aria-selected="false">찌개&전골</a>
+		              <a class="nav-link" id="v-pills-3-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "4"></c:param></c:url>" role="tab" aria-selected="false">밑반찬</a>
+		              <a class="nav-link" id="v-pills-4-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "5"></c:param></c:url>" role="tab" aria-selected="false">볶음요리</a>
+		              <a class="nav-link" id="v-pills-5-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "6"></c:param></c:url>" role="tab" aria-selected="false">구이(고기/생선)</a>
+		              <a class="nav-link" id="v-pills-6-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "7"></c:param></c:url>" role="tab" aria-selected="false">찜&조림</a>
+		              <a class="nav-link" id="v-pills-7-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "8"></c:param></c:url>" role="tab" aria-selected="false">손님상</a>
+		              <a class="nav-link" id="v-pills-8-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "9"></c:param></c:url>" role="tab" aria-selected="false">아이 반찬</a>
+		              <a class="nav-link" id="v-pills-9-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "10"></c:param></c:url>" role="tab" aria-selected="false">김치 장아찌</a>
+		              <a class="nav-link" id="v-pills-10-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "11"></c:param></c:url>" role="tab" aria-selected="false">도시락</a>
+		              <a class="nav-link" id="v-pills-11-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "12"></c:param></c:url>" role="tab" aria-selected="false">튀김</a>
+		              <a class="nav-link" id="v-pills-12-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "13"></c:param></c:url>" role="tab" aria-selected="false">면요리</a>
+		              <a class="nav-link" id="v-pills-13-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "14"></c:param></c:url>" role="tab" aria-selected="false">샐러드</a>
+		              <a class="nav-link" id="v-pills-14-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "15"></c:param></c:url>" role="tab" aria-selected="false">김밥&초밥</a>
+		              <a class="nav-link" id="v-pills-15-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "16"></c:param></c:url>" role="tab" aria-selected="false">야식&술안주</a>
+		              <a class="nav-link" id="v-pills-16-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "17"></c:param></c:url>" role="tab" aria-selected="false">스파게티</a>
+		              <a class="nav-link" id="v-pills-17-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "18"></c:param></c:url>" role="tab" aria-selected="false">간식&분식</a>
+		              <a class="nav-link" id="v-pills-18-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "19"></c:param></c:url>" role="tab" aria-selected="false">토스트&샌드위치</a>
+		              <a class="nav-link" id="v-pills-19-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "20"></c:param></c:url>" role="tab" aria-selected="false">베이킹</a>
+		              <a class="nav-link" id="v-pills-20-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "21"></c:param></c:url>" role="tab" aria-selected="false">디저트</a>
+		              <a class="nav-link" id="v-pills-21-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "22"></c:param></c:url>" role="tab" aria-selected="false">주스&음료</a>
+		              <a class="nav-link" id="v-pills-22-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "23"></c:param></c:url>" role="tab" aria-selected="false">술&칵테일</a>
+		              <a class="nav-link" id="v-pills-23-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "24"></c:param></c:url>" role="tab" aria-selected="false">명절요리</a>
 		            
 		            </div>
 		          </div>

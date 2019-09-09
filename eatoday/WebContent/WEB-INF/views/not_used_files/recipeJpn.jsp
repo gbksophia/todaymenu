@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Western Recipe</title>
+    <title>Japanese Recipe</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
   </head>
   <body>
-  	<jsp:include page="header.jsp" />
+  	<jsp:include page="/eatoday/homepage/header.eat" />
     <!-- END nav -->
 
     <section class="home-slider owl-carousel">
@@ -41,7 +41,7 @@
           <div class="row slider-text justify-content-center align-items-center">
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
-            	<h1 class="mb-3 mt-5 bread">YangSik</h1>
+            	<h1 class="mb-3 mt-5 bread">일식 레시피?</h1>
 	            <p class="breadcrumbs"><span class="mr-2"><a href="index.eat">Home</a></span> <span>Shop</span></p>
             </div>
 
@@ -340,7 +340,7 @@
     	</div>
     </section>
 
-    <jsp:include page="footer.jsp" />
+    <jsp:include page="/eatoday/homepage/footer.eat" />
     
   
 
