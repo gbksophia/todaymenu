@@ -4,11 +4,12 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="restaurant">
 	<insert id="insert" parameterType="rvo">
-		insert into restaurant(num, store, area1, area2, addr, tel, cate) values (restaurant_seq.nextval, #{store}, #{area1}, #{area2}, #{addr}, #{tel}, #{cate})
+		insert into restaurant(num, cnum, store, area1, area2, addr, tel, cate) 
+		values (restaurant_seq.nextval, #{cnum}, #{store}, #{area1}, #{area2}, #{addr}, #{tel}, #{cate})
 	</insert>
 
-	<select id="select" resultType="rvo">
-		select * from restaurant order by num
+	<select id="select" parameterType="String" resultType="rvo">
+		select * from restaurant where cate = #{cate}
 	</select>
 	
 	<select id="count" resultType="int">
@@ -30,5 +31,10 @@
     	SELECT * FROM t
     	UNPIVOT (yn FOR cnm IN (kor, china, japan, european, bunsig, cafe, etc))
 		WHERE yn = #{value}
+	</select>
+	
+	<!-- 식당카테고리 기타 제외 -->
+	<select id="restetc" resultType="rvo">
+		select * from restaurant where cate not in ('한식', '중식', '일식', '양식', '분식', '카페')
 	</select>
 </mapper>

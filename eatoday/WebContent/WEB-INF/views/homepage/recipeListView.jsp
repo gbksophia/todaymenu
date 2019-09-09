@@ -1,38 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-
-<%
-
-%>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Korean Recipe</title>
+    <title>Recipe List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-
     <link rel="stylesheet" href="/eatoday/resource/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/eatoday/resource/css/animate.css">
-    
     <link rel="stylesheet" href="/eatoday/resource/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/eatoday/resource/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/eatoday/resource/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/eatoday/resource/css/aos.css">
-
     <link rel="stylesheet" href="/eatoday/resource/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/eatoday/resource/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/eatoday/resource/css/jquery.timepicker.css">
-
-    
     <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
@@ -141,7 +124,7 @@
 						    						<h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCon_num()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">${rcp.getTitle() }</a></h3>
 						    						<!--  <p>A small river named Duden flows by their place and supplies</p>
 						    						<p class="price"><span>$5.90</span></p>-->
-						    						<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "abc" value = "${rcp.getCon_num()}"></c:param></c:url>">자세히보기</a>
+						    						<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCon_num()}"></c:param></c:url>">자세히보기</a>
 						    					</div>
 						    				</div>
 						        	</div>
@@ -179,7 +162,6 @@
   <script src="/eatoday/resource/js/bootstrap-datepicker.js"></script>
   <script src="/eatoday/resource/js/jquery.timepicker.min.js"></script>
   <script src="/eatoday/resource/js/scrollax.min.js"></script>
-  <script src="/eatoday/resource/js/google-map.js"></script>
   <script src="/eatoday/resource/js/main.js"></script>
     
   </body>
