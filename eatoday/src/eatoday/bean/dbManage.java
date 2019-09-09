@@ -1,6 +1,5 @@
 package eatoday.bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -132,12 +131,13 @@ public class dbManage {
 			
 			for(int j=0; j<list.at(0).length(); j++) {
 				//restVO.setCnum(s[0][j]);
-				restVO.setStore(s[1][j]);
-				restVO.setArea1(s[2][j]);
-				restVO.setArea2(s[3][j]);
-				restVO.setAddr(s[4][j]);
-				restVO.setTel(s[5][j]);
-				restVO.setCate(s[6][j]);
+				restVO.setCnum(s[1][j]);
+				restVO.setStore(s[2][j]);
+				restVO.setArea1(s[3][j]);
+				restVO.setArea2(s[4][j]);
+				restVO.setAddr(s[5][j]);
+				restVO.setTel(s[6][j]);
+				restVO.setCate(s[7][j]);
 				sql.insert("restaurant.insert", restVO);
 				//System.out.println(s[2][j]);
 			}

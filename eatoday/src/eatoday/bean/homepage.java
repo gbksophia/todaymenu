@@ -329,7 +329,30 @@ public class homepage {
 	}
 	
 	@RequestMapping("restaurantList.eat")
-	public String restaurantList() {
+	public String restaurantList(HttpServletRequest request, Model model) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			int count = (Integer)sql.selectOne("restaurant.count");
+			String cate = request.getParameter("cate");
+			//ArrayList rest = new ArrayList();
+			List restList = null;
+			System.out.println("1"+cate);
+		
+			if (cate.equals("±‚≈∏")) {
+				System.out.println("2"+cate);
+				restList = sql.selectList("restaurant.restetc");
+			} else {
+				System.out.println("3"+cate);
+				restList = sql.selectList("restaurant.select", cate);
+			}
+			System.out.println("4"+cate);
+
+			model.addAttribute("restList", restList);
+			model.addAttribute("count", count);
+			model.addAttribute("cate", cate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "/homepage/restaurantList";
 	}
 	
