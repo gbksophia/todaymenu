@@ -87,35 +87,32 @@ public class homepage {
 			else if(cate.equals("SALAD")) {
 				cate = "14";
 			}
-			else if(cate.equals("KIMBAB")) {
+			else if(cate.equals("DRINK")) {
 				cate = "15";
 			}
-			else if(cate.equals("DRINK")) {
+			else if(cate.equals("SPA")) {
 				cate = "16";
 			}
-			else if(cate.equals("SPA")) {
+			else if(cate.equals("SNACK")) {
 				cate = "17";
 			}
-			else if(cate.equals("SNACK")) {
+			else if(cate.equals("TOAST")) {
 				cate = "18";
 			}
-			else if(cate.equals("TOAST")) {
+			else if(cate.equals("BAKING")) {
 				cate = "19";
 			}
-			else if(cate.equals("BAKING")) {
+			else if(cate.equals("DESSERT")) {
 				cate = "20";
 			}
-			else if(cate.equals("DESSERT")) {
+			else if(cate.equals("JUICE")) {
 				cate = "21";
 			}
-			else if(cate.equals("JUICE")) {
+			else if(cate.equals("COCKTAIL")) {
 				cate = "22";
 			}
-			else if(cate.equals("COCKTAIL")) {
-				cate = "23";
-			}
 			else if(cate.equals("HOLIDAY")) {
-				cate = "24";
+				cate = "23";
 			}
 			
 			List rcpList = sql.selectList("recipe.select",cate);

@@ -66,16 +66,15 @@
 		         <c:when test = "${cate == 12 }"><h1 class="mb-3 mt-5 bread">튀김</h1></c:when>
 		         <c:when test = "${cate == 13 }"><h1 class="mb-3 mt-5 bread">면요리</h1></c:when>
 		         <c:when test = "${cate == 14 }"><h1 class="mb-3 mt-5 bread">샐러드</h1></c:when>
-		         <c:when test = "${cate == 15 }"><h1 class="mb-3 mt-5 bread">김밥&초밥</h1></c:when>
-		         <c:when test = "${cate == 16 }"><h1 class="mb-3 mt-5 bread">야식&술안주</h1></c:when>
-		         <c:when test = "${cate == 17 }"><h1 class="mb-3 mt-5 bread">스파게티</h1></c:when>
-		         <c:when test = "${cate == 18 }"><h1 class="mb-3 mt-5 bread">간식&분식</h1></c:when>
-		         <c:when test = "${cate == 19 }"><h1 class="mb-3 mt-5 bread">토스트&샌드위치</h1></c:when>
-		         <c:when test = "${cate == 20 }"><h1 class="mb-3 mt-5 bread">베이킹</h1></c:when>
-		         <c:when test = "${cate == 21 }"><h1 class="mb-3 mt-5 bread">디저트</h1></c:when>
-		         <c:when test = "${cate == 22 }"><h1 class="mb-3 mt-5 bread">주스&음료</h1></c:when>
-		         <c:when test = "${cate == 23 }"><h1 class="mb-3 mt-5 bread">술&칵테일</h1></c:when>
-		         <c:when test = "${cate == 24 }"><h1 class="mb-3 mt-5 bread">명절요리</h1></c:when>
+		         <c:when test = "${cate == 15 }"><h1 class="mb-3 mt-5 bread">야식&술안주</h1></c:when>
+		         <c:when test = "${cate == 16 }"><h1 class="mb-3 mt-5 bread">스파게티</h1></c:when>
+		         <c:when test = "${cate == 17 }"><h1 class="mb-3 mt-5 bread">간식&분식</h1></c:when>
+		         <c:when test = "${cate == 18 }"><h1 class="mb-3 mt-5 bread">토스트&샌드위치</h1></c:when>
+		         <c:when test = "${cate == 19 }"><h1 class="mb-3 mt-5 bread">베이킹</h1></c:when>
+		         <c:when test = "${cate == 20 }"><h1 class="mb-3 mt-5 bread">디저트</h1></c:when>
+		         <c:when test = "${cate == 21 }"><h1 class="mb-3 mt-5 bread">주스&음료</h1></c:when>
+		         <c:when test = "${cate == 22 }"><h1 class="mb-3 mt-5 bread">술&칵테일</h1></c:when>
+		         <c:when test = "${cate == 23 }"><h1 class="mb-3 mt-5 bread">명절요리</h1></c:when>
 		         
 		         </c:choose>
             	
@@ -110,16 +109,15 @@
 		              <a class="nav-link" id="v-pills-11-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "12"></c:param></c:url>" role="tab" aria-selected="false">튀김</a>
 		              <a class="nav-link" id="v-pills-12-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "13"></c:param></c:url>" role="tab" aria-selected="false">면요리</a>
 		              <a class="nav-link" id="v-pills-13-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "14"></c:param></c:url>" role="tab" aria-selected="false">샐러드</a>
-		              <a class="nav-link" id="v-pills-14-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "15"></c:param></c:url>" role="tab" aria-selected="false">김밥&초밥</a>
-		              <a class="nav-link" id="v-pills-15-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "16"></c:param></c:url>" role="tab" aria-selected="false">야식&술안주</a>
-		              <a class="nav-link" id="v-pills-16-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "17"></c:param></c:url>" role="tab" aria-selected="false">스파게티</a>
-		              <a class="nav-link" id="v-pills-17-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "18"></c:param></c:url>" role="tab" aria-selected="false">간식&분식</a>
-		              <a class="nav-link" id="v-pills-18-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "19"></c:param></c:url>" role="tab" aria-selected="false">토스트&샌드위치</a>
-		              <a class="nav-link" id="v-pills-19-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "20"></c:param></c:url>" role="tab" aria-selected="false">베이킹</a>
-		              <a class="nav-link" id="v-pills-20-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "21"></c:param></c:url>" role="tab" aria-selected="false">디저트</a>
-		              <a class="nav-link" id="v-pills-21-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "22"></c:param></c:url>" role="tab" aria-selected="false">주스&음료</a>
-		              <a class="nav-link" id="v-pills-22-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "23"></c:param></c:url>" role="tab" aria-selected="false">술&칵테일</a>
-		              <a class="nav-link" id="v-pills-23-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "24"></c:param></c:url>" role="tab" aria-selected="false">명절요리</a>
+		              <a class="nav-link" id="v-pills-14-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "15"></c:param></c:url>" role="tab" aria-selected="false">야식&술안주</a>
+		              <a class="nav-link" id="v-pills-15-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "16"></c:param></c:url>" role="tab" aria-selected="false">스파게티</a>
+		              <a class="nav-link" id="v-pills-16-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "17"></c:param></c:url>" role="tab" aria-selected="false">간식&분식</a>
+		              <a class="nav-link" id="v-pills-17-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "18"></c:param></c:url>" role="tab" aria-selected="false">토스트&샌드위치</a>
+		              <a class="nav-link" id="v-pills-18-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "19"></c:param></c:url>" role="tab" aria-selected="false">베이킹</a>
+		              <a class="nav-link" id="v-pills-19-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "20"></c:param></c:url>" role="tab" aria-selected="false">디저트</a>
+		              <a class="nav-link" id="v-pills-20-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "21"></c:param></c:url>" role="tab" aria-selected="false">주스&음료</a>
+		              <a class="nav-link" id="v-pills-21-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "22"></c:param></c:url>" role="tab" aria-selected="false">술&칵테일</a>
+		              <a class="nav-link" id="v-pills-22-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "23"></c:param></c:url>" role="tab" aria-selected="false">명절요리</a>
 		            
 		            </div>
 		          </div>
