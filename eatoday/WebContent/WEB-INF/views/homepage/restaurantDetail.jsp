@@ -45,7 +45,9 @@
 	<div class="row">
 		<div class="col-md-8 ftco-animate">
 			<h2 class="mb-3">식당이름</h2>
-			<p>${rvo.getStore()}</p><br/>
+			<div class="vcard bio">
+				<p>${rvo.getStore()}</p><br/>
+			</div>
 			<%-- <p> <c:set var="str" value="${rvo.getStore()}"/>
 				<c:forEach var="spt" items="${fn:replace(str, 'next', '<br>')}" varStatus="status">
 					<img src="images/image_2.jpg" alt="" class="img-fluid">${spt}
@@ -53,7 +55,9 @@
 			</p> --%>
 			
 			<h2 class="mb-3">주소</h2>
-			<p>${rvo.getAddr()}</p><br/>
+			<div class="vcard bio">
+				<p>${rvo.getAddr()}</p><br/>
+			</div>
 			<%-- <div class="vcard bio">
 				<c:forEach begin="1" end="${proCount}" step="1" var="i">
 					<c:if test="${i==1}">
@@ -75,7 +79,9 @@
 				</c:forEach>
 			</div> --%>
 			<h2 class="mb-3">전화번호</h2>
-			<p>${rvo.getTel()}</p><br/>
+			<div class="vcard bio">
+				<p>${rvo.getTel()}</p><br/>
+			</div>
 			
 			<h2 class="mb-3">위치</h2>
 			<div class="vcard bio">
