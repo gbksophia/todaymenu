@@ -1,38 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-
-<%
-
-%>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Korean Recipe</title>
+    <title>Recipe List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-
     <link rel="stylesheet" href="/eatoday/resource/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/eatoday/resource/css/animate.css">
-    
     <link rel="stylesheet" href="/eatoday/resource/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/eatoday/resource/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/eatoday/resource/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/eatoday/resource/css/aos.css">
-
     <link rel="stylesheet" href="/eatoday/resource/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/eatoday/resource/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/eatoday/resource/css/jquery.timepicker.css">
-
-    
     <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
@@ -47,7 +30,6 @@
       	<div class="overlay"></div>
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center">
-
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
             
 		         <c:set var = "a" value = "${cate }"/>     	
@@ -66,16 +48,15 @@
 		         <c:when test = "${cate == 12 }"><h1 class="mb-3 mt-5 bread">튀김</h1></c:when>
 		         <c:when test = "${cate == 13 }"><h1 class="mb-3 mt-5 bread">면요리</h1></c:when>
 		         <c:when test = "${cate == 14 }"><h1 class="mb-3 mt-5 bread">샐러드</h1></c:when>
-		         <c:when test = "${cate == 15 }"><h1 class="mb-3 mt-5 bread">김밥&초밥</h1></c:when>
-		         <c:when test = "${cate == 16 }"><h1 class="mb-3 mt-5 bread">야식&술안주</h1></c:when>
-		         <c:when test = "${cate == 17 }"><h1 class="mb-3 mt-5 bread">스파게티</h1></c:when>
-		         <c:when test = "${cate == 18 }"><h1 class="mb-3 mt-5 bread">간식&분식</h1></c:when>
-		         <c:when test = "${cate == 19 }"><h1 class="mb-3 mt-5 bread">토스트&샌드위치</h1></c:when>
-		         <c:when test = "${cate == 20 }"><h1 class="mb-3 mt-5 bread">베이킹</h1></c:when>
-		         <c:when test = "${cate == 21 }"><h1 class="mb-3 mt-5 bread">디저트</h1></c:when>
-		         <c:when test = "${cate == 22 }"><h1 class="mb-3 mt-5 bread">주스&음료</h1></c:when>
-		         <c:when test = "${cate == 23 }"><h1 class="mb-3 mt-5 bread">술&칵테일</h1></c:when>
-		         <c:when test = "${cate == 24 }"><h1 class="mb-3 mt-5 bread">명절요리</h1></c:when>
+		         <c:when test = "${cate == 15 }"><h1 class="mb-3 mt-5 bread">야식&술안주</h1></c:when>
+		         <c:when test = "${cate == 16 }"><h1 class="mb-3 mt-5 bread">스파게티</h1></c:when>
+		         <c:when test = "${cate == 17 }"><h1 class="mb-3 mt-5 bread">간식&분식</h1></c:when>
+		         <c:when test = "${cate == 18 }"><h1 class="mb-3 mt-5 bread">토스트&샌드위치</h1></c:when>
+		         <c:when test = "${cate == 19 }"><h1 class="mb-3 mt-5 bread">베이킹</h1></c:when>
+		         <c:when test = "${cate == 20 }"><h1 class="mb-3 mt-5 bread">디저트</h1></c:when>
+		         <c:when test = "${cate == 21 }"><h1 class="mb-3 mt-5 bread">주스&음료</h1></c:when>
+		         <c:when test = "${cate == 22 }"><h1 class="mb-3 mt-5 bread">술&칵테일</h1></c:when>
+		         <c:when test = "${cate == 23 }"><h1 class="mb-3 mt-5 bread">명절요리</h1></c:when>
 		         
 		         </c:choose>
             	
@@ -91,6 +72,8 @@
     <section class="ftco-menu mb-5 pb-5">
     	<div class="container">
     		<div class="row d-md-flex">
+    		<input type="text" placeholder="레시피 검색 하던지 말던지 "/>
+    		
 	    		<div class="col-lg-12 ftco-animate p-md-5">
 		    		<div class="row">
 		          <div class="col-md-12 nav-link-wrap mb-5">
@@ -110,16 +93,15 @@
 		              <a class="nav-link" id="v-pills-11-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "12"></c:param></c:url>" role="tab" aria-selected="false">튀김</a>
 		              <a class="nav-link" id="v-pills-12-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "13"></c:param></c:url>" role="tab" aria-selected="false">면요리</a>
 		              <a class="nav-link" id="v-pills-13-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "14"></c:param></c:url>" role="tab" aria-selected="false">샐러드</a>
-		              <a class="nav-link" id="v-pills-14-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "15"></c:param></c:url>" role="tab" aria-selected="false">김밥&초밥</a>
-		              <a class="nav-link" id="v-pills-15-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "16"></c:param></c:url>" role="tab" aria-selected="false">야식&술안주</a>
-		              <a class="nav-link" id="v-pills-16-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "17"></c:param></c:url>" role="tab" aria-selected="false">스파게티</a>
-		              <a class="nav-link" id="v-pills-17-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "18"></c:param></c:url>" role="tab" aria-selected="false">간식&분식</a>
-		              <a class="nav-link" id="v-pills-18-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "19"></c:param></c:url>" role="tab" aria-selected="false">토스트&샌드위치</a>
-		              <a class="nav-link" id="v-pills-19-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "20"></c:param></c:url>" role="tab" aria-selected="false">베이킹</a>
-		              <a class="nav-link" id="v-pills-20-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "21"></c:param></c:url>" role="tab" aria-selected="false">디저트</a>
-		              <a class="nav-link" id="v-pills-21-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "22"></c:param></c:url>" role="tab" aria-selected="false">주스&음료</a>
-		              <a class="nav-link" id="v-pills-22-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "23"></c:param></c:url>" role="tab" aria-selected="false">술&칵테일</a>
-		              <a class="nav-link" id="v-pills-23-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "24"></c:param></c:url>" role="tab" aria-selected="false">명절요리</a>
+		              <a class="nav-link" id="v-pills-14-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "15"></c:param></c:url>" role="tab" aria-selected="false">야식&술안주</a>
+		              <a class="nav-link" id="v-pills-15-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "16"></c:param></c:url>" role="tab" aria-selected="false">스파게티</a>
+		              <a class="nav-link" id="v-pills-16-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "17"></c:param></c:url>" role="tab" aria-selected="false">간식&분식</a>
+		              <a class="nav-link" id="v-pills-17-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "18"></c:param></c:url>" role="tab" aria-selected="false">토스트&샌드위치</a>
+		              <a class="nav-link" id="v-pills-18-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "19"></c:param></c:url>" role="tab" aria-selected="false">베이킹</a>
+		              <a class="nav-link" id="v-pills-19-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "20"></c:param></c:url>" role="tab" aria-selected="false">디저트</a>
+		              <a class="nav-link" id="v-pills-20-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "21"></c:param></c:url>" role="tab" aria-selected="false">주스&음료</a>
+		              <a class="nav-link" id="v-pills-21-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "22"></c:param></c:url>" role="tab" aria-selected="false">술&칵테일</a>
+		              <a class="nav-link" id="v-pills-22-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "23"></c:param></c:url>" role="tab" aria-selected="false">명절요리</a>
 		            
 		            </div>
 		          </div>
@@ -141,7 +123,7 @@
 						    						<h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCon_num()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">${rcp.getTitle() }</a></h3>
 						    						<!--  <p>A small river named Duden flows by their place and supplies</p>
 						    						<p class="price"><span>$5.90</span></p>-->
-						    						<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "abc" value = "${rcp.getCon_num()}"></c:param></c:url>">자세히보기</a>
+						    						<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCon_num()}"></c:param></c:url>">자세히보기</a>
 						    					</div>
 						    				</div>
 						        	</div>
@@ -179,7 +161,6 @@
   <script src="/eatoday/resource/js/bootstrap-datepicker.js"></script>
   <script src="/eatoday/resource/js/jquery.timepicker.min.js"></script>
   <script src="/eatoday/resource/js/scrollax.min.js"></script>
-  <script src="/eatoday/resource/js/google-map.js"></script>
   <script src="/eatoday/resource/js/main.js"></script>
     
   </body>

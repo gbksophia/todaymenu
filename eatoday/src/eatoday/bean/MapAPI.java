@@ -97,5 +97,15 @@ public class MapAPI {
 		}
 		return "/map/map_lf_t";
 	}
+	
+	// 식당 위치 지도
+	@RequestMapping("map_kwd_rest.eat")
+	public String map_kwd_rest(HttpServletRequest request, Model model) {
+		//area1+area2+store //select area1, area2, addr, store from restaurant where cnum=2396;
+		//addr+store //select addr, store from restaurant where cnum=2443;
+		
+		//model.addAttribute("addr", addr);
+		return "/map/map_kwd_rest";
+	}
 
 }

@@ -41,14 +41,14 @@
  
  		<!-- 가장 선호하는 카테고리의 값 -->
 	<select id="greatest" parameterType="String" resultType="int">
-		select greatest (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday) from mem where id=#{id}
+		select greatest (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday, drink) from mem where id=#{id}
 	</select>
  
  	<!-- 위 값과 일치하는 카테고리의 이름 -->
 	<select id="cate" parameterType="int" resultType="String">
-		WITH t AS (SELECT rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday FROM mem)
+		WITH t AS (SELECT rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday, drink FROM mem)
     	SELECT * FROM t
-    	UNPIVOT (yn FOR cnm IN (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday))
+    	UNPIVOT (yn FOR cnm IN (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday, drink))
 		WHERE yn = #{value}
 	</select>
  	<!-- 레시피 리뷰 이미지 이름 숫자 카운트 업 -->

@@ -50,6 +50,7 @@ public class loginpage {
 		
 		model.addAttribute("result",result);
 		model.addAttribute("id",vo.getId());
+		model.addAttribute("pw",vo.getPw());
 		model.addAttribute("sign",sign);
 		return "/loginpage/loginPro";
 	}
@@ -123,33 +124,37 @@ public class loginpage {
 				if(val.equals("fry")) {
 					vo.setFry(5);
 				}	
-				if(val.equals("guest")) {
+				if(val.equals("noodle")) {
 					vo.setGuest(5);
 				}	
-				if(val.equals("guest")) {
+				if(val.equals("salad")) {
 					vo.setGuest(5);
 				}	
-				if(val.equals("guest")) {
+				if(val.equals("drink")) {
+					vo.setDrink(5);
+				}				
+				if(val.equals("spa")) {
 					vo.setGuest(5);
 				}	
-				
-				if(val.equals("guest")) {
+				if(val.equals("snack")) {
 					vo.setGuest(5);
 				}					
-				if(val.equals("guest")) {
+				if(val.equals("toast")) {
 					vo.setGuest(5);
 				}	
-				if(val.equals("guest")) {
+				if(val.equals("baking")) {
 					vo.setGuest(5);
 				}	
-				if(val.equals("guest")) {
+				if(val.equals("dessert")) {
 					vo.setGuest(5);
 				}	
-				if(val.equals("guest")) {
+				if(val.equals("juice")) {
+					vo.setGuest(5);
+				}					
+				if(val.equals("cocktail")) {
 					vo.setGuest(5);
 				}	
-				
-				if(val.equals("guest")) {
+				if(val.equals("holiday")) {
 					vo.setGuest(5);
 				}	
 			}

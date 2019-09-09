@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
   </head>
   <body>
-  	<jsp:include page="header.jsp" />
+  	<jsp:include page="/eatoday/homepage/header.eat" />
     <!-- END nav -->
 
     <section class="home-slider owl-carousel">
@@ -89,7 +89,7 @@
     	</div>
     </section>
 
-    <jsp:include page="footer.jsp" />
+    <jsp:include page="/eatoday/homepage/footer.eat" />
     
   
 

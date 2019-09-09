@@ -19,6 +19,7 @@ import eatoday.vo.recipeImgVO;
 import eatoday.vo.recipeReviewNiceVO;
 import eatoday.vo.recipeReviewVO;
 import eatoday.vo.recipeVO;
+import eatoday.vo.restaurantVO;
 //import eatoday.vo.dbManageVO;
 @Controller
 @RequestMapping("/homepage/")
@@ -39,9 +40,11 @@ public class homepage {
 			
 			
 			int greatest = sql.selectOne("recipe.greatest",id);
+			//recipe.greatest=mem 테이블에서 가장 선호하는 카테고리의 값
 			System.out.println(greatest);
 			
 			String cate = sql.selectOne("recipe.cate", greatest);
+			//recipe.cate=mem 테이블에서 가장 선호하는 카테고리의 이름
 			System.out.println(cate);
 
 			if(cate.equals("RICE")) {
@@ -86,35 +89,32 @@ public class homepage {
 			else if(cate.equals("SALAD")) {
 				cate = "14";
 			}
-			else if(cate.equals("KIMBAB")) {
+			else if(cate.equals("DRINK")) {
 				cate = "15";
 			}
-			else if(cate.equals("DRINK")) {
+			else if(cate.equals("SPA")) {
 				cate = "16";
 			}
-			else if(cate.equals("SPA")) {
+			else if(cate.equals("SNACK")) {
 				cate = "17";
 			}
-			else if(cate.equals("SNACK")) {
+			else if(cate.equals("TOAST")) {
 				cate = "18";
 			}
-			else if(cate.equals("TOAST")) {
+			else if(cate.equals("BAKING")) {
 				cate = "19";
 			}
-			else if(cate.equals("BAKING")) {
+			else if(cate.equals("DESSERT")) {
 				cate = "20";
 			}
-			else if(cate.equals("DESSERT")) {
+			else if(cate.equals("JUICE")) {
 				cate = "21";
 			}
-			else if(cate.equals("JUICE")) {
+			else if(cate.equals("COCKTAIL")) {
 				cate = "22";
 			}
-			else if(cate.equals("COCKTAIL")) {
-				cate = "23";
-			}
 			else if(cate.equals("HOLIDAY")) {
-				cate = "24";
+				cate = "23";
 			}
 			
 			List rcpList = sql.selectList("recipe.select",cate);
@@ -346,6 +346,53 @@ public class homepage {
 	@RequestMapping("favoriteRestaurant.eat")
 	public String favoriteRestaurant() {
 		return "/homepage/favoriteRestaurant";
+	}
+	
+	@RequestMapping("restaurantList.eat")
+	public String restaurantList(HttpServletRequest request, Model model) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			int count = (Integer)sql.selectOne("restaurant.count");
+			String cate = request.getParameter("cate");
+			ArrayList rest = new ArrayList();
+			List restList = null;
+			System.out.println("1"+cate);
+		
+			if (cate.equals("기타")) {
+				System.out.println("2"+cate);
+				restList = sql.selectList("restaurant.restetc");
+			} else {
+				System.out.println("3"+cate);
+				restList = sql.selectList("restaurant.select", cate);
+			}
+			model.addAttribute("cate", cate);
+			model.addAttribute("restList", restList);
+			model.addAttribute("count", count);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "/homepage/restaurantList";
+	}
+	
+	@RequestMapping("restaurantDetail.eat")
+	public String restaurantDetail(HttpServletRequest request, Model model) {
+		String cnum = request.getParameter("cnum");
+		//int recount = sql.selectOne("recipe.ReviewCount",cnum);
+		
+		// 해당 식당 정보
+		restaurantVO rvo = sql.selectOne("restaurant.info", cnum);
+
+		//레시피 리뷰 가져오기
+		//List revo = sql.selectList("recipe.reviewSelect",cnum);
+		
+		//model.addAttribute("pro",pro);
+		//model.addAttribute("ivo",ivo);
+		model.addAttribute("rvo", rvo);
+		//model.addAttribute("revo",revo);
+		//model.addAttribute("recount",recount);
+		//model.addAttribute("proCount",proCount);
+
+		return "/homepage/restaurantDetail";
 	}
 	
 	

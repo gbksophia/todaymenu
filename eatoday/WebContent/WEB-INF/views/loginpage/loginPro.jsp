@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!-- loginCheck 결과, 1= id/pw 알맞게 입력--> <!--sign=1 신규가입 -->
 <c:choose>
 	<c:when test="${result ==1 }">
-		<c:if test="${sign ==1 }">
+		<c:if test="${sign ==1 }">  
 			<script>
-			alert("회원가입 성공!.");
+			alert("회원가입 성공!");
 			location= "/eatoday/homepage/index.eat";
 		</script>
 		</c:if>
