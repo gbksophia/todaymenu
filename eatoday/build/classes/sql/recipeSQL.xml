@@ -73,6 +73,6 @@
  	
  	<!-- 레시피 리뷰 가져오기 -->
  	<select id="reviewSelect" parameterType="String" resultType="irvo">
- 	   select * from recipe_re where cnum=#{value}
+ 	   select * from recipe_re where cnum=#{value} order by reg_date desc
  	</select>
 </mapper>
