@@ -329,6 +329,16 @@ public class homepage {
 		return "/homepage/favoriteRestaurant";
 	}
 	
+	@RequestMapping("restaurantList.eat")
+	public String restaurantList() {
+		return "/homepage/restaurantList";
+	}
+	
+	@RequestMapping("restaurantDetail.eat")
+	public String restaurantDetail() {
+		return "/homepage/restaurantDetail";
+	}
+	
 	
 }
 
