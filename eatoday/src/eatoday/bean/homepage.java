@@ -1,5 +1,5 @@
 package eatoday.bean;
-asdasd
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
