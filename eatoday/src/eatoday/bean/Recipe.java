@@ -180,5 +180,11 @@ public class Recipe {
 		
 		return "/homepage/SearchRecipe";
 	}
-
+	@RequestMapping("recipeCateCount.eat")
+	public String recipeCateCount(String cate,Model model) {
+		int CateCount =(Integer)sql.selectOne("recipe.cateCount",cate);
+		System.out.println(CateCount);
+		model.addAttribute("CateCount",CateCount);
+		return "/homepage/recipeCateCount";
+	}
 }

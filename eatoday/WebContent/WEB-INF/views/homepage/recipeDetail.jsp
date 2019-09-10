@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
    <script src="/eatoday/resource/js/jquery-migrate-3.0.1.min.js"></script>
    <script>
+   // 찜 여부 확인 실행시 1회  동작
    window.onload = function(){
 	   var id = '${sessionScope.loginID}';
 	   var cnum = '${rvo.con_num}';
@@ -50,8 +51,28 @@
 	      		 document.getElementById("jjimImg").appendChild(elem);	
 	        	  }
 	    	  });
+	   
+	   // 카테고리 카운트 가져오기
+	   for(var i=1;i<24;i++){
+		   var id = "cate("+i+")";
+	   $.ajax({
+	          url: "recipeCateCount.eat",
+	          type: "post",
+	          data: {cate : i},
+	          async: false,
+	          success: function(data) {
+	        	  var elem = document.createElement("span");
+	        	  var data = "("+data+")";
+	        	  elem.innerHTML = data;
+	        	  document.getElementById(id).appendChild(elem);	
+	        	  }
+	    	  });
+	   console.log(id);
 	   }
-
+	   }
+	
+   
+   // 찜 클릭 이벤트
   function jjimClick(){
 	  var id = '${sessionScope.loginID}';
 	   var cnum = '${rvo.con_num}';
@@ -75,6 +96,7 @@
 	  }
   }
    
+  // 댓글 좋아요 클릭 이벤트
   function niceClick(num,i) {
 	  var id = '${sessionScope.loginID}';
 	  var img = "img"+i;
@@ -92,6 +114,8 @@
     	  });
   		}
   	}
+  
+  // 댓글 좋아요 체크
   function niceCheck(num,i){
 	  var img = "likeImg"+i;
 	  var id = "img"+i;
@@ -110,6 +134,24 @@
 				}
 		  });
 	  }
+  
+  //검색 유효성 검사
+  function searchCheck() {
+      var str = document.getElementById('search');
+      var blank = /^[\s]/g;
+
+      //검색어 입력필수
+      if (str.value == '' || str.value == null) {
+         alert("검색어를 입력하세요.");
+         return false;
+      }
+
+      //공백금지
+      if (blank.test(str.value) == true) {
+         alert("제대로 좀 입력하세요.")
+         return false;
+      }
+   }
   </script>
 
   </head>
@@ -134,8 +176,8 @@
           </div>
         </div>
       </div>
-
     </section>
+    
     <section class="ftco-section">
       <div class="container">
         <div class="row">
@@ -180,17 +222,7 @@
 				</a>
 			</div>
 </div>
-            <%-- 
-            <div class="tag-widget post-tag-container mb-5 mt-5">
-              <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">Life</a>
-                <a href="#" class="tag-cloud-link">Sport</a>
-                <a href="#" class="tag-cloud-link">Tech</a>
-                <a href="#" class="tag-cloud-link">Travel</a>
-              </div>
-            </div>
---%>
-
+         
 
 	<!-- 댓글 -->
             <div class="pt-5 mt-5">
@@ -252,95 +284,55 @@
                     <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
                   </div>
                   </div>
-
                 </form>
               		</c:otherwise>
               	</c:choose>
               </div>
-
-          </div> 
-          
-          <!-- .col-md-8 -->
-
-
-          <div class="col-md-4 sidebar ftco-animate">
-          <%-- 
+              </div>
+             </div>
+            <div class="col-md-4 sidebar ftco-animate fadeInUp ftco-animated">
             <div class="sidebar-box">
-              <form action="#" class="search-form">
+              <form name="searchBar" action="SearchRecipe.eat" onSubmit="return searchCheck();" class="search-form">
                 <div class="form-group">
                 	<div class="icon">
 	                  <span class="icon-search"></span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Search...">
+                  <input type="text" name="search" id="search" class="form-control" placeholder="Search...">
                 </div>
               </form>
             </div>
---%>
-
-			 <c:set var = "c" value = "${cookie.cookie.value }"/>  
-						<c:forEach begin="0" end="${count}" step="1" var="i">
-		              	<c:set var = "rca" value = "${recipeList[i]}" />
-		              	<c:if test = "${rca.getCon_num() == c}">
-            
-
-            <div class="sidebar-box ftco-animate">
-              <h3>Recent Recipe</h3>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(/eatoday/resource/RecipeImages/${rca.getMain_name()});"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="<c:url value = "recipeDetail.eat"><c:param name = "abc" value = "${rca.getCon_num()}"></c:param></c:url>">${rca.getTitle() }</a></h3>
-                  <div class="meta">
-                    <div><a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "abc" value = "${rca.getCon_num()}"></c:param></c:url>">자세히보기</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
+            <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
               <div class="categories">
-                <h3>${j}Categories</h3>
-                <br><br>
-                <p>
-             		<c:forEach begin="0" end="${count}" step="1" var="i">
-		 <c:set var = "rvo" value = "${recipeList[i]}" />
-		 <c:if test = "${rvo.getCon_num() == abc }">
-             <c:set var = "str" value = "${rvo.getPro() }"/>
-             <c:forEach var = "spt" items = "${fn:replace(str, 'next', '<br><br>') }" varStatus = "status">
-             <img src="images/image_2.jpg" alt="" class="img-fluid">
-             ${spt }
-             </c:forEach>
-             </c:if>
-             </c:forEach>
-            </p>
+                <h3>Categories</h3>
+                <li><a href="recipeListView.eat?cate=1" id="cate(1)">밥요리</a></li>
+                <li><a href="recipeListView.eat?cate=2" id="cate(2)">국&탕 </a></li>
+                <li><a href="recipeListView.eat?cate=3" id="cate(3)">찌개&전골 </a></li>
+                <li><a href="recipeListView.eat?cate=4" id="cate(4)">밑반찬 </a></li>
+                <li><a href="recipeListView.eat?cate=5" id="cate(5)">볶음요리 </a></li>
+                <li><a href="recipeListView.eat?cate=6" id="cate(6)">구이(고기/생선)</a></li>
+                <li><a href="recipeListView.eat?cate=7" id="cate(7)">찜&조림</a></li>
+                <li><a href="recipeListView.eat?cate=8" id="cate(8)">손님상 </a></li>
+                <li><a href="recipeListView.eat?cate=9" id="cate(9)">아이 반찬 </a></li>
+                <li><a href="recipeListView.eat?cate=10" id="cate(10)">김치 장아찌</a></li>
+                <li><a href="recipeListView.eat?cate=11" id="cate(11)">도시락</a></li>
+                <li><a href="recipeListView.eat?cate=12" id="cate(12)">튀김 </a></li>
+                <li><a href="recipeListView.eat?cate=13" id="cate(13)">면요리</a></li>
+             	<li><a href="recipeListView.eat?cate=14" id="cate(14)">샐러드</a></li>
+             	<li><a href="recipeListView.eat?cate=15" id="cate(15)">야식&술안주</a></li>
+             	<li><a href="recipeListView.eat?cate=16" id="cate(16)">스파게티 </a></li>
+             	<li><a href="recipeListView.eat?cate=17" id="cate(17)">간식&분식 </a></li>
+             	<li><a href="recipeListView.eat?cate=18" id="cate(18)">토스트&샌드위치</a></li>
+             	<li><a href="recipeListView.eat?cate=19" id="cate(19)">베이킹</a></li>
+             	<li><a href="recipeListView.eat?cate=20" id="cate(20)">디저트 </a></li>
+             	<li><a href="recipeListView.eat?cate=21" id="cate(21)">주스&음료 </a></li>
+             	<li><a href="recipeListView.eat?cate=22" id="cate(22)">술&칵테일</a></li>
+             	<li><a href="recipeListView.eat?cate=23" id="cate(23)">명절요리</a></li>
               </div>
             </div>
-
-            	</c:if>
-            </c:forEach>           
-<%--
-            <div class="sidebar-box ftco-animate">
-              <h3>Tag Cloud</h3>
-              <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">dish</a>
-                <a href="#" class="tag-cloud-link">menu</a>
-                <a href="#" class="tag-cloud-link">food</a>
-                <a href="#" class="tag-cloud-link">sweet</a>
-                <a href="#" class="tag-cloud-link">tasty</a>
-                <a href="#" class="tag-cloud-link">delicious</a>
-                <a href="#" class="tag-cloud-link">desserts</a>
-                <a href="#" class="tag-cloud-link">drinks</a>
-              </div>
+		</div>
+		</div>
             </div>
- --%><%--
-            <div class="sidebar-box ftco-animate">
-              <h3>Paragraph</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-            </div>
-             --%>
-          </div>
-
-        </div>
-      </div>
+      
     </section> <!-- .section -->
 
    <jsp:include page="footer.jsp" />
