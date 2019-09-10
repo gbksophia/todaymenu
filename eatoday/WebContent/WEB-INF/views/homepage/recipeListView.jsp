@@ -161,7 +161,7 @@
 
          <div class="hd_column2">
             <div class=".search_body">
-               <form name="searchBar" action="SearhRecipe.eat"
+               <form name="searchBar" action="SearchRecipe.eat"
                   onSubmit="return searchCheck();">
                   <input type="text" name="search" id="search" class="search__input"
                      placeholder="레시피 검색 하시던지 말던지">
@@ -177,8 +177,7 @@
     <section class="ftco-menu mb-5 pb-5">
     	<div class="container">
     		<div class="row d-md-flex">
-    		<%--<input type="text" placeholder="레시피 검색 하던지 말던지 "/> --%>
-	
+    		
 	    		<div class="col-lg-12 ftco-animate p-md-5">
 		    		<div class="row">
 		          <div class="col-md-12 nav-link-wrap mb-5">

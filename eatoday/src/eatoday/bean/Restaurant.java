@@ -31,20 +31,17 @@ public class Restaurant {
 		public String restaurantList(HttpServletRequest request, Model model) {
 			try {
 				request.setCharacterEncoding("UTF-8");
-				int count = (Integer)sql.selectOne("restaurant.count");
 				String cate = request.getParameter("cate");
-				ArrayList rest = new ArrayList();
-				List restList = null;
-				System.out.println("1"+cate);
-			
+				System.out.println("cate: "+cate);
+				
+				int count = (Integer)sql.selectOne("restaurant.count", cate);
+				List restList = sql.selectList("restaurant.select", cate);
+				
 				if (cate.equals("기타")) {
-					System.out.println("2"+cate);
-					restList = sql.selectList("restaurant.restetc");
-					model.addAttribute("restList", restList);
-				} else {
-					System.out.println("3"+cate);
-					restList = sql.selectList("restaurant.select", cate);
+					restList = sql.selectList("restaurant.restEtc");
+					count = (Integer)sql.selectOne("restaurant.countEtc");
 				}
+				
 				model.addAttribute("cate", cate);
 				model.addAttribute("restList", restList);
 				model.addAttribute("count", count);
@@ -57,20 +54,11 @@ public class Restaurant {
 		@RequestMapping("restaurantDetail.eat")
 		public String restaurantDetail(HttpServletRequest request, Model model) {
 			String cnum = request.getParameter("cnum");
-			//int recount = sql.selectOne("recipe.ReviewCount",cnum);
-			
+					
 			// 해당 식당 정보
 			restaurantVO rvo = sql.selectOne("restaurant.info", cnum);
 
-			//레시피 리뷰 가져오기
-			//List revo = sql.selectList("recipe.reviewSelect",cnum);
-			
-			//model.addAttribute("pro",pro);
-			//model.addAttribute("ivo",ivo);
 			model.addAttribute("rvo", rvo);
-			//model.addAttribute("revo",revo);
-			//model.addAttribute("recount",recount);
-			//model.addAttribute("proCount",proCount);
 
 			return "/homepage/restaurantDetail";
 		}
