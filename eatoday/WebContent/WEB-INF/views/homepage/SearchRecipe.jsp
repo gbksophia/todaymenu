@@ -93,6 +93,8 @@
 	padding-top:0em;
 }
 
+
+
     </style>
     
     <script type = "text/javascript">
@@ -132,7 +134,7 @@
           <div class="row slider-text justify-content-center align-items-center">
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
-            	<h1 class="mb-3 mt-5 bread">"${sRec}"에 대한 검색결과</h1>
+            	<h1 class="mb-3 mt-5 bread">"${srch}"에 대한 검색결과</h1>
 	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Product Detail</span></p>
             </div>
 
@@ -158,18 +160,21 @@
 
          </div>
 </div>
-</section> 
+</section>
+
+<c:set var = "s" value = "${srch}"/> 
 
     <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center mb-5 pb-3">
         </div>
+
         <div class="row">
         
         
             <h2 class="mb-3">재료</h2>
         
-
+		
         	<div class="col-md-3">
         		<div class="menu-entry">
     					<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
@@ -179,44 +184,42 @@
     						<p class="price"><span>$5.90</span></p>
     						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
     					</div>
-    				</div>
-        	</div>
-        	<div class="col-md-3">
+
+        <h2 class="mb-3">재료에서 검색한 결과 </h2>
+        <div class="row">        	
+          <c:forEach var="rcpMatVO" items="${rcpMat}">
+			<div class="col-md-3">
         		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
+    					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCon_num()}"></c:param><c:param name = "cate" value = "${rcpMatVO.getCate()}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcpMatVO.getMain_name()});"></a>
+						<div class="text text-center pt-4">
+						    <h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCon_num()}"></c:param><c:param name = "cate" value = "${rcpMatVO.getCate()}"></c:param></c:url>">${rcpMatVO.getTitle() }</a></h3>
+						    	<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCon_num()}"></c:param></c:url>">자세히보기</a>
+						  </div>
     				</div>
         	</div>
-        	<div class="col-md-3">
+        	</c:forEach>
+        	</div>
+        	
+        <div class="row"></div><br />
+        	
+       <h2 class="mb-3">이름에서 검색한 결과</h2>
+        <div class="row">        	
+          <c:forEach var="rcpTitVO" items="${rcpTit}">
+			<div class="col-md-3">
         		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
+    					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpTitVO.getCon_num()}"></c:param><c:param name = "cate" value = "${rcpTitVO.getCate()}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcpTitVO.getMain_name()});"></a>
+						<div class="text text-center pt-4">
+						    <h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpTitVO.getCon_num()}"></c:param><c:param name = "cate" value = "${rcpTitVO.getCate()}"></c:param></c:url>">${rcpTitVO.getTitle() }</a></h3>
+						    	<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpTitVO.getCon_num()}"></c:param></c:url>">자세히보기</a>
+						  </div>
     				</div>
         	</div>
-        	<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">Coffee Capuccino</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
-    				</div>
+        	</c:forEach>
         	</div>
-        </div>
-    	</div>
+        	
     </section>
+
+    
 <jsp:include page="footer.jsp" />
   
 

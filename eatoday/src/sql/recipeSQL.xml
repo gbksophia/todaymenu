@@ -99,6 +99,7 @@
  		delete from recipe_re_nice where id=#{id} and renum= #{renum}
  	</delete>
  	
+
  	<!-- 레시피 찜 체크 -->
  	<select id="jjimCheck" parameterType="ijvo" resultType="int">
  	  select count(*) from recipe_jjim where id=#{id} and cnum=#{cnum}
@@ -119,12 +120,14 @@
  		select * from recipe r, recipe_jjim j where r.con_num=j.cnum and j.id= #{value}
  	</select>
  	
+	<!-- 레시피 이름으로 검색 -->
  	<select id="searchRecTitle" parameterType="String" resultType="vo" >
-		select * from recipe where title like '%sRec%'
+		<![CDATA[ select * from recipe where title like '%'||#{value}||'%']]>
 	</select>
 	
+	<!-- 레시피 재료로 검색 -->
 	<select id="searchRecMate" parameterType="String" resultType="vo" >
-		select * from recipe where mate like '%sRec%'
+		<![CDATA[select * from recipe where mate like '%'||#{value}||'%']]>
 	</select>
 	
 	
