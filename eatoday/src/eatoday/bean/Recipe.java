@@ -19,7 +19,7 @@ import eatoday.vo.recipeReviewVO;
 import eatoday.vo.recipeVO;
 
 @Controller
-@RequestMapping("/recipe/")
+@RequestMapping("/homepage/")
 public class Recipe {
 	
 	@Autowired
@@ -165,7 +165,13 @@ public class Recipe {
 		String sRec=request.getParameter("search");
 		
 		System.out.println(sRec);
+		
+		List rcpTit = sql.selectList("recipe.searchRecTitle",sRec);
+		List rcpMat = sql.selectList("recipe.searchRecMate",sRec);
+		
 		model.addAttribute("sRec", sRec);
+		model.addAttribute("rcpTit", rcpTit);
+		model.addAttribute("rcpMat", rcpMat);
 		return "/homepage/SearchRecipe";
 	}
 

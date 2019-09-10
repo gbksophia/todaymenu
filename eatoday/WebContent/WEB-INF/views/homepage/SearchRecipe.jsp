@@ -141,7 +141,6 @@
       </div>
     </section>
 
-	${sRec}
 
 		             <!--  검색  -->
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
@@ -152,7 +151,7 @@
                <form name="searchBar" action="SearchRecipe.eat"
                   onSubmit="return searchCheck();">
                   <input type="text" name="search" id="search" class="search__input"
-                     placeholder="${sRec}">
+                     placeholder="레시피 검색 하시던지 말던지">
                   <input type = "submit" value = "검색">
                </form>
             </div>
@@ -164,13 +163,13 @@
     <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section ftco-animate text-center">
-          	<span class="subheading">Discover</span>
-            <h2 class="mb-4">Related products</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          </div>
         </div>
         <div class="row">
+        
+        
+            <h2 class="mb-3">재료</h2>
+        
+
         	<div class="col-md-3">
         		<div class="menu-entry">
     					<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>

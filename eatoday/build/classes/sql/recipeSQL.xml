@@ -99,5 +99,13 @@
  		delete from recipe_re_nice where id=#{id} and renum= #{renum}
  	</delete>
  	
+ 	<select id="searchRecTitle" parameterType="String" resultType="vo" >
+		select * from recipe where title like '%sRec%'
+	</select>
+	
+	<select id="searchRecMate" parameterType="String" resultType="vo" >
+		select * from recipe where mate like '%sRec%'
+	</select>
+	
  
 </mapper>
