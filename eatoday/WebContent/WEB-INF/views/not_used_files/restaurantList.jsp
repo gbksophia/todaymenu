@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
 </head>
 <body>
-<jsp:include page="header.jsp" />
+<jsp:include page="/eatoday/homepage/header.eat" />
 <!-- END nav -->
 <section class="home-slider owl-carousel">
 	<div class="slider-item" style="background-image: url(/eatoday/resource/images/recipe_bg.jpg);" data-stellar-background-ratio="0.5">
@@ -51,30 +51,30 @@
 				<div class="row">
 				<div class="col-md-12 nav-link-wrap mb-5">
 					<div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-						<a class="nav-link" id="v-pills-0-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="한식"></c:param><c:param name="area" value="서울"></c:param></c:url>" role="tab" aria-selected="false">한식</a>
-						<a class="nav-link" id="v-pills-1-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="중식"></c:param><c:param name="area" value="서울"></c:param></c:url>" role="tab" aria-selected="false">중식</a>
-						<a class="nav-link" id="v-pills-2-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="일식"></c:param><c:param name="area" value="서울"></c:param></c:url>" role="tab" aria-selected="false">일식</a>
-						<a class="nav-link" id="v-pills-3-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="양식"></c:param><c:param name="area" value="서울"></c:param></c:url>" role="tab" aria-selected="false">양식</a>
-						<a class="nav-link" id="v-pills-4-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="분식"></c:param><c:param name="area" value="서울"></c:param></c:url>" role="tab" aria-selected="false">분식</a>
-						<a class="nav-link" id="v-pills-5-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="카페"></c:param><c:param name="area" value="서울"></c:param></c:url>" role="tab" aria-selected="false">카페</a>
-						<a class="nav-link" id="v-pills-6-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="기타"></c:param><c:param name="area" value="서울"></c:param></c:url>" role="tab" aria-selected="false">기타</a>
+						<a class="nav-link" id="v-pills-0-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="한식"></c:param></c:url>" role="tab" aria-selected="false">한식</a>
+						<a class="nav-link" id="v-pills-1-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="중식"></c:param></c:url>" role="tab" aria-selected="false">중식</a>
+						<a class="nav-link" id="v-pills-2-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="일식"></c:param></c:url>" role="tab" aria-selected="false">일식</a>
+						<a class="nav-link" id="v-pills-3-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="양식"></c:param></c:url>" role="tab" aria-selected="false">양식</a>
+						<a class="nav-link" id="v-pills-4-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="분식"></c:param></c:url>" role="tab" aria-selected="false">분식</a>
+						<a class="nav-link" id="v-pills-5-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="카페"></c:param></c:url>" role="tab" aria-selected="false">카페</a>
+						<a class="nav-link" id="v-pills-6-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="기타"></c:param></c:url>" role="tab" aria-selected="false">기타</a>
 					</div>
-					<br/>
 					<div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-						<c:forEach begin="0" end="${areaCnt-1}" step="1" var="i">
-						<c:set var="area" value="${areaList[i]}"/>
-							<a class="nav-link" id="v-pills-${i}-tab" 
-								href="<c:url value="/homepage/restaurantList.eat">
-									<c:param name="cate" value="한식"></c:param><c:param name="area" value="${area.getArea1()}"></c:param></c:url>" role="tab" aria-selected="false">${area.getArea1()}</a>
-						</c:forEach>
+						<a class="nav-link" id="v-pills-0-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="한식"></c:param></c:url>" role="tab" aria-selected="false">한식</a>
+						<a class="nav-link" id="v-pills-1-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="중식"></c:param></c:url>" role="tab" aria-selected="false">중식</a>
+						<a class="nav-link" id="v-pills-2-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="일식"></c:param></c:url>" role="tab" aria-selected="false">일식</a>
+						<a class="nav-link" id="v-pills-3-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="양식"></c:param></c:url>" role="tab" aria-selected="false">양식</a>
+						<a class="nav-link" id="v-pills-4-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="분식"></c:param></c:url>" role="tab" aria-selected="false">분식</a>
+						<a class="nav-link" id="v-pills-5-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="카페"></c:param></c:url>" role="tab" aria-selected="false">카페</a>
+						<a class="nav-link" id="v-pills-6-tab" href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="기타"></c:param></c:url>" role="tab" aria-selected="false">기타</a>
 					</div>
 				</div>
 					<div class="col-md-12 d-flex align-items-center">
 						<div class="tab-content ftco-animate" id="v-pills-tabContent">
 							<div class="tab-pane fade show active" id="v-pills-0" role="tabpanel" aria-labelledby="v-pills-0-tab">
 								<div class="row">
-									<c:forEach begin="0" end="${areaCnt}" step="1" var="i">
-										<c:set var="rest" value="${raList[i]}" />
+									<c:forEach begin="0" end="${count}" step="1" var="i">
+										<c:set var="rest" value="${restList[i]}" />
 										<c:if test="${rest.getCate() == cate}">
 											<div class="col-md-3">
 												<div class="menu-entry">
@@ -82,6 +82,20 @@
 														<c:param name = "cnum" value = "${rest.getNum()}"></c:param>
 														<c:param name = "cate" value = "${cate}"></c:param></c:url>" 
 														class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rest.getMain_name()});"></a> --%>
+													<div class="text text-center pt-4">
+														<h3><a href="<c:url value="restaurantDetail.eat">
+																<c:param name="cnum" value="${rest.getCnum()}"></c:param><c:param name="cate" value="${cate}"></c:param>
+																</c:url>">${rest.getStore()}<br/>${rest.getArea1()} ${rest.getArea2()}</a></h3>
+														
+														<a class="btn btn-primary btn-outline-primary" href="<c:url value ="restaurantDetail.eat">
+																<c:param name="cnum" value="${rest.getCnum()}"></c:param></c:url>">자세히보기</a>
+													</div>
+												</div>
+											</div>
+										</c:if>
+										<c:if test="${cate!='한식'||'중식'||'일식'||'양식'||'분식'||'카페'}">
+											<div class="col-md-3">
+												<div class="menu-entry">
 													<div class="text text-center pt-4">
 														<h3><a href="<c:url value="restaurantDetail.eat">
 																<c:param name="cnum" value="${rest.getCnum()}"></c:param><c:param name="cate" value="${cate}"></c:param>
@@ -104,7 +118,7 @@
 	</div>
 </section>
 
-<jsp:include page="footer.jsp" />
+<jsp:include page="/eatoday/homepage/footer.eat" />
 
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

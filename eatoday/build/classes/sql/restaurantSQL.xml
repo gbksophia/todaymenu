@@ -13,11 +13,6 @@
 		select count(*) from restaurant where cate=#{value}
 	</select>
 	
-	<!-- 기타식당 갯수 -->
-	<select id="countEtc" resultType="int">
-		select count(*) from restaurant where cate not in ('한식', '중식', '일식', '양식', '분식', '카페')
-	</select>
-	
 	<select id="search" parameterType="list" resultType="rvo">
 		select * from (select * from restaurant where addr like '%'||#{list[0]}||'%') where area2 like '%'||#{list[1]}||'%'
 	</select>
@@ -40,11 +35,6 @@
 		select * from restaurant where cate = #{cate}
 	</select>
 	
-	<!-- 식당카테고리 기타 제외 -->
-	<select id="restEtc" resultType="rvo">
-		select * from restaurant where cate not in ('한식', '중식', '일식', '양식', '분식', '카페')
-	</select>
-	
 	<!-- 식당 정보 출력 -->
 	<select id="info" resultType="rvo" parameterType="String">
 		select * from restaurant where cnum=#{cnum}
@@ -55,4 +45,48 @@
 		select area1, area2, addr, store from restaurant where cnum=#{value}
 	</select>
 	
+	<!-- 식당 지역분류 -->
+	<select id="restArea" parameterType="String" resultType="rvo">
+		select distinct area1 from restaurant where cate=#{value}
+	</select>
+	
+	<!-- 식당 카테고리+지역분류 -->
+	<select id="selectArea" parameterType="list" resultType="rvo">
+		select * from restaurant where area1=#{list[0]} and cate=#{list[1]}
+	</select>
+	
+	<!-- 식당 카테고리+지역분류 카운트 -->
+	<select id="restAreaCnt" parameterType="String" resultType="int">
+		select count(*) from (select distinct area1 from restaurant where cate=#{value})
+	</select>
+	
+	
+	
 </mapper>
+
+<!-- 
+	기타식당 갯수
+<select id="countEtc" resultType="int">
+	select count(*) from restaurant where cate not in ('한식', '중식', '일식', '양식', '분식', '카페')
+</select>
+	
+	식당카테고리 기타 제외
+<select id="restEtc" resultType="rvo">
+	select * from restaurant where cate not in ('한식', '중식', '일식', '양식', '분식', '카페')
+</select>
+
+	식당 기타 지역분류
+<select id="restAreaEtc" resultType="rvo">
+	select distinct area1 from restaurant where cate not in ('한식', '중식', '일식', '양식', '분식', '카페')
+</select>
+
+	식당 기타 카테고리+지역분류
+<select id="selectAreaEtc" parameterType="String" resultType="rvo">
+	select * from restaurant where area1=#{value} and cate not in ('한식', '중식', '일식', '양식', '분식', '카페')
+</select>
+
+	식당 기타 카테고리+지역분류 카운트
+<select id="restAreaCntEtc" resultType="int">
+	select count(*) from (select distinct area1 from restaurant where cate not in ('한식', '중식', '일식', '양식', '분식', '카페'))
+</select>
+-->

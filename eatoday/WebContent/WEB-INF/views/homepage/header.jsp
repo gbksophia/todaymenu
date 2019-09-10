@@ -15,7 +15,7 @@
               <a class="nav-link dropdown-toggle" href="/eatoday/homepage/restaurant.eat" id="dropdown04" aria-haspopup="true" aria-expanded="false">restaurants</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
               	<a class="dropdown-item" href="/eatoday/homepage/favoriteRestaurant.eat">Recommend Restaurants</a>
-                <a class="dropdown-item" href="/eatoday/homepage/restaurantList.eat?cate=한식">Restaurants</a>
+                <a class="dropdown-item" href="/eatoday/homepage/restaurantList.eat?cate=한식&area=서울">Restaurants</a>
                 <!-- <a class="dropdown-item" href="/eatoday/homepage/recipeChn.eat">중식</a>
                 <a class="dropdown-item" href="/eatoday/homepage/recipeWst.eat">양식</a> -->
               </div>
