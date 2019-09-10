@@ -10,13 +10,13 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="/eatoday/homepage/recipeListView.eat?cate=1" class="nav-link">recipe</a></li>
+	          <li class="nav-item"><a href="/eatoday/homepage/recipeListView.eat?cate=1" class="nav-link">recipes</a></li>
 	          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="/eatoday/homepage/restaurant.eat" id="dropdown04" aria-haspopup="true" aria-expanded="false">restaurant</a>
+              <a class="nav-link dropdown-toggle" href="/eatoday/homepage/restaurant.eat" id="dropdown04" aria-haspopup="true" aria-expanded="false">restaurants</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="/eatoday/homepage/favoriteRestaurant.eat">선호식당</a>
-                <!-- <a class="dropdown-item" href="/eatoday/homepage/recipeJpn.eat">일식</a>
-                <a class="dropdown-item" href="/eatoday/homepage/recipeChn.eat">중식</a>
+              	<a class="dropdown-item" href="/eatoday/homepage/favoriteRestaurant.eat">Recommend Restaurants</a>
+                <a class="dropdown-item" href="/eatoday/homepage/restaurantList.eat?cate=한식">Restaurants</a>
+                <!-- <a class="dropdown-item" href="/eatoday/homepage/recipeChn.eat">중식</a>
                 <a class="dropdown-item" href="/eatoday/homepage/recipeWst.eat">양식</a> -->
               </div>
             </li>

@@ -162,7 +162,8 @@ function cateSearch(data){
 	}
 }
 </script>
- 현재 접속위치는 <a id="addr"></a> 인듯? <br/>
-<a id="search"></a> 검색결과입니다!?
+<h3>현재 접속위치 주변 추천 식당입니다!</h3>
+<p>현재 접속위치는 <a id="addr"></a> 입니다.</p>
+<p><a id="search"></a> 검색결과입니다!</p>
 </body>
 </html>
