@@ -37,16 +37,20 @@
   function niceClick(num,i) {
 	  var id = '${sessionScope.loginID}';
 	  var img = "img"+i;
-	  console.log(img);
+
+	  if(${sessionScope.loginID == null}){
+			alert("로그인후 이용해주십시오.");
+		  }else {
       $.ajax({
           url: "niceClick.eat",
           type: "post",
           data: {id : id, num : num },
           success: function(data) {
         document.getElementById(img).src=data;
-          }
-      });
-  }
+        	  }
+    	  });
+  		}
+  	}
   function niceCheck(num,i){
 	  var img = "likeImg"+i;
 	  var id = "img"+i;
