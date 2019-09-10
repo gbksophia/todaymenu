@@ -31,7 +31,10 @@ public class Recipe {
 		int count = (Integer)sql.selectOne("recipe.count");
 		ArrayList rcp = new ArrayList();
 		List rcpList = sql.selectList("recipe.select",cate);
+		
+		if (cate != null) {
 			
+		}
 		//System.out.println(rcpList);
 
 		model.addAttribute("recipeList", rcpList);
@@ -55,6 +58,8 @@ public class Recipe {
 		
 		//레시피 리뷰 가져오기
 		List revo = sql.selectList("recipe.reviewSelect",cnum);
+		
+		
 		
 		model.addAttribute("pro",pro);
 		model.addAttribute("ivo",ivo);

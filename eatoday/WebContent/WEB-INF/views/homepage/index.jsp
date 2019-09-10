@@ -109,6 +109,7 @@
   </head>
   <body>
   	<jsp:include page="header.jsp" />
+  	
     <!-- END nav -->
 
     <section class="home-slider owl-carousel">
@@ -285,15 +286,15 @@
         </div>
       </div>
     </section>
-
+<jsp:include page = "../SideMenu/layerPopup.jsp" />
 <c:if test="${sessionScope.loginID != null}">
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 			<div class="overlay"></div>
       <div class="container">
         <div class="row justify-content-center">
         
-        			<h1>추천 레시피</h1><br/><br/>
-        	<div class="row">
+        			<h1>${sessionScope.loginID }님의 추천 레시피</h1><br/><br/>
+        	<div class="row" style = "margin-top:100px;">
 			<c:set var = "cate1" value = "${cate }"/>
 			
 			<c:forEach begin = "0" end = "8" step = "1" var = "i">
