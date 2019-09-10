@@ -43,6 +43,7 @@ public class homepage {
 
 			if(cate.equals("RICE")) {
 				cate = "1";
+				
 			}
 			else if(cate.equals("SOUP")) {
 				cate = "2";
@@ -128,9 +129,4 @@ public class homepage {
 		
 	}
 
-
-	
 }
-
-
-
