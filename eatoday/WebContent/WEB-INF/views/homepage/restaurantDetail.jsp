@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Restaurant Detail</title>
+	<title>${rvo.getStore()}</title>
 	
 	<link rel="stylesheet" href="/eatoday/resource/css/open-iconic-bootstrap.min.css">
 	<link rel="stylesheet" href="/eatoday/resource/css/animate.css">
@@ -24,7 +24,8 @@
 <jsp:include page="header.jsp" />
 <!-- END nav --> 
 <section class="home-slider owl-carousel">
-<div class="slider-item" style="background-image: url(/eatoday/resource/RecipeImages/${rca.getMain_name()});">
+<%-- <div class="slider-item" style="background-image: url(/eatoday/resource/RecipeImages/${rca.getMain_name()});"> --%>
+<div class="slider-item" style="background-image: url(/eatoday/resource/images/breadcumb4.jpg);">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row slider-text justify-content-center align-items-center">
@@ -85,7 +86,7 @@
 			
 			<h2 class="mb-3">위치</h2>
 			<div class="vcard bio">
-				<jsp:include page="/eatoday/map/map_kwd_rest.eat"/>
+				<jsp:include page="/map/map_kwd_rest.eat"/>
 			</div>
 			
 			<div class="pt-5 mt-5">

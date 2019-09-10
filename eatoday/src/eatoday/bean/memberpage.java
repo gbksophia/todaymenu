@@ -21,7 +21,7 @@ public class memberpage {
 	public String information(HttpSession session,Model model) {
 		String id = (String)session.getAttribute("loginID");
 		memberVO vo = sql.selectOne("member.info",id);
-		
+	
 		model.addAttribute("vo",vo);
 		return "/member/information";
 	}

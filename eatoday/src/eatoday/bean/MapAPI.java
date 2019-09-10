@@ -56,41 +56,41 @@ public class MapAPI {
 	public String map_loc2(String d1, String d2 , String d3, Model model, HttpServletRequest request, HttpSession session) {
 		String kwd ="";
 		String cate = "";
+		String id = (String)session.getAttribute("loginID");
 		try {
 			request.setCharacterEncoding("UTF-8");
 			if (d1!=null) {
 //				System.out.println("map_loc: "+d1); //서울특별시
 //				System.out.println("map_loc: "+d2); //관악구
 				System.out.println("map_loc: "+d3); //봉천동
-
-				String id = (String)session.getAttribute("loginID");
 				
-				int gnum = sql.selectOne("restaurant.greatest", id);
-
-				List cates = sql.selectList("restaurant.cate", gnum);
-				
-				// 선호 식당종류가 중복일 경우 선호식당을 랜덤으로 검색				
-				int rand = (int)(Math.random()*cates.size());
-				cate = (String)cates.get(rand);
-				if (cate.equals("KOR")) {
-					cate="한식";
-				} else if (cate.equals("CHINA")) {
-					cate="중식";
-				} else if (cate.equals("JAPAN")) {
-					cate="일식";
-				} else if (cate.equals("EUROPEAN")) {
-					cate="양식";
-				} else if (cate.equals("BUNSIG")) {
-					cate="분식";
-				} else if (cate.equals("CAFE")) {
-					cate="카페";
-				} else if (cate.equals("ETC")) {
-					cate="식당";
-				}
+				if (id!=null) {
+					int gnum = sql.selectOne("restaurant.greatest", id);
+					List cates = sql.selectList("restaurant.cate", gnum);
 					
-				kwd = d3+cate;
-				System.out.println(kwd);
-				model.addAttribute("kwd", kwd);
+					// 선호 식당종류가 중복일 경우 선호식당을 랜덤으로 검색				
+					int rand = (int)(Math.random()*cates.size());
+					cate = (String)cates.get(rand);
+					if (cate.equals("KOR")) {
+						cate="한식";
+					} else if (cate.equals("CHINA")) {
+						cate="중식";
+					} else if (cate.equals("JAPAN")) {
+						cate="일식";
+					} else if (cate.equals("EUROPEAN")) {
+						cate="양식";
+					} else if (cate.equals("BUNSIG")) {
+						cate="분식";
+					} else if (cate.equals("CAFE")) {
+						cate="카페";
+					} else if (cate.equals("ETC")) {
+						cate="식당";
+					}
+						
+					kwd = d3+cate;
+					System.out.println(kwd);
+					model.addAttribute("kwd", kwd);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -101,10 +101,18 @@ public class MapAPI {
 	// 식당 위치 지도
 	@RequestMapping("map_kwd_rest.eat")
 	public String map_kwd_rest(HttpServletRequest request, Model model) {
-		//area1+area2+store //select area1, area2, addr, store from restaurant where cnum=2396;
-		//addr+store //select addr, store from restaurant where cnum=2443;
+		String cnum = request.getParameter("cnum");
+		System.out.println(cnum);
+		restaurantVO rvo = sql.selectOne("restaurant.restaddr", cnum);
+		String area1 = rvo.getArea1();
+		String area2 = rvo.getArea2();
+		String addr = rvo.getAddr();
+		String store = rvo.getStore();
 		
-		//model.addAttribute("addr", addr);
+		System.out.println(area1+"//"+area2+"//"+addr+"//"+store);
+				
+		model.addAttribute("addr", area1+" "+area2+" "+store);
+		model.addAttribute("addr2", addr+" "+store);
 		return "/map/map_kwd_rest";
 	}
 
