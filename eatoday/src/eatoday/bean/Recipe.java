@@ -19,7 +19,7 @@ import eatoday.vo.recipeReviewVO;
 import eatoday.vo.recipeVO;
 
 @Controller
-@RequestMapping("/homepage/")
+@RequestMapping("/recipe/")
 public class Recipe {
 	
 	@Autowired
