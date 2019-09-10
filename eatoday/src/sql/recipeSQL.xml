@@ -75,10 +75,15 @@
  	<select id="reviewSelect" parameterType="String" resultType="irvo">
  	   select * from recipe_re
  	   <if test="value != null">
- 	    where cnum=#{value} order by reg_date desc
- 	    </if>
+ 	    where cnum=#{value} 
+ 	    </if> 
+ 	    order by reg_date desc
  	</select>
  	
+ 	<!-- 레시피 리뷰 삭제 -->
+ 	<delete id="reviewDelete" parameterType="int">
+ 		delete from recipe_re where num = #{value}
+ 	</delete>
  	<!-- 레시피 리뷰 체크 -->
  	<select id="reviewCheck" parameterType="irnvo" resultType="int">
  		select count(*) from recipe_re_nice where renum=#{renum} and id=#{id}
@@ -93,4 +98,6 @@
  	<delete id="reviewNiceDelete" parameterType="irnvo">
  		delete from recipe_re_nice where id=#{id} and renum= #{renum}
  	</delete>
+ 	
+ 
 </mapper>

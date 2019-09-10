@@ -42,14 +42,14 @@
 </c:when>
 <c:otherwise>
 <script type="text/javascript">
-	function remove(id){
-			var result = confirm(id+"님을 탈퇴 시키겠습니까?");
+	function remove(num){
+			var result = confirm("정말 이 댓글을 삭제하시겠습니까?");
 
 			if(!result){
 				alert("취소되었습니다.");
 			} else {
-				alert(id+"님을 탈퇴시키셨습니다.");
-				location="remove.eat?id="+id;
+				alert("삭제 성공");
+				location="reviewRemove.eat?num="+num;
 			}
 		}
 </script>
@@ -69,7 +69,7 @@
 		<td>${ReviewVO.id }</td>
 		<td>${ReviewVO.nick }</td>
 		<td>${ReviewVO.text }</td>
-		<td><input type="button" value="탈퇴"  onclick="remove('${memberVO.id}')"></td>
+		<td><input type="button" value="삭제"  onclick="remove('${ReviewVO.num}')"></td>
 	</tr>
 	</c:forEach>
 </table>

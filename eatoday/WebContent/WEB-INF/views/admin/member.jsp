@@ -49,7 +49,7 @@
 				alert("취소되었습니다.");
 			} else {
 				alert(id+"님을 탈퇴시키셨습니다.");
-				location="remove.eat?id="+id;
+				location="memberRemove.eat?id="+id;
 			}
 		}
 </script>
