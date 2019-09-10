@@ -373,7 +373,9 @@ public class homepage {
 	
 	//접속위치 중심 선호식당 표시
 	@RequestMapping("favoriteRestaurant.eat")
-	public String favoriteRestaurant() {
+	public String favoriteRestaurant(HttpServletRequest request, Model model) {
+		String sRec=request.getParameter("search");
+		model.addAttribute("sRec", sRec);
 		return "/homepage/favoriteRestaurant";
 	}
 	
@@ -424,7 +426,15 @@ public class homepage {
 		return "/homepage/restaurantDetail";
 	}
 	
-	
+	//레시피 검색
+	@RequestMapping("SearchRecipe.eat")
+	public String SearchRecipe(HttpServletRequest request, Model model ) {
+		String sRec=request.getParameter("search");
+		
+		System.out.println(sRec);
+		model.addAttribute("sRec", sRec);
+		return "/homepage/SearchRecipe";
+	}
 }
 
 
