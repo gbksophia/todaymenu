@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐 먹지? 회원 관리</title>
+<title>오늘 뭐 먹지? 레시피 찜 리스트</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="/eatoday/resource/js/jquery.min.js"></script>
@@ -33,44 +33,68 @@
 </head>
 
 <body>
-<c:choose>
-<c:when test="${!sessionScope.loginID.equals('admin@eatoday.com')}">
-	<script>
-		alert("이페이지를 볼 권한이 없습니다.");
-		history.go(-1);
-	</script>
-</c:when>
-<c:otherwise>
 <script type="text/javascript">
-	function remove(id){
-			var result = confirm(id+"님을 탈퇴 시키겠습니까?");
+		function jjimCheck(i,cnum){
+		   var id = '${sessionScope.loginID}';
+		   var imgtag = "jjimImg"+i;
+		   var imgid = "btn_jjim"+i;
+		   $.ajax({
+		          url: "/eatoday/memberpage/recipeJjim.eat",
+		          type: "post",
+		          data: {id : id, cnum : cnum },
+		          success: function(data) {
+		        	  var elem = document.createElement("img");
+		        	  elem.setAttribute("src", data);
+		        	  elem.setAttribute("height", "50px");
+		      		  elem.setAttribute("width", "50px");
+		      		  elem.setAttribute("id", imgid);
+		      		 document.getElementById(imgtag).appendChild(elem);	
+		        	  }
+		    	  });
+		   }
 
-			if(!result){
-				alert("취소되었습니다.");
-			} else {
-				alert(id+"님을 탈퇴시키셨습니다.");
-				location="memberRemove.eat?id="+id;
-			}
-		}
+	  function jjimClick(i,cnum){
+		  var id = '${sessionScope.loginID}';
+			var img = 'btn_jjim'+i;
+		   if(${sessionScope.loginID == null}){
+				alert("로그인 후 이용해 주십시오.");
+			   } else {
+		   $.ajax({
+		          url: "/eatoday/memberpage/recipeJjimClick.eat",
+		          type: "post",
+		          data: {id : id, cnum : cnum },
+		          success: function(data) {
+		        	  document.getElementById(img).src=data;
+		        	  }
+		    	  });
+		  }
+	  }
 </script>
 
 <jsp:include page="../homepage/header.jsp" />
 <div class="container">
 <br><br><br><br>
+<c:set var="i" value="0"/>
 <table class="table table-bordered">
 	<tr> 
 		<td> 음식 사진 </td>
 		<td> 음식 이름 </td>
+		<td> 찜</td>
 	</tr>
 	<c:forEach var="jjimVO" items="${jjimList }">
 	<tr>
 		<td><img src="/eatoday/resource/RecipeImages/${jjimVO.main_name }" style="height: 150px;width: 150px;"></td>
 		<td><a href="/eatoday/homepage/recipeDetail.eat?cnum=${jjimVO.con_num }" >${jjimVO.title }</a></td>
+		<td>
+		<a id="jjimImg${i}" onclick="javascript:jjimClick('${i}',${jjimVO.con_num })"></a>
+		<script type="text/javascript">
+		jjimCheck('${i}','${jjimVO.con_num}');
+		</script>
+		</td>
 	</tr>
+	<c:set var="i" value="${i+1 }"/>
 	</c:forEach>
 </table>
 </div>
-</c:otherwise>
-</c:choose>
 </body>
 </html>
