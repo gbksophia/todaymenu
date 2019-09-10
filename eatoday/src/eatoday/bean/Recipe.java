@@ -167,16 +167,17 @@ public class Recipe {
 	//레시피 검색
 	@RequestMapping("SearchRecipe.eat")
 	public String SearchRecipe(HttpServletRequest request, Model model ) {
-		String sRec=request.getParameter("search");
+		String srch=request.getParameter("search");
 		
-		System.out.println(sRec);
+		System.out.println("Srch(search)="+srch);
+
+		List rcpTit = sql.selectList("recipe.searchRecTitle",srch);
+		List rcpMat = sql.selectList("recipe.searchRecMate",srch);
 		
-		List rcpTit = sql.selectList("recipe.searchRecTitle",sRec);
-		List rcpMat = sql.selectList("recipe.searchRecMate",sRec);
-		
-		model.addAttribute("sRec", sRec);
+		model.addAttribute("srch", srch);
 		model.addAttribute("rcpTit", rcpTit);
 		model.addAttribute("rcpMat", rcpMat);
+		
 		return "/homepage/SearchRecipe";
 	}
 
