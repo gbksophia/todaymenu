@@ -99,6 +99,26 @@
  		delete from recipe_re_nice where id=#{id} and renum= #{renum}
  	</delete>
  	
+ 	<!-- 레시피 찜 체크 -->
+ 	<select id="jjimCheck" parameterType="ijvo" resultType="int">
+ 	  select count(*) from recipe_jjim where id=#{id} and cnum=#{cnum}
+ 	</select>
+ 	
+ 	<!-- 레시피 찜 추가 -->
+ 	<insert id="jjimInsert" parameterType="ijvo">
+ 		insert into recipe_jjim values(recipe_jjim_seq.nextval,#{id},#{cnum})
+ 	</insert>
+ 	
+ 	<!-- 레시피 찜 삭제 -->
+ 	<delete id="jjimDelete" parameterType="ijvo">
+ 		delete from recipe_jjim where id=#{id} and cnum=#{cnum}
+ 	</delete>
+ 	
+ 	<!-- 레시피 찜 리스트 -->
+ 	<select id="jjimList" parameterType="String" resultType="vo">
+ 		select * from recipe r, recipe_jjim j where r.con_num=j.cnum and j.id= #{value}
+ 	</select>
+ 	
  	<select id="searchRecTitle" parameterType="String" resultType="vo" >
 		select * from recipe where title like '%sRec%'
 	</select>

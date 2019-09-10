@@ -1,5 +1,7 @@
 package eatoday.bean;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import eatoday.vo.memberVO;
+import eatoday.vo.recipeJjimVO;
 
 @Controller
 @RequestMapping("/memberpage/")
@@ -57,8 +60,6 @@ public class memberpage {
 		int result = 1;
 		String id = (String)session.getAttribute("loginID");
 		memberVO vo = new memberVO();
-		System.out.println(pw);
-		System.out.println(pw2);
 		if (pw.equals(pw2)) {
 			vo.setId(id);
 			vo.setPw(pw);
@@ -68,5 +69,41 @@ public class memberpage {
 		
 		model.addAttribute("result",result);
 		return "/member/changePro";
+	}
+	@RequestMapping("recipeJjim.eat")
+	public String recipeJjim(recipeJjimVO vo,Model model) {
+		int result = sql.selectOne("recipe.jjimCheck",vo);
+		
+		String img;
+		if(result==0) {
+			img = "/eatoday/resource/images/jjim1.png";
+		} else {
+			img = "/eatoday/resource/images/jjim2.png";
+		}
+		model.addAttribute("img",img);
+		return "/member/recipeJjim";
+	}
+	
+	@RequestMapping("recipeJjimClick.eat")
+	public String recipeJjimClick(recipeJjimVO vo,Model model) {
+		int result = sql.selectOne("recipe.jjimCheck",vo);
+		String img;
+		if(result==1) {
+			img ="/eatoday/resource/images/jjim1.png";
+			sql.delete("recipe.jjimDelete",vo);
+		} else {
+			img = "/eatoday/resource/images/jjim2.png";
+			sql.insert("recipe.jjimInsert",vo);
+		}
+		model.addAttribute("img",img);
+		return "/member/recipeJjimClick";
+	}
+	
+	@RequestMapping("jjimList.eat")
+	public String jjimList(String id,Model model){
+		List jjimList = sql.selectList("recipe.jjimList",id);
+		
+		model.addAttribute("jjimList",jjimList);
+		return "/member/jjimList";
 	}
 }
