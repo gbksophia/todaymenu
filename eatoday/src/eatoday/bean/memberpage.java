@@ -1,5 +1,7 @@
 package eatoday.bean;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -95,5 +97,13 @@ public class memberpage {
 		}
 		model.addAttribute("img",img);
 		return "/member/recipeJjimClick";
+	}
+	
+	@RequestMapping("jjimList.eat")
+	public String jjimList(String id,Model model){
+		List jjimList = sql.selectList("recipe.jjimList",id);
+		
+		model.addAttribute("jjimList",jjimList);
+		return "/member/jjimList";
 	}
 }
