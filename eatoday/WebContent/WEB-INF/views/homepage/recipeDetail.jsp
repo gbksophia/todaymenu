@@ -270,7 +270,7 @@
         </div>
       </div>
     </section> <!-- .section -->
-asd
+
    <jsp:include page="footer.jsp" />
   
 

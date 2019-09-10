@@ -161,7 +161,7 @@
 
          <div class="hd_column2">
             <div class=".search_body">
-               <form name="searchBar" action="SearhRecipe.eat"
+               <form name="searchBar" action="SearchRecipe.eat"
                   onSubmit="return searchCheck();">
                   <input type="text" name="search" id="search" class="search__input"
                      placeholder="레시피 검색 하시던지 말던지">
