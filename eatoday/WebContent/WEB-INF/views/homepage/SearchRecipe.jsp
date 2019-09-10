@@ -173,21 +173,11 @@
           <c:forEach var="rcpMatVO" items="${rcpMat}">
 			<div class="col-md-3">
         		<div class="menu-entry">
-<<<<<<< HEAD
     					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCon_num()}"></c:param><c:param name = "cate" value = "${rcpMatVO.getCate()}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcpMatVO.getMain_name()});"></a>
 						<div class="text text-center pt-4">
 						    <h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCon_num()}"></c:param><c:param name = "cate" value = "${rcpMatVO.getCate()}"></c:param></c:url>">${rcpMatVO.getTitle() }</a></h3>
 						    	<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCon_num()}"></c:param></c:url>">자세히보기</a>
 						  </div>
-=======
-    					<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">${rcpTit }</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
->>>>>>> branch 'master' of https://github.com/muzmj/todaymenu.git
     				</div>
         	</div>
         	</c:forEach>

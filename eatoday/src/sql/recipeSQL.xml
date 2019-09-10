@@ -99,9 +99,7 @@
  		delete from recipe_re_nice where id=#{id} and renum= #{renum}
  	</delete>
  	
-<<<<<<< HEAD
- 	<!-- 레시피 이름으로 검색 -->	
-=======
+
  	<!-- 레시피 찜 체크 -->
  	<select id="jjimCheck" parameterType="ijvo" resultType="int">
  	  select count(*) from recipe_jjim where id=#{id} and cnum=#{cnum}
@@ -122,7 +120,7 @@
  		select * from recipe r, recipe_jjim j where r.con_num=j.cnum and j.id= #{value}
  	</select>
  	
->>>>>>> branch 'master' of https://github.com/muzmj/todaymenu.git
+	<!-- 레시피 이름으로 검색 -->
  	<select id="searchRecTitle" parameterType="String" resultType="vo" >
 		<![CDATA[ select * from recipe where title like '%'||#{value}||'%']]>
 	</select>
