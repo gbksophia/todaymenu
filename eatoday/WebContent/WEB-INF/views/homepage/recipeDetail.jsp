@@ -9,7 +9,7 @@
     <title>Coffee - Free Bootstrap 4 Template by Colorlib</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <script src="/eatoday/resource/js/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
@@ -111,7 +111,9 @@
             <div class="pt-5 mt-5">
               <h3 class="mb-5">${recount} Comments</h3>
               <ul class="comment-list">
+              <c:set var="i" value="0"/>
               	<c:forEach var="recipeReviewVO" items="${revo }">
+              	<c:set var="i" value="${i+1 }" />
               	<c:set var="likeImg" value="javascript:imgcheck('${recipeReviewVO.getNum() }')"/>
               	 <li class="comment">
                   <div class="comment-body">
@@ -122,8 +124,23 @@
                   	<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img }" height="400px">
                   </c:if>
                    <div class="text-right">
-                   <a >
-                    <img id="likeImg" src="/eatoday/resource/images/${likeImg }" height="20px">
+                   <a id="likeImg${i }" onclick="javascript:niceClick('${recipeReviewVO.num}','${i }')">
+                    <script>		
+      				$.ajax({
+       				url: "nice.eat",
+          			type: "post",
+          			async: false,
+          			data: {id : '${sessionScope.loginID}', num : '${recipeReviewVO.num}' },
+        		  success: function(data) {
+            		  var elem = document.createElement("img");
+            		  elem.setAttribute("src", data);
+            		  elem.setAttribute("height", "20px");
+            		  elem.setAttribute("width", "20px");
+            		  elem.setAttribute("id", "img${i}");
+        		  	document.getElementById("likeImg${i}").appendChild(elem);	
+       				   }
+    			  });
+ 				 </script>
                    </a>
                    </div> 
                   </div>  
@@ -251,7 +268,7 @@
         </div>
       </div>
     </section> <!-- .section -->
-
+asd
    <jsp:include page="footer.jsp" />
   
 
@@ -259,7 +276,7 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="/eatoday/resource/js/jquery.min.js"></script>
+ 
   <script src="/eatoday/resource/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/eatoday/resource/js/popper.min.js"></script>
   <script src="/eatoday/resource/js/bootstrap.min.js"></script>
@@ -276,15 +293,16 @@
   <script src="/eatoday/resource/js/google-map.js"></script>
   <script src="/eatoday/resource/js/main.js"></script>
    <script>
-  function imgcheck(renum) {
+  function niceClick(num,i) {
 	  var id = '${sessionScope.loginID}';
+	  var img = "img"+i;
+	  console.log(img);
       $.ajax({
-          url: "nice.eat",
+          url: "niceClick.eat",
           type: "post",
-          data: {id : id, renum : renum
-              },
-          suc3cess: function(data) {
-        	  $("#likeImg").html(data);
+          data: {id : id, num : num },
+          success: function(data) {
+        document.getElementById(img).src=data;
           }
       });
   }

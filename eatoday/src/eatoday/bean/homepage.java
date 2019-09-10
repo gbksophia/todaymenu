@@ -320,23 +320,42 @@ public class homepage {
 	
 	
 	@RequestMapping("nice.eat")
-	public String nice(recipeReviewVO vo) {
+	public String nice(recipeReviewVO vo,Model model) {
 		recipeReviewNiceVO nivo = new recipeReviewNiceVO();
 		String likeImg;
+		nivo.setRenum(vo.getNum());
+		nivo.setId(vo.getId());
+		int result = sql.selectOne("recipe.reviewCheck",nivo);
+		
+		if(result == 0) {
+			likeImg = "/eatoday/resource/images/like.png";
+		} else {
+			likeImg = "/eatoday/resource/images/like2.png";
+		}
+		model.addAttribute("likeImg",likeImg);
+		return "/homepage/nice";
+	}
+	
+	@RequestMapping("niceClick.eat")
+	public String niceClick(recipeReviewVO vo,Model model) {
+		recipeReviewNiceVO nivo = new recipeReviewNiceVO();
+		String likeImg;
+		System.out.println("num="+vo.getNum());
+		System.out.println("id="+vo.getId());
 		nivo.setRenum(vo.getNum());
 		nivo.setId(vo.getId());
 		int result = sql.selectOne("recipe.reviewCheck",nivo);
 		System.out.println(result);
 		if(result == 0) {
 			sql.insert("recipe.reviewNiceInsert",nivo);
-			likeImg = "like2.png";
+			likeImg = "/eatoday/resource/images/like2.png";
 		} else {
-			likeImg = "like.png";
+			sql.delete("recipe.reviewNiceDelete",nivo);
+			likeImg = "/eatoday/resource/images/like.png";
 		}
-		System.out.println(likeImg);
-		return "/homepage/nice";
+		model.addAttribute("likeImg",likeImg);
+		return "/homepage/niceClick";
 	}
-
 	// index.jsp에서 검색한 결과 표시 - map_kwd.jsp included
 	@RequestMapping("searchResult.eat")
 	public String searchResult(HttpServletRequest request, Model model) {

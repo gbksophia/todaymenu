@@ -85,4 +85,9 @@
  	<insert id="reviewNiceInsert" parameterType="irnvo">
  		insert into recipe_re_nice values (recipe_re_nice_seq.nextval, #{id}, #{renum})
  	</insert>
+ 	
+ 	<!-- 레시피 리뷰 쪼아요 해제 -->
+ 	<delete id="reviewNiceDelete" parameterType="irnvo">
+ 		delete from recipe_re_nice where id=#{id} and renum= #{renum}
+ 	</delete>
 </mapper>
