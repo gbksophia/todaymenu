@@ -99,9 +99,5 @@
  		delete from recipe_re_nice where id=#{id} and renum= #{renum}
  	</delete>
  	
- 	
- 	
- 	<update id = "read" parameterType = "int">
- 		update mem set rice = rice + 1 where id = #{id}
- 	</update>
+ 
 </mapper>
