@@ -286,7 +286,7 @@
         </div>
       </div>
     </section>
-<jsp:include page = "../SideMenu/layerPopup.jsp" />
+
 <c:if test="${sessionScope.loginID != null}">
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 			<div class="overlay"></div>
