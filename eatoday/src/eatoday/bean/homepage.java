@@ -392,6 +392,7 @@ public class homepage {
 			if (cate.equals("±‚≈∏")) {
 				System.out.println("2"+cate);
 				restList = sql.selectList("restaurant.restetc");
+				model.addAttribute("restList", restList);
 			} else {
 				System.out.println("3"+cate);
 				restList = sql.selectList("restaurant.select", cate);
