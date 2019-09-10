@@ -32,7 +32,40 @@
     <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
-   
+   <script src="/eatoday/resource/js/jquery-migrate-3.0.1.min.js"></script>
+   <script>
+  function niceClick(num,i) {
+	  var id = '${sessionScope.loginID}';
+	  var img = "img"+i;
+	  console.log(img);
+      $.ajax({
+          url: "niceClick.eat",
+          type: "post",
+          data: {id : id, num : num },
+          success: function(data) {
+        document.getElementById(img).src=data;
+          }
+      });
+  }
+  function niceCheck(num,i){
+	  var img = "likeImg"+i;
+	  var id = "img"+i;
+	  $.ajax({
+			url: "nice.eat",
+			type: "post",
+			async: false,
+			data: {id : '${sessionScope.loginID}', num : num},
+		  success: function(data) {
+  		  var elem = document.createElement("img");
+  		  elem.setAttribute("src", data);
+  		  elem.setAttribute("height", "20px");
+  		  elem.setAttribute("width", "20px");
+  		  elem.setAttribute("id", id);
+		  document.getElementById(img).appendChild(elem);	
+				}
+		  });
+	  }
+  </script>
 
   </head>
   
@@ -96,6 +129,7 @@
 			<p>  ${rcpro } </p>
 				<br><br>
 			</c:forEach>
+			
 </div>
             <%-- 
             <div class="tag-widget post-tag-container mb-5 mt-5">
@@ -108,6 +142,8 @@
             </div>
 --%>
 
+
+	<!-- 댓글 -->
             <div class="pt-5 mt-5">
               <h3 class="mb-5">${recount} Comments</h3>
               <ul class="comment-list">
@@ -123,34 +159,21 @@
                   <c:if test="${recipeReviewVO.img != null }">
                   	<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img }" height="400px">
                   </c:if>
-                  <c:if test="${sessionScope.loginID !=null }">
+           			
                    <div class="text-right">
+                   <p>${reviewNiceCount}</p>
                    <a id="likeImg${i }" onclick="javascript:niceClick('${recipeReviewVO.num}','${i }')">
-                    <script>		
-      				$.ajax({
-       				url: "nice.eat",
-          			type: "post",
-          			async: false,
-          			data: {id : '${sessionScope.loginID}', num : '${recipeReviewVO.num}' },
-        		  success: function(data) {
-            		  var elem = document.createElement("img");
-            		  elem.setAttribute("src", data);
-            		  elem.setAttribute("height", "20px");
-            		  elem.setAttribute("width", "20px");
-            		  elem.setAttribute("id", "img${i}");
-        		  	document.getElementById("likeImg${i}").appendChild(elem);	
-       				   }
-    			  });
- 				 </script>
+                    <script>
+                    niceCheck('${recipeReviewVO.num}','${i}')	
+ 				 	</script>
                    </a>
                    </div> 
-                   </c:if>
                   </div>  
                 </li>
               	</c:forEach>
               </ul>
               <!-- END comment-list -->
-             <!-- 댓글 달기 -->
+      <!-- 댓글 달기 -->
               <div class="comment-form-wrap pt-5">
               	<c:choose>
               		<c:when test="${sessionScope.loginID == null }">
@@ -279,7 +302,7 @@ asd
 
 
  
-  <script src="/eatoday/resource/js/jquery-migrate-3.0.1.min.js"></script>
+  
   <script src="/eatoday/resource/js/popper.min.js"></script>
   <script src="/eatoday/resource/js/bootstrap.min.js"></script>
   <script src="/eatoday/resource/js/jquery.easing.1.3.js"></script>
@@ -294,20 +317,7 @@ asd
   <script src="/eatoday/resource/js/scrollax.min.js"></script>
   <script src="/eatoday/resource/js/google-map.js"></script>
   <script src="/eatoday/resource/js/main.js"></script>
-   <script>
-  function niceClick(num,i) {
-	  var id = '${sessionScope.loginID}';
-	  var img = "img"+i;
-	  console.log(img);
-      $.ajax({
-          url: "niceClick.eat",
-          type: "post",
-          data: {id : id, num : num },
-          success: function(data) {
-        document.getElementById(img).src=data;
-          }
-      });
-  }
-  </script>
+
+  
   </body>
 </html>
