@@ -31,4 +31,9 @@
  	<select id="List" resultType="mvo">
  		select * from mem where id !='admin@eatoday.com'
  	</select>
+ 	
+ 	 	
+ 	<update id = "read" parameterType = "int">
+ 		update mem set rice = rice + 1 where id = #{id}
+ 	</update>
 </mapper>
