@@ -315,7 +315,7 @@
               </div>
             </div>
 
-             	            </c:if>
+            	</c:if>
             </c:forEach>           
 <%--
             <div class="sidebar-box ftco-animate">

@@ -169,7 +169,7 @@
         
             <h2 class="mb-3">재료</h2>
         
-
+		
         	<div class="col-md-3">
         		<div class="menu-entry">
     					<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
