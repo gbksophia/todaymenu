@@ -286,11 +286,12 @@
       </div>
     </section>
 
-
+<c:if test="${sessionScope.loginID != null}">
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 			<div class="overlay"></div>
       <div class="container">
         <div class="row justify-content-center">
+        
         			<h1>추천 레시피</h1><br/><br/>
         	<div class="row">
 			<c:set var = "cate1" value = "${cate }"/>
@@ -331,7 +332,11 @@
         </div>
       </div>
     </section>
+</c:if>
 
+<c:if test="${sessionScope.loginID == null}">
+
+</c:if>
 
 
     <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5">

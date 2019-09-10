@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,13 @@ public class homepage {
 	
 	//http://localhost:8080/eatoday/homepage/index.eat
 	@RequestMapping("index.eat")
-	public String index(Model model, HttpServletRequest request) {
+	public String index(Model model, HttpServletRequest request,HttpSession session) {
+		String id = (String)session.getAttribute("loginID");
+		
+		if (id != null) {
 		try {
 			request.setCharacterEncoding("UTF-8");
-			String id = "guswndnjs";
+			
 			
 			int count = (Integer)sql.selectOne("recipe.count");
 			ArrayList rcp = new ArrayList();
@@ -127,6 +131,11 @@ public class homepage {
 			e.printStackTrace();
 		}
 		return "/homepage/index";
+		}
+		else {
+			return "/homepage/index";
+		}
+		
 	}
 	
 //	@RequestMapping("recipeList.eat")

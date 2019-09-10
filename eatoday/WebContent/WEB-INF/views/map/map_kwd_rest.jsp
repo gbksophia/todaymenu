@@ -59,13 +59,14 @@ var ps = new kakao.maps.services.Places();
 
 // 커스텀 오버레이 컨텐츠를 설정합니다
 placeOverlay.setContent(contentNode);
-    
+
 // 키워드로 장소를 검색합니다
 ps.keywordSearch('${addr}', placesSearchCB); 
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB (data, status, pagination) {
-    if (status === kakao.maps.services.Status.OK) {
+		//addr로 정상적으로 검색되었을 때
+	if (status === kakao.maps.services.Status.OK) {
 
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
@@ -78,7 +79,18 @@ function placesSearchCB (data, status, pagination) {
 
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
         map.setBounds(bounds);
-    } 
+///////////////
+        console.log('1===='+status);
+		//addr로 검색이 되지 않을 경우 addr2로 검색
+	} else if (status === kakao.maps.services.Status.ZERO_RESULT){
+		console.log('2===='+status);
+		ps.keywordSearch('${addr2}', placesSearchCB);
+		//카카오 서버 에러
+	} else if (status === kakao.maps.services.Status.ERROR) {
+		console.log('3===='+status);
+		alert('gg');
+	}
+///////////////	
 }
 
 // 지도에 마커를 표시하는 함수입니다
@@ -112,6 +124,7 @@ function displayMarker(place) {
     });
 }
 </script>
-
+${addr} <br/>
+${addr2}
 </body>
 </html>

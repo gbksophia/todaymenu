@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +38,7 @@
 		 document.frm.method="post";
 		 document.frm.submit();
 		}
+
 </script>
 </head>
 <body>
@@ -77,6 +78,17 @@
 						패스워드 변경
 						</a>
 					</div>
+					<c:if test="${sessionScope.loginID.equals('admin@eatoday.com')}">
+					<div class="text-right">
+						<a href="/eatoday/adminpage/member.eat">
+							회원 관리
+						</a>
+						&nbsp;|&nbsp;
+						<a href="/eatoday/adminpage/recipeReview.eat">
+							레시피 댓글 관리
+						</a>
+					</div>
+					</c:if>
 					</form>
 					
 			</div>
