@@ -123,6 +123,7 @@
                   <c:if test="${recipeReviewVO.img != null }">
                   	<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img }" height="400px">
                   </c:if>
+                  <c:if test="${sessionScope.loginID !=null }">
                    <div class="text-right">
                    <a id="likeImg${i }" onclick="javascript:niceClick('${recipeReviewVO.num}','${i }')">
                     <script>		
@@ -143,6 +144,7 @@
  				 </script>
                    </a>
                    </div> 
+                   </c:if>
                   </div>  
                 </li>
               	</c:forEach>
