@@ -7,13 +7,15 @@
 		insert into restaurant(num, cnum, store, area1, area2, addr, tel, cate) 
 		values (restaurant_seq.nextval, #{cnum}, #{store}, #{area1}, #{area2}, #{addr}, #{tel}, #{cate})
 	</insert>
-
-	<select id="select" parameterType="String" resultType="rvo">
-		select * from restaurant where cate = #{cate}
+	
+	<!-- 카테고리 갯수 -->
+	<select id="count" parameterType="String" resultType="int">
+		select count(*) from restaurant where cate=#{value}
 	</select>
 	
-	<select id="count" resultType="int">
-		select count(*) from restaurant
+	<!-- 기타식당 갯수 -->
+	<select id="countEtc" resultType="int">
+		select count(*) from restaurant where cate not in ('한식', '중식', '일식', '양식', '분식', '카페')
 	</select>
 	
 	<select id="search" parameterType="list" resultType="rvo">
@@ -33,8 +35,13 @@
 		WHERE yn = #{value}
 	</select>
 	
+	<!-- 식당 카테고리 -->
+	<select id="select" parameterType="String" resultType="rvo">
+		select * from restaurant where cate = #{cate}
+	</select>
+	
 	<!-- 식당카테고리 기타 제외 -->
-	<select id="restetc" resultType="rvo">
+	<select id="restEtc" resultType="rvo">
 		select * from restaurant where cate not in ('한식', '중식', '일식', '양식', '분식', '카페')
 	</select>
 	

@@ -27,7 +27,7 @@
 		<div class="container">
 			<div class="row slider-text justify-content-center align-items-center">
 				<div class="col-md-7 col-sm-12 text-center ftco-animate">
-					<c:set var = "a" value = "${cate}"/>     	
+					<c:set var = "cate" value = "${cate}"/>     	
 					<c:choose>
 						<c:when test="${cate == '한식' }"><h1 class="mb-3 mt-5 bread">한식</h1></c:when>
 						<c:when test="${cate == '중식' }"><h1 class="mb-3 mt-5 bread">중식</h1></c:when>
@@ -66,13 +66,27 @@
 								<div class="row">
 									<c:forEach begin="0" end="${count}" step="1" var="i">
 										<c:set var="rest" value="${restList[i]}" />
-										<c:if test="${rest.getCate() == a}">
+										<c:if test="${rest.getCate() == cate}">
 											<div class="col-md-3">
 												<div class="menu-entry">
 													<%-- <a href="<c:url value = "restaurantDetail.eat">
 														<c:param name = "cnum" value = "${rest.getNum()}"></c:param>
 														<c:param name = "cate" value = "${cate}"></c:param></c:url>" 
 														class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rest.getMain_name()});"></a> --%>
+													<div class="text text-center pt-4">
+														<h3><a href="<c:url value="restaurantDetail.eat">
+																<c:param name="cnum" value="${rest.getCnum()}"></c:param><c:param name="cate" value="${cate}"></c:param>
+																</c:url>">${rest.getStore()}<br/>${rest.getArea1()} ${rest.getArea2()}</a></h3>
+														
+														<a class="btn btn-primary btn-outline-primary" href="<c:url value ="restaurantDetail.eat">
+																<c:param name="cnum" value="${rest.getCnum()}"></c:param></c:url>">자세히보기</a>
+													</div>
+												</div>
+											</div>
+										</c:if>
+										<c:if test="${cate!='한식'||'중식'||'일식'||'양식'||'분식'||'카페'}">
+											<div class="col-md-3">
+												<div class="menu-entry">
 													<div class="text text-center pt-4">
 														<h3><a href="<c:url value="restaurantDetail.eat">
 																<c:param name="cnum" value="${rest.getCnum()}"></c:param><c:param name="cate" value="${cate}"></c:param>
