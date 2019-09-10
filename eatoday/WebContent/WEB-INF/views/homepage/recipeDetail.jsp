@@ -34,6 +34,47 @@
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
    <script src="/eatoday/resource/js/jquery-migrate-3.0.1.min.js"></script>
    <script>
+   window.onload = function(){
+	   var id = '${sessionScope.loginID}';
+	   var cnum = '${rvo.con_num}';
+	   $.ajax({
+	          url: "/eatoday/memberpage/recipeJjim.eat",
+	          type: "post",
+	          data: {id : id, cnum : cnum },
+	          success: function(data) {
+	        	  var elem = document.createElement("img");
+	        	  elem.setAttribute("src", data);
+	        	  elem.setAttribute("height", "50px");
+	      		  elem.setAttribute("width", "50px");
+	      		  elem.setAttribute("id", "btn_jjim");
+	      		 document.getElementById("jjimImg").appendChild(elem);	
+	        	  }
+	    	  });
+	   }
+
+  function jjimClick(){
+	  var id = '${sessionScope.loginID}';
+	   var cnum = '${rvo.con_num}';
+
+	   if(${sessionScope.loginID == null}){
+			alert("로그인 후 이용해 주십시오.");
+		   } else {
+	   $.ajax({
+	          url: "/eatoday/memberpage/recipeJjimClick.eat",
+	          type: "post",
+	          data: {id : id, cnum : cnum },
+	          success: function(data) {
+	        	  var elem = document.createElement("img");
+	        	  elem.setAttribute("src", data);
+	        	  elem.setAttribute("height", "50px");
+	      		  elem.setAttribute("width", "50px");
+	      		  elem.setAttribute("id", "btn_jjim");
+	      		document.getElementById("btn_jjim").src=data;	
+	        	  }
+	    	  });
+	  }
+  }
+   
   function niceClick(num,i) {
 	  var id = '${sessionScope.loginID}';
 	  var img = "img"+i;
@@ -133,7 +174,11 @@
 			<p>  ${rcpro } </p>
 				<br><br>
 			</c:forEach>
-			
+			<div style="text-align: center">
+				<a id="jjimImg" onclick="javascript:jjimClick()">
+					
+				</a>
+			</div>
 </div>
             <%-- 
             <div class="tag-widget post-tag-container mb-5 mt-5">

@@ -20,11 +20,11 @@
                 <a class="dropdown-item" href="/eatoday/homepage/recipeWst.eat">양식</a> -->
               </div>
             </li>
-	          <li class="nav-item"><a href="contact.eat" class="nav-link">Contact</a></li>
 	          <c:if test="${sessionScope.loginID == null}">
 	          	<li class="nav-item"><a href="/eatoday/loginpage/login.eat" class="nav-link">login</a></li>
 	          </c:if>
 	          <c:if test="${sessionScope.loginID != null}">
+	          <li class="nav-item"><a href="/eatoday/memberpage/jjimList.eat?id=${sessionScope.loginID }" class="nav-link">jjim</a></li>
 	          	<li class="nav-item"><a href="/eatoday/memberpage/information.eat" class="nav-link">information</a></li>
 	          </c:if>
 	          <li class="nav-item cart"><a href="cart.eat" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
@@ -32,4 +32,5 @@
 	      </div>
 		  </div>
 	  </nav>
+	  
 </html>

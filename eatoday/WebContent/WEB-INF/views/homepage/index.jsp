@@ -109,6 +109,7 @@
   </head>
   <body>
   	<jsp:include page="header.jsp" />
+  	
     <!-- END nav -->
 
     <section class="home-slider owl-carousel">
@@ -292,8 +293,8 @@
       <div class="container">
         <div class="row justify-content-center">
         
-        			<h1>추천 레시피</h1><br/><br/>
-        	<div class="row">
+        			<h1>${sessionScope.loginID }님의 추천 레시피</h1><br/><br/>
+        	<div class="row" style = "margin-top:100px;">
 			<c:set var = "cate1" value = "${cate }"/>
 			
 			<c:forEach begin = "0" end = "8" step = "1" var = "i">

@@ -7,6 +7,7 @@
 		<typeAlias alias="vo" type="eatoday.vo.recipeVO"/>
 		<typeAlias alias="ivo" type="eatoday.vo.recipeImgVO"/>
 		<typeAlias alias="irvo" type="eatoday.vo.recipeReviewVO"/>
+		<typeAlias alias="ijvo" type="eatoday.vo.recipeJjimVO"/>
 		<typeAlias alias="irnvo" type="eatoday.vo.recipeReviewNiceVO"/>
 		<typeAlias alias="rvo" type="eatoday.vo.restaurantVO"/>
 		<typeAlias alias="mvo" type="eatoday.vo.memberVO"/>
