@@ -61,13 +61,12 @@
 	          data: {cate : i},
 	          async: false,
 	          success: function(data) {
-	        	  var elem = document.createElement("span");
+	        	  var categori = document.createElement("span");
 	        	  var data = "("+data+")";
-	        	  elem.innerHTML = data;
-	        	  document.getElementById(id).appendChild(elem);	
+	        	  categori.innerHTML = data;
+	        	  document.getElementById(id).appendChild(categori);	
 	        	  }
 	    	  });
-	   console.log(id);
 	   }
 	   }
 	
@@ -97,7 +96,7 @@
   }
    
   // 댓글 좋아요 클릭 이벤트
-  function niceClick(num,i) {
+  function niceClick(num,i,renum) {
 	  var id = '${sessionScope.loginID}';
 	  var img = "img"+i;
 
@@ -110,12 +109,13 @@
           data: {id : id, num : num },
           success: function(data) {
         document.getElementById(img).src=data;
+        niceCountClick(renum,i);
         	  }
     	  });
   		}
   	}
   
-  // 댓글 좋아요 체크
+  // 댓글 좋아요 이미지 체크
   function niceCheck(num,i){
 	  var img = "likeImg"+i;
 	  var id = "img"+i;
@@ -133,8 +133,36 @@
 		  document.getElementById(img).appendChild(elem);	
 				}
 		  });
+  }
+	  // 댓글 좋아요 갯수 체크
+	  function niceCountCheck(renum,i){
+		 id = "niceCount"+i;
+		  $.ajax({
+				url: "niceCountCheck.eat",
+				type: "post",
+				async: false,
+				data: { renum : renum},
+			  success: function(data) {
+	  		  var elem = document.createElement("span");
+	  		 elem.innerHTML = data;
+      	  	 document.getElementById(id).appendChild(elem);	
+					}
+			  });
 	  }
   
+	// 댓글 좋아요 갯수 클릭
+	  function niceCountClick(renum,i){
+		 id = "niceCount"+i;
+		  $.ajax({
+				url: "niceCountCheck.eat",
+				type: "post",
+				data: { renum : renum},
+			  success: function(data) {
+				  document.getElementById(id).innerHTML = data;
+					}
+			  });
+	  }  
+	  
   //검색 유효성 검사
   function searchCheck() {
       var str = document.getElementById('search');
@@ -242,15 +270,16 @@
                   </c:if>
            			
                    <div class="text-right">
-                   <p>${reviewNiceCount}</p>
-                   <a id="likeImg${i }" onclick="javascript:niceClick('${recipeReviewVO.num}','${i }')">
-                    <script>
-                    niceCheck('${recipeReviewVO.num}','${i}')	
- 				 	</script>
+                   <div id="niceCount${i}"></div>
+                   <a id="likeImg${i }" onclick="javascript:niceClick('${recipeReviewVO.num}','${i }','${recipeReviewVO.num}')">
                    </a>
                    </div> 
                   </div>  
                 </li>
+                <script>
+                    niceCheck('${recipeReviewVO.num}','${i}');
+                    niceCountCheck('${recipeReviewVO.num}','${i}');
+ 				 	</script>
               	</c:forEach>
               </ul>
               <!-- END comment-list -->

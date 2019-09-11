@@ -48,7 +48,7 @@ public class Recipe {
 	public String recipeDetail(Model model, HttpServletRequest request) throws Exception {
 		String cnum = request.getParameter("cnum");
 		int recount = sql.selectOne("recipe.ReviewCount",cnum);
-		
+
 		// 해당 레시피 정보
 		recipeVO vo = sql.selectOne("recipe.info",cnum);
 		String [] pro = vo.getPro().split("next"); // 조리법 분리
@@ -119,6 +119,7 @@ public class Recipe {
 		}
 	
 	
+	// 페이지 첫 실행시만 사용 댓글 클릭 여부 체크
 	@RequestMapping("nice.eat")
 	public String nice(recipeReviewVO vo,Model model) {
 		recipeReviewNiceVO nivo = new recipeReviewNiceVO();
@@ -126,7 +127,6 @@ public class Recipe {
 		nivo.setRenum(vo.getNum());
 		nivo.setId(vo.getId());
 		int result = sql.selectOne("recipe.reviewCheck",nivo);
-		
 		if(result == 0) {
 			likeImg = "/eatoday/resource/images/like.png";
 		} else {
@@ -136,16 +136,14 @@ public class Recipe {
 		return "/homepage/nice";
 	}
 	
+	// 댓글 좋아요 클릭 이벤트
 	@RequestMapping("niceClick.eat")
 	public String niceClick(recipeReviewVO vo,Model model) {
 		recipeReviewNiceVO nivo = new recipeReviewNiceVO();
 		String likeImg;
-		System.out.println("num="+vo.getNum());
-		System.out.println("id="+vo.getId());
 		nivo.setRenum(vo.getNum());
 		nivo.setId(vo.getId());
 		int result = sql.selectOne("recipe.reviewCheck",nivo);
-		System.out.println(result);
 		if(result == 0) {
 			sql.insert("recipe.reviewNiceInsert",nivo);
 			likeImg = "/eatoday/resource/images/like2.png";
@@ -156,6 +154,15 @@ public class Recipe {
 		model.addAttribute("likeImg",likeImg);
 		return "/homepage/niceClick";
 	}
+	
+	// 좋아요 갯수 카운트
+	@RequestMapping("niceCountCheck.eat")
+	public String niceCount(int renum,Model model) {
+		int niceCountCheck = (Integer)sql.selectOne("recipe.niceCount",renum);
+		model.addAttribute("niceCountCheck",niceCountCheck);
+		return "/homepage/niceCountCheck";
+	}
+	
 	// index.jsp에서 검색한 결과 표시 - map_kwd.jsp included
 	@RequestMapping("searchResult.eat")
 	public String searchResult(HttpServletRequest request, Model model) {
@@ -183,7 +190,6 @@ public class Recipe {
 	@RequestMapping("recipeCateCount.eat")
 	public String recipeCateCount(String cate,Model model) {
 		int CateCount =(Integer)sql.selectOne("recipe.cateCount",cate);
-		System.out.println(CateCount);
 		model.addAttribute("CateCount",CateCount);
 		return "/homepage/recipeCateCount";
 	}
