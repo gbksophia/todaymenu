@@ -111,7 +111,7 @@
 			<!-- END comment-list -->
 			<!-- 댓글 달기 -->
 				<div class="comment-form-wrap pt-5">
-				<form action="recipeRePro.eat" method="post" enctype="multipart/form-data">
+				<form action="restaurantRePro.eat" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="cnum" value="${rvo.getCnum()}"/>
 					<input type="hidden" name="id" value="${sessionScope.loginID}"/>
 					<div class="form-group">

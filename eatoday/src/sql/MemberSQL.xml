@@ -3,11 +3,11 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-	<insert id="insert" parameterType="mvo">
+	<insert id="insert" parameterType="memberVO">
 		insert into mem values(mem_seq.nextval, #{id}, #{pw}, #{kor},#{china},#{japan},#{european},#{bunsig},#{cafe},#{etc},#{rice},#{soup},#{jeongol},#{side},#{shake},#{gui},#{jjim},#{guest},#{children},#{kimchi},#{dosi},#{fry},#{noodle},#{salad},#{spa},#{snack},#{toast},#{baking},#{dessert},#{juice},#{cocktail},#{holiday},#{drink})
 	</insert>
 	
-	<select id="loginCheck" parameterType="mvo" resultType="int">
+	<select id="loginCheck" parameterType="memberVO" resultType="int">
 		select count(*) from mem where id=#{id} and pw=#{pw}
  	</select>
  	
@@ -15,7 +15,7 @@
  		select count(*) from mem where id=#{value}
  	</select>
  	
- 	<select id="info" parameterType="String" resultType="mvo">
+ 	<select id="info" parameterType="String" resultType="memberVO">
  		select * from mem where id=#{value}
  	</select>
  	
@@ -23,12 +23,12 @@
  		delete from mem where id=#{value}
  	</delete>
  	
- 	<update id="update" parameterType="mvo">
+ 	<update id="update" parameterType="memberVO">
  		update mem set pw=#{pw} where id=#{id}
  	</update>
  	
  	<!-- 어드민을 제외한 나머지 멤버 리스트 -->
- 	<select id="List" resultType="mvo">
+ 	<select id="List" resultType="memberVO">
  		select * from mem where id !='admin@eatoday.com'
  	</select>
  	

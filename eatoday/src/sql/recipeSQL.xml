@@ -4,22 +4,22 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="recipe">
 		<!-- 레시피 정보 입력 -->
-	<insert id="insert" parameterType="vo">
+	<insert id="insert" parameterType="recipeVO">
 		insert into recipe(cate, con_num, main_name, title, mate, pro) 
 		values (#{cate}, #{con_num}, #{main_name}, #{title}, #{mate}, #{pro})
 	</insert>
 
 	<!-- 레시피 리스트  출력 -->
-	<select id="select" resultType="vo" parameterType="String">
+	<select id="select" resultType="recipeVO" parameterType="String">
 		select * from recipe where cate= #{cate}
 	</select>
 	
 	<!-- 레시피 정보 출력 -->
-	<select id="info" resultType="vo" parameterType="String">
+	<select id="info" resultType="recipeVO" parameterType="String">
 		select * from recipe where con_num=#{cnum}
 	</select>
 	
-	<select id = "selectPro" resultType="ivo">
+	<select id = "selectPro" resultType="recipeImgVO">
 		select * from recipe_pro
 	</select>
 
@@ -34,7 +34,7 @@
 	</select>
 
 	<!-- 레시피 조리법 이미지 검색 -->
-	<select id="imgselect" resultType="ivo" parameterType="String" >
+	<select id="imgselect" resultType="recipeImgVO" parameterType="String" >
 		select * from recipe_pro where con_num = #{cnum}
 	</select>
  
@@ -62,7 +62,7 @@
  	</select>
  	
  	<!-- 레시피 리뷰 쓰기 -->
- 	<insert id="recipeReview" parameterType="irvo">
+ 	<insert id="ReviewInsert" parameterType="recipeReviewVO">
  		insert into recipe_re(num,cnum,id,nick,text,img,reg_date) values (recipe_re_seq.nextval,#{cnum},#{id},#{nick},#{text},#{img},sysdate)
  	</insert>
  	
@@ -72,7 +72,7 @@
  	</select>
  	
  	<!-- 레시피 리뷰 가져오기 -->
- 	<select id="reviewSelect" parameterType="String" resultType="irvo">
+ 	<select id="reviewSelect" parameterType="String" resultType="recipeReviewVO">
  	   select * from recipe_re
  	   <if test="value != null">
  	    where cnum=#{value} 
@@ -85,7 +85,7 @@
  		delete from recipe_re where num = #{value}
  	</delete>
  	<!-- 레시피 리뷰 클릭 여부 체크 -->
- 	<select id="reviewCheck" parameterType="irnvo" resultType="int">
+ 	<select id="reviewCheck" parameterType="recipeReviewNiceVO" resultType="int">
  		select count(*) from recipe_re_nice where renum=#{renum} and id=#{id}
  	</select>
  	
@@ -94,43 +94,43 @@
  		select count(*) from recipe_re_nice where renum=#{value}
  	</select>	
  	<!-- 레시피 리뷰 쪼아요 -->
- 	<insert id="reviewNiceInsert" parameterType="irnvo">
+ 	<insert id="reviewNiceInsert" parameterType="recipeReviewNiceVO">
  		insert into recipe_re_nice values (recipe_re_nice_seq.nextval, #{id}, #{renum})
  	</insert>
  	
  	<!-- 레시피 리뷰 쪼아요 해제 -->
- 	<delete id="reviewNiceDelete" parameterType="irnvo">
+ 	<delete id="reviewNiceDelete" parameterType="recipeReviewNiceVO">
  		delete from recipe_re_nice where id=#{id} and renum= #{renum}
  	</delete>
  	
 
  	<!-- 레시피 찜 체크 -->
- 	<select id="jjimCheck" parameterType="ijvo" resultType="int">
+ 	<select id="jjimCheck" parameterType="recipeJjimVO" resultType="int">
  	  select count(*) from recipe_jjim where id=#{id} and cnum=#{cnum}
  	</select>
  	
  	<!-- 레시피 찜 추가 -->
- 	<insert id="jjimInsert" parameterType="ijvo">
+ 	<insert id="jjimInsert" parameterType="recipeJjimVO">
  		insert into recipe_jjim values(recipe_jjim_seq.nextval,#{id},#{cnum})
  	</insert>
  	
  	<!-- 레시피 찜 삭제 -->
- 	<delete id="jjimDelete" parameterType="ijvo">
+ 	<delete id="jjimDelete" parameterType="recipeJjimVO">
  		delete from recipe_jjim where id=#{id} and cnum=#{cnum}
  	</delete>
  	
  	<!-- 레시피 찜 리스트 -->
- 	<select id="jjimList" parameterType="String" resultType="vo">
+ 	<select id="jjimList" parameterType="String" resultType="recipeVO">
  		select * from recipe r, recipe_jjim j where r.con_num=j.cnum and j.id= #{value}
  	</select>
  	
 	<!-- 레시피 이름으로 검색 -->
- 	<select id="searchRecTitle" parameterType="String" resultType="vo" >
+ 	<select id="searchRecTitle" parameterType="String" resultType="recipeVO" >
 		<![CDATA[ select * from recipe where title like '%'||#{value}||'%']]>
 	</select>
 	
 	<!-- 레시피 재료로 검색 -->
-	<select id="searchRecMate" parameterType="String" resultType="vo" >
+	<select id="searchRecMate" parameterType="String" resultType="recipeVO" >
 		<![CDATA[select * from recipe where mate like '%'||#{value}||'%']]>
 	</select>
 	

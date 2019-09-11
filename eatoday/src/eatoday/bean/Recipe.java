@@ -47,6 +47,8 @@ public class Recipe {
 	@RequestMapping("recipeDetail.eat")
 	public String recipeDetail(Model model, HttpServletRequest request) throws Exception {
 		String cnum = request.getParameter("cnum");
+		
+		//리뷰 카운트
 		int recount = sql.selectOne("recipe.ReviewCount",cnum);
 
 		// 해당 레시피 정보
@@ -111,8 +113,7 @@ public class Recipe {
 		vo.setId(id);
 		vo.setNick(nick);
 		vo.setText(text);
-		vo.setNice(0);
-		sql.insert("recipe.recipeReview",vo);
+		sql.insert("recipe.ReviewInsert",vo);
 		model.addAttribute("cnum",cnum);
 			
 			return "/homepage/recipeRePro";

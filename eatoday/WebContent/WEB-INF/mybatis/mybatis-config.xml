@@ -4,13 +4,15 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="vo" type="eatoday.vo.recipeVO"/>
-		<typeAlias alias="ivo" type="eatoday.vo.recipeImgVO"/>
-		<typeAlias alias="irvo" type="eatoday.vo.recipeReviewVO"/>
-		<typeAlias alias="ijvo" type="eatoday.vo.recipeJjimVO"/>
-		<typeAlias alias="irnvo" type="eatoday.vo.recipeReviewNiceVO"/>
-		<typeAlias alias="rvo" type="eatoday.vo.restaurantVO"/>
-		<typeAlias alias="mvo" type="eatoday.vo.memberVO"/>
+		<typeAlias alias="recipeVO" type="eatoday.vo.recipeVO"/>
+		<typeAlias alias="recipeImgVO" type="eatoday.vo.recipeImgVO"/>
+		<typeAlias alias="recipeReviewVO" type="eatoday.vo.recipeReviewVO"/>
+		<typeAlias alias="recipeJjimVO" type="eatoday.vo.recipeJjimVO"/>
+		<typeAlias alias="recipeReviewNiceVO" type="eatoday.vo.recipeReviewNiceVO"/>
+		<typeAlias alias="restaurantVO" type="eatoday.vo.restaurantVO"/>
+		<typeAlias alias="restaurantReviewVO" type="eatoday.vo.restaurantReviewVO"/>
+		<typeAlias alias="restaurantReviewNiceVO" type="eatoday.vo.restaurantReviewNiceVO"/>
+		<typeAlias alias="memberVO" type="eatoday.vo.memberVO"/>
 	</typeAliases>
 	
 	<mappers>

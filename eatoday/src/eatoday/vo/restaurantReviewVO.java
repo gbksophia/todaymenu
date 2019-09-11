@@ -2,7 +2,7 @@ package eatoday.vo;
 
 import java.sql.Date;
 
-public class recipeReviewVO {
+public class restaurantReviewVO {
 	private int num;
 	private String cnum;
 	private String id;

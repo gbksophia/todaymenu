@@ -1,5 +1,6 @@
 package eatoday.bean;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import eatoday.vo.recipeReviewVO;
+import eatoday.vo.recipeVO;
 import eatoday.vo.restaurantVO;
 @Controller
 @RequestMapping("/homepage/")
@@ -64,14 +69,64 @@ public class Restaurant {
 		@RequestMapping("restaurantDetail.eat")
 		public String restaurantDetail(HttpServletRequest request, Model model) {
 			String cnum = request.getParameter("cnum");
-					
-			// 해당 식당 정보
-			restaurantVO rvo = sql.selectOne("restaurant.info", cnum);
+			
+			//리뷰 카운트
+			int recount = sql.selectOne("restaurant.ReviewCount",cnum);
 
-			model.addAttribute("rvo", rvo);
-
+			// 해당 레스토랑 정보
+			restaurantVO rvo = sql.selectOne("restaurant.info",cnum);
+			
+			//레스토랑 리뷰 가져오기
+			List revo = sql.selectList("restaurant.reviewSelect",cnum);
+			
+			
+			model.addAttribute("rvo",rvo);
+			model.addAttribute("revo",revo);
+			model.addAttribute("recount",recount);
+			model.addAttribute("recount",recount);
 			return "/homepage/restaurantDetail";
 		}
+		
+		//댓글 쓰기
+		@RequestMapping("restaurantRePro.eat")
+		public String restaurantRePro(MultipartHttpServletRequest request,Model model) throws Exception{
+			request.setCharacterEncoding("UTF-8");
+			MultipartFile mf = request.getFile("img");
+			String orgName = mf.getOriginalFilename();
+			recipeReviewVO vo = new recipeReviewVO();
+			if(orgName != "") {
+			//이미지 업로드
+			String path = request.getRealPath("//resource//RecipeReview");
+			String ext = orgName.substring(orgName.lastIndexOf('.'));
+			sql.insert("restaurant.ImgcountInsert");
+			int num = sql.selectOne("restaurant.ImgCount");
+				
+			String newName = "image"+num+ext;
+			File copyFile = new File(path +"//"+ newName);
+			mf.transferTo(copyFile);
+			
+			vo.setImg(newName);
+			}	else {
+				vo.setImg("");
+			}
+			
+			// 댓글 db 정보
+			String cnum = request.getParameter("cnum");
+			String id = request.getParameter("id");
+			String nick = request.getParameter("nick");
+			String text = request.getParameter("text");
+			if(nick.equals("")) {
+				nick = "익명";
+			}
+			vo.setCnum(cnum);
+			vo.setId(id);
+			vo.setNick(nick);
+			vo.setText(text);
+			sql.insert("restaurant.ReviewInsert",vo);
+			model.addAttribute("cnum",cnum);
+				
+				return "/homepage/restaurantRePro";
+			}
 }
 
 

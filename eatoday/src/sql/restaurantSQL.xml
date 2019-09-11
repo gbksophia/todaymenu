@@ -3,7 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="restaurant">
-	<insert id="insert" parameterType="rvo">
+	<insert id="insert" parameterType="restaurantVO">
 		insert into restaurant(num, cnum, store, area1, area2, addr, tel, cate) 
 		values (restaurant_seq.nextval, #{cnum}, #{store}, #{area1}, #{area2}, #{addr}, #{tel}, #{cate})
 	</insert>
@@ -13,7 +13,7 @@
 		select count(*) from restaurant where cate=#{value}
 	</select>
 	
-	<select id="search" parameterType="list" resultType="rvo">
+	<select id="search" parameterType="list" resultType="restaurantVO">
 		select * from (select * from restaurant where addr like '%'||#{list[0]}||'%') where area2 like '%'||#{list[1]}||'%'
 	</select>
 	
@@ -31,27 +31,27 @@
 	</select>
 	
 	<!-- 식당 카테고리 -->
-	<select id="select" parameterType="String" resultType="rvo">
+	<select id="select" parameterType="String" resultType="restaurantVO">
 		select * from restaurant where cate = #{cate}
 	</select>
 	
 	<!-- 식당 정보 출력 -->
-	<select id="info" resultType="rvo" parameterType="String">
+	<select id="info" resultType="restaurantVO" parameterType="String">
 		select * from restaurant where cnum=#{cnum}
 	</select>
 	
 	<!-- 식당 주소 출력 -->
-	<select id="restaddr" parameterType="String" resultType="rvo">
+	<select id="restaddr" parameterType="String" resultType="restaurantVO">
 		select area1, area2, addr, store from restaurant where cnum=#{value}
 	</select>
 	
 	<!-- 식당 지역분류 -->
-	<select id="restArea" parameterType="String" resultType="rvo">
+	<select id="restArea" parameterType="String" resultType="restaurantVO">
 		select distinct area1 from restaurant where cate=#{value}
 	</select>
 	
 	<!-- 식당 카테고리+지역분류 -->
-	<select id="selectArea" parameterType="list" resultType="rvo">
+	<select id="selectArea" parameterType="list" resultType="restaurantVO">
 		select * from restaurant where area1=#{list[0]} and cate=#{list[1]}
 	</select>
 	
@@ -60,8 +60,38 @@
 		select count(*) from (select distinct area1 from restaurant where cate=#{value})
 	</select>
 	
+	<!-- 레스토랑 리뷰 이미지 이름 숫자 카운트 업 -->
+ 	<insert id="ImgcountInsert">
+ 		insert into fileNum values(fileNum_seq.nextval)
+ 	</insert>
+ 	
+ 	
+ 	<!-- 레스토랑 리뷰 이미지 이름 숫자 카운트 가져오기 -->
+ 	<select id="ImgCount" resultType="int">
+ 		select max(num) from fileNum
+ 	</select>
+ 	
 	
+	<!-- 레스토랑 리뷰 쓰기 -->
+ 	<insert id="ReviewInsert" parameterType="recipeReviewVO">
+ 		insert into restaurant_re(num,cnum,id,nick,text,img,reg_date) values (recipe_re_seq.nextval,#{cnum},#{id},#{nick},#{text},#{img},sysdate)
+ 	</insert>
+ 	
+ 	
 	
+		<!-- 레스토랑 리뷰 갯수 -->
+ 	<select id="ReviewCount" parameterType="String" resultType="int">
+ 		select count(*) from restaurant_re where cnum=#{value}
+ 	</select>
+	
+	<!-- 레스토랑 리뷰 가져오기 -->
+ 	<select id="reviewSelect" parameterType="String" resultType="restaurantReviewVO">
+ 	   select * from recipe_re
+ 	   <if test="value != null">
+ 	    where cnum=#{value} 
+ 	    </if> 
+ 	    order by reg_date desc
+ 	</select>
 </mapper>
 
 <!-- 
@@ -71,17 +101,17 @@
 </select>
 	
 	식당카테고리 기타 제외
-<select id="restEtc" resultType="rvo">
+<select id="restEtc" resultType="restaurantVO">
 	select * from restaurant where cate not in ('한식', '중식', '일식', '양식', '분식', '카페')
 </select>
 
 	식당 기타 지역분류
-<select id="restAreaEtc" resultType="rvo">
+<select id="restAreaEtc" resultType="restaurantVO">
 	select distinct area1 from restaurant where cate not in ('한식', '중식', '일식', '양식', '분식', '카페')
 </select>
 
 	식당 기타 카테고리+지역분류
-<select id="selectAreaEtc" parameterType="String" resultType="rvo">
+<select id="selectAreaEtc" parameterType="String" resultType="restaurantVO">
 	select * from restaurant where area1=#{value} and cate not in ('한식', '중식', '일식', '양식', '분식', '카페')
 </select>
 
