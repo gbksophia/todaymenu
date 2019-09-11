@@ -77,21 +77,39 @@
  		insert into restaurant_re(num,cnum,id,nick,text,img,reg_date) values (recipe_re_seq.nextval,#{cnum},#{id},#{nick},#{text},#{img},sysdate)
  	</insert>
  	
- 	
-	
-		<!-- 레스토랑 리뷰 갯수 -->
+	<!-- 레스토랑 리뷰 갯수 -->
  	<select id="ReviewCount" parameterType="String" resultType="int">
  		select count(*) from restaurant_re where cnum=#{value}
  	</select>
 	
 	<!-- 레스토랑 리뷰 가져오기 -->
  	<select id="reviewSelect" parameterType="String" resultType="restaurantReviewVO">
- 	   select * from recipe_re
+ 	   select * from restaurant_re
  	   <if test="value != null">
  	    where cnum=#{value} 
  	    </if> 
  	    order by reg_date desc
  	</select>
+ 	
+ 	<!-- 레스토랑 리뷰 좋아요 클릭 여부 체크 -->
+ 	<select id="reviewCheck" parameterType="restaurantReviewNiceVO" resultType="int">
+ 		select count(*) from restaurant_re_nice where renum=#{renum} and id=#{id}
+ 	</select>
+ 	
+ 	<!-- 레시피 리뷰 쪼아요 갯수 -->
+ 	<select id="niceCount" parameterType="int" resultType="int">
+ 		select count(*) from restaurant_re_nice where renum=#{value}
+ 	</select>	
+ 	
+ 	<!-- 레시피 리뷰 쪼아요 -->
+ 	<insert id="reviewNiceInsert" parameterType="restaurantReviewNiceVO">
+ 		insert into restaurant_re_nice values (recipe_re_nice_seq.nextval, #{id}, #{renum})
+ 	</insert>
+ 	
+ 	<!-- 레시피 리뷰 쪼아요 해제 -->
+ 	<delete id="reviewNiceDelete" parameterType="restaurantReviewNiceVO">
+ 		delete from restaurant_re_nice where id=#{id} and renum= #{renum}
+ 	</delete>
 </mapper>
 
 <!-- 

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import eatoday.vo.recipeReviewNiceVO;
 import eatoday.vo.recipeReviewVO;
 import eatoday.vo.recipeVO;
+import eatoday.vo.restaurantReviewNiceVO;
 import eatoday.vo.restaurantVO;
 @Controller
 @RequestMapping("/homepage/")
@@ -71,7 +73,7 @@ public class Restaurant {
 			String cnum = request.getParameter("cnum");
 			
 			//리뷰 카운트
-			int recount = sql.selectOne("restaurant.ReviewCount",cnum);
+			int recount = (Integer)sql.selectOne("restaurant.ReviewCount",cnum);
 
 			// 해당 레스토랑 정보
 			restaurantVO rvo = sql.selectOne("restaurant.info",cnum);
@@ -127,6 +129,52 @@ public class Restaurant {
 				
 				return "/homepage/restaurantRePro";
 			}
+		
+		// 페이지 첫 실행시만 사용 댓글 클릭 여부 체크
+		@RequestMapping("restaurantNice.eat")
+		public String restaurantNice(recipeReviewVO vo,Model model) {
+			restaurantReviewNiceVO nivo = new restaurantReviewNiceVO();
+			String likeImg;
+			System.out.println(vo.getNum());
+			nivo.setRenum(vo.getNum());
+			nivo.setId(vo.getId());
+			int result = sql.selectOne("restaurant.reviewCheck",nivo);
+			System.out.println(result);
+			if(result == 0) {
+				likeImg = "/eatoday/resource/images/like.png";
+			} else {
+				likeImg = "/eatoday/resource/images/like2.png";
+			}
+			model.addAttribute("likeImg",likeImg);
+			return "/homepage/nice";
+		}
+		
+		// 댓글 좋아요 클릭 이벤트
+		@RequestMapping("restaurantNiceClick.eat")
+		public String restaurantNiceClick(recipeReviewVO vo,Model model) {
+			restaurantReviewNiceVO nivo = new restaurantReviewNiceVO();
+			String likeImg;
+			nivo.setRenum(vo.getNum());
+			nivo.setId(vo.getId());
+			int result = sql.selectOne("restaurant.reviewCheck",nivo);
+			if(result == 0) {
+				sql.insert("restaurant.reviewNiceInsert",nivo);
+				likeImg = "/eatoday/resource/images/like2.png";
+			} else {
+				sql.delete("restaurant.reviewNiceDelete",nivo);
+				likeImg = "/eatoday/resource/images/like.png";
+			}
+			model.addAttribute("likeImg",likeImg);
+			return "/homepage/niceClick";
+		}
+		
+		// 좋아요 갯수 카운트
+		@RequestMapping("restaurantNiceCountCheck.eat")
+		public String NiceCountCheck(int renum,Model model) {
+			int niceCountCheck = (Integer)sql.selectOne("restaurant.niceCount",renum);
+			model.addAttribute("niceCountCheck",niceCountCheck);
+			return "/homepage/niceCountCheck";
+		}
 }
 
 

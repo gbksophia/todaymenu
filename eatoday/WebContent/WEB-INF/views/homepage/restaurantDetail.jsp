@@ -6,20 +6,139 @@
 <html lang="en">
 <head>
 	<title>${rvo.getStore()}</title>
-	
-	<link rel="stylesheet" href="/eatoday/resource/css/open-iconic-bootstrap.min.css">
-	<link rel="stylesheet" href="/eatoday/resource/css/animate.css">
-	<link rel="stylesheet" href="/eatoday/resource/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="/eatoday/resource/css/owl.theme.default.min.css">
-	<link rel="stylesheet" href="/eatoday/resource/css/magnific-popup.css">
-	<link rel="stylesheet" href="/eatoday/resource/css/aos.css">
-	<link rel="stylesheet" href="/eatoday/resource/css/ionicons.min.css">
-	<link rel="stylesheet" href="/eatoday/resource/css/bootstrap-datepicker.css">
-	<link rel="stylesheet" href="/eatoday/resource/css/jquery.timepicker.css">
-	<link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
-	<link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
-	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="/eatoday/resource/js/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+
+    <link rel="stylesheet" href="/eatoday/resource/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/animate.css">
+    
+    <link rel="stylesheet" href="/eatoday/resource/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="/eatoday/resource/css/aos.css">
+
+    <link rel="stylesheet" href="/eatoday/resource/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="/eatoday/resource/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
+    <link rel="stylesheet" href="/eatoday/resource/css/style.css">
+   <script src="/eatoday/resource/js/jquery-migrate-3.0.1.min.js"></script>
+	   <script>
+   // 카테고리 카운트 가져오기
+   window.onload =function(){ 
+	   for(var i=1;i<24;i++){
+		   var id = "cate("+i+")";
+	   $.ajax({
+	          url: "recipeCateCount.eat",
+	          type: "post",
+	          data: {cate : i},
+	          async: false,
+	          success: function(data) {
+	        	  var categori = document.createElement("span");
+	        	  var data = "("+data+")";
+	        	  categori.innerHTML = data;
+	        	  document.getElementById(id).appendChild(categori);	
+	        	  }
+	    	  });
+	   }
+	   } 
+  // 댓글 좋아요 클릭 이벤트
+  function niceClick(num,i) {
+	  var id = '${sessionScope.loginID}';
+	  var img = "img"+i;
+
+	  if(${sessionScope.loginID == null}){
+			alert("로그인후 이용해주십시오.");
+		  }else {
+      $.ajax({
+          url: "restaurantNiceClick.eat",
+          type: "post",
+          data: {id : id, num : num },
+          success: function(data) {
+        document.getElementById(img).src=data;
+        niceCountClick(num,i);
+        	  }
+    	  });
+  		}
+  	}
+  
+  // 댓글 좋아요 이미지 체크
+  function niceCheck(num,i){
+	  var img = "likeImg"+i;
+	  var id = "img"+i;
+	  $.ajax({
+			url: "restaurantNice.eat",
+			type: "post",
+			async: false,
+			data: {id : '${sessionScope.loginID}', num : num},
+		  success: function(data) {
+  		  var elem = document.createElement("img");
+  		  elem.setAttribute("src", data);
+  		  elem.setAttribute("height", "20px");
+  		  elem.setAttribute("width", "20px");
+  		  elem.setAttribute("id", id);
+		  document.getElementById(img).appendChild(elem);	
+				}
+		  });
+  }
+	  // 댓글 좋아요 갯수 체크
+	  function niceCountCheck(renum,i){
+		 id = "niceCount"+i;
+		  $.ajax({
+				url: "restaurantNiceCountCheck.eat",
+				type: "post",
+				async: false,
+				data: { renum : renum},
+			  success: function(data) {
+	  		  var elem = document.createElement("span");
+	  		 elem.innerHTML = data;
+      	  	 document.getElementById(id).appendChild(elem);	
+					}
+			  });
+	  }
+  
+	// 댓글 좋아요 갯수 클릭
+	  function niceCountClick(renum,i){
+		 id = "niceCount"+i;
+		  $.ajax({
+				url: "restaurantNiceCountCheck.eat",
+				type: "post",
+				data: { renum : renum},
+			  success: function(data) {
+				  document.getElementById(id).innerHTML = data;
+					}
+			  });
+	  }  
+	  
+  //검색 유효성 검사
+  function searchCheck() {
+      var str = document.getElementById('search');
+      var blank = /^[\s]/g;
+
+      //검색어 입력필수
+      if (str.value == '' || str.value == null) {
+         alert("검색어를 입력하세요.");
+         return false;
+      }
+
+      //공백금지
+      if (blank.test(str.value) == true) {
+         alert("제대로 좀 입력하세요.")
+         return false;
+      }
+   }
+  </script>
 </head>
+
 <body>
 <jsp:include page="header.jsp" />
 <!-- END nav --> 
@@ -89,91 +208,118 @@
 				<jsp:include page="/map/map_kwd_rest.eat"/>
 			</div>
 			
-			<div class="pt-5 mt-5">
-				<h3 class="mb-5">${recount} Comments</h3>
-				<ul class="comment-list">
-					<c:forEach var="recipeReviewVO" items="${revo}">
-						<li class="comment">
-							<div class="comment-body">
-								<h3>${recipeReviewVO.nick}</h3>
-								<div class="meta">${recipeReviewVO.reg_date}</div>
-								<p>${recipeReviewVO.text}</p>
-								<c:if test="${recipeReviewVO.img != null}">
-									<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img}" height="400px">
-								</c:if>
-								<div class="text-right">
-									<img src="/eatoday/resource/images/like.png" height="20px">
-								</div> 
-							</div>  
-						</li>
-					</c:forEach>
-				</ul>
-			<!-- END comment-list -->
-			<!-- 댓글 달기 -->
-				<div class="comment-form-wrap pt-5">
-				<form action="restaurantRePro.eat" method="post" enctype="multipart/form-data">
-					<input type="hidden" name="cnum" value="${rvo.getCnum()}"/>
-					<input type="hidden" name="id" value="${sessionScope.loginID}"/>
-					<div class="form-group">
-						<textarea name="text" id="text" cols="30" rows="10" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
-					</div>
-					<div class="form-group">
-						<input class="form-control" type="text" name="nick"  placeholder="닉네임"/>
-					</div>
-					<div class="form-group">
-						<input type="file" name="img"/>
-					</div>
-					<div class="form-group">
-						<div class="text-right">
-							<input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary"/>
-						</div>
-					</div>
-				</form>
-				</div>
-			</div> 
-		<!-- .col-md-8 -->
-		<div class="col-md-4 sidebar ftco-animate">
-			<c:set var="c" value="${cookie.cookie.value}"/>  
-			<c:forEach begin="0" end="${count}" step="1" var="i">
-				<c:set var="rca" value="${restList[i]}" />
-				<c:if test="${rca.getCnum() == c}">
-					<div class="sidebar-box ftco-animate">
-						<h3>Recent Recipe</h3>
-						<div class="block-21 mb-4 d-flex">
-							<%-- <a class="blog-img mr-4" style="background-image: url(/eatoday/resource/RecipeImages/${rca.getMain_name()});"></a> --%>
-							<div class="text">
-								<h3 class="heading"><a href="<c:url value="restaurantDetail.eat">
-									<c:param name="abc" value="${rca.getCnum()}"></c:param></c:url>">${rca.getStore() }</a></h3>
-								<div class="meta">
-									<div><a class="btn btn-primary btn-outline-primary" href="<c:url value="restaurantDetail.eat">
-										<c:param name="abc" value="${rca.getCnum()}"></c:param></c:url>">자세히보기</a></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="sidebar-box ftco-animate">
-						<div class="categories">
-						<h3>${j}Categories</h3>
-						<br/><br/>
-							<p>
-								<c:forEach begin="0" end="${count}" step="1" var="i">
-									<c:set var="rvo" value="${recipeList[i]}"/>
-									<c:if test="${rvo.getCnum() == abc }">
-										<c:set var="str" value="${rvo.getPro()}"/>
-										<c:forEach var="spt" items="${fn:replace(str, 'next', '<br><br>')}" varStatus="status">
-											<img src="images/image_2.jpg" alt="" class="img-fluid">${spt}
-										</c:forEach>
-									</c:if>
-								</c:forEach>
-							</p>
-						</div>
-					</div>
-				</c:if>
-			</c:forEach>           
+			<!-- 댓글 -->
+            <div class="pt-5 mt-5">
+              <h3 class="mb-5">${recount} Comments</h3>
+              <ul class="comment-list">
+              <c:set var="i" value="0"/>
+              	<c:forEach var="restaurantReviewVO" items="${revo }">
+              	<c:set var="i" value="${i+1 }" />
+              	<c:set var="likeImg" value="javascript:imgcheck('${restaurantReviewVO.getNum() }')"/>
+              	 <li class="comment">
+                  <div class="comment-body">
+                  <h3>${restaurantReviewVO.nick }</h3>
+                  <div class="meta">${restaurantReviewVO.reg_date }</div>
+                  <p>${restaurantReviewVO.text }</p>
+                  <c:if test="${restaurantReviewVO.img != null }">
+                  	<img src="/eatoday/resource/RecipeReview/${restaurantReviewVO.img }" height="400px">
+                  </c:if>
+           			
+                   <div class="text-right">
+                   <div id="niceCount${i}"></div>
+                   <a id="likeImg${i }" onclick="javascript:niceClick('${restaurantReviewVO.num}','${i }')">
+                   </a>
+                   </div> 
+                  </div>  
+                </li>
+                <script>
+                    niceCheck('${restaurantReviewVO.num}','${i}');
+                    niceCountCheck('${restaurantReviewVO.num}','${i}');
+ 				 	</script>
+              	</c:forEach>
+              </ul>
+              <!-- END comment-list -->
+              
+      <!-- 댓글 달기 -->
+              <div class="comment-form-wrap pt-5">
+              	<c:choose>
+              		<c:when test="${sessionScope.loginID == null }">
+              			<form>
+              			<div class="form-group">
+              				<input class="btn py-3 px-4 btn-primary" type="button" value="로그인 후 댓글 쓰기 가능" onclick="location='/eatoday/loginpage/login.eat'">
+              				</div>
+              			</form>
+              		</c:when>
+              		<c:otherwise>
+              		 <form action="restaurantRePro.eat" method="post" enctype="multipart/form-data">
+                	<input type="hidden" name="cnum" value="${rvo.getCnum() }">
+                	<input type="hidden" name="id" value="${sessionScope.loginID }">
+                  <div class="form-group">
+                    <textarea name="text" id="text" cols="30" rows="10" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
+                  </div>
+                  
+                  <div class="form-group">
+                    <input  class="form-control" type="text" name="nick"  placeholder="닉네임" />
+                  </div>
+                  
+                  <div class="form-group">
+                    <input type="file" name="img"  />
+                  </div>
+                  <div class="form-group">
+                  	<div class="text-right">
+                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                  </div>
+                  </div>
+                </form>
+              		</c:otherwise>
+              	</c:choose>
+              </div>
+              </div>
+             </div>
+             
+             
+            <div class="col-md-4 sidebar ftco-animate fadeInUp ftco-animated">
+            <div class="sidebar-box">
+              <form name="searchBar" action="SearchRecipe.eat" onSubmit="return searchCheck();" class="search-form">
+                <div class="form-group">
+                	<div class="icon">
+	                  <span class="icon-search"></span>
+                  </div>
+                  <input type="text" name="search" id="search" class="form-control" placeholder="Search...">
+                </div>
+              </form>
+            </div>
+            <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+              <div class="categories">
+                <h3>Categories</h3>
+                <li><a href="recipeListView.eat?cate=1" id="cate(1)">밥요리</a></li>
+                <li><a href="recipeListView.eat?cate=2" id="cate(2)">국&탕 </a></li>
+                <li><a href="recipeListView.eat?cate=3" id="cate(3)">찌개&전골 </a></li>
+                <li><a href="recipeListView.eat?cate=4" id="cate(4)">밑반찬 </a></li>
+                <li><a href="recipeListView.eat?cate=5" id="cate(5)">볶음요리 </a></li>
+                <li><a href="recipeListView.eat?cate=6" id="cate(6)">구이(고기/생선)</a></li>
+                <li><a href="recipeListView.eat?cate=7" id="cate(7)">찜&조림</a></li>
+                <li><a href="recipeListView.eat?cate=8" id="cate(8)">손님상 </a></li>
+                <li><a href="recipeListView.eat?cate=9" id="cate(9)">아이 반찬 </a></li>
+                <li><a href="recipeListView.eat?cate=10" id="cate(10)">김치 장아찌</a></li>
+                <li><a href="recipeListView.eat?cate=11" id="cate(11)">도시락</a></li>
+                <li><a href="recipeListView.eat?cate=12" id="cate(12)">튀김 </a></li>
+                <li><a href="recipeListView.eat?cate=13" id="cate(13)">면요리</a></li>
+             	<li><a href="recipeListView.eat?cate=14" id="cate(14)">샐러드</a></li>
+             	<li><a href="recipeListView.eat?cate=15" id="cate(15)">야식&술안주</a></li>
+             	<li><a href="recipeListView.eat?cate=16" id="cate(16)">스파게티 </a></li>
+             	<li><a href="recipeListView.eat?cate=17" id="cate(17)">간식&분식 </a></li>
+             	<li><a href="recipeListView.eat?cate=18" id="cate(18)">토스트&샌드위치</a></li>
+             	<li><a href="recipeListView.eat?cate=19" id="cate(19)">베이킹</a></li>
+             	<li><a href="recipeListView.eat?cate=20" id="cate(20)">디저트 </a></li>
+             	<li><a href="recipeListView.eat?cate=21" id="cate(21)">주스&음료 </a></li>
+             	<li><a href="recipeListView.eat?cate=22" id="cate(22)">술&칵테일</a></li>
+             	<li><a href="recipeListView.eat?cate=23" id="cate(23)">명절요리</a></li>
+             		 </div>
+            	</div>
 		</div>
-	</div>
-</div>
-</div>
+		</div>
+      
 </section> <!-- .section -->
 <jsp:include page="footer.jsp" />
 

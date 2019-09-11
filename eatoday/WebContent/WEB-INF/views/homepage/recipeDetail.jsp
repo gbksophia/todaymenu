@@ -96,7 +96,7 @@
   }
    
   // 댓글 좋아요 클릭 이벤트
-  function niceClick(num,i,renum) {
+  function niceClick(num,i) {
 	  var id = '${sessionScope.loginID}';
 	  var img = "img"+i;
 
@@ -109,7 +109,7 @@
           data: {id : id, num : num },
           success: function(data) {
         document.getElementById(img).src=data;
-        niceCountClick(renum,i);
+        niceCountClick(num,i);
         	  }
     	  });
   		}
@@ -271,7 +271,7 @@
            			
                    <div class="text-right">
                    <div id="niceCount${i}"></div>
-                   <a id="likeImg${i }" onclick="javascript:niceClick('${recipeReviewVO.num}','${i }','${recipeReviewVO.num}')">
+                   <a id="likeImg${i }" onclick="javascript:niceClick('${recipeReviewVO.num}','${i }')">
                    </a>
                    </div> 
                   </div>  
