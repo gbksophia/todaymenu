@@ -187,6 +187,8 @@ public class Recipe {
 		
 		return "/homepage/SearchRecipe";
 	}
+	
+	//레시피 카테고리 갯수 카운트
 	@RequestMapping("recipeCateCount.eat")
 	public String recipeCateCount(String cate,Model model) {
 		int CateCount =(Integer)sql.selectOne("recipe.cateCount",cate);
