@@ -52,6 +52,7 @@
 	        	  }
 	    	  });
 	   
+	   
 	   // 카테고리 카운트 가져오기
 	   for(var i=1;i<24;i++){
 		   var id = "cate("+i+")";
@@ -180,6 +181,52 @@
          return false;
       }
    }
+  
+  // 업데이트 폼 생성
+  function reviewUpdate(num,text,i){
+	  var reviewtext = "reviewtext"+i;
+	  var UpdateBtn = "UpdateBtn"+i;
+	  var check = document.getElementById("textUpdate");
+	  
+	  if (check ==null){
+	  //업데이트 텍스트 에어리어 생성
+	  var elem = document.createElement("textarea");
+		  elem.setAttribute("class", "form-control");
+		  elem.setAttribute("rows", "10");
+		  elem.setAttribute("cols", "30");
+		  elem.setAttribute("id", "textUpdate");
+		  elem.setAttribute("name", "textUpdate");
+		  elem.innerHTML = text;
+	  document.getElementById(reviewtext).appendChild(elem);
+	  
+	  //업데이트 버튼 생성
+	  var btn = document.createElement("input");
+	  var onclick ="Update('"+num+"','"+reviewtext+"')";
+	  btn.setAttribute("type","button");
+	  btn.setAttribute("value","Update Comment");
+	  btn.setAttribute("class","btn py-3 px-4 btn-primary");
+	  btn.setAttribute("onclick",onclick);
+	  btn.setAttribute("id", "UpdateBtn");
+	  document.getElementById(UpdateBtn).appendChild(btn);
+	  } else {
+		  $("#textUpdate").remove();
+		  $("#UpdateBtn").remove();
+	  }
+  }
+  
+  function Update(num,id){
+	  var text = $("#textUpdate").val();
+	  $.ajax({
+			url: "reviewUpdate.eat",
+			type: "post",
+			data: { text : text, num : num},
+		  success: function(data) {
+			  $("#textUpdate").remove();
+			  $("#UpdateBtn").remove();
+			  document.getElementById(id).innerHTML = data;
+				}
+		  });
+  }
   </script>
 
   </head>
@@ -187,6 +234,7 @@
  
   <body>
 <jsp:include page="header.jsp" />
+asd
     <!-- END nav --> 
         <section class="home-slider owl-carousel">
 
@@ -211,7 +259,7 @@
         <div class="row">
           <div class="col-md-8 ftco-animate">
             <h2 class="mb-3">재료</h2>
-<p>
+			<p>
 		     <c:set var = "str" value = "${rvo.getMate() }"/>
              <c:forEach var = "spt" items = "${fn:replace(str, 'next', '<br>') }" varStatus = "status">
              <img src="images/image_2.jpg" alt="" class="img-fluid">
@@ -264,22 +312,41 @@
                   <div class="comment-body">
                   <h3>${recipeReviewVO.nick }</h3>
                   <div class="meta">${recipeReviewVO.reg_date }</div>
-                  <p>${recipeReviewVO.text }</p>
+                  <p id="reviewtext${i }">
+                  	${recipeReviewVO.text}
+                  </p>
                   <c:if test="${recipeReviewVO.img != null }">
                   	<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img }" height="400px">
                   </c:if>
-           			
+                  <c:if test="${sessionScope.loginID == recipeReviewVO.id }">
+           		
+					<a href="javascript:reviewUpdate('${recipeReviewVO.getNum() }','${recipeReviewVO.text }','${i }')">
+							수정
+						</a>
+						&nbsp;|&nbsp;
+						<a href="javascript:reviewRemove('${recipeReviewVO.getNum() }')">
+							삭제
+						</a>
+						 <div class="text-right">
+						<div class="form-group">
+                   <div id="UpdateBtn${i}" class="text-right"></div>
+                   </div>
+                   </div>
+				</c:if>
                    <div class="text-right">
                    <div id="niceCount${i}"></div>
                    <a id="likeImg${i }" onclick="javascript:niceClick('${recipeReviewVO.num}','${i }')">
                    </a>
+                    
                    </div> 
+                  
                   </div>  
                 </li>
                 <script>
                     niceCheck('${recipeReviewVO.num}','${i}');
                     niceCountCheck('${recipeReviewVO.num}','${i}');
  				 	</script>
+ 				 	<div id="textUpdate${i}"></div>
               	</c:forEach>
               </ul>
               <!-- END comment-list -->
@@ -319,6 +386,9 @@
               </div>
               </div>
              </div>
+             
+             
+             
             <div class="col-md-4 sidebar ftco-animate fadeInUp ftco-animated">
             <div class="sidebar-box">
               <form name="searchBar" action="SearchRecipe.eat" onSubmit="return searchCheck();" class="search-form">
@@ -330,6 +400,10 @@
                 </div>
               </form>
             </div>
+            
+            
+            
+            
             <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
               <div class="categories">
                 <h3>Categories</h3>

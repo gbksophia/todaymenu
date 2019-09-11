@@ -78,7 +78,7 @@ public class Recipe {
 //		return "/homepage/recipeWst";
 //	}
 	
-	//댓글 쓰기
+	//리뷰 쓰기
 	@RequestMapping("recipeRePro.eat")
 	public String recipeRePro(MultipartHttpServletRequest request,Model model) throws Exception{
 		request.setCharacterEncoding("UTF-8");
@@ -119,6 +119,16 @@ public class Recipe {
 			return "/homepage/recipeRePro";
 		}
 	
+	//리뷰 수정
+	@RequestMapping("reviewUpdate.eat")
+	public String reviewUpdate(recipeReviewVO vo,Model model) {
+		System.out.println(vo.getNum());
+		System.out.println(vo.getText());
+		sql.update("recipe.reviewUpdate",vo);
+		String text = sql.selectOne("recipe.reviewText", vo.getNum());
+		model.addAttribute("text",text);
+		return "/homepage/reviewUpdate";
+	}
 	
 	// 페이지 첫 실행시만 사용 댓글 클릭 여부 체크
 	@RequestMapping("nice.eat")

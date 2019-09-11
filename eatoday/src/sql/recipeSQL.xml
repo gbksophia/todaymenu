@@ -84,6 +84,17 @@
  	<delete id="reviewDelete" parameterType="int">
  		delete from recipe_re where num = #{value}
  	</delete>
+ 	
+ 	<!-- 레시피 리뷰 수정 -->
+ 	<update id="reviewUpdate" parameterType="recipeReviewVO">
+ 		update recipe_re set text=#{text} where num=#{num} 
+ 	</update>
+ 	
+ 	<!-- 레시피 리뷰 텍스트 가져오기 -->
+ 	<select id="reviewText" parameterType="int" resultType="String">
+ 		select text from recipe_re where num=#{num}
+ 	</select>
+ 	
  	<!-- 레시피 리뷰 클릭 여부 체크 -->
  	<select id="reviewCheck" parameterType="recipeReviewNiceVO" resultType="int">
  		select count(*) from recipe_re_nice where renum=#{renum} and id=#{id}
