@@ -136,6 +136,86 @@
          return false;
       }
    }
+  
+//업데이트 폼 생성
+  function reviewUpdate(num,text,i){
+	  var reviewtext = "reviewtext"+i;
+	  var UpdateBtn = "UpdateBtn"+i;
+	  var check = document.getElementById("textUpdate");
+	  
+	  if (check ==null){
+	  //업데이트 텍스트 에어리어 생성
+	  var elem = document.createElement("textarea");
+		  elem.setAttribute("class", "form-control");
+		  elem.setAttribute("rows", "10");
+		  elem.setAttribute("cols", "30");
+		  elem.setAttribute("id", "textUpdate");
+		  elem.setAttribute("name", "textUpdate");
+		  elem.innerHTML = text;
+	  document.getElementById(reviewtext).appendChild(elem);
+	  
+	  //업데이트 버튼 생성
+	  var btn = document.createElement("input");
+	  var onclick ="Update('"+num+"','"+reviewtext+"')";
+	  btn.setAttribute("type","button");
+	  btn.setAttribute("value","Update Comment");
+	  btn.setAttribute("class","btn py-3 px-4 btn-primary");
+	  btn.setAttribute("onclick",onclick);
+	  btn.setAttribute("id", "UpdateBtn");
+	  document.getElementById(UpdateBtn).appendChild(btn);
+	  } else {
+		  $("#textUpdate").remove();
+		  $("#UpdateBtn").remove();
+	  }
+  }
+  
+  
+  // 리뷰 업데이트 적용
+  function Update(num,id){
+	  var text = $("#textUpdate").val();
+	  $.ajax({
+			url: "restaurantReviewUpdate.eat",
+			type: "post",
+			data: { text : text, num : num},
+		  success: function(data) {
+			  $("#textUpdate").remove();
+			  $("#UpdateBtn").remove();
+			  document.getElementById(id).innerHTML = data;
+				}
+		  });
+  }
+  
+  //리뷰 삭제
+  function reviewRemove(num,i,cnum){
+	  var conf = confirm("리뷰를 삭제하시겠습니까?");
+	  
+	  if(conf){
+	  var id = "#comment"+i;
+	  $.ajax({
+			url: "restaurantReviewRemove.eat",
+			type: "post",
+			data: { num : num},
+		  success: function() {
+			  $(id).remove();
+			  reviewCount(cnum);
+				}
+		  });
+	  }
+  }
+  
+  // 리뷰 삭제 후 갯수 초기화
+  function reviewCount(cnum){
+	  $.ajax({
+			url: "restaurantReviewCount.eat",
+			type: "post",
+			data: { cnum : cnum},
+		  success: function(data) {
+			  var data = data+" Comments";
+			  document.getElementById("Comments").innerHTML = data;
+	
+				}
+		  });
+  }
   </script>
 </head>
 
@@ -208,38 +288,54 @@
 				<jsp:include page="/map/map_kwd_rest.eat"/>
 			</div>
 			
-			<!-- 댓글 -->
+		<!-- 댓글 -->
             <div class="pt-5 mt-5">
-              <h3 class="mb-5">${recount} Comments</h3>
+              <h3 id="Comments" class="mb-5">${recount} Comments</h3>
               <ul class="comment-list">
               <c:set var="i" value="0"/>
               	<c:forEach var="restaurantReviewVO" items="${revo }">
               	<c:set var="i" value="${i+1 }" />
               	<c:set var="likeImg" value="javascript:imgcheck('${restaurantReviewVO.getNum() }')"/>
-              	 <li class="comment">
+              	 <li id="comment${i}" class="comment">
                   <div class="comment-body">
                   <h3>${restaurantReviewVO.nick }</h3>
                   <div class="meta">${restaurantReviewVO.reg_date }</div>
-                  <p>${restaurantReviewVO.text }</p>
+                  <p id="reviewtext${i }">
+                  	${restaurantReviewVO.text}
+                  </p>
                   <c:if test="${restaurantReviewVO.img != null }">
                   	<img src="/eatoday/resource/RecipeReview/${restaurantReviewVO.img }" height="400px">
                   </c:if>
-           			
+                  <c:if test="${sessionScope.loginID == restaurantReviewVO.id }">
+           		
+					<a href="javascript:reviewUpdate('${restaurantReviewVO.getNum() }','${restaurantReviewVO.text }','${i }')">
+							수정
+						</a>
+						&nbsp;|&nbsp;
+						<a href="javascript:reviewRemove('${restaurantReviewVO.getNum() }','${i }','${rvo.cnum }')">
+							삭제
+						</a>
+						 <div class="text-right">
+						<div class="form-group">
+                   <div id="UpdateBtn${i}" class="text-right"></div>
+                   </div>
+                   </div>
+				</c:if>
                    <div class="text-right">
                    <div id="niceCount${i}"></div>
                    <a id="likeImg${i }" onclick="javascript:niceClick('${restaurantReviewVO.num}','${i }')">
                    </a>
-                   </div> 
+                    </div> 
                   </div>  
                 </li>
                 <script>
                     niceCheck('${restaurantReviewVO.num}','${i}');
                     niceCountCheck('${restaurantReviewVO.num}','${i}');
  				 	</script>
+ 				 	<div id="textUpdate${i}"></div>
               	</c:forEach>
               </ul>
-              <!-- END comment-list -->
-              
+    
       <!-- 댓글 달기 -->
               <div class="comment-form-wrap pt-5">
               	<c:choose>

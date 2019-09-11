@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Coffee - Free Bootstrap 4 Template by Colorlib</title>
+    <title>${rvo.title }</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="/eatoday/resource/js/jquery.min.js"></script>
@@ -214,6 +214,8 @@
 	  }
   }
   
+  
+  // 리뷰 업데이트 적용
   function Update(num,id){
 	  var text = $("#textUpdate").val();
 	  $.ajax({
@@ -227,6 +229,38 @@
 				}
 		  });
   }
+  
+  //리뷰 삭제
+  function reviewRemove(num,i,cnum){
+	  var conf = confirm("리뷰를 삭제하시겠습니까?");
+	  
+	  if(conf){
+	  var id = "#comment"+i;
+	  $.ajax({
+			url: "reviewRemove.eat",
+			type: "post",
+			data: { num : num},
+		  success: function() {
+			  $(id).remove();
+			  reviewCount(cnum);
+				}
+		  });
+	  }
+  }
+  
+  // 리뷰 삭제 후 갯수 초기화
+  function reviewCount(cnum){
+	  $.ajax({
+			url: "reviewCount.eat",
+			type: "post",
+			data: { cnum : cnum},
+		  success: function(data) {
+			  var data = data+" Comments";
+			  document.getElementById("Comments").innerHTML = data;
+	
+				}
+		  });
+  }
   </script>
 
   </head>
@@ -234,7 +268,7 @@
  
   <body>
 <jsp:include page="header.jsp" />
-asd
+
     <!-- END nav --> 
         <section class="home-slider owl-carousel">
 
@@ -302,13 +336,13 @@ asd
 
 	<!-- 댓글 -->
             <div class="pt-5 mt-5">
-              <h3 class="mb-5">${recount} Comments</h3>
+              <h3 id="Comments" class="mb-5">${recount} Comments</h3>
               <ul class="comment-list">
               <c:set var="i" value="0"/>
               	<c:forEach var="recipeReviewVO" items="${revo }">
               	<c:set var="i" value="${i+1 }" />
               	<c:set var="likeImg" value="javascript:imgcheck('${recipeReviewVO.getNum() }')"/>
-              	 <li class="comment">
+              	 <li id="comment${i}" class="comment">
                   <div class="comment-body">
                   <h3>${recipeReviewVO.nick }</h3>
                   <div class="meta">${recipeReviewVO.reg_date }</div>
@@ -324,7 +358,7 @@ asd
 							수정
 						</a>
 						&nbsp;|&nbsp;
-						<a href="javascript:reviewRemove('${recipeReviewVO.getNum() }')">
+						<a href="javascript:reviewRemove('${recipeReviewVO.getNum() }','${i }','${rvo.con_num }')">
 							삭제
 						</a>
 						 <div class="text-right">

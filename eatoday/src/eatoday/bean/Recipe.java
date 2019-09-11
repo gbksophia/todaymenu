@@ -78,6 +78,14 @@ public class Recipe {
 //		return "/homepage/recipeWst";
 //	}
 	
+	
+	//리뷰 카운트
+	@RequestMapping("reviewCount.eat")
+	public String reviewCount(String cnum,Model model) {
+		int recount = (Integer)sql.selectOne("recipe.ReviewCount", cnum);
+		model.addAttribute("recount",recount);
+		return "/homepage/reviewCount";
+	}
 	//리뷰 쓰기
 	@RequestMapping("recipeRePro.eat")
 	public String recipeRePro(MultipartHttpServletRequest request,Model model) throws Exception{
@@ -128,6 +136,13 @@ public class Recipe {
 		String text = sql.selectOne("recipe.reviewText", vo.getNum());
 		model.addAttribute("text",text);
 		return "/homepage/reviewUpdate";
+	}
+	
+	//리뷰 삭제
+	@RequestMapping("reviewRemove.eat")
+	public String reviewRemove(int num) {
+		sql.delete("recipe.reviewDelete",num);
+		return "/homepage/reviewRemove";
 	}
 	
 	// 페이지 첫 실행시만 사용 댓글 클릭 여부 체크

@@ -91,6 +91,22 @@
  	    order by reg_date desc
  	</select>
  	
+ 	<!-- 레스토랑 리뷰 삭제 -->
+ 	<delete id="reviewDelete" parameterType="int">
+ 		delete from restaurant_re where num = #{value}
+ 	</delete>
+ 	
+ 	<!-- 레스토랑 리뷰 수정 -->
+ 	<update id="reviewUpdate" parameterType="restaurantReviewVO">
+ 		update restaurant_re set text=#{text} where num=#{num} 
+ 	</update>
+ 	
+ 	
+ 	<!-- 레스토랑 리뷰 텍스트 가져오기 -->
+ 	<select id="reviewText" parameterType="int" resultType="String">
+ 		select text from restaurant_re where num=#{num}
+ 	</select>
+ 	
  	<!-- 레스토랑 리뷰 좋아요 클릭 여부 체크 -->
  	<select id="reviewCheck" parameterType="restaurantReviewNiceVO" resultType="int">
  		select count(*) from restaurant_re_nice where renum=#{renum} and id=#{id}

@@ -18,6 +18,7 @@ import eatoday.vo.recipeReviewNiceVO;
 import eatoday.vo.recipeReviewVO;
 import eatoday.vo.recipeVO;
 import eatoday.vo.restaurantReviewNiceVO;
+import eatoday.vo.restaurantReviewVO;
 import eatoday.vo.restaurantVO;
 @Controller
 @RequestMapping("/homepage/")
@@ -89,7 +90,15 @@ public class Restaurant {
 			return "/homepage/restaurantDetail";
 		}
 		
-		//댓글 쓰기
+		//리뷰 카운트
+		@RequestMapping("restaurantReviewCount.eat")
+		public String restaurantReviewCount(String cnum,Model model) {
+			int recount = (Integer)sql.selectOne("restaurant.ReviewCount", cnum);
+			model.addAttribute("recount",recount);
+			return "/homepage/reviewCount";
+		}
+		
+		//리뷰 쓰기
 		@RequestMapping("restaurantRePro.eat")
 		public String restaurantRePro(MultipartHttpServletRequest request,Model model) throws Exception{
 			request.setCharacterEncoding("UTF-8");
@@ -129,6 +138,22 @@ public class Restaurant {
 				
 				return "/homepage/restaurantRePro";
 			}
+		
+		//리뷰 수정
+		@RequestMapping("restaurantReviewUpdate.eat")
+		public String restaurantReviewUpdate(restaurantReviewVO vo,Model model) {
+			sql.update("restaurant.reviewUpdate",vo);
+			String text = sql.selectOne("restaurant.reviewText", vo.getNum());
+			model.addAttribute("text",text);
+			return "/homepage/reviewUpdate";
+		}
+		
+		//리뷰 삭제
+		@RequestMapping("restaurantReviewRemove.eat")
+		public String restaurantReviewRemove(int num) {
+			sql.delete("restaurant.reviewDelete",num);
+			return "/homepage/reviewRemove";
+		}
 		
 		// 페이지 첫 실행시만 사용 댓글 클릭 여부 체크
 		@RequestMapping("restaurantNice.eat")
