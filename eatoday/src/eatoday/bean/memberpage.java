@@ -1,7 +1,14 @@
 package eatoday.bean;
 
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -112,7 +119,6 @@ public class memberpage {
 	// 아이디 찾기 폼
 	@RequestMapping("idSearch.eat")
 	public String idSearch() {
-		
 		return "/member/idSearch";
 	}
 	
@@ -127,5 +133,50 @@ public class memberpage {
 			}
 			model.addAttribute("result", result);
 			return "/member/idSearchPro";
+		}
+		
+		// 비밀번호 찾기 폼
+		@RequestMapping("pwSearch.eat")
+		public String pwSearh() {
+			return "/member/pwSearh";
+		}
+		
+		// 비밀번호 찾기 Pro
+		@RequestMapping("pwSearchPro.eat")
+		public String pwSearhPro(String id,Model model) throws MessagingException {
+			int result = sql.selectOne("member.idCheck",id);
+			int port = 465;
+			String host = "smtp.gmail.com";
+
+			if(result ==1) {
+				sql.update("member.pwReUpdate",id);
+				String pw = sql.selectOne("member.pwSearch",id);
+				String member = id; // 수신인 주소
+				String admin = "eatoday@eatoday.com"; // 발신인 주소
+				Properties props = new Properties();
+				props.put("mail.smtp.host", host);
+				props.put("mail.smtp.port", port);
+				props.put("mail.smtp.auth", "true"); 
+				props.put("mail.smtp.ssl.enable", "true"); 
+				props.put("mail.smtp.ssl.trust", host);
+
+				
+				//Session 생성
+				Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() { 
+					protected javax.mail.PasswordAuthentication getPasswordAuthentication() { 
+						return new javax.mail.PasswordAuthentication("yhy129852", "fldh-24193!");
+						} 
+					});
+				session.setDebug(true); //for debug
+
+				MimeMessage msg = new MimeMessage(session); // 메세지 내용 담당 클래스
+				msg.setFrom(new InternetAddress(admin)); //발신자의 IP
+				msg.setRecipient(Message.RecipientType.TO, new InternetAddress(member));
+				msg.setSubject("연습");
+				msg.setText(id+"님에게 임시 비밀번호\n" + pw + "를 발급하였습니다.\n http://localhost:8080/eatoday/loginpage/login.eat 에 로그인 하시면 됩니다. 감사합니다.");
+				Transport.send(msg);
+			}
+			model.addAttribute("result",result);
+			return "/member/pwSearhPro";
 		}
 }

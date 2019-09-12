@@ -80,7 +80,7 @@
 							아이디 찾기
 						</a>
 						&nbsp;|&nbsp;
-						<a href = "#">
+						<a href = "/eatoday/memberpage/pwSearch.eat">
 						비밀번호 찾기
 						</a>
 					</div>
