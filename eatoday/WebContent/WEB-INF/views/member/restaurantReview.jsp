@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐 먹지? 레시피 리뷰 리스트</title>
+<title>오늘 뭐 먹지? 레스토랑 리뷰  리스트</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="/eatoday/resource/js/jquery.min.js"></script>
@@ -25,9 +25,7 @@
 
     <link rel="stylesheet" href="/eatoday/resource/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/eatoday/resource/css/jquery.timepicker.css">
-	 <link rel="stylesheet"
-   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
+
     
     <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
@@ -37,16 +35,22 @@
 <body>
 
 <script type="text/javascript">
-	function remove(num){
+	function remove(num,i){
 			var result = confirm("정말 이 댓글을 삭제하시겠습니까?");
-
+			var id = "#list"+i;
 			if(!result){
 				alert("취소되었습니다.");
 			} else {
-				alert("삭제 성공");
-				location="reviewRemove.eat?num="+num;
-			}
+			 $.ajax({
+					url: "restaurantReviewRemove.eat",
+					type: "post",
+					data: { num : num},
+					success: function(data) {
+					$(id).remove();
+					}
+			});	
 		}
+	}
 </script>
 
 <jsp:include page="../homepage/header.jsp" />
@@ -54,19 +58,25 @@
 <br><br><br><br>
 <table class="table table-bordered">
 	<tr> 
+		<td> 아이디 </td>
 		<td> 닉네임 </td>
 		<td> 내용 </td>
 		<td>삭제 </td>
 	</tr>
-	<c:forEach var="ReviewVO" items="${recipeReviewVO }">
-	<tr>
+	<c:set var="i" value="1"/>
+	<c:forEach var="ReviewVO" items="${restaurantReviewVO }">
+	<tr id="list${i }">
+		<td>${ReviewVO.id }</td>
 		<td>${ReviewVO.nick }</td>
 		<td>${ReviewVO.text }</td>
-		<td><input type="button" value="삭제"  onclick="remove('${ReviewVO.num}')"></td>
+		<td><input type="button" value="삭제"  onclick="remove('${ReviewVO.num}','${i }')"></td>
 	</tr>
+	
+	<c:set var="i" value="${i+1 }"/>
 	</c:forEach>
 </table>
 </div>
+
 
 <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

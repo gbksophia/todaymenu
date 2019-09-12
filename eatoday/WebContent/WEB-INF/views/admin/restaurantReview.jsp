@@ -72,13 +72,13 @@
 	</tr>
 	<c:set var="i" value="1"/>
 	<c:forEach var="ReviewVO" items="${restaurantReviewVO }">
-	<c:set var="i" value="${i+1 }"/>
 	<tr id="list${i }">
 		<td>${ReviewVO.id }</td>
 		<td>${ReviewVO.nick }</td>
 		<td>${ReviewVO.text }</td>
 		<td><input type="button" value="삭제"  onclick="remove('${ReviewVO.num}','${i }')"></td>
 	</tr>
+	<c:set var="i" value="${i+1 }"/>
 	</c:forEach>
 </table>
 </div>

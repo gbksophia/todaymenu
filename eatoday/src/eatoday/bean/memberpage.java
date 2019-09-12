@@ -181,26 +181,26 @@ public class memberpage {
 		}
 		
 		// ∑πΩ√«« ∏Æ∫‰ ∏ÆΩ∫∆Æ
-		@RequestMapping("recipeReviewList.eat")
-		public String recipeReviewList(HttpSession session,Model model) {
+		@RequestMapping("recipeReview.eat")
+		public String recipeReview(HttpSession session,Model model) {
 			String id = (String)session.getAttribute("loginID");
 			List recipeReviewVO = sql.selectList("recipe.memReviewList",id);
 			model.addAttribute("recipeReviewVO",recipeReviewVO);
-			return "/member/recipeReviewList";
+			return "/member/recipeReview";
 		}
 		
 		//∑πΩ∫≈‰∂˚ ∏Æ∫‰ ∏ÆΩ∫∆Æ
-		@RequestMapping("restaurantReviewList.eat")
+		@RequestMapping("restaurantReview.eat")
 		public String restaurantReview(HttpSession session, Model model) {
 			String id = (String)session.getAttribute("loginID");
 			List restaurantReviewVO = sql.selectList("restaurant.memReviewList",id);
 			model.addAttribute("restaurantReviewVO",restaurantReviewVO);
-			return "/member/restaurantReviewList";
+			return "/member/restaurantReview";
 		}
 		
-		// ∏Æ∫‰ ªË¡¶
-		@RequestMapping("reviewRemove.eat")
-		public String reviewRemove(int num,HttpSession session) {
+		// ∑πΩ√«« ∏Æ∫‰ ªË¡¶
+		@RequestMapping("recipeReviewRemove.eat")
+		public String recipeReviewRemove(int num,HttpSession session) {
 			String reviewId = sql.selectOne("recipe.idSelect",num);
 			String sessionId = (String)session.getAttribute("loginID");
 			
@@ -210,4 +210,17 @@ public class memberpage {
 			
 			return "/member/reviewRemove";
 		}
+		
+		// ∑πΩ∫≈‰∂˚ ∏Æ∫‰ ªË¡¶
+		@RequestMapping("restaurantReviewRemove.eat")
+		public String restaurantReviewRemove(int num,HttpSession session) {
+			String reviewId = sql.selectOne("restaurant.idSelect",num);
+			String sessionId = (String)session.getAttribute("loginID");
+					
+			if(reviewId.equals(sessionId)) {
+			sql.delete("restaurant.reviewDelete",num);
+			}
+					
+			return "/member/reviewRemove";
+		}	
 }

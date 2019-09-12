@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐 먹지? 레스토랑 리뷰 리스트</title>
+<title>오늘 뭐 먹지? 레시피 리뷰 리스트</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="/eatoday/resource/js/jquery.min.js"></script>
@@ -33,25 +33,24 @@
 </head>
 
 <body>
-<c:choose>
-<c:when test="${!sessionScope.loginID.equals('admin@eatoday.com')}">
-	<script>
-		alert("이페이지를 볼 권한이 없습니다.");
-		history.go(-1);
-	</script>
-</c:when>
-<c:otherwise>
-<script type="text/javascript">
-	function remove(num){
-			var result = confirm("정말 이 댓글을 삭제하시겠습니까?");
 
+<script type="text/javascript">
+	function remove(num,i){
+			var result = confirm("정말 이 댓글을 삭제하시겠습니까?");
+			var id = "#list"+i;
 			if(!result){
 				alert("취소되었습니다.");
 			} else {
-				alert("삭제 성공");
-				location="reviewRemove.eat?num="+num;
-			}
+			 $.ajax({
+					url: "recipeReviewRemove.eat",
+					type: "post",
+					data: { num : num},
+					success: function(data) {
+					$(id).remove();
+					}
+			});	
 		}
+	}
 </script>
 
 <jsp:include page="../homepage/header.jsp" />
@@ -59,21 +58,24 @@
 <br><br><br><br>
 <table class="table table-bordered">
 	<tr> 
+		<td> 아이디 </td>
 		<td> 닉네임 </td>
 		<td> 내용 </td>
 		<td>삭제 </td>
 	</tr>
-	<c:forEach var="ReviewVO" items="${restaurantReviewVO }">
-	<tr>
+	<c:set var="i" value="1"/>
+	<c:forEach var="ReviewVO" items="${recipeReviewVO }">
+
+	<tr id="list${i }">
+		<td>${ReviewVO.id }</td>
 		<td>${ReviewVO.nick }</td>
 		<td>${ReviewVO.text }</td>
-		<td><input type="button" value="삭제"  onclick="remove('${ReviewVO.num}')"></td>
+		<td><input type="button" value="삭제"  onclick="remove('${ReviewVO.num}','${i }')"></td>
 	</tr>
+	<c:set var="i" value="${i+1 }"/>
 	</c:forEach>
 </table>
 </div>
-</c:otherwise>
-</c:choose>
 
 <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

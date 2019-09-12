@@ -96,6 +96,11 @@
  		select * from restaurant_re where id=#{value}
  	</select>
  	
+ 	<!-- 레스토랑 리뷰 삭제 아이디값 비교 -->
+ 	<select id="idSelect" parameterType="int" resultType="String">
+ 	  select id from restaurant_re where num=#{num}
+ 	</select>
+ 	
  	<!-- 레스토랑 리뷰 삭제 -->
  	<delete id="reviewDelete" parameterType="int">
  		delete from restaurant_re where num = #{value}
