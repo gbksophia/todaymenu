@@ -69,6 +69,7 @@
 					<a href="javascript:logout()">
 							로그아웃
 						</a>
+						<c:if test="${sessionScope.socialLogin == null }">
 						&nbsp;|&nbsp;
 						<a href="javascript:remove()">
 							탈퇴
@@ -77,6 +78,10 @@
 						<a href="javascript:pw()">
 						패스워드 변경
 						</a>
+						</c:if>
+					</div>
+					<div class="text-right p-t-8">
+						${code }
 					</div>
 					<c:if test="${sessionScope.loginID.equals('admin@eatoday.com')}">
 					<div class="text-right">

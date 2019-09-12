@@ -23,9 +23,11 @@ public class memberpage {
 	@RequestMapping("information.eat")
 	public String information(HttpSession session,Model model) {
 		String id = (String)session.getAttribute("loginID");
+		String code = sql.selectOne("member.codeSelect", id);
 		memberVO vo = sql.selectOne("member.info",id);
 	
 		model.addAttribute("vo",vo);
+		model.addAttribute("code",code);
 		return "/member/information";
 	}
 	
@@ -106,4 +108,24 @@ public class memberpage {
 		model.addAttribute("jjimList",jjimList);
 		return "/member/jjimList";
 	}
+	
+	// 아이디 찾기 폼
+	@RequestMapping("idSearch.eat")
+	public String idSearch() {
+		
+		return "/member/idSearch";
+	}
+	
+	// 아이디 찾기 프로
+		@RequestMapping("idSearchPro.eat")
+		public String idSearchPro(String code,Model model) {
+			int result = (Integer)sql.selectOne("member.idSearchCheck",code);
+			
+			if(result ==1) {
+				String id = sql.selectOne("member.idSearch", code);	
+				model.addAttribute("id", id);
+			}
+			model.addAttribute("result", result);
+			return "/member/idSearchPro";
+		}
 }

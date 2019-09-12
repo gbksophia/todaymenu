@@ -76,7 +76,7 @@
 					</div>
 					
 					<div class="text-left p-t-8 p-b-31">
-						<a href="#">
+						<a href="/eatoday/memberpage/idSearch.eat">
 							아이디 찾기
 						</a>
 						&nbsp;|&nbsp;

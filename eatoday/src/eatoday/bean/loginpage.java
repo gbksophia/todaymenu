@@ -48,6 +48,13 @@ public class loginpage {
 			session.setAttribute("loginID", vo.getId());
 		}
 		
+		if(sign ==1) {
+			// 코드값 보여주기
+			String code = sql.selectOne("member.codeSelect", vo.getId());
+						
+			model.addAttribute("code",code);
+		}
+		
 		model.addAttribute("result",result);
 		model.addAttribute("id",vo.getId());
 		model.addAttribute("pw",vo.getPw());
@@ -159,8 +166,9 @@ public class loginpage {
 				}	
 			}
 		}
-			sql.insert("member.insert",vo);
+			sql.insert("member.insert",vo);		
 		} 
+		
 		model.addAttribute("result",result);	
 		model.addAttribute("vo",vo);
 		
@@ -188,7 +196,8 @@ public class loginpage {
 	}
 	
 	@RequestMapping("CheckSocial.eat")
-	public String CheckSocial(String id, String pw, Model model, memberVO vo) {
+	public String CheckSocial(String id, String pw, Model model, memberVO vo,HttpSession session) {
+		session.setAttribute("socialLogin", "on");  //소셜 로그인 체크용
 		int result = sql.selectOne("member.idCheck",id);
 		model.addAttribute("result",result);
 		model.addAttribute("id",id);

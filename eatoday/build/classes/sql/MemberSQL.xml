@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 	<insert id="insert" parameterType="memberVO">
-		insert into mem values(mem_seq.nextval, #{id}, #{pw}, #{kor},#{china},#{japan},#{european},#{bunsig},#{cafe},#{etc},#{rice},#{soup},#{jeongol},#{side},#{shake},#{gui},#{jjim},#{guest},#{children},#{kimchi},#{dosi},#{fry},#{noodle},#{salad},#{spa},#{snack},#{toast},#{baking},#{dessert},#{juice},#{cocktail},#{holiday},#{drink})
+		insert into mem values(mem_seq.nextval, #{id}, #{pw}, #{kor},#{china},#{japan},#{european},#{bunsig},#{cafe},#{etc},#{rice},#{soup},#{jeongol},#{side},#{shake},#{gui},#{jjim},#{guest},#{children},#{kimchi},#{dosi},#{fry},#{noodle},#{salad},#{spa},#{snack},#{toast},#{baking},#{dessert},#{juice},#{cocktail},#{holiday},#{drink},DBMS_RANDOM.STRING('X', 6))
 	</insert>
 	
 	<select id="loginCheck" parameterType="memberVO" resultType="int">
@@ -13,6 +13,21 @@
  	
  	<select id="idCheck" parameterType="String" resultType="int">
  		select count(*) from mem where id=#{value}
+ 	</select>
+ 	
+ 	<!-- 아이디 찾기 코드 비교 -->
+ 	<select id="idSearchCheck" parameterType="String" resultType="int">
+ 		select count(*) from mem where code=#{value}
+ 	</select>
+ 	
+ 	<!-- 아이디 찾기  찾아주기 -->
+ 	<select id="idSearch" parameterType="String" resultType="String">
+ 		select id from mem where code=#{value}
+ 	</select>
+ 	
+ 	<!-- 회원가입시 아이디찾기 코드 발급한거 보여줌 -->
+ 	<select id="codeSelect" parameterType="String" resultType="String">
+ 		select code from mem where id=#{value}
  	</select>
  	
  	<select id="info" parameterType="String" resultType="memberVO">
