@@ -35,12 +35,15 @@
 	   <script>
    // 카테고리 카운트 가져오기
    window.onload =function(){ 
-	   for(var i=1;i<24;i++){
-		   var id = "cate("+i+")";
+	   var cate = ["한식","중식","일식","양식","분식","카페","기타"];
+	   for(var i=0;i<7;i++){
+		   var j = i+1;
+		   var id = "cate("+j+")";
+		   var item = cate[i];
 	   $.ajax({
-	          url: "recipeCateCount.eat",
+	          url: "restaurantCateCount.eat",
 	          type: "post",
-	          data: {cate : i},
+	          data: {cate : item},
 	          async: false,
 	          success: function(data) {
 	        	  var categori = document.createElement("span");
@@ -388,29 +391,14 @@
             <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
               <div class="categories">
                 <h3>Categories</h3>
-                <li><a href="recipeListView.eat?cate=1" id="cate(1)">밥요리</a></li>
-                <li><a href="recipeListView.eat?cate=2" id="cate(2)">국&탕 </a></li>
-                <li><a href="recipeListView.eat?cate=3" id="cate(3)">찌개&전골 </a></li>
-                <li><a href="recipeListView.eat?cate=4" id="cate(4)">밑반찬 </a></li>
-                <li><a href="recipeListView.eat?cate=5" id="cate(5)">볶음요리 </a></li>
-                <li><a href="recipeListView.eat?cate=6" id="cate(6)">구이(고기/생선)</a></li>
-                <li><a href="recipeListView.eat?cate=7" id="cate(7)">찜&조림</a></li>
-                <li><a href="recipeListView.eat?cate=8" id="cate(8)">손님상 </a></li>
-                <li><a href="recipeListView.eat?cate=9" id="cate(9)">아이 반찬 </a></li>
-                <li><a href="recipeListView.eat?cate=10" id="cate(10)">김치 장아찌</a></li>
-                <li><a href="recipeListView.eat?cate=11" id="cate(11)">도시락</a></li>
-                <li><a href="recipeListView.eat?cate=12" id="cate(12)">튀김 </a></li>
-                <li><a href="recipeListView.eat?cate=13" id="cate(13)">면요리</a></li>
-             	<li><a href="recipeListView.eat?cate=14" id="cate(14)">샐러드</a></li>
-             	<li><a href="recipeListView.eat?cate=15" id="cate(15)">야식&술안주</a></li>
-             	<li><a href="recipeListView.eat?cate=16" id="cate(16)">스파게티 </a></li>
-             	<li><a href="recipeListView.eat?cate=17" id="cate(17)">간식&분식 </a></li>
-             	<li><a href="recipeListView.eat?cate=18" id="cate(18)">토스트&샌드위치</a></li>
-             	<li><a href="recipeListView.eat?cate=19" id="cate(19)">베이킹</a></li>
-             	<li><a href="recipeListView.eat?cate=20" id="cate(20)">디저트 </a></li>
-             	<li><a href="recipeListView.eat?cate=21" id="cate(21)">주스&음료 </a></li>
-             	<li><a href="recipeListView.eat?cate=22" id="cate(22)">술&칵테일</a></li>
-             	<li><a href="recipeListView.eat?cate=23" id="cate(23)">명절요리</a></li>
+                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="한식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(1)">한식</a></li>
+                <li><a href=<c:url value= "/homepage/restaurantList.eat"><c:param name="cate" value="중식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(2)">중식 </a></li>
+                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="일식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(3)">일식 </a></li>
+                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="양식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(4)">양식 </a></li>
+                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="분식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(5)">분식 </a></li>
+                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="카페"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(6)">카페</a></li>
+                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="기타"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(7)">기타</a></li>
+               
              		 </div>
             	</div>
 		</div>

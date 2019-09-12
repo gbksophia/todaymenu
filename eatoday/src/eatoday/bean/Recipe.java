@@ -254,6 +254,6 @@ public class Recipe {
 	public String recipeCateCount(String cate,Model model) {
 		int CateCount =(Integer)sql.selectOne("recipe.cateCount",cate);
 		model.addAttribute("CateCount",CateCount);
-		return "/homepage/recipeCateCount";
+		return "/homepage/CateCount";
 	}
 }
