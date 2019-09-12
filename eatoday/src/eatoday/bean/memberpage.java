@@ -164,7 +164,7 @@ public class memberpage {
 				//Session 생성
 				Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() { 
 					protected javax.mail.PasswordAuthentication getPasswordAuthentication() { 
-						return new javax.mail.PasswordAuthentication("yhy129852", "fldh-24193!");
+						return new javax.mail.PasswordAuthentication("eatoday110", "dhsmfanjajr1!");
 						} 
 					});
 				session.setDebug(true); //for debug
@@ -172,11 +172,42 @@ public class memberpage {
 				MimeMessage msg = new MimeMessage(session); // 메세지 내용 담당 클래스
 				msg.setFrom(new InternetAddress(admin)); //발신자의 IP
 				msg.setRecipient(Message.RecipientType.TO, new InternetAddress(member));
-				msg.setSubject("연습");
+				msg.setSubject("eatoday 임시 비밀번호");
 				msg.setText(id+"님에게 임시 비밀번호\n" + pw + "를 발급하였습니다.\n http://localhost:8080/eatoday/loginpage/login.eat 에 로그인 하시면 됩니다. 감사합니다.");
 				Transport.send(msg);
 			}
 			model.addAttribute("result",result);
 			return "/member/pwSearhPro";
+		}
+		
+		// 레시피 리뷰 리스트
+		@RequestMapping("recipeReviewList.eat")
+		public String recipeReviewList(HttpSession session,Model model) {
+			String id = (String)session.getAttribute("loginID");
+			List recipeReviewVO = sql.selectList("recipe.memReviewList",id);
+			model.addAttribute("recipeReviewVO",recipeReviewVO);
+			return "/member/recipeReviewList";
+		}
+		
+		//레스토랑 리뷰 리스트
+		@RequestMapping("restaurantReviewList.eat")
+		public String restaurantReview(HttpSession session, Model model) {
+			String id = (String)session.getAttribute("loginID");
+			List restaurantReviewVO = sql.selectList("restaurant.memReviewList",id);
+			model.addAttribute("restaurantReviewVO",restaurantReviewVO);
+			return "/member/restaurantReviewList";
+		}
+		
+		// 리뷰 삭제
+		@RequestMapping("reviewRemove.eat")
+		public String reviewRemove(int num,HttpSession session) {
+			String reviewId = sql.selectOne("recipe.idSelect",num);
+			String sessionId = (String)session.getAttribute("loginID");
+			
+			if(reviewId.equals(sessionId)) {
+			sql.delete("recipe.reviewDelete",num);
+			}
+			
+			return "/member/reviewRemove";
 		}
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐 먹지? 레시피 찜 리스트</title>
+<title>오늘 뭐 먹지? 레스토랑 리뷰 관리!!</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="/eatoday/resource/js/jquery.min.js"></script>
@@ -33,69 +33,57 @@
 </head>
 
 <body>
+<c:choose>
+<c:when test="${!sessionScope.loginID.equals('admin@eatoday.com')}">
+	<script>
+		alert("이페이지를 볼 권한이 없습니다.");
+		history.go(-1);
+	</script>
+</c:when>
+<c:otherwise>
 <script type="text/javascript">
-		function jjimCheck(i,cnum){
-		   var id = '${sessionScope.loginID}';
-		   var imgtag = "jjimImg"+i;
-		   var imgid = "btn_jjim"+i;
-		   $.ajax({
-		          url: "/eatoday/memberpage/recipeJjim.eat",
-		          type: "post",
-		          data: {id : id, cnum : cnum },
-		          success: function(data) {
-		        	  var elem = document.createElement("img");
-		        	  elem.setAttribute("src", data);
-		        	  elem.setAttribute("height", "50px");
-		      		  elem.setAttribute("width", "50px");
-		      		  elem.setAttribute("id", imgid);
-		      		 document.getElementById(imgtag).appendChild(elem);	
-		        	  }
-		    	  });
-		   }
-
-	  function jjimClick(i,cnum){
-		  var id = '${sessionScope.loginID}';
-			var img = 'btn_jjim'+i;
-		   if(${sessionScope.loginID == null}){
-				alert("로그인 후 이용해 주십시오.");
-			   } else {
-		   $.ajax({
-		          url: "/eatoday/memberpage/recipeJjimClick.eat",
-		          type: "post",
-		          data: {id : id, cnum : cnum },
-		          success: function(data) {
-		        	  document.getElementById(img).src=data;
-		        	  }
-		    	  });
-		  }
-	  }
+	function remove(num,i){
+			var result = confirm("정말 이 댓글을 삭제하시겠습니까?");
+			var id = "#list"+i;
+			if(!result){
+				alert("취소되었습니다.");
+			} else {
+			 $.ajax({
+					url: "restaurantReviewRemove.eat",
+					type: "post",
+					data: { num : num},
+					success: function(data) {
+					$(id).remove();
+					}
+			});	
+		}
+	}
 </script>
 
 <jsp:include page="../homepage/header.jsp" />
 <div class="container">
 <br><br><br><br>
-<c:set var="i" value="0"/>
 <table class="table table-bordered">
 	<tr> 
-		<td> 음식 사진 </td>
-		<td> 음식 이름 </td>
-		<td> 찜</td>
+		<td> 아이디 </td>
+		<td> 닉네임 </td>
+		<td> 내용 </td>
+		<td>삭제 </td>
 	</tr>
-	<c:forEach var="jjimVO" items="${jjimList }">
-	<tr>
-		<td><img src="/eatoday/resource/RecipeImages/${jjimVO.main_name }" style="height: 150px;width: 150px;"></td>
-		<td><a href="/eatoday/homepage/recipeDetail.eat?cnum=${jjimVO.cnum }" >${jjimVO.title }</a></td>
-		<td>
-		<a id="jjimImg${i}" onclick="javascript:jjimClick('${i}',${jjimVO.cnum })"></a>
-		<script type="text/javascript">
-		jjimCheck('${i}','${jjimVO.cnum}');
-		</script>
-		</td>
-	</tr>
+	<c:set var="i" value="1"/>
+	<c:forEach var="ReviewVO" items="${restaurantReviewVO }">
 	<c:set var="i" value="${i+1 }"/>
+	<tr id="list${i }">
+		<td>${ReviewVO.id }</td>
+		<td>${ReviewVO.nick }</td>
+		<td>${ReviewVO.text }</td>
+		<td><input type="button" value="삭제"  onclick="remove('${ReviewVO.num}','${i }')"></td>
+	</tr>
 	</c:forEach>
 </table>
 </div>
+</c:otherwise>
+</c:choose>
 
 <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

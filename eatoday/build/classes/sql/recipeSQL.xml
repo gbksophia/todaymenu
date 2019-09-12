@@ -75,9 +75,19 @@
  	<select id="reviewSelect" parameterType="String" resultType="recipeReviewVO">
  	   select * from recipe_re
  	   <if test="value != null">
- 	    where cnum=#{value} 
+ 	    where cnum=#{cnum} 
  	    </if> 
  	    order by reg_date desc
+ 	</select>
+ 	
+ 	<!-- 회원 레시피 리뷰 리스트 -->
+ 	<select id="memReviewList" parameterType="String" resultType="recipeReviewVO">
+ 		select * from recipe_re where id=#{value}
+ 	</select>
+ 	
+ 	<!-- 레시피 리뷰 삭제 아이디값 비교 -->
+ 	<select id="idSelect" parameterType="int" resultType="String">
+ 	  select id from recipe_re where num=#{num}
  	</select>
  	
  	<!-- 레시피 리뷰 삭제 -->

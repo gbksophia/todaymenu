@@ -73,8 +73,8 @@
  	
 	
 	<!-- 레스토랑 리뷰 쓰기 -->
- 	<insert id="ReviewInsert" parameterType="recipeReviewVO">
- 		insert into restaurant_re(num,cnum,id,nick,text,img,reg_date) values (recipe_re_seq.nextval,#{cnum},#{id},#{nick},#{text},#{img},sysdate)
+ 	<insert id="ReviewInsert" parameterType="restaurantReviewVO">
+ 		insert into restaurant_re(num,cnum,id,nick,text,img,reg_date) values (restaurant_re_seq.nextval,#{cnum},#{id},#{nick},#{text},#{img},sysdate)
  	</insert>
  	
 	<!-- 레스토랑 리뷰 갯수 -->
@@ -89,6 +89,11 @@
  	    where cnum=#{value} 
  	    </if> 
  	    order by reg_date desc
+ 	</select>
+ 	
+ 	<!-- 회원 레스토랑 리뷰 리스트 -->
+ 	<select id="memReviewList" parameterType="String" resultType="restaurantReviewVO">
+ 		select * from restaurant_re where id=#{value}
  	</select>
  	
  	<!-- 레스토랑 리뷰 삭제 -->
@@ -119,7 +124,7 @@
  	
  	<!-- 레시피 리뷰 쪼아요 -->
  	<insert id="reviewNiceInsert" parameterType="restaurantReviewNiceVO">
- 		insert into restaurant_re_nice values (recipe_re_nice_seq.nextval, #{id}, #{renum})
+ 		insert into restaurant_re_nice values (restaurant_re_nice_seq.nextval, #{id}, #{renum})
  	</insert>
  	
  	<!-- 레시피 리뷰 쪼아요 해제 -->

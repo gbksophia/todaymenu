@@ -42,13 +42,30 @@ public class adminpage {
 		return "/admin/recipeReview";
 	}
 	
-	@RequestMapping("reviewRemove.eat")
-	public String reviewRemove(int num,HttpSession session) {
+	@RequestMapping("restaurantReview.eat")
+	public String restaurantReview(Model model) {
+		List restaurantReviewVO = sql.selectList("restaurant.reviewSelect");
+		model.addAttribute("restaurantReviewVO",restaurantReviewVO);
+		return "/admin/restaurantReview";
+	}
+	
+	@RequestMapping("recipeReviewRemove.eat")
+	public String recipeReviewRemove(int num,HttpSession session) {
 		String admin = (String)session.getAttribute("loginID");
 		if(admin.equals("admin@eatoday.com")) {
 			sql.delete("recipe.reviewDelete",num);
 		}
 		return "/admin/reviewRemove";
 	}
+	
+	@RequestMapping("restaurantReviewRemove.eat")
+	public String restaurantReviewRemove(int num,HttpSession session) {
+		String admin = (String)session.getAttribute("loginID");
+		if(admin.equals("admin@eatoday.com")) {
+			sql.delete("restaurant.reviewDelete",num);
+		}
+		return "/admin/reviewRemove";
+	}
+	
 }
 

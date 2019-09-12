@@ -24,8 +24,15 @@
 	          	<li class="nav-item"><a href="/eatoday/loginpage/login.eat" class="nav-link">login</a></li>
 	          </c:if>
 	          <c:if test="${sessionScope.loginID != null}">
-	          <li class="nav-item"><a href="/eatoday/memberpage/jjimList.eat?id=${sessionScope.loginID }" class="nav-link">jjim</a></li>
-	          	<li class="nav-item"><a href="/eatoday/memberpage/information.eat" class="nav-link">information</a></li>
+	           <li class="nav-item dropdown">
+	          <a class="nav-link dropdown-toggle" id="member" aria-haspopup="true" aria-expanded="false">member</a>
+              <div class="dropdown-menu" aria-labelledby="member">
+              <a class="dropdown-item" href="/eatoday/memberpage/information.eat">information</a>
+              <a class="dropdown-item" href="/eatoday/memberpage/jjimList.eat?id=${sessionScope.loginID }">recipeNice</a>
+              <a class="dropdown-item" href="/eatoday/memberpage/recipeReviewList.eat">recipeReview</a>
+	          <a class="dropdown-item" href="/eatoday/memberpage/restaurantReviewList.eat">restaurantReview</a>
+	          </div>
+	          </li>
 	          </c:if>
 	          <li class="nav-item cart"><a href="cart.eat" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
 	        </ul>

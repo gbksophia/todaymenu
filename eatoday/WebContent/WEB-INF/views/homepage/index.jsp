@@ -85,7 +85,7 @@
    border-radius: 0;
    background-position: 100% center;
 }
-    </style>
+ </style>
     
     <script type = "text/javascript">
     function searchCheck() {
