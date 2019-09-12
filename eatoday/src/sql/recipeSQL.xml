@@ -5,8 +5,8 @@
 <mapper namespace="recipe">
 		<!-- 레시피 정보 입력 -->
 	<insert id="insert" parameterType="recipeVO">
-		insert into recipe(cate, con_num, main_name, title, mate, pro) 
-		values (#{cate}, #{con_num}, #{main_name}, #{title}, #{mate}, #{pro})
+		insert into recipe(cate, cnum, main_name, title, mate, pro) 
+		values (#{cate}, #{cnum}, #{main_name}, #{title}, #{mate}, #{pro})
 	</insert>
 
 	<!-- 레시피 리스트  출력 -->
@@ -16,7 +16,7 @@
 	
 	<!-- 레시피 정보 출력 -->
 	<select id="info" resultType="recipeVO" parameterType="String">
-		select * from recipe where con_num=#{cnum}
+		select * from recipe where cnum=#{cnum}
 	</select>
 	
 	<select id = "selectPro" resultType="recipeImgVO">
@@ -35,7 +35,7 @@
 
 	<!-- 레시피 조리법 이미지 검색 -->
 	<select id="imgselect" resultType="recipeImgVO" parameterType="String" >
-		select * from recipe_pro where con_num = #{cnum}
+		select * from recipe_pro where cnum = #{cnum}
 	</select>
  
  
@@ -133,7 +133,7 @@
  	
  	<!-- 레시피 찜 리스트 -->
  	<select id="jjimList" parameterType="String" resultType="recipeVO">
- 		select * from recipe r, recipe_jjim j where r.con_num=j.cnum and j.id= #{value}
+ 		select * from recipe r, recipe_jjim j where r.cnum=j.cnum and j.id= #{value}
  	</select>
  	
 	<!-- 레시피 이름으로 검색 -->

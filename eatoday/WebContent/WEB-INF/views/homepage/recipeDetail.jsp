@@ -37,7 +37,7 @@
    // 찜 여부 확인 실행시 1회  동작
    window.onload = function(){
 	   var id = '${sessionScope.loginID}';
-	   var cnum = '${rvo.con_num}';
+	   var cnum = '${rvo.cnum}';
 	   $.ajax({
 	          url: "/eatoday/memberpage/recipeJjim.eat",
 	          type: "post",
@@ -75,7 +75,7 @@
    // 찜 클릭 이벤트
   function jjimClick(){
 	  var id = '${sessionScope.loginID}';
-	   var cnum = '${rvo.con_num}';
+	   var cnum = '${rvo.cnum}';
 
 	   if(${sessionScope.loginID == null}){
 			alert("로그인 후 이용해 주십시오.");
@@ -358,7 +358,7 @@
 							수정
 						</a>
 						&nbsp;|&nbsp;
-						<a href="javascript:reviewRemove('${recipeReviewVO.getNum() }','${i }','${rvo.con_num }')">
+						<a href="javascript:reviewRemove('${recipeReviewVO.getNum() }','${i }','${rvo.cnum }')">
 							삭제
 						</a>
 						 <div class="text-right">
@@ -396,7 +396,7 @@
               		</c:when>
               		<c:otherwise>
               		 <form action="recipeRePro.eat" method="post" enctype="multipart/form-data">
-                	<input type="hidden" name="cnum" value="${rvo.getCon_num() }">
+                	<input type="hidden" name="cnum" value="${rvo.getCnum() }">
                 	<input type="hidden" name="id" value="${sessionScope.loginID }">
                   <div class="form-group">
                     <textarea name="text" id="text" cols="30" rows="10" class="form-control" placeholder="댓글을 입력해주세요"></textarea>

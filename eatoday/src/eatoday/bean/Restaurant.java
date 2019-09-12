@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,9 +71,29 @@ public class Restaurant {
 		}
 		
 		@RequestMapping("restaurantDetail.eat")
-		public String restaurantDetail(HttpServletRequest request, Model model) {
+		public String restaurantDetail(HttpServletRequest request, Model model,HttpSession session) {
 			String cnum = request.getParameter("cnum");
+			String cate = request.getParameter("cate");
 			
+			if(session.getAttribute("loginID")!=null  && cate!=null) {
+				String id = (String)session.getAttribute("loginID");
+				
+			if(cate.equals("한식")) {
+				sql.update("member.korCountUp",id); // 한식 카운트 증가
+			} else if (cate.equals("중식")) {
+				sql.update("member.chinaCountUp",id); // 중식 카운트 증가
+			} else if (cate.equals("일식")) {
+				sql.update("member.japanCountUp",id); // 일식 카운트 증가
+			} else if (cate.equals("양식")) {
+				sql.update("member.europeanCountUp",id); // 양식 카운트 증가
+			} else if (cate.equals("분식")) {
+				sql.update("member.bunsigCountUp",id); // 분식 카운트 증가
+			} else if (cate.equals("카페")) {
+				sql.update("member.cafeCountUp",id); // 카페 카운트 증가
+			} else if (cate.equals("기타")) {
+				sql.update("member.etcCountUp",id); // 기타 카운트 증가
+			}
+			}
 			//리뷰 카운트
 			int recount = (Integer)sql.selectOne("restaurant.ReviewCount",cnum);
 

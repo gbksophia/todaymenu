@@ -3,7 +3,7 @@ package eatoday.vo;
 public class recipeVO {
 	
 	private String cate; //카테고리
-	private String con_num; //글번호(시퀀스아님)
+	private String cnum; //글번호(시퀀스아님)
 	private String main_name; //사진파일이름
 	private String title; //메뉴명
 	private String mate; //재료
@@ -14,11 +14,11 @@ public class recipeVO {
 	public void setCate(String cate) {
 		this.cate = cate;
 	}
-	public String getCon_num() {
-		return con_num;
+	public String getCnum() {
+		return cnum;
 	}
-	public void setCon_num(String con_num) {
-		this.con_num = con_num;
+	public void setCnum(String cnum) {
+		this.cnum = cnum;
 	}
 	public String getMain_name() {
 		return main_name;

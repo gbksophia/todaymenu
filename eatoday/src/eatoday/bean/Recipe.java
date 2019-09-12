@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +46,43 @@ public class Recipe {
 	}
 	
 	@RequestMapping("recipeDetail.eat")
-	public String recipeDetail(Model model, HttpServletRequest request) throws Exception {
+	public String recipeDetail(Model model, HttpServletRequest request,HttpSession session) throws Exception {
 		String cnum = request.getParameter("cnum");
+		String cate = request.getParameter("cate");
 		
+		if (session.getAttribute("loginID") != null && cate!=null) {
+		String id = (String)session.getAttribute("loginID");
+		// 카테고리 카운트 증가
+		if(cate.equals("1") ) {
+			sql.update("member.riceCountUp",id); // 밥 레시피 카운트값 증가
+			
+		} else if (cate.equals("2") ||cate.equals("3")) {
+			sql.update("member.soupCountUp",id); // 국 & 찌개 관련 레시피 카운트값 증가
+			
+		}  else if (cate.equals("4") ||cate.equals("5") ||cate.equals("6") 
+			||cate.equals("7") ||cate.equals("9") ||cate.equals("10")) {
+			sql.update("member.sideCountUp",id); // 반찬 관련 레시피 카운트값 증가
+			
+		}  else if (cate.equals("11")) {
+			sql.update("member.dosiCountUp",id); //  도시락 레시피 카운트값 증가
+			
+		}  else if (cate.equals("13") ||cate.equals("16")) {
+			sql.update("member.noodleCountUp",id); // 면 관련 레시피 카운트값 증가
+			
+		}  else if (cate.equals("14")) {
+			sql.update("member.saladCountUp",id);  // 샐러드 레시피 카운트 값 증가
+			
+		}  else if (cate.equals("12") ||cate.equals("15") || cate.equals("17") 
+				||cate.equals("18") || cate.equals("19") ||cate.equals("20")) {
+			sql.update("member.dessertCountUp",id); // 간식 관련 레시피 카운트 값 증가
+			
+		}  else if (cate.equals("21") ||cate.equals("22")) {
+			sql.update("member.drinkCountUp",id);  // 마실것 관련 레시피 카운트값 증가
+		
+		}  else if (cate.equals("8") ||cate.equals("23")) {
+			sql.update("member.holyCountUp",id); // 명절/손님상 관련 레시피 카운트값증가
+		}
+	}
 		//리뷰 카운트
 		int recount = sql.selectOne("recipe.ReviewCount",cnum);
 

@@ -42,7 +42,7 @@ public class dbManage {
 			
 			for(int j=0; j<list.at(0).length(); j++) {
 				rcpvo.setCate(s[1][j]);
-				rcpvo.setCon_num(s[2][j]);
+				rcpvo.setCnum(s[2][j]);
 				rcpvo.setMain_name(s[3][j]);
 				rcpvo.setTitle(s[4][j]);
 				rcpvo.setMate(s[5][j]);
@@ -98,7 +98,7 @@ public class dbManage {
 			}
 			
 			for(int j=0; j<list.at(0).length(); j++) {
-				rimgvo.setCon_num(s[1][j]);
+				rimgvo.setCnum(s[1][j]);
 				rimgvo.setImg1(s[2][j]);
 				rimgvo.setImg2(s[3][j]);
 				sql.insert("recipe.imginsert", rimgvo);

@@ -31,9 +31,84 @@
  	<select id="List" resultType="memberVO">
  		select * from mem where id !='admin@eatoday.com'
  	</select>
- 	
- 	 	
- 	<update id = "read" parameterType = "int">
+
+ 	<!-- 밥 카테고리 값 증가 -->	
+ 	<update id = "riceCountUp" parameterType = "String">
  		update mem set rice = rice + 1 where id = #{id}
+ 	</update>
+ 	
+ 	<!-- 국 관련 레시피 카테고리 값 증가 -->	
+ 	<update id = "soupCountUp" parameterType = "String">
+ 		update mem set soup = soup + 1, jeongol = jeongol+1 where id = #{id}
+ 	</update>
+ 	
+ 	<!-- 반찬 관련 레시피 카테고리 값 증가 -->	
+ 	<update id = "sideCountUp" parameterType = "String">
+ 		update mem set side = side + 1, shake = shake+1, gui = gui+1,jjim=jjim+1, children=children+1, kimchi=kimchi+1 where id = #{id}
+ 	</update>
+ 	
+ 	<!-- 도시락 레시피 카테고리 값 증가 -->	
+ 	<update id = "dosiCountUp" parameterType = "String">
+ 		update mem set dosi = dosi + 1 where id = #{id}
+ 	</update>
+ 	
+ 	<!-- 면관련 레시피 카테고리 값 증가 -->	
+ 	<update id = "noodleCountUp" parameterType = "String">
+ 		update mem set noodle = noodle+1, spa=spa+1 where id = #{id}
+ 	</update>
+ 	
+ 	<!-- 샐러드 레시피 카테고리 값 증가 -->	
+ 	<update id = "saladCountUp" parameterType = "String">
+ 		update mem set salad = salad+1 where id = #{id}
+ 	</update>
+ 	
+ 	<!-- 간식 관련 레시피 카운트 값 증가 -->	
+ 	<update id = "dessertCountUp" parameterType = "String">
+ 		update mem set fry = fry+1,snack=snack+1,toast=toast+1,daking=daking+1,dessert=dessert+1, where id = #{id}
+ 	</update>
+ 	
+ 	<!-- 마실것 관련 레시피 카운트값 증가 -->	
+ 	<update id = "drinkCountUp" parameterType = "String">
+ 		update mem set juice = juice+1,cocktail=cocktail+1 where id = #{id}
+ 	</update>
+ 	
+ 	<!-- 명절/손님상 관련 레시피 카운트값증가 -->	
+ 	<update id = "holyCountUp" parameterType = "String">
+ 		update mem set holyday = holyday+1,guest=guest+1 where id = #{id}
+ 	</update>
+ 	
+ 	<!--한식 카운트 증가 -->	
+ 	<update id = "korCountUp" parameterType = "String">
+ 		update mem set kor = kor+1 where id = #{id}
+ 	</update>
+ 	
+ 	<!--중식 카운트 증가 -->	
+ 	<update id = "chinaCountUp" parameterType = "String">
+ 		update mem set china = china+1 where id = #{id}
+ 	</update>
+ 	
+ 	<!--일식 카운트 증가 -->	
+ 	<update id = "japanCountUp" parameterType = "String">
+ 		update mem set japan = japan+1 where id = #{id}
+ 	</update>
+ 	
+ 	<!--양식 카운트 증가 -->	
+ 	<update id = "europeanCountUp" parameterType = "String">
+ 		update mem set european = european+1 where id = #{id}
+ 	</update>
+ 	
+ 	<!--분식 카운트 증가 -->	
+ 	<update id = "bunsigCountUp" parameterType = "String">
+ 		update mem set bunsig = bunsig+1 where id = #{id}
+ 	</update>
+ 	
+ 	<!--카페 카운트 증가 -->	
+ 	<update id = "cafeCountUp" parameterType = "String">
+ 		update mem set cafe = cafe+1 where id = #{id}
+ 	</update>
+ 	
+ 	<!--기타 카운트 증가 -->	
+ 	<update id = "etcCountUp" parameterType = "String">
+ 		update mem set etc = etc+1 where id = #{id}
  	</update>
 </mapper>

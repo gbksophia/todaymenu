@@ -2,15 +2,15 @@ package eatoday.vo;
 
 public class recipeImgVO {
 	
-	private String con_num;
+	private String cnum;
 	private String img1;
 	private String img2;
 	
-	public String getCon_num() {
-		return con_num;
+	public String getCnum() {
+		return cnum;
 	}
-	public void setCon_num(String con_num) {
-		this.con_num = con_num;
+	public void setCnum(String cnum) {
+		this.cnum = cnum;
 	}
 	public String getImg1() {
 		return img1;
