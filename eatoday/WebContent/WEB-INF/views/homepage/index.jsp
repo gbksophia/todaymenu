@@ -314,14 +314,8 @@
                             <a href="receipe-post.html">
                                 <h5>${rcp.getTitle()}</h5>
                             </a>
-                            <div class="ratings">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </div>
-                            <p>&nbsp;<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCon_num()}"></c:param></c:url>">자세히보기</a></p>
+                           
+                            <p>&nbsp;<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param></c:url>">자세히보기</a></p>
                         </div>
                     </div>
                 </div>

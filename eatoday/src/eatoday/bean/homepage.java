@@ -29,18 +29,17 @@ public class homepage {
 			request.setCharacterEncoding("UTF-8");
 			
 			
-			int count = (Integer)sql.selectOne("recipe.count");
-			ArrayList rcp = new ArrayList();
-			
+			int count = (Integer)sql.selectOne("recipe.count");			
 			
 			int greatest = sql.selectOne("recipe.greatest",id);
 			//recipe.greatest=mem 테이블에서 가장 선호하는 카테고리의 값
-			System.out.println(greatest);
 			
-			String cate = sql.selectOne("recipe.cate", greatest);
+			List rcp = sql.selectList("recipe.cate", greatest);
 			//recipe.cate=mem 테이블에서 가장 선호하는 카테고리의 이름
-			System.out.println(cate);
-
+			
+			// 선호 레시피종류가 중복일 경우 선호레시피를 랜덤으로 검색				
+			int rand = (int)(Math.random()*rcp.size());
+			String cate = (String)rcp.get(rand);
 			if(cate.equals("RICE")) {
 				cate = "1";
 				
@@ -112,11 +111,11 @@ public class homepage {
 				cate = "23";
 			}
 			
-			List rcpList = sql.selectList("recipe.select",cate);
+			rcp = sql.selectList("recipe.memrandomSelectIndex",cate);
 			
 			model.addAttribute("gnum", greatest);
 			model.addAttribute("cate",cate);
-			model.addAttribute("recipeList", rcpList);
+			model.addAttribute("recipeList", rcp);
 			model.addAttribute("count", count);
 		} catch (Exception e) {
 			e.printStackTrace();

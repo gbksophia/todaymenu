@@ -111,7 +111,7 @@ public class Recipe {
 		}  else if (like_cate.equals("GUEST")) {
 			like_cate = "8"; 
 		}
-		recipeList = sql.selectList("recipe.randomSelect",vo);
+		recipeList = sql.selectList("recipe.memrandomSelect",like_cate);
 		model.addAttribute("recipeList",recipeList);
 	}
 		// 페이지 관련 레시피 보여주기 
