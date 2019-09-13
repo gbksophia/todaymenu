@@ -25,7 +25,7 @@
 	          </c:if>
 	          <c:if test="${sessionScope.loginID != null}">
 	           <li class="nav-item dropdown">
-	          <a class="nav-link dropdown-toggle" id="member" aria-haspopup="true" aria-expanded="false">member</a>
+	          <a class="nav-link dropdown-toggle" href="#" id="member" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">member</a>
               <div class="dropdown-menu" aria-labelledby="member">
               <a class="dropdown-item" href="/eatoday/memberpage/information.eat">information</a>
               <a class="dropdown-item" href="/eatoday/memberpage/jjimList.eat?id=${sessionScope.loginID }">recipeNice</a>
