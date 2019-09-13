@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 	<insert id="insert" parameterType="memberVO">
-		insert into mem values(mem_seq.nextval, #{id}, #{pw}, #{kor},#{china},#{japan},#{european},#{bunsig},#{cafe},#{etc},#{rice},#{soup},#{jeongol},#{side},#{shake},#{gui},#{jjim},#{guest},#{children},#{kimchi},#{dosi},#{fry},#{noodle},#{salad},#{spa},#{snack},#{toast},#{baking},#{dessert},#{juice},#{cocktail},#{holiday},#{drink},DBMS_RANDOM.STRING('X', 6))
+		insert into mem values(mem_seq.nextval, #{id}, #{pw}, #{kor},#{china},#{japan},#{european},#{bunsig},#{cafe},#{etc},#{rice},#{soup},#{jeongol},#{side},#{shake},#{gui},#{jjim},#{guest},#{children},#{kimchi},#{dosi},#{fry},#{noodle},#{salad},#{spa},#{snack},#{toast},#{baking},#{dessert},#{juice},#{cocktail},#{holiday} DBMS_RANDOM.STRING('X', 6))
 	</insert>
 	
 	<select id="loginCheck" parameterType="memberVO" resultType="int">
@@ -99,8 +99,8 @@
  	</update>
  	
  	<!-- 명절/손님상 관련 레시피 카운트값증가 -->	
- 	<update id = "holyCountUp" parameterType = "String">
- 		update mem set holyday = holyday+1,guest=guest+1 where id = #{id}
+ 	<update id = "holiCountUp" parameterType = "String">
+ 		update mem set holiday = holiday+1,guest=guest+1 where id = #{id}
  	</update>
  	
  	<!--한식 카운트 증가 -->	

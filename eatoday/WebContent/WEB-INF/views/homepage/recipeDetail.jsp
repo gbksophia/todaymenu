@@ -474,7 +474,7 @@
                 <c:forEach var="recipeVO" items="${recipeList }" >
                <li> 
                <div class="text-left p-t-8 p-b-31">
-               <a  href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">
+               <a  href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${recipeVO.cnum}"></c:param><c:param name = "cate" value = "${recipeVO.cate}"></c:param></c:url>">
                <img src="/eatoday/resource/RecipeImages/${recipeVO.main_name }" style="width: 100px; height: 100px"/>
                	${recipeVO.title }
                </a>
@@ -490,7 +490,7 @@
                 <c:forEach var="randomVO" items="${randomList }" >
                <li> 
                <div class="text-left p-t-8 p-b-31">
-               <a  href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.randomVO()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">
+               <a  href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${randomVO.cnum}"></c:param><c:param name = "cate" value = "${randomVO.cate}"></c:param></c:url>">
                <img src="/eatoday/resource/RecipeImages/${randomVO.main_name }" style="width: 100px; height: 100px"/>
                	${randomVO.title }
                </a>

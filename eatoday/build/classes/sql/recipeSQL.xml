@@ -14,14 +14,48 @@
 		select * from recipe where cate= #{cate}
 	</select>
 
-	<!-- 관심 레시피 랜덤 출력 -->
-	<select id="memrandomSelect" resultType="recipeVO" parameterType="String">
-	<![CDATA[select * from (select * from recipe where cate=#{value} order by DBMS_RANDOM.RANDOM ) where rownum <=5 ]]>
+	<!-- 회원 관심 카테고리   출력 -->
+	<select id="memRandomSelect" resultType="recipeVO" parameterType="map">
+	select * from 
+	(select * from recipe where cate=#{key1} 
+	<if test="key2 != null ">
+		or cate=#{key2} 
+	</if>
+	 <if test="key3 != null">
+		or cate=#{key3} 
+	</if>
+	<if test="key4 != null">
+		or cate=#{key4} 
+	</if>
+	<if test="key5 != null">
+		or cate=#{key5} 
+	</if>
+	<if test="key6 != null">
+		or cate=#{key6} 
+	</if> 
+<![CDATA[	order by DBMS_RANDOM.RANDOM )where rownum <=5 ]]>
 	</select>
 	
 	<!-- 관심 레시피 랜덤 출력 - 메인페이지 -->
-	<select id="memrandomSelectIndex" resultType="recipeVO" parameterType="String">
-	<![CDATA[select * from (select * from recipe where cate=#{value} order by DBMS_RANDOM.RANDOM ) where rownum <=12 ]]>
+	<select id="randomSelectMain" resultType="recipeVO" parameterType="map">
+	select * from 
+	(select * from recipe where cate=#{key1} 
+	<if test="key2 != null ">
+		or cate=#{key2} 
+	</if>
+	 <if test="key3 != null">
+		or cate=#{key3} 
+	</if>
+	<if test="key4 != null">
+		or cate=#{key4} 
+	</if>
+	<if test="key5 != null">
+		or cate=#{key5} 
+	</if>
+	<if test="key6 != null">
+		or cate=#{key6} 
+	</if> 
+<![CDATA[	order by DBMS_RANDOM.RANDOM )where rownum <=12 ]]>
 	</select>
 	
 	<!-- 관련 레시피 랜덤 출력 -->
@@ -56,14 +90,14 @@
  
  		<!-- 가장 선호하는 카테고리의 값 -->
 	<select id="greatest" parameterType="String" resultType="int">
-		select greatest (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday, drink) from mem where id=#{id}
+		select greatest (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday) from mem where id=#{id}
 	</select>
  
  	<!-- 위 값과 일치하는 카테고리의 이름 -->
 	<select id="cate" parameterType="int" resultType="String">
-		WITH t AS (SELECT rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday, drink FROM mem)
+		WITH t AS (SELECT rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday FROM mem)
     	SELECT * FROM t
-    	UNPIVOT (yn FOR cnm IN (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday, drink))
+    	UNPIVOT (yn FOR cnm IN (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday))
 		WHERE yn = #{value}
 	</select>
  	<!-- 레시피 리뷰 이미지 이름 숫자 카운트 업 -->

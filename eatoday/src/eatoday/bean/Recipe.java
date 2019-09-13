@@ -2,7 +2,9 @@ package eatoday.bean;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -82,36 +84,59 @@ public class Recipe {
 			sql.update("member.drinkCountUp",id);  // 마실것 관련 레시피 카운트값 증가
 		
 		}  else if (cate.equals("8") ||cate.equals("23")) {
-			sql.update("member.holyCountUp",id); // 명절/손님상 관련 레시피 카운트값증가
+			sql.update("member.holiCountUp",id); // 명절/손님상 관련 레시피 카운트값증가
 		}
 		
 		//관심 있는 레시피 보여주기
 		int like = sql.selectOne("recipe.greatest",id); 
 		List recipeList = sql.selectList("recipe.cate",like);
 		
+		
 		// 선호 레시피종류가 중복일 경우 선호레시피를 랜덤으로 검색				
 		int rand = (int)(Math.random()*recipeList.size());
 		String like_cate = (String)recipeList.get(rand);
+		Map<String,String> like_parameter = new HashMap<String, String>();
+		
 		if(like_cate.equals("RICE")) {
-			like_cate = "1";
-		} else if (like_cate.equals("SOUP")) {
-			like_cate = "2";
-		}  else if (like_cate.equals("SIDE")) {
-			like_cate = "4";
+			like_parameter.put("key1","1");
+		} else if (like_cate.equals("SOUP") || like_cate.equals("JEONGOL")) { 
+			like_parameter.put("key1","2");
+			like_parameter.put("key2","3");
+		}  else if (like_cate.equals("SIDE")  || like_cate.equals("SHAKE")  || like_cate.equals("GUI")
+				 || like_cate.equals("JJIM")  || like_cate.equals("CHILDREN")  || like_cate.equals("KIMCHI")) 
+		{
+			like_parameter.put("key1","4");
+			like_parameter.put("key2","5");
+			like_parameter.put("key3","6");
+			like_parameter.put("key4","7");
+			like_parameter.put("key5","9");
+			like_parameter.put("key6","10");
+			
 		}  else if (like_cate.equals("DOSI")) {
-			like_cate = "11";
-		}  else if (like_cate.equals("NOODLE")) {
-			like_cate = "13";
+			like_parameter.put("key1","11");
+			
+		}  else if (like_cate.equals("NOODLE") || like_cate.equals("SPA") ) {
+			like_parameter.put("key1","13");
+			like_parameter.put("key2","16");
 		}  else if (like_cate.equals("SALAD")) {
-			like_cate = "14";
-		}  else if (like_cate.equals("SNACK")) {
-			like_cate = "12";
-		}  else if (like_cate.equals("JUICE")) {
-			like_cate = "21";
-		}  else if (like_cate.equals("GUEST")) {
-			like_cate = "8"; 
+			like_parameter.put("key1","14");
+			
+		}  else if (like_cate.equals("SNACK")  || like_cate.equals("FRY")  || like_cate.equals("TOAST")
+				 || like_cate.equals("BAKING")  || like_cate.equals("DESSERT")) {
+			like_parameter.put("key1","12");
+			like_parameter.put("key2","15");
+			like_parameter.put("key3","17");
+			like_parameter.put("key4","18");
+			like_parameter.put("key5","19");
+			like_parameter.put("key6","20");
+		}  else if (like_cate.equals("JUICE") || like_cate.equals("COCKTAIL")) {
+			like_parameter.put("key1","21");
+			like_parameter.put("key2","22");
+		}  else if (like_cate.equals("GUEST") || like_cate.equals("HOLIDAY")) {
+			like_parameter.put("key1","8");
+			like_parameter.put("key2","23");;
 		}
-		recipeList = sql.selectList("recipe.memrandomSelect",like_cate);
+		recipeList = sql.selectList("recipe.memRandomSelect",like_parameter);
 		model.addAttribute("recipeList",recipeList);
 	}
 		// 페이지 관련 레시피 보여주기 

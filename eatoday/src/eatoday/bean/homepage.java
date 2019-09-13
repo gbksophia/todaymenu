@@ -1,7 +1,9 @@
 package eatoday.bean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -36,85 +38,53 @@ public class homepage {
 			
 			List rcp = sql.selectList("recipe.cate", greatest);
 			//recipe.cate=mem 테이블에서 가장 선호하는 카테고리의 이름
-			
-			// 선호 레시피종류가 중복일 경우 선호레시피를 랜덤으로 검색				
+			System.out.println(rcp);
+			// 선호 레시피종류가 중복일 경우 선호레시피를 랜덤으로 검색							
 			int rand = (int)(Math.random()*rcp.size());
-			String cate = (String)rcp.get(rand);
-			if(cate.equals("RICE")) {
-				cate = "1";
+			String like_cate = (String)rcp.get(rand);
+			Map<String,String> like_parameter = new HashMap<String, String>();
+			if(like_cate.equals("RICE")) {
+				like_parameter.put("key1","1");
+			} else if (like_cate.equals("SOUP") || like_cate.equals("JEONGOL")) { 
+				like_parameter.put("key1","2");
+				like_parameter.put("key2","3");
+			}  else if (like_cate.equals("SIDE")  || like_cate.equals("SHAKE")  || like_cate.equals("GUI")
+					 || like_cate.equals("JJIM")  || like_cate.equals("CHILDREN")  || like_cate.equals("KIMCHI")) 
+			{
+				like_parameter.put("key1","4");
+				like_parameter.put("key2","5");
+				like_parameter.put("key3","6");
+				like_parameter.put("key4","7");
+				like_parameter.put("key5","9");
+				like_parameter.put("key6","10");
 				
+			}  else if (like_cate.equals("DOSI")) {
+				like_parameter.put("key1","11");
+				
+			}  else if (like_cate.equals("NOODLE") || like_cate.equals("SPA") ) {
+				like_parameter.put("key1","13");
+				like_parameter.put("key2","16");
+			}  else if (like_cate.equals("SALAD")) {
+				like_parameter.put("key1","14");
+				
+			}  else if (like_cate.equals("SNACK")  || like_cate.equals("FRY")  || like_cate.equals("TOAST")
+					 || like_cate.equals("BAKING")  || like_cate.equals("DESSERT")) {
+				like_parameter.put("key1","12");
+				like_parameter.put("key2","15");
+				like_parameter.put("key3","17");
+				like_parameter.put("key4","18");
+				like_parameter.put("key5","19");
+				like_parameter.put("key6","20");
+			}  else if (like_cate.equals("JUICE") || like_cate.equals("COCKTAIL")) {
+				like_parameter.put("key1","21");
+				like_parameter.put("key2","22");
+			}  else if (like_cate.equals("GUEST") || like_cate.equals("HOLIDAY")) {
+				like_parameter.put("key1","8");
+				like_parameter.put("key2","23");;
 			}
-			else if(cate.equals("SOUP")) {
-				cate = "2";
-			}
-			else if(cate.equals("JEONGOL")) {
-				cate = "3";
-			}
-			else if(cate.equals("SIDE")) {
-				cate = "4";
-			}
-			else if(cate.equals("SHAKE")) {
-				cate = "5";
-			}
-			else if(cate.equals("GUI")) {
-				cate = "6";
-			}
-			else if(cate.equals("JJIM")) {
-				cate = "7";
-			}
-			else if(cate.equals("GUEST")) {
-				cate = "8";
-			}
-			else if(cate.equals("CHILDREN")) {
-				cate = "9";
-			}
-			else if(cate.equals("KIMCHI")) {
-				cate = "10";
-			}
-			else if(cate.equals("DOSI")) {
-				cate = "11";
-			}
-			else if(cate.equals("FRY")) {
-				cate = "12";
-			}
-			else if(cate.equals("NOODLE")) {
-				cate = "13";
-			}
-			else if(cate.equals("SALAD")) {
-				cate = "14";
-			}
-			else if(cate.equals("DRINK")) {
-				cate = "15";
-			}
-			else if(cate.equals("SPA")) {
-				cate = "16";
-			}
-			else if(cate.equals("SNACK")) {
-				cate = "17";
-			}
-			else if(cate.equals("TOAST")) {
-				cate = "18";
-			}
-			else if(cate.equals("BAKING")) {
-				cate = "19";
-			}
-			else if(cate.equals("DESSERT")) {
-				cate = "20";
-			}
-			else if(cate.equals("JUICE")) {
-				cate = "21";
-			}
-			else if(cate.equals("COCKTAIL")) {
-				cate = "22";
-			}
-			else if(cate.equals("HOLIDAY")) {
-				cate = "23";
-			}
-			
-			rcp = sql.selectList("recipe.memrandomSelectIndex",cate);
+			rcp = sql.selectList("recipe.randomSelectMain",like_parameter);
 			
 			model.addAttribute("gnum", greatest);
-			model.addAttribute("cate",cate);
 			model.addAttribute("recipeList", rcp);
 			model.addAttribute("count", count);
 		} catch (Exception e) {

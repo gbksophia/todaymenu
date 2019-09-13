@@ -295,13 +295,11 @@
         
         			<h1>${sessionScope.loginID }님의 추천 레시피</h1><br/><br/>
         	<div class="row" style = "margin-top:100px;">
-			<c:set var = "cate1" value = "${cate }"/>
-			
-			<c:forEach begin = "0" end = "8" step = "1" var = "i">
-			<c:set var = "rcp" value = "${recipeList[i] }" />
-			<c:if test = "${rcp.getCate() == cate1 }">
 			
 			
+			
+			 <c:forEach var="rcp" items="${recipeList }">
+		
                 <!-- Small Receipe Area -->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-small-receipe-area d-flex">
@@ -314,13 +312,13 @@
                             <a href="receipe-post.html">
                                 <h5>${rcp.getTitle()}</h5>
                             </a>
-                           
-                            <p>&nbsp;<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param></c:url>">자세히보기</a></p>
+                          
+                            <p>&nbsp;<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param>
+                            <c:param name = "cate" value = "${rcp.getCate()}"></c:param></c:url>">자세히보기</a></p>
                         </div>
                     </div>
                 </div>
                 <br>
-                </c:if>
                 </c:forEach>
 
             </div>
