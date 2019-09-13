@@ -90,7 +90,7 @@
  	
  	<!-- 간식 관련 레시피 카운트 값 증가 -->	
  	<update id = "dessertCountUp" parameterType = "String">
- 		update mem set fry = fry+1,snack=snack+1,toast=toast+1,daking=daking+1,dessert=dessert+1, where id = #{id}
+ 		update mem set fry = fry+1,snack=snack+1,toast=toast+1,baking=baking+1,dessert=dessert+1 where id = #{id}
  	</update>
  	
  	<!-- 마실것 관련 레시피 카운트값 증가 -->	

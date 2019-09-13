@@ -466,6 +466,22 @@
              	<li><a href="recipeListView.eat?cate=23" id="cate(23)">명절요리</a></li>
               </div>
             </div>
+            
+             <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+              <div class="categories">
+                <h3>관심 있는 레시피</h3>
+                <c:forEach var="recipeVO" items="${recipeList }" >
+               <li> 
+               <div class="text-left p-t-8 p-b-31">
+               <a  href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">
+               <img src="/eatoday/resource/RecipeImages/${recipeVO.main_name }" style="width: 100px; height: 100px"/>
+               	${recipeVO.title }
+               </a>
+               </div>
+                </li>
+              </c:forEach>
+              </div>
+            </div>
 		</div>
 		</div>
             </div>

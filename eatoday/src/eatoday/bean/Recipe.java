@@ -52,6 +52,7 @@ public class Recipe {
 		
 		if (session.getAttribute("loginID") != null && cate!=null) {
 		String id = (String)session.getAttribute("loginID");
+		
 		// 카테고리 카운트 증가
 		if(cate.equals("1") ) {
 			sql.update("member.riceCountUp",id); // 밥 레시피 카운트값 증가
@@ -82,7 +83,38 @@ public class Recipe {
 		}  else if (cate.equals("8") ||cate.equals("23")) {
 			sql.update("member.holyCountUp",id); // 명절/손님상 관련 레시피 카운트값증가
 		}
+		
+		//관심 있는 레시피 보여주기
+		int like = sql.selectOne("recipe.greatest",id); 
+		List recipeList = sql.selectList("recipe.cate",like);
+		
+		// 선호 레시피종류가 중복일 경우 선호레시피를 랜덤으로 검색				
+		int rand = (int)(Math.random()*recipeList.size());
+		String like_cate = (String)recipeList.get(rand);
+		if(like_cate.equals("RICE")) {
+			like_cate = "1";
+		} else if (like_cate.equals("SOUP")) {
+			like_cate = "2";
+		}  else if (like_cate.equals("SIDE")) {
+			like_cate = "4";
+		}  else if (like_cate.equals("DOSI")) {
+			like_cate = "11";
+		}  else if (like_cate.equals("NOODLE")) {
+			like_cate = "13";
+		}  else if (like_cate.equals("SALAD")) {
+			like_cate = "14";
+		}  else if (like_cate.equals("SNACK")) {
+			like_cate = "12";
+		}  else if (like_cate.equals("JUICE")) {
+			like_cate = "21";
+		}  else if (like_cate.equals("GUEST")) {
+			like_cate = "8"; 
+		}
+		System.out.print(like_cate);
+		recipeList = sql.selectList("recipe.likeSelect",like_cate);
+		model.addAttribute("recipeList",recipeList);
 	}
+		
 		//리뷰 카운트
 		int recount = sql.selectOne("recipe.ReviewCount",cnum);
 
