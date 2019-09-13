@@ -46,9 +46,10 @@ public class Recipe {
 	}
 	
 	@RequestMapping("recipeDetail.eat")
-	public String recipeDetail(Model model, HttpServletRequest request,HttpSession session) throws Exception {
-		String cnum = request.getParameter("cnum");
-		String cate = request.getParameter("cate");
+	public String recipeDetail(Model model,recipeVO vo,HttpSession session) throws Exception {
+	
+		String cate = vo.getCate();
+		String cnum = vo.getCnum();
 		
 		if (session.getAttribute("loginID") != null && cate!=null) {
 		String id = (String)session.getAttribute("loginID");
@@ -110,16 +111,17 @@ public class Recipe {
 		}  else if (like_cate.equals("GUEST")) {
 			like_cate = "8"; 
 		}
-		System.out.print(like_cate);
-		recipeList = sql.selectList("recipe.likeSelect",like_cate);
+		recipeList = sql.selectList("recipe.randomSelect",vo);
 		model.addAttribute("recipeList",recipeList);
 	}
+		// 페이지 관련 레시피 보여주기 
+		List randomList = sql.selectList("recipe.randomSelect",vo);
 		
 		//리뷰 카운트
 		int recount = sql.selectOne("recipe.ReviewCount",cnum);
 
 		// 해당 레시피 정보
-		recipeVO vo = sql.selectOne("recipe.info",cnum);
+	    vo = sql.selectOne("recipe.info",cnum);
 		String [] pro = vo.getPro().split("next"); // 조리법 분리
 		int proCount = pro.length; // for문 돌릴값
 		// 레시피 해당 이미지 set
@@ -137,6 +139,7 @@ public class Recipe {
 		model.addAttribute("recount",recount);
 		model.addAttribute("proCount",proCount);
 		model.addAttribute("recount",recount);
+		model.addAttribute("randomList", randomList);
 		return "/homepage/recipeDetail";
 	}
 	
@@ -181,6 +184,7 @@ public class Recipe {
 		String id = request.getParameter("id");
 		String nick = request.getParameter("nick");
 		String text = request.getParameter("text");
+		String cate = request.getParameter("cate");
 		if(nick.equals("")) {
 			nick = "익명";
 		}
@@ -190,7 +194,7 @@ public class Recipe {
 		vo.setText(text);
 		sql.insert("recipe.ReviewInsert",vo);
 		model.addAttribute("cnum",cnum);
-			
+		model.addAttribute("cate",cate);	
 			return "/homepage/recipeRePro";
 		}
 	

@@ -13,10 +13,11 @@
 	<select id="select" resultType="recipeVO" parameterType="String">
 		select * from recipe where cate= #{cate}
 	</select>
+
 	
 	<!-- 관심 레시피 랜덤 출력 -->
-	<select id="likeSelect" resultType="recipeVO" parameterType="String">
-	<![CDATA[select * from (select * from recipe where cate='1' order by DBMS_RANDOM.RANDOM ) where rownum <=5 ]]>
+	<select id="randomSelect" resultType="recipeVO" parameterType="String">
+	<![CDATA[select * from (select * from recipe where cate=#{cate} order by DBMS_RANDOM.RANDOM ) where rownum <=5 and not cnum like #{cnum} ]]>
 	</select>
 	
 	<!-- 레시피 정보 출력 -->

@@ -397,6 +397,7 @@
               		<c:otherwise>
               		 <form action="recipeRePro.eat" method="post" enctype="multipart/form-data">
                 	<input type="hidden" name="cnum" value="${rvo.getCnum() }">
+                	<input type="hidden" name="cate" value="${rvo.getCate() }">
                 	<input type="hidden" name="id" value="${sessionScope.loginID }">
                   <div class="form-group">
                     <textarea name="text" id="text" cols="30" rows="10" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
@@ -476,6 +477,22 @@
                <a  href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">
                <img src="/eatoday/resource/RecipeImages/${recipeVO.main_name }" style="width: 100px; height: 100px"/>
                	${recipeVO.title }
+               </a>
+               </div>
+                </li>
+              </c:forEach>
+              </div>
+            </div>
+            
+            <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+              <div class="categories">
+                <h3>관련 레시피</h3>
+                <c:forEach var="randomVO" items="${randomList }" >
+               <li> 
+               <div class="text-left p-t-8 p-b-31">
+               <a  href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.randomVO()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">
+               <img src="/eatoday/resource/RecipeImages/${randomVO.main_name }" style="width: 100px; height: 100px"/>
+               	${randomVO.title }
                </a>
                </div>
                 </li>
