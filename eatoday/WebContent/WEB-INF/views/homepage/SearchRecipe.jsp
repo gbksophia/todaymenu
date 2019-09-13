@@ -190,10 +190,10 @@
           <c:forEach var="rcpMatVO" items="${rcpMat}">
 			<div class="col-md-3">
         		<div class="menu-entry">
-    					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCon_num()}"></c:param><c:param name = "cate" value = "${rcpMatVO.getCate()}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcpMatVO.getMain_name()});"></a>
+    					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCnum()}"></c:param><c:param name = "cate" value = "${rcpMatVO.getCate()}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcpMatVO.getMain_name()});"></a>
 						<div class="text text-center pt-4">
-						    <h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCon_num()}"></c:param><c:param name = "cate" value = "${rcpMatVO.getCate()}"></c:param></c:url>">${rcpMatVO.getTitle() }</a></h3>
-						    	<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCon_num()}"></c:param></c:url>">자세히보기</a>
+						    <h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCnum()}"></c:param><c:param name = "cate" value = "${rcpMatVO.getCate()}"></c:param></c:url>">${rcpMatVO.getTitle() }</a></h3>
+						    	<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCnum()}"></c:param></c:url>">자세히보기</a>
 						  </div>
     				</div>
         	</div>
@@ -207,10 +207,10 @@
           <c:forEach var="rcpTitVO" items="${rcpTit}">
 			<div class="col-md-3">
         		<div class="menu-entry">
-    					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpTitVO.getCon_num()}"></c:param><c:param name = "cate" value = "${rcpTitVO.getCate()}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcpTitVO.getMain_name()});"></a>
+    					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpTitVO.getCnum()}"></c:param><c:param name = "cate" value = "${rcpTitVO.getCate()}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcpTitVO.getMain_name()});"></a>
 						<div class="text text-center pt-4">
-						    <h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpTitVO.getCon_num()}"></c:param><c:param name = "cate" value = "${rcpTitVO.getCate()}"></c:param></c:url>">${rcpTitVO.getTitle() }</a></h3>
-						    	<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpTitVO.getCon_num()}"></c:param></c:url>">자세히보기</a>
+						    <h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpTitVO.getCnum()}"></c:param><c:param name = "cate" value = "${rcpTitVO.getCate()}"></c:param></c:url>">${rcpTitVO.getTitle() }</a></h3>
+						    	<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpTitVO.getCnum()}"></c:param></c:url>">자세히보기</a>
 						  </div>
     				</div>
         	</div>

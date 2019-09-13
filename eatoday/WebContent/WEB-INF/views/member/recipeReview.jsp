@@ -58,7 +58,6 @@
 <br><br><br><br>
 <table class="table table-bordered">
 	<tr> 
-		<td> 아이디 </td>
 		<td> 닉네임 </td>
 		<td> 내용 </td>
 		<td>삭제 </td>
@@ -67,7 +66,6 @@
 	<c:forEach var="ReviewVO" items="${recipeReviewVO }">
 
 	<tr id="list${i }">
-		<td>${ReviewVO.id }</td>
 		<td>${ReviewVO.nick }</td>
 		<td>${ReviewVO.text }</td>
 		<td><input type="button" value="삭제"  onclick="remove('${ReviewVO.num}','${i }')"></td>

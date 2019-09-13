@@ -55,7 +55,7 @@
 	<if test="key6 != null">
 		or cate=#{key6} 
 	</if> 
-<![CDATA[	order by DBMS_RANDOM.RANDOM )where rownum <=12 ]]>
+<![CDATA[	order by DBMS_RANDOM.RANDOM )where rownum <=9 ]]>
 	</select>
 	
 	<!-- 관련 레시피 랜덤 출력 -->
