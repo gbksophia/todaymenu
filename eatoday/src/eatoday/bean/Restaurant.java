@@ -108,8 +108,7 @@ public class Restaurant {
 			pageList.put("cnum", cnum);
 			pageList.put("startRow",startRow);
 			pageList.put("endRow",endRow);
-			System.out.println(startRow);
-			System.out.println(endRow);
+			
 			List revo = sql.selectList("restaurant.reviewSelect",pageList);
 			
 			// 페이지 계산

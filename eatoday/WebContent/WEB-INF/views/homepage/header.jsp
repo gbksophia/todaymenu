@@ -28,7 +28,7 @@
 	          <a class="nav-link dropdown-toggle" href="#" id="member" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">member</a>
               <div class="dropdown-menu" aria-labelledby="member">
               <a class="dropdown-item" href="/eatoday/memberpage/information.eat">information</a>
-              <a class="dropdown-item" href="/eatoday/memberpage/jjimList.eat?id=${sessionScope.loginID }">recipeNice</a>
+              <a class="dropdown-item" href="/eatoday/memberpage/jjimList.eat?">recipeNice</a>
               <a class="dropdown-item" href="/eatoday/memberpage/recipeReview.eat">recipeReview</a>
 	          <a class="dropdown-item" href="/eatoday/memberpage/restaurantReview.eat">restaurantReview</a>
 	          </div>

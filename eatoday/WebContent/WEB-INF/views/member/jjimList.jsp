@@ -95,6 +95,14 @@
 	<c:set var="i" value="${i+1 }"/>
 	</c:forEach>
 </table>
+<div class="text-center">
+              	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+              	 <a href="jjimList.eat?page=${i }">${i }</a>
+              	 	<c:if test="${i!=endPage}">
+              	 &nbsp;|&nbsp;
+              	 </c:if>
+              	 </c:forEach>
+     </div>
 </div>
 
 <!-- loader -->

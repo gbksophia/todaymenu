@@ -12,6 +12,10 @@
 	<select id="count" parameterType="String" resultType="int">
 		select count(*) from restaurant where cate=#{value}
 	</select>
+	<!-- 회원 레스토랑 리뷰 관리 갯수  -->
+ 	<select id="memReviewCount" parameterType="String" resultType="int">
+ 		select count(*) from restaurant_re where id=#{value}
+ 	</select>
 	
 	<select id="search" parameterType="list" resultType="restaurantVO">
 		select * from (select * from restaurant where addr like '%'||#{list[0]}||'%') where area2 like '%'||#{list[1]}||'%'
@@ -80,7 +84,7 @@
 	<!-- 레스토랑 리뷰 갯수 -->
  	<select id="ReviewCount" parameterType="String" resultType="int">
  		select count(*) from restaurant_re
- 		<if test="cnum != null">
+ 		<if test="value != null">
  		 where cnum=#{value}
  		 </if>
  	</select>
@@ -90,12 +94,17 @@
  	   select num,cnum,id,nick,text,img,reg_date,r 
  	   from (select num,cnum,id,nick,text,img,reg_date,rownum r
  	   from (select num,cnum,id,nick,text,img,reg_date  
- 	   <if test="cnum != null">
- 	 <![CDATA[from restaurant_re where cnum=#{cnum} order by reg_date desc)order by reg_date desc)]]>
- 	    </if> 
- 	    <if test="cnum ==null">
- 	     <![CDATA[from restaurant_re order by reg_date desc)order by reg_date desc)]]>
- 	    </if>
+ 	   <choose>
+ 	   	<when test="cnum != null">
+ 	   	<![CDATA[from restaurant_re where cnum=#{cnum} order by reg_date desc)order by reg_date desc)]]>
+ 	   	</when>
+ 	   	<when test="id !=null">
+ 	   	<![CDATA[from restaurant_re where id=#{id} order by reg_date desc)order by reg_date desc)]]>
+ 	   	</when>
+ 	   	<otherwise>
+ 	   	 <![CDATA[from restaurant_re order by reg_date desc)order by reg_date desc)]]>
+ 	   	</otherwise>
+ 	   </choose>
  	      <![CDATA[  where r>=#{startRow} and r<=#{endRow} ]]>
  	</select>
  	

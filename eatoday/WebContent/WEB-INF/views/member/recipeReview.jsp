@@ -63,7 +63,7 @@
 		<td>삭제 </td>
 	</tr>
 	<c:set var="i" value="1"/>
-	<c:forEach var="ReviewVO" items="${recipeReviewVO }">
+	<c:forEach var="ReviewVO" items="${recipeList }">
 
 	<tr id="list${i }">
 		<td>${ReviewVO.nick }</td>
@@ -73,6 +73,14 @@
 	<c:set var="i" value="${i+1 }"/>
 	</c:forEach>
 </table>
+<div class="text-center">
+              	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+              	 <a href="recipeReview.eat?page=${i }">${i }</a>
+              	 	<c:if test="${i!=endPage}">
+              	 &nbsp;|&nbsp;
+              	 </c:if>
+              	 </c:forEach>
+     </div>
 </div>
 
 <!-- loader -->

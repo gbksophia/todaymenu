@@ -189,8 +189,7 @@ public class Recipe {
 		pageList.put("cnum", cnum);
 		pageList.put("startRow",startRow);
 		pageList.put("endRow",endRow);
-		System.out.println(startRow);
-		System.out.println(endRow);
+
 		List revo = sql.selectList("recipe.reviewSelect",pageList);
 		
 		// 페이지 계산
