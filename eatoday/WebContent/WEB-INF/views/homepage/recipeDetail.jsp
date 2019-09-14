@@ -376,8 +376,15 @@
                     niceCheck('${recipeReviewVO.num}','${i}');
                     niceCountCheck('${recipeReviewVO.num}','${i}');
  				 	</script>
- 				 	<div id="textUpdate${i}"></div>
               	</c:forEach>
+              	 <div class="text-center">
+              	 	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+              	 		<a href="recipeDetail.eat?page=${i }&cate=${rvo.cate}&cnum=${rvo.cnum}">${i }</a>
+              	 		<c:if test="${i!=endPage}">
+              	 		&nbsp;|&nbsp;
+              	 		</c:if>
+              	 	</c:forEach>
+                   </div>
               </ul>
               <!-- END comment-list -->
       <!-- 댓글 달기 -->

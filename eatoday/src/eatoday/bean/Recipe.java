@@ -48,7 +48,7 @@ public class Recipe {
 	}
 	
 	@RequestMapping("recipeDetail.eat")
-	public String recipeDetail(Model model,recipeVO vo,HttpSession session) throws Exception {
+	public String recipeDetail(Model model,recipeVO vo,HttpSession session,HttpServletRequest request) throws Exception {
 	
 		String cate = vo.getCate();
 		String cnum = vo.getCnum();
@@ -153,9 +153,30 @@ public class Recipe {
 		List ivo = sql.selectList("recipe.imgselect", cnum);
 		
 		//레시피 리뷰 가져오기
-		List revo = sql.selectList("recipe.reviewSelect",cnum);
+		int row = 10;
+		String page = request.getParameter("page");
 		
+		if (page == null) {
+			page ="1";
+		}
+		int currentPage = Integer.parseInt(page);
+		int startRow = (currentPage-1) * row +1;
+		int endRow = currentPage * row;
+		Map pageList = new HashMap();
 		
+		pageList.put("cnum", cnum);
+		pageList.put("startRow",startRow);
+		pageList.put("endRow",endRow);
+		System.out.println(startRow);
+		System.out.println(endRow);
+		List revo = sql.selectList("recipe.reviewSelect",pageList);
+		
+		// 페이지 계산
+		int pageCount = recount / row + (recount % row == 0? 0:1);
+		int startPage = (int)(currentPage/10)*10+1;
+		int pageBlock=10;
+		int endPage = startPage + pageBlock-1;
+		if(endPage > pageCount) endPage = pageCount;
 		
 		model.addAttribute("pro",pro);
 		model.addAttribute("ivo",ivo);
@@ -165,6 +186,8 @@ public class Recipe {
 		model.addAttribute("proCount",proCount);
 		model.addAttribute("recount",recount);
 		model.addAttribute("randomList", randomList);
+		model.addAttribute("startPage",startPage);
+		model.addAttribute("endPage",endPage);
 		return "/homepage/recipeDetail";
 	}
 	

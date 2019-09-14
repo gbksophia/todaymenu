@@ -79,16 +79,24 @@
  	
 	<!-- 레스토랑 리뷰 갯수 -->
  	<select id="ReviewCount" parameterType="String" resultType="int">
- 		select count(*) from restaurant_re where cnum=#{value}
+ 		select count(*) from restaurant_re
+ 		<if test="cnum != null">
+ 		 where cnum=#{value}
+ 		 </if>
  	</select>
 	
 	<!-- 레스토랑 리뷰 가져오기 -->
- 	<select id="reviewSelect" parameterType="String" resultType="restaurantReviewVO">
- 	   select * from restaurant_re
- 	   <if test="value != null">
- 	    where cnum=#{value} 
+ 	<select id="reviewSelect" parameterType="map" resultType="restaurantReviewVO">
+ 	   select num,cnum,id,nick,text,img,reg_date,r 
+ 	   from (select num,cnum,id,nick,text,img,reg_date,rownum r
+ 	   from (select num,cnum,id,nick,text,img,reg_date  
+ 	   <if test="cnum != null">
+ 	 <![CDATA[from restaurant_re where cnum=#{cnum} order by reg_date desc)order by reg_date desc)]]>
  	    </if> 
- 	    order by reg_date desc
+ 	    <if test="cnum ==null">
+ 	     <![CDATA[from restaurant_re order by reg_date desc)order by reg_date desc)]]>
+ 	    </if>
+ 	      <![CDATA[  where r>=#{startRow} and r<=#{endRow} ]]>
  	</select>
  	
  	<!-- 회원 레스토랑 리뷰 리스트 -->
