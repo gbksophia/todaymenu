@@ -31,19 +31,41 @@ public class Recipe {
 	@RequestMapping("recipeListView.eat")
 	public String recipeKorView(Model model, HttpServletRequest request) throws Exception {
 		String cate = request.getParameter("cate");
-		int count = (Integer)sql.selectOne("recipe.count");
-		ArrayList rcp = new ArrayList();
-		List rcpList = sql.selectList("recipe.select",cate);
 		
-		if (cate != null) {
+		//레시피 카운트
+		int count = sql.selectOne("recipe.cateCount",cate);
 			
-		}
-		//System.out.println(rcpList);
+		//레시피 리뷰 가져오기
+		int row = 28;
+		String page = request.getParameter("page");
+			
+			if (page == null) {
+				page ="1";
+			}
+		int currentPage = Integer.parseInt(page);
+		int startRow = (currentPage-1) * row +1;
+		int endRow = currentPage * row;
+		Map pageList = new HashMap();
+				
+		pageList.put("cate", cate);
+		pageList.put("startRow",startRow);
+		pageList.put("endRow",endRow);
+				
+		List rcpList = sql.selectList("recipe.select",pageList);
+				
+		// 페이지 계산
+		int pageCount = count / row + (count % row == 0? 0:1);
+		int startPage = (int)(currentPage/28)*28+1;
+		int pageBlock= 10;
+		int endPage = startPage + pageBlock-1;
+		if(endPage > pageCount) endPage = pageCount;
+
 
 		model.addAttribute("recipeList", rcpList);
 		model.addAttribute("count", count);
 		model.addAttribute("cate",cate);
-		 
+		model.addAttribute("startPage",startPage);
+		model.addAttribute("endPage",endPage); 
 		return "/homepage/recipeListView";
 	}
 	

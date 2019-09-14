@@ -8,10 +8,18 @@
 		insert into recipe(cate, cnum, main_name, title, mate, pro) 
 		values (#{cate}, #{cnum}, #{main_name}, #{title}, #{mate}, #{pro})
 	</insert>
-
+	
+	<!-- 레시피 갯수 -->
+	<select id="count">
+		select count(*) from recipe
+	</select>
 	<!-- 레시피 리스트  출력 -->
-	<select id="select" resultType="recipeVO" parameterType="String">
-		select * from recipe where cate= #{cate}
+	<select id="select" resultType="recipeVO" parameterType="map">
+	  select cate,cnum,main_name,title,mate,pro,r 
+ 	   from (select cate,cnum,main_name,title,mate,pro,rownum r
+ 	   from (select cate,cnum,main_name,title,mate,pro  
+ 	   from recipe where cate=#{cate} ))
+ 	   <![CDATA[ where r>=#{startRow} and r<=#{endRow}	]]>
 	</select>
 
 	<!-- 회원 관심 카테고리   출력 -->
@@ -72,11 +80,6 @@
 		select * from recipe_pro
 	</select>
 
-		<!-- 레시피 갯수 카운트 -->	
-	<select id="count" resultType="int">
-		select count(*) from recipe
-	</select>
-	
 		<!-- 레시피 카테고리 선택 -->
 	<select id = "cateCount" resultType="int" parameterType = "String">
 		select count(*) from recipe where cate = #{cate}
@@ -118,8 +121,8 @@
  	<!-- 레시피 리뷰 갯수 -->
  	<select id="ReviewCount" parameterType="String" resultType="int">
  		select count(*) from recipe_re
- 		<if test="cnum != null">
- 		 where cnum=#{value}
+ 		<if test="value != null">
+ 		 where cnum=#{cnum}
  		</if>
  		
  	</select>

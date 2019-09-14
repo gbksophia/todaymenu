@@ -39,8 +39,7 @@ public class Restaurant {
 		}
 		
 		@RequestMapping("restaurantList.eat")
-		public String restaurantList(HttpServletRequest request, Model model) {
-			try {
+		public String restaurantList(HttpServletRequest request, Model model) throws Exception {
 				request.setCharacterEncoding("UTF-8");
 				String cate = request.getParameter("cate"); //카테고리명
 				String area = request.getParameter("area"); //지역명
@@ -54,11 +53,6 @@ public class Restaurant {
 				ra.add(cate);
 				List raList = sql.selectList("restaurant.selectArea", ra); //카테고리+지역 검색결과 rvo
 
-				System.out.println(cate);
-				//System.out.println(count);
-				System.out.println(area);
-				System.out.println(areaCnt);
-				
 				model.addAttribute("areaList", areaList);
 				model.addAttribute("areaCnt", areaCnt);
 				model.addAttribute("area", area);
@@ -66,9 +60,6 @@ public class Restaurant {
 				//model.addAttribute("restList", restList);
 				//model.addAttribute("count", count);
 				model.addAttribute("raList", raList);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 			return "/homepage/restaurantList";
 		}
 		
