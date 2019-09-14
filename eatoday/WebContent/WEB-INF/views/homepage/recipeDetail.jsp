@@ -76,7 +76,6 @@
   function jjimClick(){
 	  var id = '${sessionScope.loginID}';
 	   var cnum = '${rvo.cnum}';
-
 	   if(${sessionScope.loginID == null}){
 			alert("로그인 후 이용해 주십시오.");
 		   } else {
@@ -100,7 +99,6 @@
   function niceClick(num,i) {
 	  var id = '${sessionScope.loginID}';
 	  var img = "img"+i;
-
 	  if(${sessionScope.loginID == null}){
 			alert("로그인후 이용해주십시오.");
 		  }else {
@@ -168,13 +166,11 @@
   function searchCheck() {
       var str = document.getElementById('search');
       var blank = /^[\s]/g;
-
       //검색어 입력필수
       if (str.value == '' || str.value == null) {
          alert("검색어를 입력하세요.");
          return false;
       }
-
       //공백금지
       if (blank.test(str.value) == true) {
          alert("제대로 좀 입력하세요.")
