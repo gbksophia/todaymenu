@@ -79,7 +79,7 @@
  			 <a href="restaurantReview.eat?page=${startPage-10 }">&nbsp;<< &nbsp;</a>
  				</c:if>
               	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
-              	 <a href="restaurantReviewt.eat?page=${i }">${i }</a>
+              	 <a href="restaurantReview.eat?page=${i }">${i }</a>
               	 	<c:if test="${i!=endPage}">
               	 &nbsp;|&nbsp;
               	 </c:if>

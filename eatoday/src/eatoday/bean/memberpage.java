@@ -114,7 +114,7 @@ public class memberpage {
 	public String jjimList(HttpServletRequest request,Model model,HttpSession session){
 		String id = (String)session.getAttribute("loginID");
 		int count = sql.selectOne("recipe.jjimCount",id);
-		int row = 5;
+		int row = 10;
 		String page = request.getParameter("page");
 			
 			if (page == null) {
@@ -262,8 +262,6 @@ public class memberpage {
 			int startRow = (currentPage-1) * row +1;
 			int endRow = currentPage * row;
 			Map pageList = new HashMap();
-			System.out.println("startRow"+startRow);
-			System.out.println("endRow"+endRow);
 			pageList.put("id", id);
 			pageList.put("startRow",startRow);
 			pageList.put("endRow",endRow);
