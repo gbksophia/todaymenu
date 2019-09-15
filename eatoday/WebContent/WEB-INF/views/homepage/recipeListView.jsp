@@ -232,12 +232,18 @@
 		              	</div>
 		              </div>
 		               <div class="text-center">
-              	 	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
-              	 		<a href="recipeListView.eat?page=${i }&cate=${cate}">${i }</a>
-              	 		<c:if test="${i!=endPage}">
-              	 		&nbsp;|&nbsp;
-              	 		</c:if>
-              	 	</c:forEach>
+		               	<c:if test="${startPage >10 }">
+ 			 <a href="recipeListView.eat?page=${startPage-10 }&cate=${cate}">&nbsp;<< &nbsp;</a>
+ 				</c:if>
+              	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+              	 <a href="recipeListView.eat?page=${i}&cate=${cate}">${i }</a>
+              	 	<c:if test="${i!=endPage}">
+              	 &nbsp;|&nbsp;
+              	 </c:if>
+              	 </c:forEach>
+              	 <c:if test="${endPage < pageCount }">
+ 					 <a href="recipeListView.eat?page=${startPage+10 }&cate=${cate}"> &nbsp;>>&nbsp; </a>
+ 				</c:if>
                    </div>
 		            </div>
 		          </div>

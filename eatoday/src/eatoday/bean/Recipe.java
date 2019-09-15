@@ -66,6 +66,7 @@ public class Recipe {
 		model.addAttribute("cate",cate);
 		model.addAttribute("startPage",startPage);
 		model.addAttribute("endPage",endPage); 
+		model.addAttribute("pageCount",pageCount);
 		return "/homepage/recipeListView";
 	}
 	
@@ -209,6 +210,7 @@ public class Recipe {
 		model.addAttribute("randomList", randomList);
 		model.addAttribute("startPage",startPage);
 		model.addAttribute("endPage",endPage);
+		model.addAttribute("pageCount",pageCount);
 		return "/homepage/recipeDetail";
 	}
 	

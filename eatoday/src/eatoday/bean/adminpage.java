@@ -49,6 +49,7 @@ public class adminpage {
 		model.addAttribute("memVO",memVO);
 		model.addAttribute("startPage",startPage);
 		model.addAttribute("endPage",endPage);
+		model.addAttribute("pageCount",pageCount);
 		return "/admin/member";
 	}
 	@RequestMapping("memberRemove.eat")
@@ -63,7 +64,7 @@ public class adminpage {
 	@RequestMapping("recipeReview.eat")
 	public String recipeReview(HttpServletRequest request,Model model) {
 				//레시피 리뷰 가져오기
-				int row = 10;
+				int row = 20;
 				String page = request.getParameter("page");
 				
 				//리뷰 카운트
@@ -91,13 +92,14 @@ public class adminpage {
 		model.addAttribute("recipeReviewVO",recipeReviewVO);
 		model.addAttribute("startPage",startPage);
 		model.addAttribute("endPage",endPage);
+		model.addAttribute("pageCount",pageCount);
 		return "/admin/recipeReview";
 	}
 	
 	@RequestMapping("restaurantReview.eat")
 	public String restaurantReview(HttpServletRequest request,Model model) {
 		//레시피 리뷰 가져오기
-		int row = 10;
+		int row = 20;
 		String page = request.getParameter("page");
 		
 		//리뷰 카운트
@@ -125,6 +127,7 @@ public class adminpage {
 		model.addAttribute("restaurantReviewVO",restaurantReviewVO);
 		model.addAttribute("startPage",startPage);
 		model.addAttribute("endPage",endPage);
+		model.addAttribute("pageCount",pageCount);
 		return "/admin/restaurantReview";
 	}
 	

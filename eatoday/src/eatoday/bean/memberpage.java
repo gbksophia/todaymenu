@@ -141,6 +141,7 @@ public class memberpage {
 		model.addAttribute("jjimList",jjimList);
 		model.addAttribute("startPage",startPage);
 		model.addAttribute("endPage",endPage);
+		model.addAttribute("pageCount",pageCount);
 		return "/member/jjimList";
 	}
 	
@@ -242,6 +243,7 @@ public class memberpage {
 			model.addAttribute("recipeList",recipeList);
 			model.addAttribute("startPage",startPage);
 			model.addAttribute("endPage",endPage);
+			model.addAttribute("pageCount",pageCount);
 			return "/member/recipeReview";
 		}
 		
@@ -278,6 +280,7 @@ public class memberpage {
 			model.addAttribute("restaurantList",restaurantList);
 			model.addAttribute("startPage",startPage);
 			model.addAttribute("endPage",endPage);
+			model.addAttribute("pageCount",pageCount);
 			return "/member/restaurantReview";
 		}
 		

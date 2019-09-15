@@ -124,6 +124,7 @@ public class Restaurant {
 			model.addAttribute("recount",recount);
 			model.addAttribute("startPage",startPage);
 			model.addAttribute("endPage",endPage);
+			model.addAttribute("pageCount",pageCount);
 			return "/homepage/restaurantDetail";
 		}
 		

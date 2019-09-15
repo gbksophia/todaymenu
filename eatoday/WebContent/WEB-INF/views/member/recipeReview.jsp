@@ -74,12 +74,18 @@
 	</c:forEach>
 </table>
 <div class="text-center">
+				<c:if test="${startPage >10 }">
+ 			 <a href="recipeReview.eat?page=${startPage-10 }">&nbsp;<< &nbsp;</a>
+ 				</c:if>
               	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
               	 <a href="recipeReview.eat?page=${i }">${i }</a>
               	 	<c:if test="${i!=endPage}">
               	 &nbsp;|&nbsp;
               	 </c:if>
               	 </c:forEach>
+              	 <c:if test="${endPage < pageCount }">
+ 					 <a href="recipeReview.eat?page=${startPage+10 }"> &nbsp;>>&nbsp; </a>
+ 				</c:if>
      </div>
 </div>
 

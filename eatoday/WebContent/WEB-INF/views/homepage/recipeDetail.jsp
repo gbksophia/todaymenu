@@ -378,13 +378,19 @@
  				 	</script>
               	</c:forEach>
               	 <div class="text-center">
-              	 	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
-              	 		<a href="recipeDetail.eat?page=${i }&cate=${rvo.cate}&cnum=${rvo.cnum}">${i }</a>
-              	 		<c:if test="${i!=endPage}">
-              	 		&nbsp;|&nbsp;
-              	 		</c:if>
-              	 	</c:forEach>
-                   </div>
+ 		<c:if test="${startPage >10 }">
+ 			 <a href="recipeDetail.eat?page=${startPage-10 }&cate=${rvo.cate}&cnum=${rvo.cnum}">&nbsp;<< &nbsp;</a>
+ 				</c:if>
+              	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+              	 <a href="recipeDetail.eat?page=${i }&cate=${rvo.cate}&cnum=${rvo.cnum}">${i }</a>
+              	 	<c:if test="${i!=endPage}">
+              	 &nbsp;|&nbsp;
+              	 </c:if>
+              	 </c:forEach>
+              	 <c:if test="${endPage < pageCount }">
+ 					 <a href="recipeDetail.eat?page=${startPage+10 }&cate=${rvo.cate}&cnum=${rvo.cnum}"> &nbsp;>>&nbsp; </a>
+ 				</c:if>
+            </div>
               </ul>
               <!-- END comment-list -->
       <!-- 댓글 달기 -->
