@@ -202,7 +202,7 @@
                     <div class="find-place-img_wrap">
                         <div class="grid">
                             <figure class="effect-ruby">
-                                <img src="/eatoday/resource/images/find-place1.jpg" class="img-fluid" alt="img13" />
+                                <img src="/eatoday/resource/images/korean.jpg" class="img-fluid" alt="img13" />
                                 <figcaption>
                                     <h5>한식</h5>
                                     <p>385 Listings</p>
