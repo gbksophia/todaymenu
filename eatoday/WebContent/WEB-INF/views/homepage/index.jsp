@@ -327,7 +327,7 @@
       <div class="container">
         <div class="row justify-content-center">
         
-        			<h1>${sessionScope.loginID }님의 추천 레시피</h1><br/><br/>
+        			<h1>${sessionScope.loginID }님의 추천 레시피</h1><br/>
         	<div class="row" style = "margin-top:100px;">
 			
 			
@@ -339,22 +339,30 @@
                     <div class="single-small-receipe-area d-flex">
                         <!-- Receipe Thumb -->
                         <div class="receipe-thumb">
+                            <a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param>
+                            <c:param name = "cate" value = "${rcp.getCate()}"></c:param></c:url>">
+                            
+
+                            
                             <img src="/eatoday/resource/RecipeImages/${rcp.getMain_name()}" alt="" width = "100px" height = "100px">
+</a>
                         </div>
                         <!-- Receipe Content -->
                         <div class="receipe-content">
-                            <a href="receipe-post.html">
+                            <a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param>
+                            <c:param name = "cate" value = "${rcp.getCate()}"></c:param></c:url>">
                                 <h5>${rcp.getTitle()}</h5>
                             </a>
                           
                             <p>&nbsp;<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param>
                             <c:param name = "cate" value = "${rcp.getCate()}"></c:param></c:url>">자세히보기</a></p>
                         </div>
+                        <br>
                     </div>
+                    <br>
                 </div>
                 <br>
                 </c:forEach>
-
             </div>
         </div>
       </div>
