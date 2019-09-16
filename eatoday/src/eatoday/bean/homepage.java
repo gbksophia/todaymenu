@@ -158,6 +158,10 @@ public class homepage {
 			nick = "익명";
 		}
 		
+		if(id.equals("admin@eatoday.com")) {
+			nick = "관리자";
+		}
+		
 		//이미지
 		MultipartFile mf = request.getFile("img");
 		String orgName = mf.getOriginalFilename();
@@ -191,9 +195,42 @@ public class homepage {
 		return "/homepage/supportWritePro";
 	}
 	
-	@RequestMapping("supportContent")
-	public String supportContent() {
+	@RequestMapping("supportContent.eat")
+	public String supportContent(int num,Model model) {
+		supportVO vo = new supportVO();
+		vo = sql.selectOne("support.select",num);
 		
+		model.addAttribute("supportVO",vo);
 		return "/homepage/supportContent";
+	}
+	
+	@RequestMapping("commentPro.eat")
+	public String commentPro(supportVO vo,HttpSession session) {
+		String admin = (String)session.getAttribute("loginID");
+		if(admin.equals("admin@eatoday.com")) {
+			sql.update("support.update",vo);
+		}
+		return "/homepage/commentPro";
+	}
+	
+	@RequestMapping("supportCommentRemove.eat")
+	public String supportCommentRemove(HttpSession session,int num,Model model) {
+		String admin = (String)session.getAttribute("loginID");
+		if(admin.equals("admin@eatoday.com")) {
+			sql.update("support.commentRemove",num);
+		}
+		model.addAttribute("num",num);
+		return "/homepage/supportCommentRemove";
+	}
+	
+	@RequestMapping("supportCommentUpdate.eat")
+	public String supportCommentUpdate(supportVO vo,Model model,HttpSession session) {
+		String admin = (String)session.getAttribute("loginID");
+		System.out.println(vo.getComments());
+		if(admin.equals("admin@eatoday.com")) {
+			sql.update("support.commentUpdate",vo);
+		}
+		model.addAttribute("comment",vo.getComments());
+		return "/homepage/supportCommentUpdate";
 	}
 }

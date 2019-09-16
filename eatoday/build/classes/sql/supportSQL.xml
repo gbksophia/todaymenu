@@ -4,26 +4,48 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="support">
 	<insert id="insert" parameterType="supportVO" >
-		insert into support values(support_seq.nextval,#{id},#{nick},#{subject},#{content},#{img},#{notice},sysdate)
+		insert into support(num,id,nick,subject,content,img,notice,reg_date) 
+		values(support_seq.nextval,#{id},#{nick},#{subject},#{content},#{img},#{notice},sysdate)
 	</insert>
 	
 	<update id="update" parameterType="supportVO" >
-		update support set content=#{content} , img=#{img}, notice=#{notice} where num=#{num}
+		update support set 
+		<choose>
+			<when test="comments == null">
+				content=#{content} , img=#{img}, notice=#{notice} 
+			</when>
+			<otherwise>
+				comments=#{comments}
+			</otherwise>
+		</choose>
+		where num=#{num}
 	</update>
 	
 	<delete id="delete" parameterType="int">
 		delete from support where num=#{num}
 	</delete>
 	
+	<update id="commentRemove" parameterType="int">
+		update support set comments=null where num=#{num}
+	</update>
+	<update id="commentUpdate" parameterType="supportVO">
+		update support set comments=#{comments} where num=#{num}
+	</update>
+	
 	<select id="count" resultType="int">
 	 	select count(*) from support 
 	</select>
 	
 	<select id="List" parameterType="map" resultType="supportVO">
-<![CDATA[ select num,id,subject,content,img,notice,reg_date,nick,r
-		from (select num,id,subject,content,img,notice,reg_date,nick,rownum r
-		from (select num,id,subject,content,img,notice,reg_date, nick
-		from support order by reg_date desc, notice asc)order by reg_date desc, notice asc)
+<![CDATA[ select num,id,subject,content,img,notice,reg_date,nick,comments, r
+		from (select num,id,subject,content,img,notice,reg_date,nick,comments,rownum r
+		from (select num,id,subject,content,img,notice,reg_date, nick,comments
+		from support order by notice desc,reg_date desc ))
 	 	where r>=#{startRow} and r<=#{endRow} ]]>
 	</select>
+	
+	<select id="select" parameterType="int" resultType="supportVO" >
+		select * from support where num =#{value}
+	</select>
+
 </mapper>

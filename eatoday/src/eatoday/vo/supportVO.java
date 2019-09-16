@@ -11,6 +11,7 @@ public class supportVO {
 	private int notice;
 	private Date reg_date;
 	private String nick;
+	private String comments;
 	public int getNum() {
 		return num;
 	}
@@ -59,6 +60,12 @@ public class supportVO {
 	}
 	public void setNick(String nick) {
 		this.nick = nick;
+	}
+	public String getComments() {
+		return comments;
+	}
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 	
 	

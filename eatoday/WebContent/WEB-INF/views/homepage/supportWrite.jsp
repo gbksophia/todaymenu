@@ -36,8 +36,7 @@
     		width:500px;
     	}
     </style>
-</head>
-
+    
 <body>
 
 
@@ -52,7 +51,7 @@
 	</div>
 			
 	<div class="form-group">
-	<textarea name="content"  cols="30" rows="10" class="form-control" placeholder="내용"></textarea>
+	<textarea name="content" cols="30" rows="10" class="form-control" placeholder="내용"></textarea>
 	</div> 
 	
 	<div class="form-group">
@@ -64,7 +63,7 @@
       </div>
       
        <div class="form-group">
-      <input type="submit" value="글 쓰기" class="form-control"  />
+      <input type="submit" value="글 쓰기"  class="btn py-3 px-4 btn-primary"  />
       </div>
 </form>
    

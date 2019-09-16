@@ -74,12 +74,15 @@
 			<c:when test="${supportVO.notice == 1}">
 				[공지]
 			</c:when>
+			<c:when test="${supportVO.comments != null }">
+				[해결]
+			</c:when>
 			<c:otherwise>
 				[문의]
 			</c:otherwise>
 		</c:choose>
 		</td>
-		<td>${supportVO.subject }</td>		
+		<td> <a href="supportContent.eat?num=${supportVO.num }">${supportVO.subject }</a></td>		
 		<td>${supportVO.nick }</td>
 		<td>${supportVO.reg_date }</td>
 		<c:if test="${sessionScope.loginID.equals('admin@eatoday.com') }">
