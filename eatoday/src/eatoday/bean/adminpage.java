@@ -149,5 +149,13 @@ public class adminpage {
 		return "/admin/reviewRemove";
 	}
 	
+	@RequestMapping("supportRemove.eat")
+	public String supportRemove(int num,HttpSession session) {
+		String admin = (String)session.getAttribute("loginID");
+		if(admin.equals("admin@eatoday.com")) {
+			sql.delete("support.delete",num);
+		}
+		return "/admin/supportRemove";
+	}
 }
 

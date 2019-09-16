@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="support">
+	<insert id="insert" parameterType="supportVO" >
+		insert into support values(support_seq.nextval,#{id},#{nick},#{subject},#{content},#{img},#{notice},sysdate)
+	</insert>
+	
+	<update id="update" parameterType="supportVO" >
+		update support set content=#{content} , img=#{img}, notice=#{notice} where num=#{num}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from support where num=#{num}
+	</delete>
+	
+	<select id="count" resultType="int">
+	 	select count(*) from support 
+	</select>
+	
+	<select id="List" parameterType="map" resultType="supportVO">
+<![CDATA[ select num,id,subject,content,img,notice,reg_date,nick,r
+		from (select num,id,subject,content,img,notice,reg_date,nick,rownum r
+		from (select num,id,subject,content,img,notice,reg_date, nick
+		from support order by reg_date desc, notice asc)order by reg_date desc, notice asc)
+	 	where r>=#{startRow} and r<=#{endRow} ]]>
+	</select>
+</mapper>
