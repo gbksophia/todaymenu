@@ -170,20 +170,6 @@
         </div>
 
         <div class="row">
-        
-        
-            <h2 class="mb-3">재료</h2>
-        
-		
-        	<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
-    					<div class="text text-center pt-4">
-    						<h3><a href="#">${rcpTit }</a></h3>
-    						<p>A small river named Duden flows by their place and supplies</p>
-    						<p class="price"><span>$5.90</span></p>
-    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-    					</div>
 
         <h2 class="mb-3">재료에서 검색한 결과 </h2>
         <div class="row">        	
