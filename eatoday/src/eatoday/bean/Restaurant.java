@@ -172,8 +172,6 @@ public class Restaurant {
 			vo.setNick(nick);
 			vo.setText(text);
 			sql.insert("restaurant.ReviewInsert",vo);
-			model.addAttribute("cnum",cnum);
-				
 				return "/homepage/restaurantRePro";
 			}
 		

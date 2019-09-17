@@ -230,11 +230,19 @@
  	</select>
  	
 	<!-- 레시피 이름으로 검색 -->
+	 <select id="countSrTitle" parameterType="String" resultType="int" >
+		<![CDATA[ select count(*) from recipe where title like '%'||#{value}||'%']]>
+	</select>
+		
  	<select id="searchRecTitle" parameterType="String" resultType="recipeVO" >
 		<![CDATA[ select * from recipe where title like '%'||#{value}||'%']]>
 	</select>
 	
 	<!-- 레시피 재료로 검색 -->
+	<select id="countSrMate" parameterType="String" resultType="int" >
+		<![CDATA[select * from recipe where mate like '%'||#{value}||'%']]>
+	</select>
+	
 	<select id="searchRecMate" parameterType="String" resultType="recipeVO" >
 		<![CDATA[select * from recipe where mate like '%'||#{value}||'%']]>
 	</select>

@@ -205,11 +205,12 @@ public class homepage {
 	}
 	
 	@RequestMapping("commentPro.eat")
-	public String commentPro(supportVO vo,HttpSession session) {
+	public String commentPro(supportVO vo,HttpSession session,Model model) {
 		String admin = (String)session.getAttribute("loginID");
 		if(admin.equals("admin@eatoday.com")) {
 			sql.update("support.update",vo);
 		}
+		model.addAttribute("num",vo.getNum());
 		return "/homepage/commentPro";
 	}
 	
