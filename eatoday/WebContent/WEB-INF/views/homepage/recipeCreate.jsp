@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>supprot Write</title>
+<title>recipe Create</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="/eatoday/resource/js/jquery.min.js"></script>
@@ -40,7 +40,7 @@
 <body>
 
 
-<jsp:include page="../homepage/header.jsp" />
+<jsp:include page="header.jsp" />
 <div class="container">
 <br><br><br><br>
  <div class="comment-form-wrap pt-5">
