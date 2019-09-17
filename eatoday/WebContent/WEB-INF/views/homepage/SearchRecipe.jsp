@@ -93,6 +93,10 @@
 	padding-top:0em;
 }
 
+.owl-carousel .home-slider .slider-item{
+	background-size:auto;
+}
+
 
 
     </style>
@@ -128,7 +132,7 @@
 
     <section class="home-slider owl-carousel">
 
-      <div class="slider-item" style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+      <div class="slider-item" style="background-image: url(/eatoday/resource/images/recipe2.jpg); background-size:cover;" >
       	<div class="overlay"></div>
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center">
@@ -169,15 +173,11 @@
     		<div class="row justify-content-center mb-5 pb-3">
         </div>
 
-        <div class="row">
 
         <h2 class="mb-3">재료에서 검색한 결과 </h2>
         <div class="row">
-        <c:if test=" ${countM ==0}">
-			<h3>해당하는 결과가 없습니다.</h1>
-		</c:if>
-		<c:if test=" ${countM !=0}">
-			<c:forEach var="rcpMatVO" items="${rcpMat}">
+        <c:if test="${countM!=0 }" >        	
+          <c:forEach var="rcpMatVO" items="${rcpMat}">
 			<div class="col-md-3">
         		<div class="menu-entry">
     					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCnum()}"></c:param><c:param name = "cate" value = "${rcpMatVO.getCate()}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcpMatVO.getMain_name()});"></a>
@@ -188,8 +188,11 @@
     				</div>
         	</div>
         	</c:forEach>
-		</c:if>  	          	
-		</div>
+        	</c:if>
+        	<c:if test="${countM==0 }" > 
+        		<blockquote><h5>해당하는 검색결과가 없습니다.</h5></blockquote>
+        	</c:if>
+        	</div>
         	
         <div class="container">
     		<div class="row justify-content-center mb-5 pb-3">
@@ -197,7 +200,8 @@
         
         <h2 class="mb-3">이름에서 검색한 결과</h2>
        
-        <div class="row">        	
+        <div class="row">
+        <c:if test="${countT!=0 }" >         	
           <c:forEach var="rcpTitVO" items="${rcpTit}">
 			<div class="col-md-3">
         		<div class="menu-entry">
@@ -209,6 +213,10 @@
     				</div>
         	</div>
         	</c:forEach>
+        	</c:if>
+        	<c:if test="${countT==0 }" >
+				<blockquote><h5>해당하는 검색결과가 없습니다.</h5></blockquote>        	 	
+        	</c:if>
         </div>
         	
     </section>

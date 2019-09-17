@@ -233,7 +233,7 @@
 	
 	<!-- 레시피 재료로 검색 -->
 	<select id="countSrMate" parameterType="String" resultType="int" >
-		<![CDATA[select * from recipe where mate like '%'||#{value}||'%']]>
+		<![CDATA[select count(*) from recipe where mate like '%'||#{value}||'%']]>
 	</select>
 	
 	<select id="searchRecMate" parameterType="String" resultType="recipeVO" >
