@@ -80,11 +80,11 @@
 			}
 }
 	function update(){
-		var comment = document.createElement("textarea");		
-		var text = '${supportVO.comments}';
+		var text = $("#comments").val();
 		var check = document.getElementById("commentUp");
-		var num = '${supportVO.num}'
+		var num = '${supportVO.num}';
 		if(check ==null){
+	var comment = document.createElement("textarea");	
 		comment.setAttribute("id","commentUp");
 		comment.setAttribute("name","commentUp");
 		comment.innerHTML = text;
