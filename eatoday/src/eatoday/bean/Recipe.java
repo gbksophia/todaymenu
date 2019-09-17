@@ -363,4 +363,43 @@ public class Recipe {
 		model.addAttribute("CateCount",CateCount);
 		return "/homepage/CateCount";
 	}
+	
+	//레시피 등록
+	@RequestMapping("recipeCreate.eat")
+	public String recipeCreate() {
+		
+		return "/homepage/recipeCreate";
+	}
+	
+	//레시피 등록 pro 페이지
+	@RequestMapping("recipeCreatePro.eat")
+	public String recipeCreatePro(HttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		recipeVO vo = new recipeVO();
+
+		String cate = request.getParameter("cate");
+		String cnum = request.getParameter("cnum");
+		String main_name = request.getParameter("main_name");
+		String title = request.getParameter("title");
+		String mate = request.getParameter("mate");
+		String pro = request.getParameter("pro");
+
+
+		System.out.println(cate);
+		System.out.println(cnum);
+		System.out.println(main_name);
+		System.out.println(title);
+		System.out.println(mate);
+		System.out.println(pro);
+		
+		vo.setCate(cate);
+		vo.setCnum(cnum);
+		vo.setMain_name(main_name);
+		vo.setTitle(title);
+		vo.setMate(mate);
+		vo.setPro(pro);
+			
+		sql.insert("recipe.insert", vo);
+		return "/homepage/recipeCreatePro";
+	}
 }
