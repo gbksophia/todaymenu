@@ -267,8 +267,6 @@ public class Recipe {
 		vo.setNick(nick);
 		vo.setText(text);
 		sql.insert("recipe.ReviewInsert",vo);
-		model.addAttribute("cnum",cnum);
-		model.addAttribute("cate",cate);	
 			return "/homepage/recipeRePro";
 		}
 	

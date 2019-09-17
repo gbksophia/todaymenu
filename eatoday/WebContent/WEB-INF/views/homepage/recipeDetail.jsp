@@ -258,6 +258,25 @@
 				}
 		  });
   }
+
+
+  // 리뷰 쓰기
+  function reviewWrite(){
+	  var form = $("#reviewWriteForm")[0];
+	  var data = new FormData(form);
+	  $.ajax({
+			url: "recipeRePro.eat",
+			enctype: 'multipart/form-data',
+			type: "post",
+			processData: false,
+            contentType: false,
+            cache: false,
+			data:  data,
+		  success: function(data) {
+			  location.reload();	
+				}
+		  });
+	  }
   </script>
 
 <style>
@@ -373,10 +392,10 @@
                   <textarea id="textarea${i }" disabled>${recipeReviewVO.text} </textarea>
                   </p>
                   <c:if test="${recipeReviewVO.img != null }">
-                  	<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img }" height="400px">
+                  	<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img }" height="300px">
                   </c:if>
                   <c:if test="${sessionScope.loginID == recipeReviewVO.id }">
-           		
+           			<br>
 					<a href="javascript:reviewUpdate('${recipeReviewVO.getNum() }','${i }')">
 							수정
 						</a>
@@ -431,7 +450,7 @@
               			</form>
               		</c:when>
               		<c:otherwise>
-              		 <form action="recipeRePro.eat" method="post" enctype="multipart/form-data">
+              		 <form id="reviewWriteForm" action="javascript:reviewWrite()" method="post" enctype="multipart/form-data">
                 	<input type="hidden" name="cnum" value="${rvo.getCnum() }">
                 	<input type="hidden" name="cate" value="${rvo.getCate() }">
                 	<input type="hidden" name="id" value="${sessionScope.loginID }">
