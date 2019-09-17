@@ -30,8 +30,10 @@ public class Recipe {
 	
 	@RequestMapping("recipeListView.eat")
 	public String recipeKorView(Model model, HttpServletRequest request) throws Exception {
-		String cate = request.getParameter("cate");
 		
+		String cate = request.getParameter("cate");
+		System.out.println(cate);
+		String cateImg = sql.selectOne("recipe.cateImg",cate);
 		//레시피 카운트
 		int count = sql.selectOne("recipe.cateCount",cate);
 			
@@ -67,6 +69,7 @@ public class Recipe {
 		model.addAttribute("startPage",startPage);
 		model.addAttribute("endPage",endPage); 
 		model.addAttribute("pageCount",pageCount);
+		model.addAttribute("cateImg",cateImg);
 		return "/homepage/recipeListView";
 	}
 	

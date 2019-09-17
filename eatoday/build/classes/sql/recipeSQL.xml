@@ -232,6 +232,8 @@
 		<![CDATA[select * from recipe where mate like '%'||#{value}||'%']]>
 	</select>
 	
-	
- 
+	<!-- 리스트 카테고리 상단 이미지 -->
+ 	<select id="cateImg" resultType="String" parameterType="String">
+ 	 <![CDATA[	select main_name from( select main_name from recipe where cate=#{value} order by DBMS_RANDOM.RANDOM ) where rownum <= 1 ]]>
+ 	</select>
 </mapper>
