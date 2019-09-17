@@ -25,3 +25,9 @@ Callback url:  http://localhost:8080/team1/wte/main.eat (임의로 정의)
 
 Client ID : 997770960334-5h8mg1iog55jplehu6dg4u75j0766cl6.apps.googleusercontent.com
 Client Secret :uxChUP9mxduFtIcUC7zMjkuD
+
+
+
+favoriteRestaurant + map_lf === 로그인
+index === 식당찾기 / 만들어 먹기 링크
+header === restaurant 탭

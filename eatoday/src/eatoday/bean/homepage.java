@@ -35,15 +35,15 @@ public class homepage {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			
-			
 			int count = (Integer)sql.selectOne("recipe.count");			
-			
 			int greatest = sql.selectOne("recipe.greatest",id);
 			//recipe.greatest=mem 테이블에서 가장 선호하는 카테고리의 값
 			
 			List rcp = sql.selectList("recipe.cate", greatest);
+
 			//recipe.cate=mem 테이블에서 가장 선호하는 카테고리의 이름
 			System.out.println(rcp);
+
 			// 선호 레시피종류가 중복일 경우 선호레시피를 랜덤으로 검색							
 			int rand = (int)(Math.random()*rcp.size());
 			String like_cate = (String)rcp.get(rand);
@@ -102,6 +102,7 @@ public class homepage {
 		}
 		
 	}
+
 	
 	@RequestMapping("supportList.eat")
 	public String supportList(HttpServletRequest request,Model model) {
@@ -138,11 +139,13 @@ public class homepage {
 		model.addAttribute("pageCount",pageCount);
 		return "/homepage/supportList";
 	}
+
 	
 	@RequestMapping("supportWrite.eat")
 	public String supportWrite() {
 		return "/homepage/supportWrite";
 	}
+	
 	
 	@RequestMapping("supportWritePro.eat")
 	public String supportWritePro(MultipartHttpServletRequest request,HttpSession session) throws Exception {
@@ -195,6 +198,7 @@ public class homepage {
 		return "/homepage/supportWritePro";
 	}
 	
+	
 	@RequestMapping("supportContent.eat")
 	public String supportContent(int num,Model model) {
 		supportVO vo = new supportVO();
@@ -203,6 +207,7 @@ public class homepage {
 		model.addAttribute("supportVO",vo);
 		return "/homepage/supportContent";
 	}
+	
 	
 	@RequestMapping("commentPro.eat")
 	public String commentPro(supportVO vo,HttpSession session,Model model) {
@@ -214,6 +219,7 @@ public class homepage {
 		return "/homepage/commentPro";
 	}
 	
+	
 	@RequestMapping("supportCommentRemove.eat")
 	public String supportCommentRemove(HttpSession session,int num,Model model) {
 		String admin = (String)session.getAttribute("loginID");
@@ -223,6 +229,7 @@ public class homepage {
 		model.addAttribute("num",num);
 		return "/homepage/supportCommentRemove";
 	}
+	
 	
 	@RequestMapping("supportCommentUpdate.eat")
 	public String supportCommentUpdate(supportVO vo,Model model,HttpSession session) {
