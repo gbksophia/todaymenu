@@ -141,12 +141,13 @@
    }
   
 //업데이트 폼 생성
-  function reviewUpdate(num,text,i){
+  function reviewUpdate(num,i){
 	  var reviewtext = "reviewtext"+i;
 	  var UpdateBtn = "UpdateBtn"+i;
 	  var check = document.getElementById("textUpdate");
-	  
-	  if (check ==null){
+	 var textId = "#textarea"+i;
+	 var text = $(textId).val();
+	if(check == null){
 	  //업데이트 텍스트 에어리어 생성
 	  var elem = document.createElement("textarea");
 		  elem.setAttribute("class", "form-control");
@@ -159,7 +160,7 @@
 	  
 	  //업데이트 버튼 생성
 	  var btn = document.createElement("input");
-	  var onclick ="Update('"+num+"','"+reviewtext+"')";
+	  var onclick ="Update('"+num+"','"+textId+"')";
 	  btn.setAttribute("type","button");
 	  btn.setAttribute("value","Update Comment");
 	  btn.setAttribute("class","btn py-3 px-4 btn-primary");
@@ -183,7 +184,7 @@
 		  success: function(data) {
 			  $("#textUpdate").remove();
 			  $("#UpdateBtn").remove();
-			  document.getElementById(id).innerHTML = data;
+			  $(id).val(data);
 				}
 		  });
   }
@@ -304,14 +305,14 @@
                   <h3>${restaurantReviewVO.nick }</h3>
                   <div class="meta">${restaurantReviewVO.reg_date }</div>
                   <p id="reviewtext${i }">
-                  	${restaurantReviewVO.text}
+                   <textarea id="textarea${i }" disabled>${restaurantReviewVO.text}</textarea>
                   </p>
                   <c:if test="${restaurantReviewVO.img != null }">
                   	<img src="/eatoday/resource/RecipeReview/${restaurantReviewVO.img }" height="400px">
                   </c:if>
                   <c:if test="${sessionScope.loginID == restaurantReviewVO.id }">
            		
-					<a href="javascript:reviewUpdate('${restaurantReviewVO.getNum() }','${restaurantReviewVO.text }','${i }')">
+					<a href="javascript:reviewUpdate('${restaurantReviewVO.getNum() }','${i }')">
 							수정
 						</a>
 						&nbsp;|&nbsp;

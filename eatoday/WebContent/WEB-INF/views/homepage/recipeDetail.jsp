@@ -179,11 +179,12 @@
    }
   
   // 업데이트 폼 생성
-  function reviewUpdate(num,text,i){
+  function reviewUpdate(num,i){
 	  var reviewtext = "reviewtext"+i;
 	  var UpdateBtn = "UpdateBtn"+i;
 	  var check = document.getElementById("textUpdate");
-	  
+	  var textId = "#textarea"+i;
+	  var text = $(textId).val();
 	  if (check ==null){
 	  //업데이트 텍스트 에어리어 생성
 	  var elem = document.createElement("textarea");
@@ -197,7 +198,7 @@
 	  
 	  //업데이트 버튼 생성
 	  var btn = document.createElement("input");
-	  var onclick ="Update('"+num+"','"+reviewtext+"')";
+	  var onclick ="Update('"+num+"','"+textId+"')";
 	  btn.setAttribute("type","button");
 	  btn.setAttribute("value","Update Comment");
 	  btn.setAttribute("class","btn py-3 px-4 btn-primary");
@@ -221,7 +222,7 @@
 		  success: function(data) {
 			  $("#textUpdate").remove();
 			  $("#UpdateBtn").remove();
-			  document.getElementById(id).innerHTML = data;
+			  $(id).val(data);
 				}
 		  });
   }
@@ -259,6 +260,32 @@
   }
   </script>
 
+<style>
+		
+		textarea {
+			color: #585858;
+			background-color: #000000;
+		}
+
+	  .wrap {
+      width: 500px;
+    }
+    .wrap textarea {
+      width: 100%;
+      resize: none;
+      overflow-y: hidden; /* prevents scroll bar flash */
+      padding: 1.1em; /* prevents text jump on Enter keypress */
+      padding-bottom: 0.2em;
+      line-height: 1.6;
+    }
+
+    textarea:disabled{
+    	width: 800px;
+    	resize: none;
+    	border: 0;
+    	overflow-y:hidden;
+    } 
+</style>
   </head>
   
  
@@ -343,14 +370,14 @@
                   <h3>${recipeReviewVO.nick }</h3>
                   <div class="meta">${recipeReviewVO.reg_date }</div>
                   <p id="reviewtext${i }">
-                  	${recipeReviewVO.text}
+                  <textarea id="textarea${i }" disabled>${recipeReviewVO.text} </textarea>
                   </p>
                   <c:if test="${recipeReviewVO.img != null }">
                   	<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img }" height="400px">
                   </c:if>
                   <c:if test="${sessionScope.loginID == recipeReviewVO.id }">
            		
-					<a href="javascript:reviewUpdate('${recipeReviewVO.getNum() }','${recipeReviewVO.text }','${i }')">
+					<a href="javascript:reviewUpdate('${recipeReviewVO.getNum() }','${i }')">
 							수정
 						</a>
 						&nbsp;|&nbsp;
@@ -451,7 +478,7 @@
             <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
               <div class="categories">
                 <h3>Categories</h3>
-                <li><a href="recipeListView.eat?cate=1" id="cate(1)">밥요리</a></li>
+                <li><a href="recipeListView.eat?cate=1" id="cate(1)">밥요리1</a></li>
                 <li><a href="recipeListView.eat?cate=2" id="cate(2)">국&탕 </a></li>
                 <li><a href="recipeListView.eat?cate=3" id="cate(3)">찌개&전골 </a></li>
                 <li><a href="recipeListView.eat?cate=4" id="cate(4)">밑반찬 </a></li>
