@@ -186,9 +186,13 @@
         	</c:forEach>
         	</div>
         	
-        <div class="row"></div><br />
+        <div class="container">
+    		<div class="row justify-content-center mb-5 pb-3">
+        </div>
+        
+        <h2 class="mb-3">이름에서 검색한 결과</h2>
         	
-       <h2 class="mb-3">이름에서 검색한 결과</h2>
+       
         <div class="row">        	
           <c:forEach var="rcpTitVO" items="${rcpTit}">
 			<div class="col-md-3">
@@ -201,7 +205,7 @@
     				</div>
         	</div>
         	</c:forEach>
-        	</div>
+        </div>
         	
     </section>
 
