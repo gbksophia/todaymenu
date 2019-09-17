@@ -369,40 +369,69 @@ public class Recipe {
 	
 	//레시피 등록
 	@RequestMapping("recipeCreate.eat")
-	public String recipeCreate() {
+	public String recipeCreate(Model model) {
+		int count = sql.selectOne("recipe.recipeCnum");
 		
+		model.addAttribute("count", count);
 		return "/homepage/recipeCreate";
 	}
 	
 	//레시피 등록 pro 페이지
 	@RequestMapping("recipeCreatePro.eat")
-	public String recipeCreatePro(HttpServletRequest request) throws Exception {
+	public String recipeCreatePro(MultipartHttpServletRequest request, Model model) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		recipeVO vo = new recipeVO();
 
 		String cate = request.getParameter("cate");
 		String cnum = request.getParameter("cnum");
-		String main_name = request.getParameter("main_name");
 		String title = request.getParameter("title");
 		String mate = request.getParameter("mate");
 		String pro = request.getParameter("pro");
+		
+		int count = sql.selectOne("recipe.recipeCnum");
+		
+		
+		vo.setCate(cate);
+		vo.setCnum(cnum);
+		vo.setTitle(title);
+		vo.setMate(mate);
+		vo.setPro(pro);
 
-
+		//System.out.println(cate);
+		//System.out.println(cnum);
+		//System.out.println(title);
+		//System.out.println(mate);
+		//System.out.println(pro);
+		
+		//이미지
+		MultipartFile mf = request.getFile("main_name");
+		String orgName = mf.getOriginalFilename();
+	
+		if(orgName != "") {
+			String path = request.getRealPath("//resource//RecipeImages");
+			String ext = orgName.substring(orgName.lastIndexOf('.'));
+			sql.insert("recipe.ImgcountInsert");
+			int num = sql.selectOne("recipe.ImgCount");
+		
+			
+			String newName = "image"+num+ext;
+			File copyFile = new File(path +"//"+ newName);
+			mf.transferTo(copyFile);
+			vo.setMain_name(newName);
+		} else {
+			vo.setMain_name("");
+		}
+		
+		model.addAttribute("count", count);
+		
+		sql.insert("recipe.insert", vo);
+		
 		System.out.println(cate);
 		System.out.println(cnum);
-		System.out.println(main_name);
 		System.out.println(title);
 		System.out.println(mate);
 		System.out.println(pro);
 		
-		vo.setCate(cate);
-		vo.setCnum(cnum);
-		vo.setMain_name(main_name);
-		vo.setTitle(title);
-		vo.setMate(mate);
-		vo.setPro(pro);
-			
-		sql.insert("recipe.insert", vo);
 		return "/homepage/recipeCreatePro";
 	}
 }
