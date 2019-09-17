@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐 먹지? 레스토랑 리뷰 리스트</title>
+<title>supprot Write</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="/eatoday/resource/js/jquery.min.js"></script>
@@ -30,51 +30,46 @@
     <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
-</head>
-
+    <style>
+    	form {
+    		margin: 0 auto;
+    		width:500px;
+    	}
+    </style>
+    
 <body>
-<c:choose>
-<c:when test="${!sessionScope.loginID.equals('admin@eatoday.com')}">
-	<script>
-		alert("이페이지를 볼 권한이 없습니다.");
-		history.go(-1);
-	</script>
-</c:when>
-<c:otherwise>
-<script type="text/javascript">
-	function remove(num){
-			var result = confirm("정말 이 댓글을 삭제하시겠습니까?");
 
-			if(!result){
-				alert("취소되었습니다.");
-			} else {
-				alert("삭제 성공");
-				location="reviewRemove.eat?num="+num;
-			}
-		}
-</script>
 
 <jsp:include page="../homepage/header.jsp" />
 <div class="container">
 <br><br><br><br>
-<table class="table table-bordered">
-	<tr> 
-		<td> 닉네임 </td>
-		<td> 내용 </td>
-		<td>삭제 </td>
-	</tr>
-	<c:forEach var="ReviewVO" items="${restaurantReviewVO }">
-	<tr>
-		<td>${ReviewVO.nick }</td>
-		<td>${ReviewVO.text }</td>
-		<td><input type="button" value="삭제"  onclick="remove('${ReviewVO.num}')"></td>
-	</tr>
-	</c:forEach>
-</table>
+ <div class="comment-form-wrap pt-5">
+<form action="supportWritePro.eat?" method="post" enctype="multipart/form-data">
+<input type="hidden" name="id" value="${sessionScope.loginID }">
+	<div class="form-group">
+	<input class="form-control" type="text" name="subject" placeholder="제목을 입력하세요." >  
+	</div>
+			
+	<div class="form-group">
+	<textarea name="content" cols="30" rows="10" class="form-control" placeholder="내용"></textarea>
+	</div> 
+	
+	<div class="form-group">
+     <input  class="form-control" type="text" name="nick"  placeholder="닉네임" />
+     </div>
+                  
+      <div class="form-group">
+      <input type="file" name="img" class="form-control"  />
+      </div>
+      
+       <div class="form-group">
+      <input type="submit" value="글 쓰기"  class="btn py-3 px-4 btn-primary"  />
+      </div>
+</form>
+   
+ </div>
 </div>
-</c:otherwise>
-</c:choose>
-
+<jsp:include page="footer.jsp" />
 <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 

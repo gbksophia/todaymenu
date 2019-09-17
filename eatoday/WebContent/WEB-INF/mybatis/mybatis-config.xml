@@ -13,11 +13,13 @@
 		<typeAlias alias="restaurantReviewVO" type="eatoday.vo.restaurantReviewVO"/>
 		<typeAlias alias="restaurantReviewNiceVO" type="eatoday.vo.restaurantReviewNiceVO"/>
 		<typeAlias alias="memberVO" type="eatoday.vo.memberVO"/>
+		<typeAlias alias="supportVO" type="eatoday.vo.supportVO"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/sql/recipeSQL.xml"/>
 		<mapper resource="/sql/restaurantSQL.xml"/>
 		<mapper resource="/sql/MemberSQL.xml"/>
+		<mapper resource="/sql/supportSQL.xml"/>
 	</mappers>
 </configuration>

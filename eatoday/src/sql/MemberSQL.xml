@@ -4,8 +4,13 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 	<insert id="insert" parameterType="memberVO">
-		insert into mem values(mem_seq.nextval, #{id}, #{pw}, #{kor},#{china},#{japan},#{european},#{bunsig},#{cafe},#{etc},#{rice},#{soup},#{jeongol},#{side},#{shake},#{gui},#{jjim},#{guest},#{children},#{kimchi},#{dosi},#{fry},#{noodle},#{salad},#{spa},#{snack},#{toast},#{baking},#{dessert},#{juice},#{cocktail},#{holiday},#{drink},DBMS_RANDOM.STRING('X', 6))
+		insert into mem values(mem_seq.nextval, #{id}, #{pw}, #{kor},#{china},#{japan},#{european},#{bunsig},#{cafe},#{etc},#{rice},#{soup},#{jeongol},#{side},#{shake},#{gui},#{jjim},#{guest},#{children},#{kimchi},#{dosi},#{fry},#{noodle},#{salad},#{spa},#{snack},#{toast},#{baking},#{dessert},#{juice},#{cocktail},#{holiday} DBMS_RANDOM.STRING('X', 6))
 	</insert>
+	
+	<!-- 회원 수 카운트 -->
+	<select id="count" resultType="int">
+		select count(*) from mem where id !='admin@eatoday.com'
+	</select>
 	
 	<select id="loginCheck" parameterType="memberVO" resultType="int">
 		select count(*) from mem where id=#{id} and pw=#{pw}
@@ -30,16 +35,15 @@
  		select code from mem where id=#{value}
  	</select>
  	
- 	<!-- 비밀 번호  업데이트 -->
+ 	<!-- 비밀 번호  찾기 -->
  	<update id="pwReUpdate" parameterType="String">
  		update mem set pw= DBMS_RANDOM.STRING('X', 6)  where id=#{id}
  	</update>
  	
- 	<!-- 이메일 업데이트 비밀번호 발송 -->
+ 	<!--비밀번호찾기 결과 값발송 -->
  	<select id="pwSearch" parameterType="String" resultType="String">
  		select pw from mem where id=#{value}
  	</select>
- 	
  	
  	<select id="info" parameterType="String" resultType="memberVO">
  		select * from mem where id=#{value}
@@ -54,8 +58,8 @@
  	</update>
  	
  	<!-- 어드민을 제외한 나머지 멤버 리스트 -->
- 	<select id="List" resultType="memberVO">
- 		select * from mem where id !='admin@eatoday.com'
+ 	<select id="List" resultType="memberVO" parameterType="map">
+ 	<![CDATA[ select id from (select id,rownum r from mem where id !='admin@eatoday.com') where r>=#{startRow} and r<=#{endRow}]]>
  	</select>
 
  	<!-- 밥 카테고리 값 증가 -->	
@@ -90,7 +94,7 @@
  	
  	<!-- 간식 관련 레시피 카운트 값 증가 -->	
  	<update id = "dessertCountUp" parameterType = "String">
- 		update mem set fry = fry+1,snack=snack+1,toast=toast+1,daking=daking+1,dessert=dessert+1, where id = #{id}
+ 		update mem set fry = fry+1,snack=snack+1,toast=toast+1,baking=baking+1,dessert=dessert+1 where id = #{id}
  	</update>
  	
  	<!-- 마실것 관련 레시피 카운트값 증가 -->	
@@ -99,8 +103,8 @@
  	</update>
  	
  	<!-- 명절/손님상 관련 레시피 카운트값증가 -->	
- 	<update id = "holyCountUp" parameterType = "String">
- 		update mem set holyday = holyday+1,guest=guest+1 where id = #{id}
+ 	<update id = "holiCountUp" parameterType = "String">
+ 		update mem set holiday = holiday+1,guest=guest+1 where id = #{id}
  	</update>
  	
  	<!--한식 카운트 증가 -->	

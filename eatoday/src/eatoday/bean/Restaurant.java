@@ -2,7 +2,9 @@ package eatoday.bean;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,8 +39,7 @@ public class Restaurant {
 		}
 		
 		@RequestMapping("restaurantList.eat")
-		public String restaurantList(HttpServletRequest request, Model model) {
-			try {
+		public String restaurantList(HttpServletRequest request, Model model) throws Exception {
 				request.setCharacterEncoding("UTF-8");
 				String cate = request.getParameter("cate"); //카테고리명
 				String area = request.getParameter("area"); //지역명
@@ -52,11 +53,6 @@ public class Restaurant {
 				ra.add(cate);
 				List raList = sql.selectList("restaurant.selectArea", ra); //카테고리+지역 검색결과 rvo
 
-				System.out.println(cate);
-				//System.out.println(count);
-				System.out.println(area);
-				System.out.println(areaCnt);
-				
 				model.addAttribute("areaList", areaList);
 				model.addAttribute("areaCnt", areaCnt);
 				model.addAttribute("area", area);
@@ -64,9 +60,6 @@ public class Restaurant {
 				//model.addAttribute("restList", restList);
 				//model.addAttribute("count", count);
 				model.addAttribute("raList", raList);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 			return "/homepage/restaurantList";
 		}
 		
@@ -96,18 +89,42 @@ public class Restaurant {
 			}
 			//리뷰 카운트
 			int recount = (Integer)sql.selectOne("restaurant.ReviewCount",cnum);
-
+			
 			// 해당 레스토랑 정보
 			restaurantVO rvo = sql.selectOne("restaurant.info",cnum);
 			
 			//레스토랑 리뷰 가져오기
-			List revo = sql.selectList("restaurant.reviewSelect",cnum);
+			int row = 10;
+			String page = request.getParameter("page");
+			
+			if (page == null) {
+				page ="1";
+			}
+			int currentPage = Integer.parseInt(page);
+			int startRow = (currentPage-1) * row +1;
+			int endRow = currentPage * row;
+			Map pageList = new HashMap();
+			
+			pageList.put("cnum", cnum);
+			pageList.put("startRow",startRow);
+			pageList.put("endRow",endRow);
+			
+			List revo = sql.selectList("restaurant.reviewSelect",pageList);
+			
+			// 페이지 계산
+			int pageCount = recount / row + (recount % row == 0? 0:1);
+			int startPage = (int)(currentPage/10)*10+1;
+			int pageBlock=10;
+			int endPage = startPage + pageBlock-1;
+			if(endPage > pageCount) endPage = pageCount;
 			
 			
 			model.addAttribute("rvo",rvo);
 			model.addAttribute("revo",revo);
 			model.addAttribute("recount",recount);
-			model.addAttribute("recount",recount);
+			model.addAttribute("startPage",startPage);
+			model.addAttribute("endPage",endPage);
+			model.addAttribute("pageCount",pageCount);
 			return "/homepage/restaurantDetail";
 		}
 		
@@ -155,8 +172,6 @@ public class Restaurant {
 			vo.setNick(nick);
 			vo.setText(text);
 			sql.insert("restaurant.ReviewInsert",vo);
-			model.addAttribute("cnum",cnum);
-				
 				return "/homepage/restaurantRePro";
 			}
 		

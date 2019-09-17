@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐 먹지? 레시피 찜 리스트</title>
+<title>support</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="/eatoday/resource/js/jquery.min.js"></script>
@@ -34,83 +34,90 @@
 
 <body>
 <script type="text/javascript">
-		function jjimCheck(i,cnum){
-		   var id = '${sessionScope.loginID}';
-		   var imgtag = "jjimImg"+i;
-		   var imgid = "btn_jjim"+i;
-		   $.ajax({
-		          url: "/eatoday/memberpage/recipeJjim.eat",
-		          type: "post",
-		          data: {id : id, cnum : cnum },
-		          success: function(data) {
-		        	  var elem = document.createElement("img");
-		        	  elem.setAttribute("src", data);
-		        	  elem.setAttribute("height", "50px");
-		      		  elem.setAttribute("width", "50px");
-		      		  elem.setAttribute("id", imgid);
-		      		 document.getElementById(imgtag).appendChild(elem);	
-		        	  }
-		    	  });
-		   }
-
-	  function jjimClick(i,cnum){
-		  var id = '${sessionScope.loginID}';
-			var img = 'btn_jjim'+i;
-		   if(${sessionScope.loginID == null}){
-				alert("로그인 후 이용해 주십시오.");
-			   } else {
-		   $.ajax({
-		          url: "/eatoday/memberpage/recipeJjimClick.eat",
-		          type: "post",
-		          data: {id : id, cnum : cnum },
-		          success: function(data) {
-		        	  document.getElementById(img).src=data;
-		        	  }
-		    	  });
-		  }
-	  }
+	function remove(num,i){
+			var result = confirm("글을 지우시겠습니까?");
+			var tag = "#list"+i;
+			if(!result){
+				alert("취소되었습니다.");
+			} else {
+				 $.ajax({
+						url: "/eatoday/adminpage/supportRemove.eat",
+						type: "post",
+						data: { num : num},
+						success: function(data) {
+						$(tag).remove();
+						}
+				});	
+			}
+		}
 </script>
 
 <jsp:include page="../homepage/header.jsp" />
 <div class="container">
 <br><br><br><br>
-<c:set var="i" value="0"/>
+
 <table class="table table-bordered">
 	<tr> 
-		<td> 음식 사진 </td>
-		<td> 음식 이름 </td>
-		<td> 찜</td>
+		<td> 분류  </td>
+		<td> 제목 </td>
+		<td> 닉네임 </td>
+		<td> 작성일 </td>
+		<c:if test="${sessionScope.loginID.equals('admin@eatoday.com') }">
+		<td>삭제</td>
+		</c:if>
 	</tr>
-	<c:forEach var="jjimVO" items="${jjimList }">
-	<tr>
-		<td><img src="/eatoday/resource/RecipeImages/${jjimVO.main_name }" style="height: 150px;width: 150px;"></td>
-		<td><a href="/eatoday/homepage/recipeDetail.eat?cnum=${jjimVO.cnum }" >${jjimVO.title }</a></td>
+	<c:set var="i" value="1"/>
+	<c:forEach var="supportVO" items="${supportList }">
+	<tr id="list${i }">
 		<td>
-		<a id="jjimImg${i}" onclick="javascript:jjimClick('${i}',${jjimVO.cnum })"></a>
-		<script type="text/javascript">
-		jjimCheck('${i}','${jjimVO.cnum}');
-		</script>
+		<c:choose>
+			<c:when test="${supportVO.notice == 1}">
+				[공지]
+			</c:when>
+			<c:when test="${supportVO.comments != null }">
+				[해결]
+			</c:when>
+			<c:otherwise>
+				[문의]
+			</c:otherwise>
+		</c:choose>
 		</td>
+		<td> <a href="supportContent.eat?num=${supportVO.num }">${supportVO.subject }</a></td>		
+		<td>${supportVO.nick }</td>
+		<td>${supportVO.reg_date }</td>
+		<c:if test="${sessionScope.loginID.equals('admin@eatoday.com') }">
+		<td> 
+		<input type="button" value="삭제"  onclick="remove('${supportVO.num}','${i }')">
+		</td>
+		</c:if>
 	</tr>
-	<c:set var="i" value="${i+1 }"/>
+	<c:set var="i" value="${i+1}"/>
 	</c:forEach>
 </table>
-<div class="text-center">
-			<c:if test="${startPage >10 }">
- 			 <a href="jjimList.eat?page=${startPage-10 }">&nbsp;<< &nbsp;</a>
+<c:if test="${sessionScope.loginID !=null }">
+ <div class="form-group">
+   <div class="text-right">
+   <input type="button" value="글 쓰기" class="btn py-3 px-4 btn-primary" onclick="location='supportWrite.eat'">
+    </div>
+  </div>
+</c:if>
+ <div class="text-center">
+ 				<c:if test="${startPage >10 }">
+ 					 <a href="supportList.eat?page=${startPage-10 }">&nbsp;<< &nbsp;</a>
  				</c:if>
               	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
-              	 <a href="jjimList.eat?page=${i }">${i }</a>
+              	 <a href="supportList.eat?page=${i }">${i }</a>
               	 	<c:if test="${i!=endPage}">
               	 &nbsp;|&nbsp;
               	 </c:if>
               	 </c:forEach>
               	 <c:if test="${endPage < pageCount }">
- 					 <a href="jjimList.eat?page=${startPage+10 }"> &nbsp;>>&nbsp; </a>
+ 					 <a href="supportList.eat?page=${startPage+10 }"> &nbsp;>>&nbsp; </a>
  				</c:if>
-     </div>
+            </div>
+ 
 </div>
-<jsp:include page="../homepage/footer.jsp" />
+<jsp:include page="footer.jsp" />
 <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 

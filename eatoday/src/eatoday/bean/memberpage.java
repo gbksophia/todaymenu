@@ -1,6 +1,8 @@
 package eatoday.bean;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -109,10 +111,37 @@ public class memberpage {
 	}
 	
 	@RequestMapping("jjimList.eat")
-	public String jjimList(String id,Model model){
-		List jjimList = sql.selectList("recipe.jjimList",id);
-		
+	public String jjimList(HttpServletRequest request,Model model,HttpSession session){
+		String id = (String)session.getAttribute("loginID");
+		int count = sql.selectOne("recipe.jjimCount",id);
+		int row = 10;
+		String page = request.getParameter("page");
+			
+			if (page == null) {
+				page ="1";
+			}
+		int currentPage = Integer.parseInt(page);
+		int startRow = (currentPage-1) * row +1;
+		int endRow = currentPage * row;
+		Map pageList = new HashMap();
+				
+		pageList.put("id", id);
+		pageList.put("startRow",startRow);
+		pageList.put("endRow",endRow);
+				
+		List jjimList = sql.selectList("recipe.jjimList",pageList);
+				
+		// 페이지 계산
+		int pageCount = count / row + (count % row == 0? 0:1);
+		int startPage = (int)(currentPage/5)*5+1;
+		int pageBlock= 10;
+		int endPage = startPage + pageBlock-1;
+		if(endPage > pageCount) endPage = pageCount;
+
 		model.addAttribute("jjimList",jjimList);
+		model.addAttribute("startPage",startPage);
+		model.addAttribute("endPage",endPage);
+		model.addAttribute("pageCount",pageCount);
 		return "/member/jjimList";
 	}
 	
@@ -181,26 +210,81 @@ public class memberpage {
 		}
 		
 		// 레시피 리뷰 리스트
-		@RequestMapping("recipeReviewList.eat")
-		public String recipeReviewList(HttpSession session,Model model) {
+		@RequestMapping("recipeReview.eat")
+		public String recipeReview(HttpSession session,Model model,HttpServletRequest request) {
 			String id = (String)session.getAttribute("loginID");
-			List recipeReviewVO = sql.selectList("recipe.memReviewList",id);
-			model.addAttribute("recipeReviewVO",recipeReviewVO);
-			return "/member/recipeReviewList";
+			int count = sql.selectOne("recipe.memReviewCount",id);
+			
+			//레시피 리뷰 가져오기
+			int row = 10;
+			String page = request.getParameter("page");
+			
+			if (page == null) {
+				page ="1";
+			}
+			int currentPage = Integer.parseInt(page);
+			int startRow = (currentPage-1) * row +1;
+			int endRow = currentPage * row;
+			Map pageList = new HashMap();
+			
+			pageList.put("id", id);
+			pageList.put("startRow",startRow);
+			pageList.put("endRow",endRow);
+
+			List recipeList = sql.selectList("recipe.reviewSelect",pageList);
+			
+			// 페이지 계산
+			int pageCount = count / row + (count % row == 0? 0:1);
+			int startPage = (int)(currentPage/10)*10+1;
+			int pageBlock=10;
+			int endPage = startPage + pageBlock-1;
+			if(endPage > pageCount) endPage = pageCount;
+
+			model.addAttribute("recipeList",recipeList);
+			model.addAttribute("startPage",startPage);
+			model.addAttribute("endPage",endPage);
+			model.addAttribute("pageCount",pageCount);
+			return "/member/recipeReview";
 		}
 		
 		//레스토랑 리뷰 리스트
-		@RequestMapping("restaurantReviewList.eat")
-		public String restaurantReview(HttpSession session, Model model) {
+		@RequestMapping("restaurantReview.eat")
+		public String restaurantReview(HttpServletRequest request,HttpSession session, Model model) {
 			String id = (String)session.getAttribute("loginID");
-			List restaurantReviewVO = sql.selectList("restaurant.memReviewList",id);
-			model.addAttribute("restaurantReviewVO",restaurantReviewVO);
-			return "/member/restaurantReviewList";
+			int count = sql.selectOne("restaurant.memReviewCount",id);
+			int row = 10;
+			String page = request.getParameter("page");
+				
+				if (page == null) {
+					page ="1";
+				}
+			int currentPage = Integer.parseInt(page);
+			int startRow = (currentPage-1) * row +1;
+			int endRow = currentPage * row;
+			Map pageList = new HashMap();
+			pageList.put("id", id);
+			pageList.put("startRow",startRow);
+			pageList.put("endRow",endRow);
+					
+			List restaurantList = sql.selectList("restaurant.reviewSelect",pageList);
+					
+			// 페이지 계산
+			int pageCount = count / row + (count % row == 0? 0:1);
+			int startPage = (int)(currentPage/10)*10+1;
+			int pageBlock= 10;
+			int endPage = startPage + pageBlock-1;
+			if(endPage > pageCount) endPage = pageCount;
+
+			model.addAttribute("restaurantList",restaurantList);
+			model.addAttribute("startPage",startPage);
+			model.addAttribute("endPage",endPage);
+			model.addAttribute("pageCount",pageCount);
+			return "/member/restaurantReview";
 		}
 		
-		// 리뷰 삭제
-		@RequestMapping("reviewRemove.eat")
-		public String reviewRemove(int num,HttpSession session) {
+		// 레시피 리뷰 삭제
+		@RequestMapping("recipeReviewRemove.eat")
+		public String recipeReviewRemove(int num,HttpSession session) {
 			String reviewId = sql.selectOne("recipe.idSelect",num);
 			String sessionId = (String)session.getAttribute("loginID");
 			
@@ -210,4 +294,17 @@ public class memberpage {
 			
 			return "/member/reviewRemove";
 		}
+		
+		// 레스토랑 리뷰 삭제
+		@RequestMapping("restaurantReviewRemove.eat")
+		public String restaurantReviewRemove(int num,HttpSession session) {
+			String reviewId = sql.selectOne("restaurant.idSelect",num);
+			String sessionId = (String)session.getAttribute("loginID");
+					
+			if(reviewId.equals(sessionId)) {
+			sql.delete("restaurant.reviewDelete",num);
+			}
+					
+			return "/member/reviewRemove";
+		}	
 }

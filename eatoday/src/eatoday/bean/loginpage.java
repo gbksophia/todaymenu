@@ -46,6 +46,13 @@ public class loginpage {
 		int result = sql.selectOne("member.loginCheck",vo);
 		if(result ==1) {
 			session.setAttribute("loginID", vo.getId());
+		} else if (session.getAttribute("socialLogin") != null) {
+			String id = vo.getId();
+			String pw = id.split("@")[0];
+			vo.setPw(pw);
+			sql.update("member.update",vo);
+			session.setAttribute("loginID", vo.getId());
+			result =1;
 		}
 		
 		if(sign ==1) {

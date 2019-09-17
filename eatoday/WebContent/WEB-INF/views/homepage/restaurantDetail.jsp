@@ -141,12 +141,13 @@
    }
   
 //업데이트 폼 생성
-  function reviewUpdate(num,text,i){
+  function reviewUpdate(num,i){
 	  var reviewtext = "reviewtext"+i;
 	  var UpdateBtn = "UpdateBtn"+i;
 	  var check = document.getElementById("textUpdate");
-	  
-	  if (check ==null){
+	 var textId = "#textarea"+i;
+	 var text = $(textId).val();
+	if(check == null){
 	  //업데이트 텍스트 에어리어 생성
 	  var elem = document.createElement("textarea");
 		  elem.setAttribute("class", "form-control");
@@ -159,7 +160,7 @@
 	  
 	  //업데이트 버튼 생성
 	  var btn = document.createElement("input");
-	  var onclick ="Update('"+num+"','"+reviewtext+"')";
+	  var onclick ="Update('"+num+"','"+textId+"')";
 	  btn.setAttribute("type","button");
 	  btn.setAttribute("value","Update Comment");
 	  btn.setAttribute("class","btn py-3 px-4 btn-primary");
@@ -183,7 +184,7 @@
 		  success: function(data) {
 			  $("#textUpdate").remove();
 			  $("#UpdateBtn").remove();
-			  document.getElementById(id).innerHTML = data;
+			  $(id).val(data);
 				}
 		  });
   }
@@ -219,7 +220,53 @@
 				}
 		  });
   }
+
+//리뷰 쓰기
+  function reviewWrite(){
+	  var form = $("#reviewWriteForm")[0];
+	  var data = new FormData(form);
+	  $.ajax({
+			url: "restaurantRePro.eat",
+			enctype: 'multipart/form-data',
+			type: "post",
+			processData: false,
+            contentType: false,
+            cache: false,
+			data:  data,
+		  success: function(data) {
+			  location.reload();
+			  document.getElementById('Comments').scrollIntoView();
+				}
+		  });
+	  }
   </script>
+  
+  <style>
+		
+		textarea {
+			color: #585858;
+			background-color: #000000;
+		}
+
+	  .wrap {
+      width: 500px;
+    }
+    .wrap textarea {
+      width: 100%;
+      resize: none;
+      overflow-y: hidden; /* prevents scroll bar flash */
+      padding: 1.1em; /* prevents text jump on Enter keypress */
+      padding-bottom: 0.2em;
+      line-height: 1.6;
+    }
+
+    textarea:disabled{
+    	width: 800px;
+    	resize: none;
+    	border: 0;
+    	overflow-y:hidden;
+    } 
+</style>
 </head>
 
 <body>
@@ -304,14 +351,14 @@
                   <h3>${restaurantReviewVO.nick }</h3>
                   <div class="meta">${restaurantReviewVO.reg_date }</div>
                   <p id="reviewtext${i }">
-                  	${restaurantReviewVO.text}
+                   <textarea id="textarea${i }" disabled>${restaurantReviewVO.text}</textarea>
                   </p>
                   <c:if test="${restaurantReviewVO.img != null }">
                   	<img src="/eatoday/resource/RecipeReview/${restaurantReviewVO.img }" height="400px">
                   </c:if>
                   <c:if test="${sessionScope.loginID == restaurantReviewVO.id }">
            		
-					<a href="javascript:reviewUpdate('${restaurantReviewVO.getNum() }','${restaurantReviewVO.text }','${i }')">
+					<a href="javascript:reviewUpdate('${restaurantReviewVO.getNum() }','${i }')">
 							수정
 						</a>
 						&nbsp;|&nbsp;
@@ -337,6 +384,20 @@
  				 	</script>
  				 	<div id="textUpdate${i}"></div>
               	</c:forEach>
+              	 <div class="text-center">           	 
+              	 <c:if test="${startPage >10 }">
+ 			 <a href="restaurantDetail.eat?page=${startPage-10 }&cate=${rvo.cate}&cnum=${rvo.cnum}">&nbsp;<< &nbsp;</a>
+ 				</c:if>
+              	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+              	 <a href="restaurantDetail.eat?page=${i }&cate=${rvo.cate}&cnum=${rvo.cnum}">${i }</a>
+              	 	<c:if test="${i!=endPage}">
+              	 &nbsp;|&nbsp;
+              	 </c:if>
+              	 </c:forEach>
+              	 <c:if test="${endPage < pageCount }">
+ 					 <a href="restaurantDetail.eat?page=${startPage+10 }&cate=${rvo.cate}&cnum=${rvo.cnum}"> &nbsp;>>&nbsp; </a>
+ 				</c:if>
+                   </div>
               </ul>
     
       <!-- 댓글 달기 -->
@@ -350,7 +411,7 @@
               			</form>
               		</c:when>
               		<c:otherwise>
-              		 <form action="restaurantRePro.eat" method="post" enctype="multipart/form-data">
+              		 <form id="reviewWriteForm" action="javascript:reviewWrite()" method="post" enctype="multipart/form-data">
                 	<input type="hidden" name="cnum" value="${rvo.getCnum() }">
                 	<input type="hidden" name="id" value="${sessionScope.loginID }">
                   <div class="form-group">
@@ -402,8 +463,7 @@
              		 </div>
             	</div>
 		</div>
-		</div>
-      
+		</div> 
 </section> <!-- .section -->
 <jsp:include page="footer.jsp" />
 

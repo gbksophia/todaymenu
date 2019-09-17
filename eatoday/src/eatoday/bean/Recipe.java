@@ -2,7 +2,9 @@ package eatoday.bean;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,30 +30,58 @@ public class Recipe {
 	
 	@RequestMapping("recipeListView.eat")
 	public String recipeKorView(Model model, HttpServletRequest request) throws Exception {
-		String cate = request.getParameter("cate");
-		int count = (Integer)sql.selectOne("recipe.count");
-		ArrayList rcp = new ArrayList();
-		List rcpList = sql.selectList("recipe.select",cate);
 		
-		if (cate != null) {
+		String cate = request.getParameter("cate");
+		System.out.println(cate);
+		String cateImg = sql.selectOne("recipe.cateImg",cate);
+		//레시피 카운트
+		int count = sql.selectOne("recipe.cateCount",cate);
 			
-		}
-		//System.out.println(rcpList);
+		//레시피 리뷰 가져오기
+		int row = 28;
+		String page = request.getParameter("page");
+			
+			if (page == null) {
+				page ="1";
+			}
+		int currentPage = Integer.parseInt(page);
+		int startRow = (currentPage-1) * row +1;
+		int endRow = currentPage * row;
+		Map pageList = new HashMap();
+				
+		pageList.put("cate", cate);
+		pageList.put("startRow",startRow);
+		pageList.put("endRow",endRow);
+				
+		List rcpList = sql.selectList("recipe.select",pageList);
+				
+		// 페이지 계산
+		int pageCount = count / row + (count % row == 0? 0:1);
+		int startPage = (int)(currentPage/28)*28+1;
+		int pageBlock= 10;
+		int endPage = startPage + pageBlock-1;
+		if(endPage > pageCount) endPage = pageCount;
+
 
 		model.addAttribute("recipeList", rcpList);
 		model.addAttribute("count", count);
 		model.addAttribute("cate",cate);
-		 
+		model.addAttribute("startPage",startPage);
+		model.addAttribute("endPage",endPage); 
+		model.addAttribute("pageCount",pageCount);
+		model.addAttribute("cateImg",cateImg);
 		return "/homepage/recipeListView";
 	}
 	
 	@RequestMapping("recipeDetail.eat")
-	public String recipeDetail(Model model, HttpServletRequest request,HttpSession session) throws Exception {
-		String cnum = request.getParameter("cnum");
-		String cate = request.getParameter("cate");
+	public String recipeDetail(Model model,recipeVO vo,HttpSession session,HttpServletRequest request) throws Exception {
+	
+		String cate = vo.getCate();
+		String cnum = vo.getCnum();
 		
 		if (session.getAttribute("loginID") != null && cate!=null) {
 		String id = (String)session.getAttribute("loginID");
+		
 		// 카테고리 카운트 증가
 		if(cate.equals("1") ) {
 			sql.update("member.riceCountUp",id); // 밥 레시피 카운트값 증가
@@ -80,23 +110,98 @@ public class Recipe {
 			sql.update("member.drinkCountUp",id);  // 마실것 관련 레시피 카운트값 증가
 		
 		}  else if (cate.equals("8") ||cate.equals("23")) {
-			sql.update("member.holyCountUp",id); // 명절/손님상 관련 레시피 카운트값증가
+			sql.update("member.holiCountUp",id); // 명절/손님상 관련 레시피 카운트값증가
 		}
+		
+		//관심 있는 레시피 보여주기
+		int like = sql.selectOne("recipe.greatest",id); 
+		List recipeList = sql.selectList("recipe.cate",like);
+		
+		
+		// 선호 레시피종류가 중복일 경우 선호레시피를 랜덤으로 검색				
+		int rand = (int)(Math.random()*recipeList.size());
+		String like_cate = (String)recipeList.get(rand);
+		Map<String,String> like_parameter = new HashMap<String, String>();
+		
+		if(like_cate.equals("RICE")) {
+			like_parameter.put("key1","1");
+		} else if (like_cate.equals("SOUP") || like_cate.equals("JEONGOL")) { 
+			like_parameter.put("key1","2");
+			like_parameter.put("key2","3");
+		}  else if (like_cate.equals("SIDE")  || like_cate.equals("SHAKE")  || like_cate.equals("GUI")
+				 || like_cate.equals("JJIM")  || like_cate.equals("CHILDREN")  || like_cate.equals("KIMCHI")) 
+		{
+			like_parameter.put("key1","4");
+			like_parameter.put("key2","5");
+			like_parameter.put("key3","6");
+			like_parameter.put("key4","7");
+			like_parameter.put("key5","9");
+			like_parameter.put("key6","10");
+			
+		}  else if (like_cate.equals("DOSI")) {
+			like_parameter.put("key1","11");
+			
+		}  else if (like_cate.equals("NOODLE") || like_cate.equals("SPA") ) {
+			like_parameter.put("key1","13");
+			like_parameter.put("key2","16");
+		}  else if (like_cate.equals("SALAD")) {
+			like_parameter.put("key1","14");
+			
+		}  else if (like_cate.equals("SNACK")  || like_cate.equals("FRY")  || like_cate.equals("TOAST")
+				 || like_cate.equals("BAKING")  || like_cate.equals("DESSERT")) {
+			like_parameter.put("key1","12");
+			like_parameter.put("key2","15");
+			like_parameter.put("key3","17");
+			like_parameter.put("key4","18");
+			like_parameter.put("key5","19");
+			like_parameter.put("key6","20");
+		}  else if (like_cate.equals("JUICE") || like_cate.equals("COCKTAIL")) {
+			like_parameter.put("key1","21");
+			like_parameter.put("key2","22");
+		}  else if (like_cate.equals("GUEST") || like_cate.equals("HOLIDAY")) {
+			like_parameter.put("key1","8");
+			like_parameter.put("key2","23");;
+		}
+		recipeList = sql.selectList("recipe.memRandomSelect",like_parameter);
+		model.addAttribute("recipeList",recipeList);
 	}
+		// 페이지 관련 레시피 보여주기 
+		List randomList = sql.selectList("recipe.randomSelect",vo);
+		
 		//리뷰 카운트
 		int recount = sql.selectOne("recipe.ReviewCount",cnum);
 
 		// 해당 레시피 정보
-		recipeVO vo = sql.selectOne("recipe.info",cnum);
+	    vo = sql.selectOne("recipe.info",cnum);
 		String [] pro = vo.getPro().split("next"); // 조리법 분리
 		int proCount = pro.length; // for문 돌릴값
 		// 레시피 해당 이미지 set
 		List ivo = sql.selectList("recipe.imgselect", cnum);
 		
 		//레시피 리뷰 가져오기
-		List revo = sql.selectList("recipe.reviewSelect",cnum);
+		int row = 10;
+		String page = request.getParameter("page");
 		
+		if (page == null) {
+			page ="1";
+		}
+		int currentPage = Integer.parseInt(page);
+		int startRow = (currentPage-1) * row +1;
+		int endRow = currentPage * row;
+		Map pageList = new HashMap();
 		
+		pageList.put("cnum", cnum);
+		pageList.put("startRow",startRow);
+		pageList.put("endRow",endRow);
+
+		List revo = sql.selectList("recipe.reviewSelect",pageList);
+		
+		// 페이지 계산
+		int pageCount = recount / row + (recount % row == 0? 0:1);
+		int startPage = (int)(currentPage/10)*10+1;
+		int pageBlock=10;
+		int endPage = startPage + pageBlock-1;
+		if(endPage > pageCount) endPage = pageCount;
 		
 		model.addAttribute("pro",pro);
 		model.addAttribute("ivo",ivo);
@@ -105,6 +210,10 @@ public class Recipe {
 		model.addAttribute("recount",recount);
 		model.addAttribute("proCount",proCount);
 		model.addAttribute("recount",recount);
+		model.addAttribute("randomList", randomList);
+		model.addAttribute("startPage",startPage);
+		model.addAttribute("endPage",endPage);
+		model.addAttribute("pageCount",pageCount);
 		return "/homepage/recipeDetail";
 	}
 	
@@ -149,6 +258,7 @@ public class Recipe {
 		String id = request.getParameter("id");
 		String nick = request.getParameter("nick");
 		String text = request.getParameter("text");
+		String cate = request.getParameter("cate");
 		if(nick.equals("")) {
 			nick = "익명";
 		}
@@ -157,8 +267,6 @@ public class Recipe {
 		vo.setNick(nick);
 		vo.setText(text);
 		sql.insert("recipe.ReviewInsert",vo);
-		model.addAttribute("cnum",cnum);
-			
 			return "/homepage/recipeRePro";
 		}
 	
@@ -238,11 +346,21 @@ public class Recipe {
 		String srch=request.getParameter("search");
 		
 		System.out.println("Srch(search)="+srch);
-
+		
+		int countT=sql.selectOne("recipe.countSrTitle",srch);
+		int countM=sql.selectOne("recipe.countSrMate",srch);
+		
+		System.out.println("countT="+countT);
+		System.out.println("countM="+countM);
+		
 		List rcpTit = sql.selectList("recipe.searchRecTitle",srch);
 		List rcpMat = sql.selectList("recipe.searchRecMate",srch);
 		
 		model.addAttribute("srch", srch);
+
+		model.addAttribute("countT", countT);
+		model.addAttribute("countM", countM);
+		
 		model.addAttribute("rcpTit", rcpTit);
 		model.addAttribute("rcpMat", rcpMat);
 		
@@ -255,5 +373,69 @@ public class Recipe {
 		int CateCount =(Integer)sql.selectOne("recipe.cateCount",cate);
 		model.addAttribute("CateCount",CateCount);
 		return "/homepage/CateCount";
+	}
+	
+	//레시피 등록
+	@RequestMapping("recipeCreate.eat")
+	public String recipeCreate(Model model) {
+		int recipeCnum = sql.selectOne("recipe.recipeCnum");
+		
+		model.addAttribute("recipeCnum", recipeCnum);
+		return "/homepage/recipeCreate";
+	}
+	
+	//레시피 등록 pro 페이지
+	@RequestMapping("recipeCreatePro.eat")
+	public String recipeCreatePro(MultipartHttpServletRequest request, Model model, HttpSession session) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		recipeVO vo = new recipeVO();
+		
+		String admin = (String)session.getAttribute("loginID");
+		String cate = request.getParameter("cate");
+		String cnum = request.getParameter("cnum");
+		String title = request.getParameter("title");
+		String mate = request.getParameter("mate");
+		String pro = request.getParameter("pro");
+		
+		vo.setCate(cate);
+		vo.setCnum(cnum);
+		vo.setTitle(title);
+		vo.setMate(mate);
+		vo.setPro(pro);
+
+		//System.out.println(cate);
+		//System.out.println(cnum);
+		//System.out.println(title);
+		//System.out.println(mate);
+		//System.out.println(pro);
+		
+		//이미지
+		MultipartFile mf = request.getFile("main_name");
+		String orgName = mf.getOriginalFilename();
+	
+		if(orgName != "") {
+			String path = request.getRealPath("//resource//RecipeImages");
+			String ext = orgName.substring(orgName.lastIndexOf('.'));
+			sql.insert("recipe.ImgcountInsert");
+			int num = sql.selectOne("recipe.ImgCount");
+		
+			
+			String newName = "image"+num+ext;
+			File copyFile = new File(path +"//"+ newName);
+			mf.transferTo(copyFile);
+			vo.setMain_name(newName);
+		} else {
+			vo.setMain_name("");
+		}
+		
+		sql.insert("recipe.insert", vo);
+		
+		System.out.println(cate);
+		System.out.println(cnum);
+		System.out.println(title);
+		System.out.println(mate);
+		System.out.println(pro);
+		
+		return "/homepage/recipeCreatePro";
 	}
 }

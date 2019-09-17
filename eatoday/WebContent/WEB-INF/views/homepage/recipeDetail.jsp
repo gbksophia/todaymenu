@@ -76,7 +76,6 @@
   function jjimClick(){
 	  var id = '${sessionScope.loginID}';
 	   var cnum = '${rvo.cnum}';
-
 	   if(${sessionScope.loginID == null}){
 			alert("로그인 후 이용해 주십시오.");
 		   } else {
@@ -100,7 +99,6 @@
   function niceClick(num,i) {
 	  var id = '${sessionScope.loginID}';
 	  var img = "img"+i;
-
 	  if(${sessionScope.loginID == null}){
 			alert("로그인후 이용해주십시오.");
 		  }else {
@@ -168,13 +166,11 @@
   function searchCheck() {
       var str = document.getElementById('search');
       var blank = /^[\s]/g;
-
       //검색어 입력필수
       if (str.value == '' || str.value == null) {
          alert("검색어를 입력하세요.");
          return false;
       }
-
       //공백금지
       if (blank.test(str.value) == true) {
          alert("제대로 좀 입력하세요.")
@@ -183,11 +179,12 @@
    }
   
   // 업데이트 폼 생성
-  function reviewUpdate(num,text,i){
+  function reviewUpdate(num,i){
 	  var reviewtext = "reviewtext"+i;
 	  var UpdateBtn = "UpdateBtn"+i;
 	  var check = document.getElementById("textUpdate");
-	  
+	  var textId = "#textarea"+i;
+	  var text = $(textId).val();
 	  if (check ==null){
 	  //업데이트 텍스트 에어리어 생성
 	  var elem = document.createElement("textarea");
@@ -201,7 +198,7 @@
 	  
 	  //업데이트 버튼 생성
 	  var btn = document.createElement("input");
-	  var onclick ="Update('"+num+"','"+reviewtext+"')";
+	  var onclick ="Update('"+num+"','"+textId+"')";
 	  btn.setAttribute("type","button");
 	  btn.setAttribute("value","Update Comment");
 	  btn.setAttribute("class","btn py-3 px-4 btn-primary");
@@ -225,7 +222,7 @@
 		  success: function(data) {
 			  $("#textUpdate").remove();
 			  $("#UpdateBtn").remove();
-			  document.getElementById(id).innerHTML = data;
+			  $(id).val(data);
 				}
 		  });
   }
@@ -261,8 +258,54 @@
 				}
 		  });
   }
+
+
+  // 리뷰 쓰기
+  function reviewWrite(){
+	  var form = $("#reviewWriteForm")[0];
+	  var data = new FormData(form);
+	  $.ajax({
+			url: "recipeRePro.eat",
+			enctype: 'multipart/form-data',
+			type: "post",
+			processData: false,
+            contentType: false,
+            cache: false,
+			data:  data,
+		  success: function(data) {
+			  location.reload();
+			  document.getElementById('Comments').scrollIntoView();
+				}
+		  });
+	  }
   </script>
 
+<style>
+		
+		textarea {
+			color: #585858;
+			background-color: #000000;
+		}
+
+	  .wrap {
+      width: 500px;
+    }
+    .wrap textarea {
+      width: 100%;
+      resize: none;
+      overflow-y: hidden; /* prevents scroll bar flash */
+      padding: 1.1em; /* prevents text jump on Enter keypress */
+      padding-bottom: 0.2em;
+      line-height: 1.6;
+    }
+
+    textarea:disabled{
+    	width: 800px;
+    	resize: none;
+    	border: 0;
+    	overflow-y:hidden;
+    } 
+</style>
   </head>
   
  
@@ -347,14 +390,14 @@
                   <h3>${recipeReviewVO.nick }</h3>
                   <div class="meta">${recipeReviewVO.reg_date }</div>
                   <p id="reviewtext${i }">
-                  	${recipeReviewVO.text}
+                  <textarea id="textarea${i }" disabled>${recipeReviewVO.text} </textarea>
                   </p>
                   <c:if test="${recipeReviewVO.img != null }">
-                  	<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img }" height="400px">
+                  	<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img }" height="300px">
                   </c:if>
                   <c:if test="${sessionScope.loginID == recipeReviewVO.id }">
-           		
-					<a href="javascript:reviewUpdate('${recipeReviewVO.getNum() }','${recipeReviewVO.text }','${i }')">
+           			<br>
+					<a href="javascript:reviewUpdate('${recipeReviewVO.getNum() }','${i }')">
 							수정
 						</a>
 						&nbsp;|&nbsp;
@@ -380,8 +423,21 @@
                     niceCheck('${recipeReviewVO.num}','${i}');
                     niceCountCheck('${recipeReviewVO.num}','${i}');
  				 	</script>
- 				 	<div id="textUpdate${i}"></div>
               	</c:forEach>
+              	 <div class="text-center">
+ 		<c:if test="${startPage >10 }">
+ 			 <a href="recipeDetail.eat?page=${startPage-10 }&cate=${rvo.cate}&cnum=${rvo.cnum}">&nbsp;<< &nbsp;</a>
+ 				</c:if>
+              	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+              	 <a href="recipeDetail.eat?page=${i }&cate=${rvo.cate}&cnum=${rvo.cnum}">${i }</a>
+              	 	<c:if test="${i!=endPage}">
+              	 &nbsp;|&nbsp;
+              	 </c:if>
+              	 </c:forEach>
+              	 <c:if test="${endPage < pageCount }">
+ 					 <a href="recipeDetail.eat?page=${startPage+10 }&cate=${rvo.cate}&cnum=${rvo.cnum}"> &nbsp;>>&nbsp; </a>
+ 				</c:if>
+            </div>
               </ul>
               <!-- END comment-list -->
       <!-- 댓글 달기 -->
@@ -395,8 +451,9 @@
               			</form>
               		</c:when>
               		<c:otherwise>
-              		 <form action="recipeRePro.eat" method="post" enctype="multipart/form-data">
+              		 <form id="reviewWriteForm" action="javascript:reviewWrite()" method="post" enctype="multipart/form-data">
                 	<input type="hidden" name="cnum" value="${rvo.getCnum() }">
+                	<input type="hidden" name="cate" value="${rvo.getCate() }">
                 	<input type="hidden" name="id" value="${sessionScope.loginID }">
                   <div class="form-group">
                     <textarea name="text" id="text" cols="30" rows="10" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
@@ -441,7 +498,7 @@
             <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
               <div class="categories">
                 <h3>Categories</h3>
-                <li><a href="recipeListView.eat?cate=1" id="cate(1)">밥요리</a></li>
+                <li><a href="recipeListView.eat?cate=1" id="cate(1)">밥요리1</a></li>
                 <li><a href="recipeListView.eat?cate=2" id="cate(2)">국&탕 </a></li>
                 <li><a href="recipeListView.eat?cate=3" id="cate(3)">찌개&전골 </a></li>
                 <li><a href="recipeListView.eat?cate=4" id="cate(4)">밑반찬 </a></li>
@@ -464,6 +521,38 @@
              	<li><a href="recipeListView.eat?cate=21" id="cate(21)">주스&음료 </a></li>
              	<li><a href="recipeListView.eat?cate=22" id="cate(22)">술&칵테일</a></li>
              	<li><a href="recipeListView.eat?cate=23" id="cate(23)">명절요리</a></li>
+              </div>
+            </div>
+            
+             <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+              <div class="categories">
+                <h3>관심 있는 레시피</h3>
+                <c:forEach var="recipeVO" items="${recipeList }" >
+               <li> 
+               <div class="text-left p-t-8 p-b-31">
+               <a  href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${recipeVO.cnum}"></c:param><c:param name = "cate" value = "${recipeVO.cate}"></c:param></c:url>">
+               <img src="/eatoday/resource/RecipeImages/${recipeVO.main_name }" style="width: 100px; height: 100px"/>
+               	${recipeVO.title }
+               </a>
+               </div>
+                </li>
+              </c:forEach>
+              </div>
+            </div>
+            
+            <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+              <div class="categories">
+                <h3>관련 레시피</h3>
+                <c:forEach var="randomVO" items="${randomList }" >
+               <li> 
+               <div class="text-left p-t-8 p-b-31">
+               <a  href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${randomVO.cnum}"></c:param><c:param name = "cate" value = "${randomVO.cate}"></c:param></c:url>">
+               <img src="/eatoday/resource/RecipeImages/${randomVO.main_name }" style="width: 100px; height: 100px"/>
+               	${randomVO.title }
+               </a>
+               </div>
+                </li>
+              </c:forEach>
               </div>
             </div>
 		</div>

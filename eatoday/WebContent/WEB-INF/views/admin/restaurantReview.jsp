@@ -72,18 +72,33 @@
 	</tr>
 	<c:set var="i" value="1"/>
 	<c:forEach var="ReviewVO" items="${restaurantReviewVO }">
-	<c:set var="i" value="${i+1 }"/>
 	<tr id="list${i }">
 		<td>${ReviewVO.id }</td>
 		<td>${ReviewVO.nick }</td>
 		<td>${ReviewVO.text }</td>
 		<td><input type="button" value="삭제"  onclick="remove('${ReviewVO.num}','${i }')"></td>
 	</tr>
+	<c:set var="i" value="${i+1 }"/>
 	</c:forEach>
 </table>
-</div>
+ <div class="text-center">
+ 				<c:if test="${startPage >10 }">
+ 			 <a href="restaurantReview.eat?page=${startPage-10 }">&nbsp;<< &nbsp;</a>
+ 				</c:if>
+              	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+              	 <a href="restaurantReview.eat?page=${i }">${i }</a>
+              	 	<c:if test="${i!=endPage}">
+              	 &nbsp;|&nbsp;
+              	 </c:if>
+              	 </c:forEach>
+              	 <c:if test="${endPage < pageCount }">
+ 					 <a href="restaurantReview.eat?page=${startPage+10 }"> &nbsp;>>&nbsp; </a>
+ 				</c:if>
+            </div>
+        </div>
 </c:otherwise>
 </c:choose>
+
 
 <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

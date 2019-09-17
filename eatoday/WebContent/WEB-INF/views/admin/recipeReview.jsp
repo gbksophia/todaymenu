@@ -72,16 +72,29 @@
 	</tr>
 	<c:set var="i" value="1"/>
 	<c:forEach var="ReviewVO" items="${recipeReviewVO }">
-	<c:set var="i" value="${i+1 }"/>
 	<tr id="list${i }">
 		<td>${ReviewVO.id }</td>
 		<td>${ReviewVO.nick }</td>
 		<td>${ReviewVO.text }</td>
 		<td><input type="button" value="삭제"  onclick="remove('${ReviewVO.num}','${i }')"></td>
 	</tr>
-
+	<c:set var="i" value="${i+1 }"/>
 	</c:forEach>
 </table>
+ <div class="text-center">
+ 		<c:if test="${startPage >10 }">
+ 			 <a href="recipeReview.eat?page=${startPage-10 }">&nbsp;<< &nbsp;</a>
+ 				</c:if>
+              	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+              	 <a href="recipeReview.eat?page=${i }">${i }</a>
+              	 	<c:if test="${i!=endPage}">
+              	 &nbsp;|&nbsp;
+              	 </c:if>
+              	 </c:forEach>
+              	 <c:if test="${endPage < pageCount }">
+ 					 <a href="recipeReview.eat?page=${startPage+10 }"> &nbsp;>>&nbsp; </a>
+ 				</c:if>
+            </div>
 </div>
 </c:otherwise>
 </c:choose>

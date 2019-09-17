@@ -191,36 +191,30 @@
 			<div class="overlay"></div>
       <div class="container">
         <div class="row justify-content-center">
-        			<h1></h1><br/>
+        			<h1>레스토랑</h1>
         	
         	<!--============================= FIND PLACES =============================-->
 
     <section class="main-block">
         <div class="container">
+        
             <div class="row">
-                <div class="col-md-4">
-                    <div class="find-place-img_wrap">
-                        <div class="grid">
-                            <figure class="effect-ruby">
-                                <img src="/eatoday/resource/images/find-place1.jpg" class="img-fluid" alt="img13" />
-                                <figcaption>
-                                    <h5>한식</h5>
-                                    <p>385 Listings</p>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
+            
+  
+  
+                  <div class="col-md-4">
+                
+                
                     <div class="row find-img-align">
                         <div class="col-md-12">
                             <div class="find-place-img_wrap">
                                 <div class="grid">
                                     <figure class="effect-ruby">
-                                        <img src="/eatoday/resource/images/find-place2.jpg" class="img-fluid" alt="img13" />
+                                    <a href="<c:url value = "restaurantList.eat"><c:param name = "cate" value = "한식"></c:param><c:param name = "area" value = "서울"></c:param></c:url>">
+                                        <img src="/eatoday/resource/images/korean.JPG" class="img-fluid" alt="img13" /></a>
                                         <figcaption>
-                                            <h5>중국집</h5>
-                                            <p>210 Listings</p>
+                                            <h5 align = "center" style = "color:white;"><a href="<c:url value = "restaurantList.eat"><c:param name = "cate" value = "한식"></c:param><c:param name = "area" value = "서울"></c:param></c:url>">한식</a></h5>
+   
                                         </figcaption>
                                     </figure>
                                 </div>
@@ -232,10 +226,49 @@
                             <div class="find-place-img_wrap">
                                 <div class="grid">
                                     <figure class="effect-ruby">
-                                        <img src="/eatoday/resource/images/find-place3.jpg" class="img-fluid" alt="img13" />
+                                    <a href="<c:url value = "restaurantList.eat"><c:param name = "cate" value = "분식"></c:param><c:param name = "area" value = "서울"></c:param></c:url>">
+                                        <img src="/eatoday/resource/images/bunsik.JPG" class="img-fluid" alt="img13" /></a>
                                         <figcaption>
-                                            <h5>양식 </h5>
-                                            <p>114 Listings</p>
+                                            <h5 align = "center" style = "color:white;"><a href="<c:url value = "restaurantList.eat"><c:param name = "cate" value = "분식"></c:param><c:param name = "area" value = "서울"></c:param></c:url>">분식</a></h5>
+              
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>              
+
+                
+                <div class="col-md-4">
+                
+                
+                    <div class="row find-img-align">
+                        <div class="col-md-12">
+                            <div class="find-place-img_wrap">
+                                <div class="grid">
+                                    <figure class="effect-ruby">
+                                    <a href="<c:url value = "restaurantList.eat"><c:param name = "cate" value = "양식"></c:param><c:param name = "area" value = "서울"></c:param></c:url>">
+                                        <img src="/eatoday/resource/images/west.JPG" class="img-fluid" alt="img13" /></a>
+                                        <figcaption>
+                                            <h5 align = "center" style = "color:white;"><a href="<c:url value = "restaurantList.eat"><c:param name = "cate" value = "양식"></c:param><c:param name = "area" value = "서울"></c:param></c:url>">양식</a></h5>
+   
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="find-place-img_wrap">
+                                <div class="grid">
+                                    <figure class="effect-ruby">
+                                    <a href="<c:url value = "restaurantList.eat"><c:param name = "cate" value = "중식"></c:param><c:param name = "area" value = "서울"></c:param></c:url>">
+                                        <img src="/eatoday/resource/images/china.JPG" class="img-fluid" alt="img13" /></a>
+                                        <figcaption>
+                                            <h5 align = "center" style = "color:white;"><a href="<c:url value = "restaurantList.eat"><c:param name = "cate" value = "중식"></c:param><c:param name = "area" value = "서울"></c:param></c:url>">중식</a></h5>
+              
                                         </figcaption>
                                     </figure>
                                 </div>
@@ -249,10 +282,11 @@
                             <div class="find-place-img_wrap">
                                 <div class="grid">
                                     <figure class="effect-ruby">
-                                        <img src="/eatoday/resource/images/find-place4.jpg" class="img-fluid" alt="img13" />
+                                    <a href="<c:url value = "restaurantList.eat"><c:param name = "cate" value = "일식"></c:param><c:param name = "area" value = "서울"></c:param></c:url>">
+                                        <img src="/eatoday/resource/images/japan.jpg" class="img-fluid" alt="img13" /></a>
                                         <figcaption>
-                                            <h5>일식 </h5>
-                                            <p>577 Listings</p>
+                                            <h5 align = "center" style = "color:white;"><a href="<c:url value = "restaurantList.eat"><c:param name = "cate" value = "일식"></c:param><c:param name = "area" value = "서울"></c:param></c:url>">일식</a></h5>
+                                            <p> </p>
                                         </figcaption>
                                     </figure>
                                 </div>
@@ -264,10 +298,10 @@
                             <div class="find-place-img_wrap">
                                 <div class="grid">
                                     <figure class="effect-ruby">
-                                        <img src="/eatoday/resource/images/find-place5.jpg" class="img-fluid" alt="img13" />
+                                    <a href="<c:url value = "restaurantList.eat"><c:param name = "cate" value = "카페"></c:param><c:param name = "area" value = "서울"></c:param></c:url>">
+                                        <img src="/eatoday/resource/images/cafe.JPG" class="img-fluid" alt="img13" /></a>
                                         <figcaption>
-                                            <h5>퓨전 </h5>
-                                            <p>79 Listings</p>
+                                            <h5 align = "center" style = "color:white;"><a href="<c:url value = "restaurantList.eat"><c:param name = "cate" value = "카페"></c:param><c:param name = "area" value = "서울"></c:param></c:url>">카페</a></h5>
                                         </figcaption>
                                     </figure>
                                 </div>
@@ -293,42 +327,42 @@
       <div class="container">
         <div class="row justify-content-center">
         
-        			<h1>${sessionScope.loginID }님의 추천 레시피</h1><br/><br/>
+        			<h1>${sessionScope.loginID }님의 추천 레시피</h1><br/>
         	<div class="row" style = "margin-top:100px;">
-			<c:set var = "cate1" value = "${cate }"/>
-			
-			<c:forEach begin = "0" end = "8" step = "1" var = "i">
-			<c:set var = "rcp" value = "${recipeList[i] }" />
-			<c:if test = "${rcp.getCate() == cate1 }">
 			
 			
+			
+			 <c:forEach var="rcp" items="${recipeList }">
+		
                 <!-- Small Receipe Area -->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-small-receipe-area d-flex">
                         <!-- Receipe Thumb -->
                         <div class="receipe-thumb">
+                            <a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param>
+                            <c:param name = "cate" value = "${rcp.getCate()}"></c:param></c:url>">
+                            
+
+                            
                             <img src="/eatoday/resource/RecipeImages/${rcp.getMain_name()}" alt="" width = "100px" height = "100px">
+</a>
                         </div>
                         <!-- Receipe Content -->
                         <div class="receipe-content">
-                            <a href="receipe-post.html">
+                            <a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param>
+                            <c:param name = "cate" value = "${rcp.getCate()}"></c:param></c:url>">
                                 <h5>${rcp.getTitle()}</h5>
                             </a>
-                            <div class="ratings">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </div>
-                            <p>&nbsp;<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCon_num()}"></c:param></c:url>">자세히보기</a></p>
+                          
+                            <p>&nbsp;<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param>
+                            <c:param name = "cate" value = "${rcp.getCate()}"></c:param></c:url>">자세히보기</a></p>
                         </div>
+                        <br>
                     </div>
+                    <br>
                 </div>
                 <br>
-                </c:if>
                 </c:forEach>
-
             </div>
         </div>
       </div>

@@ -8,10 +8,67 @@
 		insert into recipe(cate, cnum, main_name, title, mate, pro) 
 		values (#{cate}, #{cnum}, #{main_name}, #{title}, #{mate}, #{pro})
 	</insert>
-
+	
+	<!-- 레시피 갯수 -->
+	<select id="count" resultType="int">
+		select count(*) from recipe
+	</select>
 	<!-- 레시피 리스트  출력 -->
-	<select id="select" resultType="recipeVO" parameterType="String">
-		select * from recipe where cate= #{cate}
+	<select id="select" resultType="recipeVO" parameterType="map">
+	  select cate,cnum,main_name,title,mate,pro,r 
+ 	   from (select cate,cnum,main_name,title,mate,pro,rownum r
+ 	   from (select cate,cnum,main_name,title,mate,pro  
+ 	   from recipe where cate=#{cate} ))
+ 	   <![CDATA[ where r>=#{startRow} and r<=#{endRow}	]]>
+	</select>
+
+	<!-- 회원 관심 카테고리   출력 -->
+	<select id="memRandomSelect" resultType="recipeVO" parameterType="map">
+	select * from 
+	(select * from recipe where cate=#{key1} 
+	<if test="key2 != null ">
+		or cate=#{key2} 
+	</if>
+	 <if test="key3 != null">
+		or cate=#{key3} 
+	</if>
+	<if test="key4 != null">
+		or cate=#{key4} 
+	</if>
+	<if test="key5 != null">
+		or cate=#{key5} 
+	</if>
+	<if test="key6 != null">
+		or cate=#{key6} 
+	</if> 
+<![CDATA[	order by DBMS_RANDOM.RANDOM )where rownum <=5 ]]>
+	</select>
+	
+	<!-- 관심 레시피 랜덤 출력 - 메인페이지 -->
+	<select id="randomSelectMain" resultType="recipeVO" parameterType="map">
+	select * from 
+	(select * from recipe where cate=#{key1} 
+	<if test="key2 != null ">
+		or cate=#{key2} 
+	</if>
+	 <if test="key3 != null">
+		or cate=#{key3} 
+	</if>
+	<if test="key4 != null">
+		or cate=#{key4} 
+	</if>
+	<if test="key5 != null">
+		or cate=#{key5} 
+	</if>
+	<if test="key6 != null">
+		or cate=#{key6} 
+	</if> 
+<![CDATA[	order by DBMS_RANDOM.RANDOM )where rownum <=9 ]]>
+	</select>
+	
+	<!-- 관련 레시피 랜덤 출력 -->
+	<select id="randomSelect" resultType="recipeVO" parameterType="recipeVO">
+	<![CDATA[select * from (select * from recipe where cate=#{cate} order by DBMS_RANDOM.RANDOM ) where rownum <=5 and not cnum like #{cnum} ]]>
 	</select>
 	
 	<!-- 레시피 정보 출력 -->
@@ -23,11 +80,6 @@
 		select * from recipe_pro
 	</select>
 
-		<!-- 레시피 갯수 카운트 -->	
-	<select id="count" resultType="int">
-		select count(*) from recipe
-	</select>
-	
 		<!-- 레시피 카테고리 선택 -->
 	<select id = "cateCount" resultType="int" parameterType = "String">
 		select count(*) from recipe where cate = #{cate}
@@ -41,14 +93,14 @@
  
  		<!-- 가장 선호하는 카테고리의 값 -->
 	<select id="greatest" parameterType="String" resultType="int">
-		select greatest (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday, drink) from mem where id=#{id}
+		select greatest (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday) from mem where id=#{id}
 	</select>
  
  	<!-- 위 값과 일치하는 카테고리의 이름 -->
 	<select id="cate" parameterType="int" resultType="String">
-		WITH t AS (SELECT rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday, drink FROM mem)
+		WITH t AS (SELECT rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday FROM mem)
     	SELECT * FROM t
-    	UNPIVOT (yn FOR cnm IN (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday, drink))
+    	UNPIVOT (yn FOR cnm IN (rice, soup, jeongol, side, shake, gui, jjim, guest, children, kimchi, dosi, fry, noodle, salad, spa, snack, toast, baking, dessert, juice, cocktail, holiday))
 		WHERE yn = #{value}
 	</select>
  	<!-- 레시피 리뷰 이미지 이름 숫자 카운트 업 -->
@@ -66,18 +118,39 @@
  		insert into recipe_re(num,cnum,id,nick,text,img,reg_date) values (recipe_re_seq.nextval,#{cnum},#{id},#{nick},#{text},#{img},sysdate)
  	</insert>
  	
- 	<!-- 레시피 리뷰 갯수 -->
+ 	<!-- 레시피 리뷰 갯수 (레시피 페이지) -->
  	<select id="ReviewCount" parameterType="String" resultType="int">
- 		select count(*) from recipe_re where cnum=#{value}
+ 		select count(*) from recipe_re
+ 		<if test="value != null">
+ 		 where cnum=#{cnum}
+ 		</if>
  	</select>
  	
+ 	<!-- 회원 레시피 리뷰 관리 갯수  -->
+ 	<select id="memReviewCount" parameterType="String" resultType="int">
+ 		select count(*) from recipe_re where id=#{value}
+ 	</select>
+ 	<!-- 회원 찜 목록 갯수 -->
+ 	<select id="jjimCount" parameterType="String" resultType="int">
+ 		 select count(*) from recipe re, recipe_jjim j where re.cnum=j.cnum and id=#{id}
+ 	</select>
  	<!-- 레시피 리뷰 가져오기 -->
- 	<select id="reviewSelect" parameterType="String" resultType="recipeReviewVO">
- 	   select * from recipe_re
- 	   <if test="value != null">
- 	    where cnum=#{cnum} 
- 	    </if> 
- 	    order by reg_date desc
+ 	<select id="reviewSelect" parameterType="map" resultType="recipeReviewVO">
+ 	   select num,cnum,id,nick,text,img,reg_date,r 
+ 	   from (select num,cnum,id,nick,text,img,reg_date,rownum r
+ 	   from (select num,cnum,id,nick,text,img,reg_date  
+ 	   <choose>
+ 	   	<when test="cnum != null">
+ 	   	<![CDATA[from recipe_re where cnum=#{cnum} order by reg_date desc)order by reg_date desc)]]>
+ 	   	</when>
+ 	   	<when test="id !=null">
+ 	   	<![CDATA[from recipe_re where id=#{id} order by reg_date desc)order by reg_date desc)]]>
+ 	   	</when>
+ 	   	<otherwise>
+ 	   	 <![CDATA[from recipe_re order by reg_date desc)order by reg_date desc)]]>
+ 	   	</otherwise>
+ 	   </choose>
+ 	      <![CDATA[  where r>=#{startRow} and r<=#{endRow} ]]>
  	</select>
  	
  	<!-- 회원 레시피 리뷰 리스트 -->
@@ -131,6 +204,13 @@
  	  select count(*) from recipe_jjim where id=#{id} and cnum=#{cnum}
  	</select>
  	
+ 	<!-- 레시피 cnum 생성 
+ 	cnum이 일정한 분류가 없어서 +1000을 한다음 순차적으로 생성되게 하였습니다.
+ 	-->
+ 	<select id = "recipeCnum" parameterType = "recipeVO" resultType = "int">
+ 		select count(*) + 1000 from recipe
+ 	</select>
+ 	
  	<!-- 레시피 찜 추가 -->
  	<insert id="jjimInsert" parameterType="recipeJjimVO">
  		insert into recipe_jjim values(recipe_jjim_seq.nextval,#{id},#{cnum})
@@ -142,20 +222,33 @@
  	</delete>
  	
  	<!-- 레시피 찜 리스트 -->
- 	<select id="jjimList" parameterType="String" resultType="recipeVO">
- 		select * from recipe r, recipe_jjim j where r.cnum=j.cnum and j.id= #{value}
+ 	<select id="jjimList" parameterType="map" resultType="recipeVO">
+ 	 <![CDATA[	select cate,cnum,main_name,title,mate,pro,r  
+	 from (select cate,cnum,main_name,title,mate,pro,rownum r
+ 	 from (select cate,re.cnum,main_name,title,mate,pro  
+ 	 from recipe re, recipe_jjim j where re.cnum=j.cnum and j.id=#{id})) where r>=#{startRow} and r<=#{endRow} ]]>
  	</select>
  	
 	<!-- 레시피 이름으로 검색 -->
+	 <select id="countSrTitle" parameterType="String" resultType="int" >
+		<![CDATA[ select count(*) from recipe where title like '%'||#{value}||'%']]>
+	</select>
+		
  	<select id="searchRecTitle" parameterType="String" resultType="recipeVO" >
 		<![CDATA[ select * from recipe where title like '%'||#{value}||'%']]>
 	</select>
 	
 	<!-- 레시피 재료로 검색 -->
+	<select id="countSrMate" parameterType="String" resultType="int" >
+		<![CDATA[select * from recipe where mate like '%'||#{value}||'%']]>
+	</select>
+	
 	<select id="searchRecMate" parameterType="String" resultType="recipeVO" >
 		<![CDATA[select * from recipe where mate like '%'||#{value}||'%']]>
 	</select>
 	
-	
- 
+	<!-- 리스트 카테고리 상단 이미지 -->
+ 	<select id="cateImg" resultType="String" parameterType="String">
+ 	 <![CDATA[	select main_name from( select main_name from recipe where cate=#{value} order by DBMS_RANDOM.RANDOM ) where rownum <= 1 ]]>
+ 	</select>
 </mapper>

@@ -12,7 +12,7 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="/eatoday/homepage/recipeListView.eat?cate=1" class="nav-link">recipes</a></li>
 	          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="/eatoday/homepage/restaurant.eat" id="dropdown04" aria-haspopup="true" aria-expanded="false">restaurants</a>
+              <a class="nav-link dropdown-toggle" href="/eatoday/homepage/restaurantList.eat?cate=한식&area=서울" id="dropdown04" aria-haspopup="true" aria-expanded="false">restaurants</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
               	<a class="dropdown-item" href="/eatoday/homepage/favoriteRestaurant.eat">Recommend Restaurants</a>
                 <a class="dropdown-item" href="/eatoday/homepage/restaurantList.eat?cate=한식&area=서울">Restaurants</a>
@@ -25,16 +25,16 @@
 	          </c:if>
 	          <c:if test="${sessionScope.loginID != null}">
 	           <li class="nav-item dropdown">
-	          <a class="nav-link dropdown-toggle" id="member" aria-haspopup="true" aria-expanded="false">member</a>
+	          <a class="nav-link dropdown-toggle" href="#" id="member" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">member</a>
               <div class="dropdown-menu" aria-labelledby="member">
               <a class="dropdown-item" href="/eatoday/memberpage/information.eat">information</a>
-              <a class="dropdown-item" href="/eatoday/memberpage/jjimList.eat?id=${sessionScope.loginID }">recipeNice</a>
-              <a class="dropdown-item" href="/eatoday/memberpage/recipeReviewList.eat">recipeReview</a>
-	          <a class="dropdown-item" href="/eatoday/memberpage/restaurantReviewList.eat">restaurantReview</a>
+              <a class="dropdown-item" href="/eatoday/memberpage/jjimList.eat?">recipeNice</a>
+              <a class="dropdown-item" href="/eatoday/memberpage/recipeReview.eat">recipeReview</a>
+	          <a class="dropdown-item" href="/eatoday/memberpage/restaurantReview.eat">restaurantReview</a>
 	          </div>
 	          </li>
 	          </c:if>
-	          <li class="nav-item cart"><a href="cart.eat" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
+	          <li class="nav-item"><a href="/eatoday/homepage/supportList.eat?" class="nav-link">support</a></li>
 	        </ul>
 	      </div>
 		  </div>

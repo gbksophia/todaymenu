@@ -42,14 +42,20 @@
 </c:when>
 <c:otherwise>
 <script type="text/javascript">
-	function remove(id){
+	function remove(id,i){
 			var result = confirm(id+"님을 탈퇴 시키겠습니까?");
-
+			var tag = "#list"+i;
 			if(!result){
 				alert("취소되었습니다.");
 			} else {
-				alert(id+"님을 탈퇴시키셨습니다.");
-				location="memberRemove.eat?id="+id;
+				 $.ajax({
+						url: "memberRemove.eat",
+						type: "post",
+						data: { id : id},
+						success: function(data) {
+						$(tag).remove();
+						}
+				});	
 			}
 		}
 </script>
@@ -62,13 +68,30 @@
 		<td> 아이디 </td>
 		<td> 탈퇴</td>
 	</tr>
+	<c:set var="i" value="1"/>
 	<c:forEach var="memberVO" items="${memVO }">
-	<tr>
+	<tr id="list${i }">
 		<td>${memberVO.id }</td>
-		<td><input type="button" value="탈퇴"  onclick="remove('${memberVO.id}')"></td>
+		<td><input type="button" value="탈퇴"  onclick="remove('${memberVO.id}','${i }')"></td>
 	</tr>
+	<c:set var="i" value="${i+1}"/>
 	</c:forEach>
 </table>
+ <div class="text-center">
+ 				<c:if test="${startPage >10 }">
+ 					 <a href="member.eat?page=${startPage-10 }">&nbsp;<< &nbsp;</a>
+ 				</c:if>
+              	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+              	 <a href="member.eat?page=${i }">${i }</a>
+              	 	<c:if test="${i!=endPage}">
+              	 &nbsp;|&nbsp;
+              	 </c:if>
+              	 </c:forEach>
+              	 <c:if test="${endPage < pageCount }">
+ 					 <a href="member.eat?page=${startPage+10 }"> &nbsp;>>&nbsp; </a>
+ 				</c:if>
+            </div>
+ 
 </div>
 </c:otherwise>
 </c:choose>
