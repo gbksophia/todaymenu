@@ -220,7 +220,53 @@
 				}
 		  });
   }
+
+//리뷰 쓰기
+  function reviewWrite(){
+	  var form = $("#reviewWriteForm")[0];
+	  var data = new FormData(form);
+	  $.ajax({
+			url: "restaurantRePro.eat",
+			enctype: 'multipart/form-data',
+			type: "post",
+			processData: false,
+            contentType: false,
+            cache: false,
+			data:  data,
+		  success: function(data) {
+			  location.reload();
+			  document.getElementById('Comments').scrollIntoView();
+				}
+		  });
+	  }
   </script>
+  
+  <style>
+		
+		textarea {
+			color: #585858;
+			background-color: #000000;
+		}
+
+	  .wrap {
+      width: 500px;
+    }
+    .wrap textarea {
+      width: 100%;
+      resize: none;
+      overflow-y: hidden; /* prevents scroll bar flash */
+      padding: 1.1em; /* prevents text jump on Enter keypress */
+      padding-bottom: 0.2em;
+      line-height: 1.6;
+    }
+
+    textarea:disabled{
+    	width: 800px;
+    	resize: none;
+    	border: 0;
+    	overflow-y:hidden;
+    } 
+</style>
 </head>
 
 <body>
@@ -365,7 +411,7 @@
               			</form>
               		</c:when>
               		<c:otherwise>
-              		 <form action="restaurantRePro.eat" method="post" enctype="multipart/form-data">
+              		 <form id="reviewWriteForm" action="javascript:reviewWrite()" method="post" enctype="multipart/form-data">
                 	<input type="hidden" name="cnum" value="${rvo.getCnum() }">
                 	<input type="hidden" name="id" value="${sessionScope.loginID }">
                   <div class="form-group">
@@ -417,8 +463,7 @@
              		 </div>
             	</div>
 		</div>
-		</div>
-      
+		</div> 
 </section> <!-- .section -->
 <jsp:include page="footer.jsp" />
 

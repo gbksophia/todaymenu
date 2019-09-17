@@ -273,7 +273,8 @@
             cache: false,
 			data:  data,
 		  success: function(data) {
-			  location.reload();	
+			  location.reload();
+			  document.getElementById('Comments').scrollIntoView();
 				}
 		  });
 	  }
