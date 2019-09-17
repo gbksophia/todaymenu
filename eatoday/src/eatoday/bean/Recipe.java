@@ -378,26 +378,24 @@ public class Recipe {
 	//레시피 등록
 	@RequestMapping("recipeCreate.eat")
 	public String recipeCreate(Model model) {
-		int count = sql.selectOne("recipe.recipeCnum");
+		int recipeCnum = sql.selectOne("recipe.recipeCnum");
 		
-		model.addAttribute("count", count);
+		model.addAttribute("recipeCnum", recipeCnum);
 		return "/homepage/recipeCreate";
 	}
 	
 	//레시피 등록 pro 페이지
 	@RequestMapping("recipeCreatePro.eat")
-	public String recipeCreatePro(MultipartHttpServletRequest request, Model model) throws Exception {
+	public String recipeCreatePro(MultipartHttpServletRequest request, Model model, HttpSession session) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		recipeVO vo = new recipeVO();
-
+		
+		String admin = (String)session.getAttribute("loginID");
 		String cate = request.getParameter("cate");
 		String cnum = request.getParameter("cnum");
 		String title = request.getParameter("title");
 		String mate = request.getParameter("mate");
 		String pro = request.getParameter("pro");
-		
-		int count = sql.selectOne("recipe.recipeCnum");
-		
 		
 		vo.setCate(cate);
 		vo.setCnum(cnum);
@@ -429,8 +427,6 @@ public class Recipe {
 		} else {
 			vo.setMain_name("");
 		}
-		
-		model.addAttribute("count", count);
 		
 		sql.insert("recipe.insert", vo);
 		
