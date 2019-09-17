@@ -346,11 +346,21 @@ public class Recipe {
 		String srch=request.getParameter("search");
 		
 		System.out.println("Srch(search)="+srch);
-
+		
+		int countT=sql.selectOne("recipe.countSrTitle",srch);
+		int countM=sql.selectOne("recipe.countSrMate",srch);
+		
+		System.out.println("countT="+countT);
+		System.out.println("countM="+countM);
+		
 		List rcpTit = sql.selectList("recipe.searchRecTitle",srch);
 		List rcpMat = sql.selectList("recipe.searchRecMate",srch);
 		
 		model.addAttribute("srch", srch);
+
+		model.addAttribute("countT", countT);
+		model.addAttribute("countM", countM);
+		
 		model.addAttribute("rcpTit", rcpTit);
 		model.addAttribute("rcpMat", rcpMat);
 		

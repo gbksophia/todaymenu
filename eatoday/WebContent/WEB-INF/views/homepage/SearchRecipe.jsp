@@ -172,8 +172,12 @@
         <div class="row">
 
         <h2 class="mb-3">재료에서 검색한 결과 </h2>
-        <div class="row">        	
-          <c:forEach var="rcpMatVO" items="${rcpMat}">
+        <div class="row">
+        <c:if test=" ${countM ==0}">
+			<h3>해당하는 결과가 없습니다.</h1>
+		</c:if>
+		<c:if test=" ${countM !=0}">
+			<c:forEach var="rcpMatVO" items="${rcpMat}">
 			<div class="col-md-3">
         		<div class="menu-entry">
     					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcpMatVO.getCnum()}"></c:param><c:param name = "cate" value = "${rcpMatVO.getCate()}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcpMatVO.getMain_name()});"></a>
@@ -184,14 +188,14 @@
     				</div>
         	</div>
         	</c:forEach>
-        	</div>
+		</c:if>  	          	
+		</div>
         	
         <div class="container">
     		<div class="row justify-content-center mb-5 pb-3">
         </div>
         
         <h2 class="mb-3">이름에서 검색한 결과</h2>
-        	
        
         <div class="row">        	
           <c:forEach var="rcpTitVO" items="${rcpTit}">
