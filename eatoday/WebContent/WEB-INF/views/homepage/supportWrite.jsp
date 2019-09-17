@@ -44,7 +44,7 @@
 <div class="container">
 <br><br><br><br>
  <div class="comment-form-wrap pt-5">
-<form action="supportWritePro.eat" method="post" enctype="multipart/form-data">
+<form action="supportWritePro.eat?" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="${sessionScope.loginID }">
 	<div class="form-group">
 	<input class="form-control" type="text" name="subject" placeholder="제목을 입력하세요." >  
