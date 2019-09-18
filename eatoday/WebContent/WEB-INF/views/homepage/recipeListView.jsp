@@ -84,6 +84,18 @@
 	padding-top:0em;
 }
 
+.search-form .form-group input {
+	font-size:20px;
+}
+
+.ftco-counter .icon:after{
+	border: none;
+}
+
+.ftco-counter .icon span{
+	color:#bfbfbf;
+}
+
     </style>
     
     <script type = "text/javascript">
@@ -156,18 +168,20 @@
 
 		             <!--  검색  -->
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
-      <div class="container">
+ 	<div class="container">
 
-         <div class="hd_column2">
-            <div class=".search_body">
-               <form name="searchBar" action="SearchRecipe.eat"/>
-                  <input type="text" name="search" id="search" class="search__input" placeholder="레시피 검색 하시던지 말던지"/>
-                  <button class="w3-button w3-dark-grey w3-hover-red w3-round-xxlarge w3-large" onClick="return searchCheck();">Search</button>
-               </form>
+            <div class="hd_column2">
+              <form name="searchBar" action="SearchRecipe.eat" onSubmit="return searchCheck();" class="search-form">
+                <div class="form-group">
+                	<div class="icon">
+	                  <span class="icon-search"></span>
+                  </div>
+                  <input type="text" name="search" id="search" class="form-control" placeholder="Search...">
+                </div>
+              </form>
             </div>
-
-         </div>
-</div>
+         
+	</div>
 </section> 
 
 
