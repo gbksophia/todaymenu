@@ -416,8 +416,8 @@ public class Recipe {
 		if(orgName != "") {
 			String path = request.getRealPath("//resource//RecipeImages");
 			String ext = orgName.substring(orgName.lastIndexOf('.'));
-			sql.insert("recipe.ImgcountInsert");
-			int num = sql.selectOne("recipe.ImgCount");
+			sql.insert("recipeReview.ImgcountInsert");
+			int num = sql.selectOne("recipeReview.ImgCount");
 		
 			
 			String newName = "image"+num+ext;
@@ -429,12 +429,6 @@ public class Recipe {
 		}
 		
 		sql.insert("recipe.insert", vo);
-		
-		System.out.println(cate);
-		System.out.println(cnum);
-		System.out.println(title);
-		System.out.println(mate);
-		System.out.println(pro);
 		
 		return "/homepage/recipeCreatePro";
 	}

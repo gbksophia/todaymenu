@@ -119,7 +119,7 @@
  	cnum이 일정한 분류가 없어서 +1000을 한다음 순차적으로 생성되게 하였습니다.
  	-->
  	<select id = "recipeCnum" parameterType = "recipeVO" resultType = "int">
- 		select count(*) + 1000 from recipe
+ 	 <![CDATA[	select cnum+1 from recipe where rownum <=1 ]]>
  	</select>
  	
  	<!-- 레시피 찜 추가 -->
