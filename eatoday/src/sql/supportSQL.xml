@@ -47,5 +47,8 @@
 	<select id="select" parameterType="int" resultType="supportVO" >
 		select * from support where num =#{value}
 	</select>
-
+	
+	<select id="myList" parameterType="String" resultType="supportVO">
+		select * from support where id = #{value}
+	</select>
 </mapper>

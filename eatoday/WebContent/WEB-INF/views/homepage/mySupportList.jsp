@@ -55,8 +55,14 @@
 <jsp:include page="../homepage/header.jsp" />
 <div class="container">
 <br><br><br><br>
-
-<table class="table table-bordered">
+<c:choose>
+	<c:when test="${result ==0 }">
+		<script>
+		alert("로그인후 이용 하실수 있습니다.")
+		</script>
+	</c:when>
+<c:otherwise>
+		<table class="table table-bordered">
 	<tr> 
 		<td> 분류  </td>
 		<td> 제목 </td>
@@ -116,9 +122,14 @@
  					 <a href="supportList.eat?page=${startPage+10 }"> &nbsp;>>&nbsp; </a>
  				</c:if>
             </div>
- 
-</div>
 <jsp:include page="footer.jsp" />
+</c:otherwise>
+</c:choose> 
+</div>
+
+
+
+
 <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
