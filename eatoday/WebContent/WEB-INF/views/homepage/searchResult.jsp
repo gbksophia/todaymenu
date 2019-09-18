@@ -1,43 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Search Result</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-
-    <link rel="stylesheet" href="/eatoday/resource/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="/eatoday/resource/css/animate.css">
-    
-    <link rel="stylesheet" href="/eatoday/resource/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/eatoday/resource/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="/eatoday/resource/css/magnific-popup.css">
-
-    <link rel="stylesheet" href="/eatoday/resource/css/aos.css">
-
-    <link rel="stylesheet" href="/eatoday/resource/css/ionicons.min.css">
-
-    <link rel="stylesheet" href="/eatoday/resource/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/eatoday/resource/css/jquery.timepicker.css">
-
-    
-    <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
-    <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
-    <link rel="stylesheet" href="/eatoday/resource/css/style.css">
-  </head>
-  <body>
-  	<jsp:include page="header.jsp" />
+<head>
+	<title>Search Result</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+	<link rel="stylesheet" href="/eatoday/resource/css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="/eatoday/resource/css/animate.css">
+	<link rel="stylesheet" href="/eatoday/resource/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="/eatoday/resource/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="/eatoday/resource/css/magnific-popup.css">
+	<link rel="stylesheet" href="/eatoday/resource/css/aos.css">
+	<link rel="stylesheet" href="/eatoday/resource/css/ionicons.min.css">
+	<link rel="stylesheet" href="/eatoday/resource/css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="/eatoday/resource/css/jquery.timepicker.css">
+	<link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
+	<link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
+	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
+</head>
+<body>
+	<jsp:include page="header.jsp" />
     <!-- END nav -->
 
     <section>
-    <jsp:include page="/map/map_kwd.eat" />
+    	<jsp:include page="/map/map_kwd.eat" />
     </section>
 
-    <section class="ftco-section">
+    <!-- <section class="ftco-section">
     	<div class="container">
         <div class="row">
         	<div class="col-md-6 mb-5 pb-3">
@@ -249,7 +242,7 @@
         	</div>
         </div>
     	</div>
-    </section>
+    </section> -->
 
     <jsp:include page="footer.jsp" />
 	<!-- loader -->

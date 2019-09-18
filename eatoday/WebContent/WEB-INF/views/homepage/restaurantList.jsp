@@ -17,8 +17,8 @@
 	<link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
 	<link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
 	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
-	
-	<style>    
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>    
         /*********************************************SEARCH INPUT************/
 @import
    url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
@@ -80,7 +80,6 @@
 .ftco-menu{
 	padding-top:0em;
 }
-
 </style>
 
 <script type = "text/javascript">
@@ -133,9 +132,9 @@
 	<div class="container">
 		<div class="hd_column2">
 			<div class=".search_body">
-				<form name="searchBar" action="searchResult.eat" onSubmit="return searchCheck();">
+				<form name="searchBar" action="searchResult.eat">
 					<input type="text" name="search" id="search" class="search__input" placeholder="식당 검색 하시던지 말던지"/>
-					<input type = "submit" value = "검색"/>
+					<button class="w3-button w3-dark-grey w3-hover-red w3-round-xxlarge w3-large" onClick="return searchCheck();">Search</button>
 				</form>
 			</div>
 		</div>
