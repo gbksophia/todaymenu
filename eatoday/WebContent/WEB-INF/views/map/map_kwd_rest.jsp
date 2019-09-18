@@ -35,7 +35,7 @@
 </style>
 </head>
 <body>
-<div id="map" style="width:400px;height:400px;"></div>
+<div id="map" style="width:500px;height:500px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=112ecff57900a2dd120c152f6c326b7b&libraries=services"></script>
 <script>
@@ -124,7 +124,8 @@ function displayMarker(place) {
     });
 }
 </script>
-${addr} <br/>
-${addr2}
+<%-- ${addr} <br/> --%>
+${addr2}<br/>
+(검색결과는 나오지 않거나 여러개일 수 있습니다.)
 </body>
 </html>

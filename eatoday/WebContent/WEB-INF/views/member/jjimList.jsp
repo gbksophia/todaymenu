@@ -83,8 +83,11 @@
 	</tr>
 	<c:forEach var="jjimVO" items="${jjimList }">
 	<tr>
-		<td><img src="/eatoday/resource/RecipeImages/${jjimVO.main_name }" style="height: 150px;width: 150px;"></td>
-		<td><a href="/eatoday/homepage/recipeDetail.eat?cnum=${jjimVO.cnum }" >${jjimVO.title }</a></td>
+		<td><a href="/eatoday/homepage/recipeDetail.eat?cnum=${jjimVO.cnum }&cate=${jjimVO.cate }" >
+		<img src="/eatoday/resource/RecipeImages/${jjimVO.main_name }" style="height: 150px;width: 150px;">
+		</a>
+		</td>
+		<td><a href="/eatoday/homepage/recipeDetail.eat?cnum=${jjimVO.cnum }&cate=${jjimVO.cate }" >${jjimVO.title }</a></td>
 		<td>
 		<a id="jjimImg${i}" onclick="javascript:jjimClick('${i}',${jjimVO.cnum })"></a>
 		<script type="text/javascript">

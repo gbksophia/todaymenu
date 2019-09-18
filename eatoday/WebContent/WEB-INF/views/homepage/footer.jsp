@@ -49,8 +49,8 @@
             	<div class="block-23 mb-3">
 	              <ul>
 	                <li><span class="icon icon-map-marker"></span><span class="text">1820, Nambusunhwan-ro, Gwanak-gu, Seoul, Republic of Korea</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">02-888-8888</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">admin@eatoday.com</span></a></li>
+	                <li><span class="icon icon-phone"></span><span class="text">02-888-8888</span></li>
+	                <li><span class="icon icon-envelope"></span><span class="text">admin@eatoday.com</span></li>
 	              </ul>
 	            </div>
             </div>
