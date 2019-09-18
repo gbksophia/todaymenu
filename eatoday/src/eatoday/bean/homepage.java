@@ -31,6 +31,12 @@ public class homepage {
 	public String index(Model model, HttpServletRequest request,HttpSession session) {
 		String id = (String)session.getAttribute("loginID");
 		
+		//·¹½ÃÇÇ, ·¹½ºÅä¶û °¹¼ö
+		int recCnt = sql.selectOne("recipe.count");
+		int resCnt = sql.selectOne("restaurant.total");
+		model.addAttribute("recCnt", recCnt);
+		model.addAttribute("resCnt", resCnt);
+		
 		if (id != null) {
 		try {
 			request.setCharacterEncoding("UTF-8");
