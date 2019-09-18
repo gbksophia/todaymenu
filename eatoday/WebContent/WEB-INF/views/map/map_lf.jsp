@@ -70,8 +70,7 @@ if (navigator.geolocation) {
 					success: function(data){
 						console.log("ajax success");
 						cateSearch(data.trim());
-						var addr = data.trim();
-						document.getElementById('search').innerHTML=addr;
+
 					}
 				});
 			}
