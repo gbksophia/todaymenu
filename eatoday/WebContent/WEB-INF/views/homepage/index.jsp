@@ -25,19 +25,27 @@
 	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
+    <style type="text/css">
+    	.owl-carousel .home-slider .slider-item .slider-text .subheading{
+    		font-weight:300;
+    	}
+    
+    </style>
+    
+    
 </head>
 <body>
 <jsp:include page="header.jsp" />
 <!-- END nav -->
 <section class="home-slider owl-carousel">
-	<div class="slider-item" style="background-image: url(/eatoday/resource/images/bg7.jpg);">
+	<div class="slider-item" style="background-image: url(/eatoday/resource/images/bkgrd10.jpg);">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 				<div class="col-md-8 col-sm-12 text-center ftco-animate">
 					<span class="subheading">Welcome</span>
-					<h1 class="mb-4">The Best Coffee Testing Experience</h1>
-					<p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+					<h1 class="mb-4">오늘 뭐 먹지? 고민은 끝났다.</h1>
+					<p class="mb-4 mb-md-5">망쳐도 부담 없고 어설퍼도 괜찮은 레시피와 매일 주변에서 먹을만한 맛집 메뉴가 찾아온다!</p>
 					<p><a href="menu.eat" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
 					   <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
 				</div>
@@ -45,14 +53,15 @@
 		</div>
 	</div>
 	
-	<div class="slider-item" style="background-image: url(/eatoday/resource/images/r5.jpg);">
+	<div class="slider-item" style="background-image: url(/eatoday/resource/images/bkgrd7.jpg);">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 				<div class="col-md-8 col-sm-12 text-center ftco-animate">
 					<span class="subheading">Welcome</span>
-					<h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
-					<p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+					<h1 class="mb-4">Struggling with<br> What to Eat Today? </h1>
+					<p class="mb-4 mb-md-5">Here are the Quick and Healthy Meal Recipes And Best Places to Eat in Korea<br>
+					For You To Choose!</p>
 					<p><a href="menu.eat" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
 					   <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
 				</div>
@@ -60,14 +69,16 @@
 		</div>
 	</div>
 	
-	<div class="slider-item" style="background-image: url(/eatoday/resource/images/breadcumb4.jpg);">
+	<div class="slider-item" style="background-image: url(/eatoday/resource/images/bkgrd9.jpg);">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 				<div class="col-md-8 col-sm-12 text-center ftco-animate">
 					<span class="subheading">Welcome</span>
-					<h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
-					<p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+					<h1 class="mb-4">오늘 뭐 먹지? 고민은 끝났다. Struggling with<br> What to Eat Today? </h1>				
+					<p class="mb-4 mb-md-5">망쳐도 부담 없고 어설퍼도 괜찮은 레시피와 매일 주변에서 먹을만한 맛집 메뉴가 찾아온다! 
+					Here are the Quick and Healthy Meal Recipes And Best Places to Eat in Korea<br>
+					For You To Choose!</p>
 					<p><a href="menu.eat" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
 					   <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
 				</div>
