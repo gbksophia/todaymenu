@@ -440,7 +440,7 @@
              
             <div class="col-md-4 sidebar ftco-animate fadeInUp ftco-animated">
             <div class="sidebar-box">
-              <form name="searchBar" action="SearchRecipe.eat" onSubmit="return searchCheck();" class="search-form">
+              <form name="searchBar" action="searchResult.eat" onSubmit="return searchCheck();" class="search-form">
                 <div class="form-group">
                 	<div class="icon">
 	                  <span class="icon-search"></span>
