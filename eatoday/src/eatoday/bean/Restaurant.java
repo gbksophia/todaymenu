@@ -31,43 +31,44 @@ public class Restaurant {
 	private SqlSessionTemplate sql = null;
 	
 	//접속위치 중심 선호식당 표시
-		@RequestMapping("favoriteRestaurant.eat")
-		public String favoriteRestaurant(HttpServletRequest request, Model model) {
-			String sRec=request.getParameter("search");
-			model.addAttribute("sRec", sRec);
-			return "/homepage/favoriteRestaurant";
-		}
+	@RequestMapping("favoriteRestaurant.eat")
+	public String favoriteRestaurant(HttpServletRequest request, Model model) {
+		String sRec=request.getParameter("search");
+		model.addAttribute("sRec", sRec);
+		return "/homepage/favoriteRestaurant";
+	}
+	
+	@RequestMapping("restaurantList.eat")
+	public String restaurantList(HttpServletRequest request, Model model) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		String cate = request.getParameter("cate"); //카테고리명
+		String area = request.getParameter("area"); //지역명
+		List areaList = sql.selectList("restaurant.restArea", cate); //카테고리의 지역리스트 rvo
+		int areaCnt = (Integer)sql.selectOne("restaurant.restAreaCnt", cate); //카테고리+지역 카운트 int
 		
-		@RequestMapping("restaurantList.eat")
-		public String restaurantList(HttpServletRequest request, Model model) throws Exception {
-				request.setCharacterEncoding("UTF-8");
-				String cate = request.getParameter("cate"); //카테고리명
-				String area = request.getParameter("area"); //지역명
-				//int count = (Integer)sql.selectOne("restaurant.count", cate); //카테고리별 식당 갯수
-				//List restList = sql.selectList("restaurant.select", cate); //카테고리별 식당 리스트
-				List areaList = sql.selectList("restaurant.restArea", cate); //카테고리의 지역리스트 rvo
-				int areaCnt = (Integer)sql.selectOne("restaurant.restAreaCnt", cate); //카테고리+지역 카운트 int
-				
-				ArrayList ra = new ArrayList(); 
-				ra.add(area);
-				ra.add(cate);
-				List raList = sql.selectList("restaurant.selectArea", ra); //카테고리+지역 검색결과 rvo
+		ArrayList ra = new ArrayList(); 
+		ra.add(area);
+		ra.add(cate);
+		List raList = sql.selectList("restaurant.selectArea", ra); //카테고리+지역 검색결과 rvo
 
-				model.addAttribute("areaList", areaList);
-				model.addAttribute("areaCnt", areaCnt);
-				model.addAttribute("area", area);
-				model.addAttribute("cate", cate);
-				//model.addAttribute("restList", restList);
-				//model.addAttribute("count", count);
-				model.addAttribute("raList", raList);
-			return "/homepage/restaurantList";
-		}
+		model.addAttribute("areaList", areaList);
+		model.addAttribute("areaCnt", areaCnt);
+		model.addAttribute("area", area);
+		model.addAttribute("cate", cate);
+		model.addAttribute("raList", raList);
+		return "/homepage/restaurantList";
+	}
+
+	
+	@RequestMapping("restaurantDetail.eat")
+	public String restaurantDetail(HttpServletRequest request, Model model,HttpSession session) {
+		String cnum = request.getParameter("cnum");
+		String cate = request.getParameter("cate");
 		
-		@RequestMapping("restaurantDetail.eat")
-		public String restaurantDetail(HttpServletRequest request, Model model,HttpSession session) {
-			String cnum = request.getParameter("cnum");
-			String cate = request.getParameter("cate");
+		if(session.getAttribute("loginID")!=null  && cate!=null) {
+			String id = (String)session.getAttribute("loginID");
 			
+<<<<<<< HEAD
 			if(session.getAttribute("loginID")!=null  && cate!=null) {
 				String id = (String)session.getAttribute("loginID");
 				
@@ -126,16 +127,37 @@ public class Restaurant {
 			model.addAttribute("endPage",endPage);
 			model.addAttribute("pageCount",pageCount);
 			return "/homepage/restaurantDetail";
+=======
+		if(cate.equals("한식")) {
+			sql.update("member.korCountUp",id); // 한식 카운트 증가
+		} else if (cate.equals("중식")) {
+			sql.update("member.chinaCountUp",id); // 중식 카운트 증가
+		} else if (cate.equals("일식")) {
+			sql.update("member.japanCountUp",id); // 일식 카운트 증가
+		} else if (cate.equals("양식")) {
+			sql.update("member.europeanCountUp",id); // 양식 카운트 증가
+		} else if (cate.equals("분식")) {
+			sql.update("member.bunsigCountUp",id); // 분식 카운트 증가
+		} else if (cate.equals("카페")) {
+			sql.update("member.cafeCountUp",id); // 카페 카운트 증가
+		} else if (cate.equals("기타")) {
+			sql.update("member.etcCountUp",id); // 기타 카운트 증가
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
 		}
-		
+		}
 		//리뷰 카운트
+<<<<<<< HEAD
 		@RequestMapping("restaurantReviewCount.eat")
 		public String restaurantReviewCount(String cnum,Model model) {
 			int recount = (Integer)sql.selectOne("restaurantReview.count", cnum);
 			model.addAttribute("recount",recount);
 			return "/homepage/reviewCount";
 		}
+=======
+		int recount = (Integer)sql.selectOne("restaurant.ReviewCount",cnum);
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
 		
+<<<<<<< HEAD
 		//리뷰 쓰기
 		@RequestMapping("restaurantRePro.eat")
 		public String restaurantRePro(MultipartHttpServletRequest request,Model model) throws Exception{
@@ -153,7 +175,70 @@ public class Restaurant {
 			String newName = "image"+num+ext;
 			File copyFile = new File(path +"//"+ newName);
 			mf.transferTo(copyFile);
+=======
+		// 해당 레스토랑 정보
+		restaurantVO rvo = sql.selectOne("restaurant.info",cnum);
+		
+		//레스토랑 리뷰 가져오기
+		int row = 10;
+		String page = request.getParameter("page");
+		
+		if (page == null) {
+			page ="1";
+		}
+		int currentPage = Integer.parseInt(page);
+		int startRow = (currentPage-1) * row +1;
+		int endRow = currentPage * row;
+		Map pageList = new HashMap();
+		
+		pageList.put("cnum", cnum);
+		pageList.put("startRow",startRow);
+		pageList.put("endRow",endRow);
+		
+		List revo = sql.selectList("restaurant.reviewSelect",pageList);
+		
+		// 페이지 계산
+		int pageCount = recount / row + (recount % row == 0? 0:1);
+		int startPage = (int)(currentPage/10)*10+1;
+		int pageBlock=10;
+		int endPage = startPage + pageBlock-1;
+		if(endPage > pageCount) endPage = pageCount;
+		
+		model.addAttribute("rvo",rvo);
+		model.addAttribute("revo",revo);
+		model.addAttribute("recount",recount);
+		model.addAttribute("startPage",startPage);
+		model.addAttribute("endPage",endPage);
+		model.addAttribute("pageCount",pageCount);
+		return "/homepage/restaurantDetail";
+	}
+
+	
+	//리뷰 카운트
+	@RequestMapping("restaurantReviewCount.eat")
+	public String restaurantReviewCount(String cnum,Model model) {
+		int recount = (Integer)sql.selectOne("restaurant.ReviewCount", cnum);
+		model.addAttribute("recount",recount);
+		return "/homepage/reviewCount";
+	}
+
+	
+	//리뷰 쓰기
+	@RequestMapping("restaurantRePro.eat")
+	public String restaurantRePro(MultipartHttpServletRequest request,Model model) throws Exception{
+		request.setCharacterEncoding("UTF-8");
+		MultipartFile mf = request.getFile("img");
+		String orgName = mf.getOriginalFilename();
+		recipeReviewVO vo = new recipeReviewVO();
+		if(orgName != "") {
+		//이미지 업로드
+		String path = request.getRealPath("//resource//RecipeReview");
+		String ext = orgName.substring(orgName.lastIndexOf('.'));
+		sql.insert("restaurant.ImgcountInsert");
+		int num = sql.selectOne("restaurant.ImgCount");
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
 			
+<<<<<<< HEAD
 			vo.setImg(newName);
 			}	else {
 				vo.setImg("");
@@ -174,7 +259,13 @@ public class Restaurant {
 			sql.insert("restaurantReview.insert",vo);
 				return "/homepage/restaurantRePro";
 			}
+=======
+		String newName = "image"+num+ext;
+		File copyFile = new File(path +"//"+ newName);
+		mf.transferTo(copyFile);
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
 		
+<<<<<<< HEAD
 		//리뷰 수정
 		@RequestMapping("restaurantReviewUpdate.eat")
 		public String restaurantReviewUpdate(restaurantReviewVO vo,Model model) {
@@ -182,14 +273,30 @@ public class Restaurant {
 			String text = sql.selectOne("restaurantReview.text", vo.getNum());
 			model.addAttribute("text",text);
 			return "/homepage/reviewUpdate";
+=======
+		vo.setImg(newName);
+		}	else {
+			vo.setImg("");
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
 		}
 		
+<<<<<<< HEAD
 		//리뷰 삭제
 		@RequestMapping("restaurantReviewRemove.eat")
 		public String restaurantReviewRemove(int num) {
 			sql.delete("restaurantReview.delete",num);
 			return "/homepage/reviewRemove";
+=======
+		// 댓글 db 정보
+		String cnum = request.getParameter("cnum");
+		String id = request.getParameter("id");
+		String nick = request.getParameter("nick");
+		String text = request.getParameter("text");
+		if(nick.equals("")) {
+			nick = "익명";
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
 		}
+<<<<<<< HEAD
 		
 		// 페이지 첫 실행시만 사용 댓글 클릭 여부 체크
 		@RequestMapping("restaurantNice.eat")
@@ -208,7 +315,16 @@ public class Restaurant {
 			}
 			model.addAttribute("likeImg",likeImg);
 			return "/homepage/nice";
+=======
+		vo.setCnum(cnum);
+		vo.setId(id);
+		vo.setNick(nick);
+		vo.setText(text);
+		sql.insert("restaurant.ReviewInsert",vo);
+			return "/homepage/restaurantRePro";
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
 		}
+<<<<<<< HEAD
 		
 		// 댓글 좋아요 클릭 이벤트
 		@RequestMapping("restaurantNiceClick.eat")
@@ -227,7 +343,44 @@ public class Restaurant {
 			}
 			model.addAttribute("likeImg",likeImg);
 			return "/homepage/niceClick";
+=======
+
+	
+	//리뷰 수정
+	@RequestMapping("restaurantReviewUpdate.eat")
+	public String restaurantReviewUpdate(restaurantReviewVO vo,Model model) {
+		sql.update("restaurant.reviewUpdate",vo);
+		String text = sql.selectOne("restaurant.reviewText", vo.getNum());
+		model.addAttribute("text",text);
+		return "/homepage/reviewUpdate";
+	}
+	
+	
+	//리뷰 삭제
+	@RequestMapping("restaurantReviewRemove.eat")
+	public String restaurantReviewRemove(int num) {
+		sql.delete("restaurant.reviewDelete",num);
+		return "/homepage/reviewRemove";
+	}
+	
+	
+	// 페이지 첫 실행시만 사용 댓글 클릭 여부 체크
+	@RequestMapping("restaurantNice.eat")
+	public String restaurantNice(recipeReviewVO vo,Model model) {
+		restaurantReviewNiceVO nivo = new restaurantReviewNiceVO();
+		String likeImg;
+		System.out.println(vo.getNum());
+		nivo.setRenum(vo.getNum());
+		nivo.setId(vo.getId());
+		int result = sql.selectOne("restaurant.reviewCheck",nivo);
+		System.out.println(result);
+		if(result == 0) {
+			likeImg = "/eatoday/resource/images/like.png";
+		} else {
+			likeImg = "/eatoday/resource/images/like2.png";
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
 		}
+<<<<<<< HEAD
 		
 		// 좋아요 갯수 카운트
 		@RequestMapping("restaurantNiceCountCheck.eat")
@@ -235,52 +388,48 @@ public class Restaurant {
 			int niceCountCheck = (Integer)sql.selectOne("restaurantReview.niceCount",renum);
 			model.addAttribute("niceCountCheck",niceCountCheck);
 			return "/homepage/niceCountCheck";
+=======
+		model.addAttribute("likeImg",likeImg);
+		return "/homepage/nice";
+	}
+	
+	
+	// 댓글 좋아요 클릭 이벤트
+	@RequestMapping("restaurantNiceClick.eat")
+	public String restaurantNiceClick(recipeReviewVO vo,Model model) {
+		restaurantReviewNiceVO nivo = new restaurantReviewNiceVO();
+		String likeImg;
+		nivo.setRenum(vo.getNum());
+		nivo.setId(vo.getId());
+		int result = sql.selectOne("restaurant.reviewCheck",nivo);
+		if(result == 0) {
+			sql.insert("restaurant.reviewNiceInsert",nivo);
+			likeImg = "/eatoday/resource/images/like2.png";
+		} else {
+			sql.delete("restaurant.reviewNiceDelete",nivo);
+			likeImg = "/eatoday/resource/images/like.png";
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
 		}
-		
-		// 사이드메뉴  카테고리 카운트
-		@RequestMapping("restaurantCateCount.eat")
-		public String restaurantCateCount(String cate,Model model) {
-			int CateCount = sql.selectOne("restaurant.count",cate);
-			model.addAttribute("CateCount", CateCount);
-			return "/homepage/CateCount";
-		}
+		model.addAttribute("likeImg",likeImg);
+		return "/homepage/niceClick";
+	}
+	
+	
+	// 좋아요 갯수 카운트
+	@RequestMapping("restaurantNiceCountCheck.eat")
+	public String NiceCountCheck(int renum,Model model) {
+		int niceCountCheck = (Integer)sql.selectOne("restaurant.niceCount",renum);
+		model.addAttribute("niceCountCheck",niceCountCheck);
+		return "/homepage/niceCountCheck";
+	}
+	
+	
+	// 사이드메뉴  카테고리 카운트
+	@RequestMapping("restaurantCateCount.eat")
+	public String restaurantCateCount(String cate,Model model) {
+		int CateCount = sql.selectOne("restaurant.count",cate);
+		model.addAttribute("CateCount", CateCount);
+		return "/homepage/CateCount";
+	}
 }
-
-
-
-
-/*
-		@RequestMapping("restaurantList.eat")
-		public String restaurantList(HttpServletRequest request, Model model) {
-			try {
-				request.setCharacterEncoding("UTF-8");
-				String cate = request.getParameter("cate");
-				int count = (Integer)sql.selectOne("restaurant.count", cate);
-				
-				List restList = sql.selectList("restaurant.select", cate);
-				
-				if (cate.equals("기타")) {
-					restList = sql.selectList("restaurant.restEtc");
-					count = (Integer)sql.selectOne("restaurant.countEtc");
-				}
-				System.out.println(cate+count);
-
-//				sql.selectList("restaurant.restArea", cate); //카테고리의 지역리스트 rvo
-//				sql.selectList("restaurant.selectArea", list); //카테고리+지역 검색결과 rvo
-//				sql.selectList("restaurant.restAreaCnt", cate); //카테고리+지역 카운트 int
-//				
-//				sql.selectList("restaurant.restAreaEtc"); //기타 지역리스트 rvo
-//				sql.selectList("restaurant.selectAreaEtc", area); //기타 지역검색결과 rvo
-//				sql.selectList("restaurant.restAreaCntEtc"); //기타 지역 카운트 int
-				
-				model.addAttribute("cate", cate);
-				model.addAttribute("restList", restList);
-				model.addAttribute("count", count);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return "/homepage/restaurantList";
-		}
- */
-
 

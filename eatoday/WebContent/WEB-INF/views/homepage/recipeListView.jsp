@@ -208,10 +208,16 @@
 		            
 		            </div>
 		          </div>
+<<<<<<< HEAD
 		          
-		             <div class="text-right">
+	<div class="text-right">
    <input type="button" value="레시피 등록" class="btn py-3 px-4 btn-primary" onclick="location='recipeCreate.eat'">
     </div>
+    
+          
+=======
+
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu.git
 		          <div class="col-md-12 d-flex align-items-center">
        
 		            <div class="tab-content ftco-animate" id="v-pills-tabContent">
@@ -226,8 +232,6 @@
 						    					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcp.getMain_name()});"></a>
 						    					<div class="text text-center pt-4">
 						    						<h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">${rcp.getTitle() }</a></h3>
-						    						<!--  <p>A small river named Duden flows by their place and supplies</p>
-						    						<p class="price"><span>$5.90</span></p>-->
 						    						<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">자세히보기</a>
 						    						
 						    					</div>
@@ -255,7 +259,14 @@
 		        </div>
 		      </div>
 		    </div>
+		      <c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">
+		   
+	<div class="text-right">
+   <input type="button" value="레시피 등록" class="btn py-3 px-4 btn-primary" onclick="location='recipeCreate.eat'">
+    </div>
+    </c:if>
     	</div>
+
     </section>
 
     <jsp:include page="footer.jsp" />
