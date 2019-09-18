@@ -29,10 +29,12 @@ public class memberpage {
 	@Autowired
 	private SqlSessionTemplate sql = null;
 	
+	
+	//회원정보 페이지
 	@RequestMapping("information.eat")
 	public String information(HttpSession session,Model model) {
 		String id = (String)session.getAttribute("loginID");
-		String code = sql.selectOne("member.codeSelect", id);
+		String code = sql.selectOne("member.codeSelect", id); // 아이디 찾기 코드값
 		memberVO vo = sql.selectOne("member.info",id);
 	
 		model.addAttribute("vo",vo);
@@ -40,16 +42,20 @@ public class memberpage {
 		return "/member/information";
 	}
 	
+	
+	//로그아웃
 	@RequestMapping("logout.eat")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "/member/logout";
 	}
 	
+	
+	//회원 탈퇴
 	@RequestMapping("remove.eat")
 	public String remove(memberVO vo, Model model,HttpSession session) {
-		int result = sql.selectOne("member.loginCheck",vo);
-		if (result==1) {
+		int result = sql.selectOne("member.loginCheck",vo); // 아이디 / 패스워드 일치 하면 1 리턴 
+		if (result==1) { // 회원 정보가 있을때
 			sql.delete("member.delete",vo.getId());
 			session.invalidate();
 		}
@@ -58,20 +64,24 @@ public class memberpage {
 		return "/member/remove";
 	}
 	
+	
+	//회원 정보 변경 폼
 	@RequestMapping("change.eat")
 	public String change(memberVO vo,Model model) {
-		int result = sql.selectOne("member.loginCheck",vo);
+		int result = sql.selectOne("member.loginCheck",vo); //// 아이디 / 패스워드 일치 하면 1 리턴
 		
 		model.addAttribute("result",result);
 		return "/member/change";
 	}
 
+	
+	//회원 정보 변경 Pro
 	@RequestMapping("changePro.eat")
 	public String changePro(String pw, String pw2, Model model,HttpSession session) {
 		int result = 1;
 		String id = (String)session.getAttribute("loginID");
 		memberVO vo = new memberVO();
-		if (pw.equals(pw2)) {
+		if (pw.equals(pw2)) {   //패스워드 / 패스워드 확인이 같은지 확인
 			vo.setId(id);
 			vo.setPw(pw);
 			sql.update("member.update",vo);
@@ -81,12 +91,16 @@ public class memberpage {
 		model.addAttribute("result",result);
 		return "/member/changePro";
 	}
+	
+	
+	//레시피 찜  체크 (찜 리스트)
 	@RequestMapping("recipeJjim.eat")
 	public String recipeJjim(recipeJjimVO vo,Model model) {
-		int result = sql.selectOne("recipe.jjimCheck",vo);
+		// 아이디/레시피 번호가 일치하는게 있으면 1 리턴
+		int result = sql.selectOne("recipe.jjimCheck",vo); 
 		
 		String img;
-		if(result==0) {
+		if(result==0) {  // 일치하는게 없을 때
 			img = "/eatoday/resource/images/jjim1.png";
 		} else {
 			img = "/eatoday/resource/images/jjim2.png";
@@ -95,8 +109,12 @@ public class memberpage {
 		return "/member/recipeJjim";
 	}
 	
+	
+	// 리시피 찜 클릭 이벤트 (찜 리스트)
 	@RequestMapping("recipeJjimClick.eat")
 	public String recipeJjimClick(recipeJjimVO vo,Model model) {
+		
+		// 아이디/레시피 번호가 일치하는게 있으면 1 리턴
 		int result = sql.selectOne("recipe.jjimCheck",vo);
 		String img;
 		if(result==1) {
@@ -110,11 +128,16 @@ public class memberpage {
 		return "/member/recipeJjimClick";
 	}
 	
+	
+	// 찜 리스트
 	@RequestMapping("jjimList.eat")
 	public String jjimList(HttpServletRequest request,Model model,HttpSession session){
-		String id = (String)session.getAttribute("loginID");
-		int count = sql.selectOne("recipe.jjimCount",id);
-		int row = 10;
+		String id = (String)session.getAttribute("loginID"); //로그인 중인 아이디
+		int count = sql.selectOne("recipe.jjimCount",id);  // 해당 아이디가 찜한 갯수
+		
+		
+		// 페이지 나누기
+		int row = 10;  
 		String page = request.getParameter("page");
 			
 			if (page == null) {
@@ -123,12 +146,14 @@ public class memberpage {
 		int currentPage = Integer.parseInt(page);
 		int startRow = (currentPage-1) * row +1;
 		int endRow = currentPage * row;
-		Map pageList = new HashMap();
+		Map pageList = new HashMap();   // sql에 필요한 값들 넣기
 				
 		pageList.put("id", id);
 		pageList.put("startRow",startRow);
 		pageList.put("endRow",endRow);
-				
+		
+		
+		// 찜 리스트 가져오기
 		List jjimList = sql.selectList("recipe.jjimList",pageList);
 				
 		// 페이지 계산
@@ -173,13 +198,13 @@ public class memberpage {
 		// 비밀번호 찾기 Pro
 		@RequestMapping("pwSearchPro.eat")
 		public String pwSearhPro(String id,Model model) throws MessagingException {
-			int result = sql.selectOne("member.idCheck",id);
+			int result = sql.selectOne("member.idCheck",id); //아이디 유무 확인 있으면 1 없으면 0
 			int port = 465;
-			String host = "smtp.gmail.com";
+			String host = "smtp.gmail.com";   //지메일 발송
 
 			if(result ==1) {
-				sql.update("member.pwReUpdate",id);
-				String pw = sql.selectOne("member.pwSearch",id);
+				sql.update("member.pwReUpdate",id);  // 패스워드 임의의 코드값으로 업데이트
+				String pw = sql.selectOne("member.pwSearch",id); // 업데이트된 패스워드 가져오기
 				String member = id; // 수신인 주소
 				String admin = "eatoday@eatoday.com"; // 발신인 주소
 				Properties props = new Properties();
@@ -201,8 +226,12 @@ public class memberpage {
 				MimeMessage msg = new MimeMessage(session); // 메세지 내용 담당 클래스
 				msg.setFrom(new InternetAddress(admin)); //발신자의 IP
 				msg.setRecipient(Message.RecipientType.TO, new InternetAddress(member));
-				msg.setSubject("eatoday 임시 비밀번호");
+				msg.setSubject("eatoday 임시 비밀번호");  // 이메일 제목
+				
+				// 이메일 내용
 				msg.setText(id+"님에게 임시 비밀번호\n" + pw + "를 발급하였습니다.\n http://localhost:8080/eatoday/loginpage/login.eat 에 로그인 하시면 됩니다. 감사합니다.");
+				
+				//보내기
 				Transport.send(msg);
 			}
 			model.addAttribute("result",result);
@@ -251,7 +280,7 @@ public class memberpage {
 		@RequestMapping("restaurantReview.eat")
 		public String restaurantReview(HttpServletRequest request,HttpSession session, Model model) {
 			String id = (String)session.getAttribute("loginID");
-			int count = sql.selectOne("restaurantReview.count",id);
+			int count = sql.selectOne("restaurantReview.memCount",id);
 			int row = 10;
 			String page = request.getParameter("page");
 				
@@ -285,10 +314,10 @@ public class memberpage {
 		// 레시피 리뷰 삭제
 		@RequestMapping("recipeReviewRemove.eat")
 		public String recipeReviewRemove(int num,HttpSession session) {
-			String reviewId = sql.selectOne("recipeReview.idSelect",num);
-			String sessionId = (String)session.getAttribute("loginID");
+			String reviewId = sql.selectOne("recipeReview.idSelect",num); // 저장된 아이디값
+			String sessionId = (String)session.getAttribute("loginID"); // 로그인 중인아이디값
 			
-			if(reviewId.equals(sessionId)) {
+			if(reviewId.equals(sessionId)) {  // 저장된 아이디와 로그인중인 아이디 비교
 			sql.delete("recipeReview.delete",num);
 			}
 			
@@ -298,11 +327,11 @@ public class memberpage {
 		// 레스토랑 리뷰 삭제
 		@RequestMapping("restaurantReviewRemove.eat")
 		public String restaurantReviewRemove(int num,HttpSession session) {
-			String reviewId = sql.selectOne("restaurant.idSelect",num);
-			String sessionId = (String)session.getAttribute("loginID");
+			String reviewId = sql.selectOne("restaurantReview.idSelect",num); // 저장된 아이디값
+			String sessionId = (String)session.getAttribute("loginID"); // 로그인 중인아이디값
 					
 			if(reviewId.equals(sessionId)) {
-			sql.delete("restaurant.reviewDelete",num);
+			sql.delete("restaurantReview.delete",num);  // 저장된 아이디와 로그인중인 아이디 비교
 			}
 					
 			return "/member/reviewRemove";
