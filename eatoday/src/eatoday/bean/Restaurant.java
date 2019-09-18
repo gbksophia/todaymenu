@@ -38,13 +38,133 @@ public class Restaurant {
 		//레시피 카운트
 		int count = sql.selectOne("restaurant.cateCount",cate);
 			
+<<<<<<< HEAD
 		//레시피 리뷰 가져오기
 		int row = 28;
 		String page = request.getParameter("page");
+=======
+<<<<<<< HEAD
+			if(session.getAttribute("loginID")!=null  && cate!=null) {
+				String id = (String)session.getAttribute("loginID");
+				
+			if(cate.equals("한식")) {
+				sql.update("member.korCountUp",id); // 한식 카운트 증가
+			} else if (cate.equals("중식")) {
+				sql.update("member.chinaCountUp",id); // 중식 카운트 증가
+			} else if (cate.equals("일식")) {
+				sql.update("member.japanCountUp",id); // 일식 카운트 증가
+			} else if (cate.equals("양식")) {
+				sql.update("member.europeanCountUp",id); // 양식 카운트 증가
+			} else if (cate.equals("분식")) {
+				sql.update("member.bunsigCountUp",id); // 분식 카운트 증가
+			} else if (cate.equals("카페")) {
+				sql.update("member.cafeCountUp",id); // 카페 카운트 증가
+			} else if (cate.equals("기타")) {
+				sql.update("member.etcCountUp",id); // 기타 카운트 증가
+			}
+			}
+			//리뷰 카운트
+			int recount = (Integer)sql.selectOne("restaurantReview.count",cnum);
+			
+			// 해당 레스토랑 정보
+			restaurantVO rvo = sql.selectOne("restaurant.info",cnum);
+			
+			//레스토랑 리뷰 가져오기
+			int row = 10;
+			String page = request.getParameter("page");
+>>>>>>> refs/remotes/origin/master
 			
 			if (page == null) {
 				page ="1";
 			}
+<<<<<<< HEAD
+=======
+			int currentPage = Integer.parseInt(page);
+			int startRow = (currentPage-1) * row +1;
+			int endRow = currentPage * row;
+			Map pageList = new HashMap();
+			
+			pageList.put("cnum", cnum);
+			pageList.put("startRow",startRow);
+			pageList.put("endRow",endRow);
+			
+			List revo = sql.selectList("restaurantReview.select",pageList);
+			
+			// 페이지 계산
+			int pageCount = recount / row + (recount % row == 0? 0:1);
+			int startPage = (int)(currentPage/10)*10+1;
+			int pageBlock=10;
+			int endPage = startPage + pageBlock-1;
+			if(endPage > pageCount) endPage = pageCount;
+			
+			
+			model.addAttribute("rvo",rvo);
+			model.addAttribute("revo",revo);
+			model.addAttribute("recount",recount);
+			model.addAttribute("startPage",startPage);
+			model.addAttribute("endPage",endPage);
+			model.addAttribute("pageCount",pageCount);
+			return "/homepage/restaurantDetail";
+=======
+		if(cate.equals("한식")) {
+			sql.update("member.korCountUp",id); // 한식 카운트 증가
+		} else if (cate.equals("중식")) {
+			sql.update("member.chinaCountUp",id); // 중식 카운트 증가
+		} else if (cate.equals("일식")) {
+			sql.update("member.japanCountUp",id); // 일식 카운트 증가
+		} else if (cate.equals("양식")) {
+			sql.update("member.europeanCountUp",id); // 양식 카운트 증가
+		} else if (cate.equals("분식")) {
+			sql.update("member.bunsigCountUp",id); // 분식 카운트 증가
+		} else if (cate.equals("카페")) {
+			sql.update("member.cafeCountUp",id); // 카페 카운트 증가
+		} else if (cate.equals("기타")) {
+			sql.update("member.etcCountUp",id); // 기타 카운트 증가
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
+		}
+		}
+		//리뷰 카운트
+<<<<<<< HEAD
+		@RequestMapping("restaurantReviewCount.eat")
+		public String restaurantReviewCount(String cnum,Model model) {
+			int recount = (Integer)sql.selectOne("restaurantReview.count", cnum);
+			model.addAttribute("recount",recount);
+			return "/homepage/reviewCount";
+		}
+=======
+		int recount = (Integer)sql.selectOne("restaurant.ReviewCount",cnum);
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
+		
+<<<<<<< HEAD
+		//리뷰 쓰기
+		@RequestMapping("restaurantRePro.eat")
+		public String restaurantRePro(MultipartHttpServletRequest request,Model model) throws Exception{
+			request.setCharacterEncoding("UTF-8");
+			MultipartFile mf = request.getFile("img");
+			String orgName = mf.getOriginalFilename();
+			recipeReviewVO vo = new recipeReviewVO();
+			if(orgName != "") {
+			//이미지 업로드
+			String path = request.getRealPath("//resource//RecipeReview");
+			String ext = orgName.substring(orgName.lastIndexOf('.'));
+			sql.insert("restaurantReview.imgCountInsert");
+			int num = sql.selectOne("restaurantReview.imgCount");
+				
+			String newName = "image"+num+ext;
+			File copyFile = new File(path +"//"+ newName);
+			mf.transferTo(copyFile);
+=======
+		// 해당 레스토랑 정보
+		restaurantVO rvo = sql.selectOne("restaurant.info",cnum);
+		
+		//레스토랑 리뷰 가져오기
+		int row = 10;
+		String page = request.getParameter("page");
+		
+		if (page == null) {
+			page ="1";
+		}
+>>>>>>> refs/remotes/origin/master
 		int currentPage = Integer.parseInt(page);
 		int startRow = (currentPage-1) * row +1;
 		int endRow = currentPage * row;
@@ -163,18 +283,79 @@ public class Restaurant {
 		//이미지 업로드
 		String path = request.getRealPath("//resource//RecipeReview");
 		String ext = orgName.substring(orgName.lastIndexOf('.'));
+<<<<<<< HEAD
 		sql.insert("restaurantReview.imgCountInsert");
 		int num = sql.selectOne("restaurantReview.imgCount");
+=======
+		sql.insert("restaurant.ImgcountInsert");
+		int num = sql.selectOne("restaurant.ImgCount");
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
+>>>>>>> refs/remotes/origin/master
 			
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+			vo.setImg(newName);
+			}	else {
+				vo.setImg("");
+			}
+			
+			// 댓글 db 정보
+			String cnum = request.getParameter("cnum");
+			String id = request.getParameter("id");
+			String nick = request.getParameter("nick");
+			String text = request.getParameter("text");
+			if(nick.equals("")) {
+				nick = "익명";
+			}
+			vo.setCnum(cnum);
+			vo.setId(id);
+			vo.setNick(nick);
+			vo.setText(text);
+			sql.insert("restaurantReview.insert",vo);
+				return "/homepage/restaurantRePro";
+			}
+=======
+>>>>>>> refs/remotes/origin/master
 		String newName = "image"+num+ext;
 		File copyFile = new File(path +"//"+ newName);
 		mf.transferTo(copyFile);
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
+>>>>>>> refs/remotes/origin/master
 		
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		//리뷰 수정
+		@RequestMapping("restaurantReviewUpdate.eat")
+		public String restaurantReviewUpdate(restaurantReviewVO vo,Model model) {
+			sql.update("restaurantReview.update",vo);
+			String text = sql.selectOne("restaurantReview.text", vo.getNum());
+			model.addAttribute("text",text);
+			return "/homepage/reviewUpdate";
+=======
+>>>>>>> refs/remotes/origin/master
 		vo.setImg(newName);
 		}	else {
 			vo.setImg("");
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
+>>>>>>> refs/remotes/origin/master
 		}
 		
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		//리뷰 삭제
+		@RequestMapping("restaurantReviewRemove.eat")
+		public String restaurantReviewRemove(int num) {
+			sql.delete("restaurantReview.delete",num);
+			return "/homepage/reviewRemove";
+=======
+>>>>>>> refs/remotes/origin/master
 		// 댓글 db 정보
 		String cnum = request.getParameter("cnum");
 		String id = request.getParameter("id");
@@ -183,14 +364,71 @@ public class Restaurant {
 		String cate = request.getParameter("cate");
 		if(nick.equals("")) {
 			nick = "익명";
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
+>>>>>>> refs/remotes/origin/master
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		
+		// 페이지 첫 실행시만 사용 댓글 클릭 여부 체크
+		@RequestMapping("restaurantNice.eat")
+		public String restaurantNice(recipeReviewVO vo,Model model) {
+			restaurantReviewNiceVO nivo = new restaurantReviewNiceVO();
+			String likeImg;
+			System.out.println(vo.getNum());
+			nivo.setRenum(vo.getNum());
+			nivo.setId(vo.getId());
+			int result = sql.selectOne("restaurantReview.check",nivo);
+			System.out.println(result);
+			if(result == 0) {
+				likeImg = "/eatoday/resource/images/like.png";
+			} else {
+				likeImg = "/eatoday/resource/images/like2.png";
+			}
+			model.addAttribute("likeImg",likeImg);
+			return "/homepage/nice";
+=======
+>>>>>>> refs/remotes/origin/master
 		vo.setCnum(cnum);
 		vo.setId(id);
 		vo.setNick(nick);
 		vo.setText(text);
+<<<<<<< HEAD
 		sql.insert("restaurantReview.insert",vo);
 			return "/homepage/recipeRePro";
+=======
+		sql.insert("restaurant.ReviewInsert",vo);
+			return "/homepage/restaurantRePro";
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
+>>>>>>> refs/remotes/origin/master
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		
+		// 댓글 좋아요 클릭 이벤트
+		@RequestMapping("restaurantNiceClick.eat")
+		public String restaurantNiceClick(recipeReviewVO vo,Model model) {
+			restaurantReviewNiceVO nivo = new restaurantReviewNiceVO();
+			String likeImg;
+			nivo.setRenum(vo.getNum());
+			nivo.setId(vo.getId());
+			int result = sql.selectOne("restaurantReview.check",nivo);
+			if(result == 0) {
+				sql.insert("restaurantReview.niceInsert",nivo);
+				likeImg = "/eatoday/resource/images/like2.png";
+			} else {
+				sql.delete("restaurantReview.niceDelete",nivo);
+				likeImg = "/eatoday/resource/images/like.png";
+			}
+			model.addAttribute("likeImg",likeImg);
+			return "/homepage/niceClick";
+=======
+
+>>>>>>> refs/remotes/origin/master
 	
 	//리뷰 수정
 	@RequestMapping("restaurantReviewUpdate.eat")
@@ -222,7 +460,23 @@ public class Restaurant {
 			likeImg = "/eatoday/resource/images/like.png";
 		} else {
 			likeImg = "/eatoday/resource/images/like2.png";
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
+>>>>>>> refs/remotes/origin/master
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		
+		// 좋아요 갯수 카운트
+		@RequestMapping("restaurantNiceCountCheck.eat")
+		public String NiceCountCheck(int renum,Model model) {
+			int niceCountCheck = (Integer)sql.selectOne("restaurantReview.niceCount",renum);
+			model.addAttribute("niceCountCheck",niceCountCheck);
+			return "/homepage/niceCountCheck";
+=======
+>>>>>>> refs/remotes/origin/master
 		model.addAttribute("likeImg",likeImg);
 		return "/homepage/nice";
 	}
@@ -241,6 +495,10 @@ public class Restaurant {
 		} else {
 			sql.delete("restaurantReview.niceDelete",nivo);
 			likeImg = "/eatoday/resource/images/like.png";
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
+>>>>>>> refs/remotes/origin/master
 		}
 		model.addAttribute("likeImg",likeImg);
 		return "/homepage/niceClick";

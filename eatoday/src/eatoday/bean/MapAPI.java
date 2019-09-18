@@ -64,7 +64,7 @@ public class MapAPI {
 			if (d1!=null) {
 //				System.out.println("map_loc: "+d1); //서울특별시
 //				System.out.println("map_loc: "+d2); //관악구
-				System.out.println("map_loc: "+d3); //봉천동
+//				System.out.println("map_loc: "+d3); //봉천동
 				
 				if (id!=null) {
 					int gnum = sql.selectOne("restaurant.greatest", id);
