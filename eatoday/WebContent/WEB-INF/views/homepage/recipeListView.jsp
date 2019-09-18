@@ -173,10 +173,13 @@
 
     <section class="ftco-menu mb-5 pb-5">
     	<div class="container">
+    	
+    	<!-- 레시피 카테고리 버튼 --> 
     		<div class="row d-md-flex">
     		
 	    		<div class="col-lg-12 ftco-animate p-md-5">
-		    		<div class="row">
+		    	<div class="row">
+		    	
 		          <div class="col-md-12 nav-link-wrap mb-5">
 		            <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 		            
@@ -204,66 +207,70 @@
 		              <a class="nav-link" id="v-pills-21-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "22"></c:param></c:url>" role="tab" aria-selected="false">술&칵테일</a>
 		              <a class="nav-link" id="v-pills-22-tab" href="<c:url value = "/homepage/recipeListView.eat"><c:param name = "cate" value = "23"></c:param></c:url>" role="tab" aria-selected="false">명절요리</a>
 		            
-		            </div>
-		          </div>
+		            </div> <!-- "nav ftco-animate nav-pills justify-content-center" -->
+		          </div> <!-- "col-md-12 nav-link-wrap mb-5" -->
 
 		          
-	<div class="text-right">
-   <input type="button" value="레시피 등록" class="btn py-3 px-4 btn-primary" onclick="location='recipeCreate.eat'">
-    </div>
-    
-         
-		          <div class="col-md-12 d-flex align-items-center">
-       
-		            <div class="tab-content ftco-animate" id="v-pills-tabContent">
-
-		              <div class="tab-pane fade show active" id="v-pills-0" role="tabpanel" aria-labelledby="v-pills-0-tab">
-		              	<div class="row">
-		              	
-		              	<c:forEach var = "rcp" items = "${recipeList}" >
-
-		              		<div class="col-md-3">
-						        		<div class="menu-entry">
-						    					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcp.getMain_name()});"></a>
-						    					<div class="text text-center pt-4">
-						    						<h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">${rcp.getTitle() }</a></h3>
-						    						<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">자세히보기</a>
-						    						
-						    					</div>
-						    				</div>
-						        	</div>
-						        	</c:forEach>
-		              	</div>
-		              </div>
-		               <div class="text-center">
-		               	<c:if test="${startPage >10 }">
+				<div class="text-right">
+   					<input type="button" value="레시피 등록" class="btn py-3 px-4 btn-primary" onclick="location='recipeCreate.eat'">
+    			</div> <!--"text-right"  -->
+    			
+    			</div> <!-- "row" -->
+		        </div> <!-- "col-lg-12 ftco-animate p-md-5" -->
+		      
+		    </div> <!-- "row d-md-flex" -->
+		
+		<!-- -------------------------------------------------------------------------------- -->
+		<!-- 카테고리별 레시피 출력 파트 -->  
+		<div class="container">
+    		<div class="row justify-content-center mb-5 pb-3">
+        	</div>
+        
+        
+        	<div class="row">		              	
+		    <c:forEach var = "rcp" items = "${recipeList}" >	              	
+		     <div class="col-md-3">
+				<div class="menu-entry">
+					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcp.getMain_name()});"></a>
+					<div class="text text-center pt-4">
+						<h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">${rcp.getTitle() }</a></h3>
+						<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">자세히보기</a>	
+					</div>
+				</div>
+			</div>
+		    </c:forEach>	
+		    </div> <!-- "row" -->
+		    
+		  <!-- 페이징 -->  
+		  <div class="text-center">
+		  <c:if test="${startPage >10 }">
  			 <a href="recipeListView.eat?page=${startPage-10 }&cate=${cate}">&nbsp;<< &nbsp;</a>
- 				</c:if>
-              	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
-              	 <a href="recipeListView.eat?page=${i}&cate=${cate}">${i }</a>
-              	 	<c:if test="${i!=endPage}">
-              	 &nbsp;|&nbsp;
-              	 </c:if>
-              	 </c:forEach>
-              	 <c:if test="${endPage < pageCount }">
- 					 <a href="recipeListView.eat?page=${startPage+10 }&cate=${cate}"> &nbsp;>>&nbsp; </a>
- 				</c:if>
-                   </div>
-		            </div>
-		          </div>
-		        </div>
-		      </div>
-		    </div>
-		      <c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">
-		   
-	<div class="text-right">
-   <input type="button" value="레시피 등록" class="btn py-3 px-4 btn-primary" onclick="location='recipeCreate.eat'">
-    </div>
-    </c:if>
+ 		 </c:if>
+         <c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+            <a href="recipeListView.eat?page=${i}&cate=${cate}">${i }</a>
+            <c:if test="${i!=endPage}">
+              	&nbsp;|&nbsp;
+            </c:if>
+          </c:forEach>
+          <c:if test="${endPage < pageCount }">
+ 			<a href="recipeListView.eat?page=${startPage+10 }&cate=${cate}"> &nbsp;>>&nbsp; </a>
+ 		  </c:if>
+          </div> <!-- "text-center" -->  
+       
+       </div>	 <!-- "container" -->
+       <!-- -------------------------------------------------------------------------------- -->
+		    
+	<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		   
+		<div class="text-right">
+   			<input type="button" value="레시피 등록" class="btn py-3 px-4 btn-primary" onclick="location='recipeCreate.eat'">
     	</div>
-
-    </section>
-
+    </c:if>
+    
+    
+   	</div> <!--"container"   -->
+    </section> <!--"ftco-menu mb-5 pb-5"   -->
+    
+    
     <jsp:include page="footer.jsp" />
     
   
