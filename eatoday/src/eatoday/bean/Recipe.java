@@ -31,28 +31,33 @@ public class Recipe {
 	@RequestMapping("recipeListView.eat")
 	public String recipeKorView(Model model, HttpServletRequest request) throws Exception {
 		
-		String cate = request.getParameter("cate");
-		System.out.println(cate);
-		String cateImg = sql.selectOne("recipe.cateImg",cate);
-		//레시피 카운트
-		int count = sql.selectOne("recipe.cateCount",cate);
+		
+		String cate = request.getParameter("cate");  // 카테고리 값 가져오기
+		String cateImg = sql.selectOne("recipe.cateImg",cate); // 카테고리에 해당하는 랜덤 이미지 가져오기
+		
+		int count = sql.selectOne("recipe.cateCount",cate); // 레시피 갯수 (페이지 기능)
 			
-		//레시피 리뷰 가져오기
-		int row = 28;
-		String page = request.getParameter("page");
+		
+		//레시피 페이지 나누기
+		int row = 28;   // 한페이지당 보여줄 갯수
+		String page = request.getParameter("page");  //현재 페이지
 			
 			if (page == null) {
 				page ="1";
 			}
-		int currentPage = Integer.parseInt(page);
-		int startRow = (currentPage-1) * row +1;
-		int endRow = currentPage * row;
-		Map pageList = new HashMap();
-				
+			
+		int currentPage = Integer.parseInt(page);   // 인트형으로 변환
+		int startRow = (currentPage-1) * row +1;    // 각 페이지당 시작하는 번호 ex) row = 10일때 startRow = 1 , 11 , 21 ....
+		int endRow = currentPage * row;    // 각 페이지당 끝나는 번호 ex) row = 10일때 startRow = 10 , 20, 30 ....
+		Map pageList = new HashMap();     // sql 문에 보내주기 위해 생성
+		
+		// sql 문에 필요한 값 
 		pageList.put("cate", cate);
 		pageList.put("startRow",startRow);
 		pageList.put("endRow",endRow);
-				
+		
+		
+		// 레시피 리스트 가져오기
 		List rcpList = sql.selectList("recipe.select",pageList);
 				
 		// 페이지 계산
@@ -75,10 +80,13 @@ public class Recipe {
 	
 	@RequestMapping("recipeDetail.eat")
 	public String recipeDetail(Model model,recipeVO vo,HttpSession session,HttpServletRequest request) throws Exception {
-	
+		
+		// 카테고리 값과 레시피 번호 설정
 		String cate = vo.getCate();
 		String cnum = vo.getCnum();
 		
+		
+		// 로그인 중 일때만 실행
 		if (session.getAttribute("loginID") != null && cate!=null) {
 		String id = (String)session.getAttribute("loginID");
 		
@@ -114,8 +122,8 @@ public class Recipe {
 		}
 		
 		//관심 있는 레시피 보여주기
-		int like = sql.selectOne("recipe.greatest",id); 
-		List recipeList = sql.selectList("recipe.cate",like);
+		int like = sql.selectOne("recipe.greatest",id); // 카테고리중  컬럼의 값이 높은것 찾기
+		List recipeList = sql.selectList("recipe.cate",like); //  위 값에 일치하는 카테고리값 찾기
 		
 		
 		// 선호 레시피종류가 중복일 경우 선호레시피를 랜덤으로 검색				
@@ -123,13 +131,13 @@ public class Recipe {
 		String like_cate = (String)recipeList.get(rand);
 		Map<String,String> like_parameter = new HashMap<String, String>();
 		
-		if(like_cate.equals("RICE")) {
+		if(like_cate.equals("RICE")) {    // 선택된것이 밥일때 밥과 관련있는 번호 선택
 			like_parameter.put("key1","1");
-		} else if (like_cate.equals("SOUP") || like_cate.equals("JEONGOL")) { 
+		} else if (like_cate.equals("SOUP") || like_cate.equals("JEONGOL")) { // 선택된것이 국일때 국과 관련있는 번호 선택
 			like_parameter.put("key1","2");
 			like_parameter.put("key2","3");
 		}  else if (like_cate.equals("SIDE")  || like_cate.equals("SHAKE")  || like_cate.equals("GUI")
-				 || like_cate.equals("JJIM")  || like_cate.equals("CHILDREN")  || like_cate.equals("KIMCHI")) 
+				 || like_cate.equals("JJIM")  || like_cate.equals("CHILDREN")  || like_cate.equals("KIMCHI"))  // 선택된것이 반찬일때 반찬과 관련있는 번호 선택
 		{
 			like_parameter.put("key1","4");
 			like_parameter.put("key2","5");
@@ -138,30 +146,31 @@ public class Recipe {
 			like_parameter.put("key5","9");
 			like_parameter.put("key6","10");
 			
-		}  else if (like_cate.equals("DOSI")) {
+		}  else if (like_cate.equals("DOSI")) { // 선택된것이 도시락일때 도시락과 관련있는 번호 선택
 			like_parameter.put("key1","11");
 			
-		}  else if (like_cate.equals("NOODLE") || like_cate.equals("SPA") ) {
+		}  else if (like_cate.equals("NOODLE") || like_cate.equals("SPA") ) { // // 선택된것이 면일때 면과 관련있는 번호 선택
 			like_parameter.put("key1","13");
 			like_parameter.put("key2","16");
-		}  else if (like_cate.equals("SALAD")) {
+		}  else if (like_cate.equals("SALAD")) {  // 선택된것이 샐러드일때 샐러드와 관련있는 번호 선택
 			like_parameter.put("key1","14");
 			
 		}  else if (like_cate.equals("SNACK")  || like_cate.equals("FRY")  || like_cate.equals("TOAST")
-				 || like_cate.equals("BAKING")  || like_cate.equals("DESSERT")) {
+				 || like_cate.equals("BAKING")  || like_cate.equals("DESSERT")) { // 선택된것이 간식일때 간식과 관련있는 번호 선택
 			like_parameter.put("key1","12");
 			like_parameter.put("key2","15");
 			like_parameter.put("key3","17");
 			like_parameter.put("key4","18");
 			like_parameter.put("key5","19");
 			like_parameter.put("key6","20");
-		}  else if (like_cate.equals("JUICE") || like_cate.equals("COCKTAIL")) {
+		}  else if (like_cate.equals("JUICE") || like_cate.equals("COCKTAIL")) { // 선택된것이 음료일때 음료와 관련있는 번호 선택
 			like_parameter.put("key1","21");
 			like_parameter.put("key2","22");
-		}  else if (like_cate.equals("GUEST") || like_cate.equals("HOLIDAY")) {
+		}  else if (like_cate.equals("GUEST") || like_cate.equals("HOLIDAY")) { // 선택된것이 명절상일때 명절상과 관련있는 번호 선택
 			like_parameter.put("key1","8");
 			like_parameter.put("key2","23");;
 		}
+		
 		recipeList = sql.selectList("recipe.memRandomSelect",like_parameter);
 		model.addAttribute("recipeList",recipeList);
 	}
@@ -178,7 +187,7 @@ public class Recipe {
 		// 레시피 해당 이미지 set
 		List ivo = sql.selectList("recipe.imgselect", cnum);
 		
-		//레시피 리뷰 가져오기
+		//레시피 리뷰 페이지 나누기
 		int row = 10;
 		String page = request.getParameter("page");
 		
@@ -217,12 +226,6 @@ public class Recipe {
 		return "/homepage/recipeDetail";
 	}
 	
-//	@RequestMapping("recipeWst.eat")
-//	public String recipeWst() {
-//		return "/homepage/recipeWst";
-//	}
-	
-	
 	//리뷰 카운트
 	@RequestMapping("reviewCount.eat")
 	public String reviewCount(String cnum,Model model) {
@@ -230,6 +233,7 @@ public class Recipe {
 		model.addAttribute("recount",recount);
 		return "/homepage/reviewCount";
 	}
+	
 	//리뷰 쓰기
 	@RequestMapping("recipeRePro.eat")
 	public String recipeRePro(MultipartHttpServletRequest request,Model model) throws Exception{
@@ -237,6 +241,8 @@ public class Recipe {
 		MultipartFile mf = request.getFile("img");
 		String orgName = mf.getOriginalFilename();
 		recipeReviewVO vo = new recipeReviewVO();
+		
+		// 이미지 유무 조건
 		if(orgName != "") {
 		//이미지 업로드
 		String path = request.getRealPath("//resource//RecipeReview");
@@ -259,13 +265,17 @@ public class Recipe {
 		String nick = request.getParameter("nick");
 		String text = request.getParameter("text");
 		String cate = request.getParameter("cate");
+		
+		// 닉이 빈칸일 때 익명 으로 설정
 		if(nick.equals("")) {
 			nick = "익명";
 		}
+		
 		vo.setCnum(cnum);
 		vo.setId(id);
 		vo.setNick(nick);
 		vo.setText(text);
+		
 		sql.insert("recipeReview.insert",vo);
 			return "/homepage/recipeRePro";
 		}
@@ -273,8 +283,6 @@ public class Recipe {
 	//리뷰 수정
 	@RequestMapping("reviewUpdate.eat")
 	public String reviewUpdate(recipeReviewVO vo,Model model) {
-		System.out.println(vo.getNum());
-		System.out.println(vo.getText());
 		sql.update("recipeReview.update",vo);
 		String text = sql.selectOne("recipeReview.text", vo.getNum());
 		model.addAttribute("text",text);
@@ -288,18 +296,18 @@ public class Recipe {
 		return "/homepage/reviewRemove";
 	}
 	
-	// 페이지 첫 실행시만 사용 댓글 클릭 여부 체크
+	// 페이지 첫 실행시만 사용 댓글 좋아요 클릭 여부 체크
 	@RequestMapping("nice.eat")
 	public String nice(recipeReviewVO vo,Model model) {
 		recipeReviewNiceVO nivo = new recipeReviewNiceVO();
-		String likeImg;
+		String likeImg;   // 이미지 이름 넣을 값
 		nivo.setRenum(vo.getNum());
 		nivo.setId(vo.getId());
 		int result = sql.selectOne("recipeReview.check",nivo);
 		if(result == 0) {
-			likeImg = "/eatoday/resource/images/like.png";
+			likeImg = "/eatoday/resource/images/like.png"; // 좋아요를 안눌렀을때 이미지
 		} else {
-			likeImg = "/eatoday/resource/images/like2.png";
+			likeImg = "/eatoday/resource/images/like2.png"; // 좋아요를 눌렀을때 이미지
 		}
 		model.addAttribute("likeImg",likeImg);
 		return "/homepage/nice";
@@ -313,12 +321,12 @@ public class Recipe {
 		nivo.setRenum(vo.getNum());
 		nivo.setId(vo.getId());
 		int result = sql.selectOne("recipeReview.check",nivo);
-		if(result == 0) {
-			sql.insert("recipeReview.niceInsert",nivo);
-			likeImg = "/eatoday/resource/images/like2.png";
+		if(result == 0) { //값이 없을떄
+			sql.insert("recipeReview.niceInsert",nivo);   // 좋아요 추가
+			likeImg = "/eatoday/resource/images/like2.png"; // 좋아요를 눌렀을때 이미지
 		} else {
-			sql.delete("recipeReview.niceDelete",nivo);
-			likeImg = "/eatoday/resource/images/like.png";
+			sql.delete("recipeReview.niceDelete",nivo); //좋아요 삭제
+			likeImg = "/eatoday/resource/images/like.png"; // 좋아요를 안눌렀을때 이미지
 		}
 		model.addAttribute("likeImg",likeImg);
 		return "/homepage/niceClick";
@@ -344,8 +352,6 @@ public class Recipe {
 	@RequestMapping("SearchRecipe.eat")
 	public String SearchRecipe(HttpServletRequest request, Model model ) {
 		String srch=request.getParameter("search");
-		
-		System.out.println("Srch(search)="+srch);
 		
 		int countT=sql.selectOne("recipe.countSrTitle",srch);
 		int countM=sql.selectOne("recipe.countSrMate",srch);
@@ -416,8 +422,8 @@ public class Recipe {
 		if(orgName != "") {
 			String path = request.getRealPath("//resource//RecipeImages");
 			String ext = orgName.substring(orgName.lastIndexOf('.'));
-			sql.insert("recipeReview.ImgcountInsert");
-			int num = sql.selectOne("recipeReview.ImgCount");
+			sql.insert("recipeReview.imgCountInsert");
+			int num = sql.selectOne("recipeReview.imgCount");
 		
 			
 			String newName = "image"+num+ext;
