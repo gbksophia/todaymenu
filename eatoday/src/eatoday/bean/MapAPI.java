@@ -27,26 +27,28 @@ public class MapAPI {
 		return "/map/map_kwd";
 	}
 	
+	
 	// 현위치 주변 카테고리별 지도에 표시 - restaurant 페이지
 	@RequestMapping("map_gc.eat")
 	public String map_gc() {
 		return "/map/map_gc";
 	}
 	
-	//접속위치 + DB에 등록된 식당위치 표시
+	
+	//접속위치 + 카카오 DB에 등록된 식당위치 표시
 	@RequestMapping("map_gn")
 	public String map_gn(HttpServletRequest request, Model model) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			restaurantVO restVO = new restaurantVO();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "/map/map_gn";
 	}
 	
-	//접속위치+선호식당카테고리로 검색후 지도에 출력
+	
+	//접속위치+선호식당카테고리로 검색후 지도에 출력 ===> 로그인 후 이용가능하게 / 로그아웃상태면 로그인페이지로 이동
 	@RequestMapping("map_lf.eat")
 	public String map_loc(String d1, String d2 , String d3, Model model, HttpServletRequest request) {
 		return "/map/map_lf";
@@ -97,6 +99,7 @@ public class MapAPI {
 		}
 		return "/map/map_lf_t";
 	}
+	
 	
 	// 식당 위치 지도
 	@RequestMapping("map_kwd_rest.eat")

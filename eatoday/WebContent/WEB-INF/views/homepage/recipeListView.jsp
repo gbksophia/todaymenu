@@ -208,12 +208,16 @@
 		            
 		            </div>
 		          </div>
+<<<<<<< HEAD
 		          
 	<div class="text-right">
    <input type="button" value="레시피 등록" class="btn py-3 px-4 btn-primary" onclick="location='recipeCreate.eat'">
     </div>
     
           
+=======
+
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu.git
 		          <div class="col-md-12 d-flex align-items-center">
        
 		            <div class="tab-content ftco-animate" id="v-pills-tabContent">
@@ -255,7 +259,14 @@
 		        </div>
 		      </div>
 		    </div>
+		      <c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">
+		   
+	<div class="text-right">
+   <input type="button" value="레시피 등록" class="btn py-3 px-4 btn-primary" onclick="location='recipeCreate.eat'">
+    </div>
+    </c:if>
     	</div>
+
     </section>
 
     <jsp:include page="footer.jsp" />

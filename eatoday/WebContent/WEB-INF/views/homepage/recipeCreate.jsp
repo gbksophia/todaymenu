@@ -35,6 +35,15 @@
     		margin: 0 auto;
     		width:500px;
     	}
+    	
+    	.input1{
+    		margin-right:10px;
+    	}
+    	
+    	.input2{
+    		margin-right:10px;
+    		margin-bottom:10px;
+    	}
     </style>
     
 <body>
@@ -44,32 +53,122 @@
 <div class="container">
 <br><br><br><br>
  <div class="comment-form-wrap pt-5">
+
 <form action="recipeCreatePro.eat" method="post" enctype="multipart/form-data">
-<input type="hidden" name="cate" value="5">
-<input type="hidden" name="cnum" value="2000">
+
+ <h1>레시피 등록하기</h1><br>
+ 
+<h4>카테고리를 선택해주세요</h4><br>
+<table>
+	<thead>
+		<tr>
+			<th>
+				<input type = "radio" name = "cate" value = "1" class = "input1" required>밥요리
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "2" class = "input2" required>국&탕
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "3" class = "input2" required>찌개&전골
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "4" class = "input2" required>밑반찬 
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>
+				<input type = "radio" name = "cate" value = "5" class = "input1" required>볶음요리
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "6" class = "input2" required>구이(고기/생선)
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "7" class = "input2" required>찜&조림
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "8" class = "input2" required>손님상
+			</th>
+		</tr>
+		<tr>
+			<th>
+				<input type = "radio" name = "cate" value = "9" class = "input1" required>아이 반찬
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "10" class = "input2" required>김치 장아찌
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "11" class = "input2" required>도시락
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "12" class = "input2" required>튀김
+			</th>
+		<tr>
+			<th>
+				<input type = "radio" name = "cate" value = "13" class = "input1" required>면요리
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "14" class = "input2" required>샐러드
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "15" class = "input2" required>야식&술안주
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "16" class = "input2" required>스파게티
+			</th>
+		</tr>
+		<tr>
+			<th>
+				<input type = "radio" name = "cate" value = "17" class = "input1" required>간식&분식
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "18" class = "input2" required>토스트&샌드위치
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "19" class = "input2" required>베이킹
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "20" class = "input2" required>디저트
+			</th>
+		</tr>
+		<tr>
+			<th>
+				<input type = "radio" name = "cate" value = "21" class = "input1" required>주스&음료
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "22" class = "input2" required>술&칵테일
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "23" class = "input2" required>명절요리
+			</th>
+		</tr>
+	</tbody>
+</table>
+
+<input type="hidden" name="cnum" value="${recipeCnum }">
+<br><br>
+<h4>썸네일을 등록해주세요</h4>
 	<div class="form-group">
-	<input class="form-control" type="text" name="main_name" placeholder="썸네일을 입력하세요." >  
+	<input type="file" name="main_name" class="form-control"  />
 	</div>
-	
+	<br>
+<h4>제목을 입력하세요</h4>
 	<div class="form-group">
 	<input class="form-control" type="text" name="title" placeholder="제목을 입력하세요." >  
 	</div>
-	
+	<br>
+<h4>재료를 입력하세요</h4>	
 	<div class="form-group">
-	<input class="form-control" type="text" name="mate" placeholder="재료를 입력하세요." >  
-	</div>
-	
+	<textarea name="mate" cols="30" rows="10" class="form-control" placeholder="재료를 입력하세요"></textarea>
+	</div> 
+	<br>
+<h4>조리법을 입력하세요</h4>
 	<div class="form-group">
-	<input class="form-control" type="text" name="pro" placeholder="조리법을 입력하세요." >  
-	</div>
-			
-
-	
-
-                  
-      
+	<textarea name="pro" cols="30" rows="10" class="form-control" placeholder="조리법을 입력하세요"></textarea>
+	</div> 
        <div class="form-group">
-      <input type="submit" value="글 쓰기"  class="btn py-3 px-4 btn-primary"  />
+      <input type="submit" value="레시피 등록"  class="btn py-3 px-4 btn-primary"  />
       </div>
 </form>
    
