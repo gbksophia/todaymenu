@@ -18,7 +18,9 @@
 	
 	<mappers>
 		<mapper resource="/sql/recipeSQL.xml"/>
+		<mapper resource="/sql/recipeReviewSQL.xml"/>
 		<mapper resource="/sql/restaurantSQL.xml"/>
+		<mapper resource="/sql/restaurantReviewSQL.xml"/>
 		<mapper resource="/sql/MemberSQL.xml"/>
 		<mapper resource="/sql/supportSQL.xml"/>
 	</mappers>

@@ -498,7 +498,7 @@
             <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
               <div class="categories">
                 <h3>Categories</h3>
-                <li><a href="recipeListView.eat?cate=1" id="cate(1)">밥요리1</a></li>
+                <li><a href="recipeListView.eat?cate=1" id="cate(1)">밥요리</a></li>
                 <li><a href="recipeListView.eat?cate=2" id="cate(2)">국&탕 </a></li>
                 <li><a href="recipeListView.eat?cate=3" id="cate(3)">찌개&전골 </a></li>
                 <li><a href="recipeListView.eat?cate=4" id="cate(4)">밑반찬 </a></li>

@@ -213,7 +213,7 @@ public class memberpage {
 		@RequestMapping("recipeReview.eat")
 		public String recipeReview(HttpSession session,Model model,HttpServletRequest request) {
 			String id = (String)session.getAttribute("loginID");
-			int count = sql.selectOne("recipe.memReviewCount",id);
+			int count = sql.selectOne("recipeReview.memCount",id);
 			
 			//레시피 리뷰 가져오기
 			int row = 10;
@@ -231,7 +231,7 @@ public class memberpage {
 			pageList.put("startRow",startRow);
 			pageList.put("endRow",endRow);
 
-			List recipeList = sql.selectList("recipe.reviewSelect",pageList);
+			List recipeList = sql.selectList("recipeReview.select",pageList);
 			
 			// 페이지 계산
 			int pageCount = count / row + (count % row == 0? 0:1);
@@ -251,7 +251,7 @@ public class memberpage {
 		@RequestMapping("restaurantReview.eat")
 		public String restaurantReview(HttpServletRequest request,HttpSession session, Model model) {
 			String id = (String)session.getAttribute("loginID");
-			int count = sql.selectOne("restaurant.memReviewCount",id);
+			int count = sql.selectOne("restaurantReview.count",id);
 			int row = 10;
 			String page = request.getParameter("page");
 				
@@ -266,7 +266,7 @@ public class memberpage {
 			pageList.put("startRow",startRow);
 			pageList.put("endRow",endRow);
 					
-			List restaurantList = sql.selectList("restaurant.reviewSelect",pageList);
+			List restaurantList = sql.selectList("restaurantReview.select",pageList);
 					
 			// 페이지 계산
 			int pageCount = count / row + (count % row == 0? 0:1);
@@ -285,11 +285,11 @@ public class memberpage {
 		// 레시피 리뷰 삭제
 		@RequestMapping("recipeReviewRemove.eat")
 		public String recipeReviewRemove(int num,HttpSession session) {
-			String reviewId = sql.selectOne("recipe.idSelect",num);
+			String reviewId = sql.selectOne("recipeReview.idSelect",num);
 			String sessionId = (String)session.getAttribute("loginID");
 			
 			if(reviewId.equals(sessionId)) {
-			sql.delete("recipe.reviewDelete",num);
+			sql.delete("recipeReview.delete",num);
 			}
 			
 			return "/member/reviewRemove";

@@ -169,7 +169,7 @@ public class Recipe {
 		List randomList = sql.selectList("recipe.randomSelect",vo);
 		
 		//리뷰 카운트
-		int recount = sql.selectOne("recipe.ReviewCount",cnum);
+		int recount = sql.selectOne("recipeReview.count",cnum);
 
 		// 해당 레시피 정보
 	    vo = sql.selectOne("recipe.info",cnum);
@@ -194,7 +194,7 @@ public class Recipe {
 		pageList.put("startRow",startRow);
 		pageList.put("endRow",endRow);
 
-		List revo = sql.selectList("recipe.reviewSelect",pageList);
+		List revo = sql.selectList("recipeReview.select",pageList);
 		
 		// 페이지 계산
 		int pageCount = recount / row + (recount % row == 0? 0:1);
@@ -226,7 +226,7 @@ public class Recipe {
 	//리뷰 카운트
 	@RequestMapping("reviewCount.eat")
 	public String reviewCount(String cnum,Model model) {
-		int recount = (Integer)sql.selectOne("recipe.ReviewCount", cnum);
+		int recount = (Integer)sql.selectOne("recipeReview.count", cnum);
 		model.addAttribute("recount",recount);
 		return "/homepage/reviewCount";
 	}
@@ -241,8 +241,8 @@ public class Recipe {
 		//이미지 업로드
 		String path = request.getRealPath("//resource//RecipeReview");
 		String ext = orgName.substring(orgName.lastIndexOf('.'));
-		sql.insert("recipe.ImgcountInsert");
-		int num = sql.selectOne("recipe.ImgCount");
+		sql.insert("recipeReview.imgCountInsert");
+		int num = sql.selectOne("recipeReview.imgCount");
 			
 		String newName = "image"+num+ext;
 		File copyFile = new File(path +"//"+ newName);
@@ -266,7 +266,7 @@ public class Recipe {
 		vo.setId(id);
 		vo.setNick(nick);
 		vo.setText(text);
-		sql.insert("recipe.ReviewInsert",vo);
+		sql.insert("recipeReview.insert",vo);
 			return "/homepage/recipeRePro";
 		}
 	
@@ -275,8 +275,8 @@ public class Recipe {
 	public String reviewUpdate(recipeReviewVO vo,Model model) {
 		System.out.println(vo.getNum());
 		System.out.println(vo.getText());
-		sql.update("recipe.reviewUpdate",vo);
-		String text = sql.selectOne("recipe.reviewText", vo.getNum());
+		sql.update("recipeReview.update",vo);
+		String text = sql.selectOne("recipeReview.text", vo.getNum());
 		model.addAttribute("text",text);
 		return "/homepage/reviewUpdate";
 	}
@@ -284,7 +284,7 @@ public class Recipe {
 	//리뷰 삭제
 	@RequestMapping("reviewRemove.eat")
 	public String reviewRemove(int num) {
-		sql.delete("recipe.reviewDelete",num);
+		sql.delete("recipeReview.delete",num);
 		return "/homepage/reviewRemove";
 	}
 	
@@ -295,7 +295,7 @@ public class Recipe {
 		String likeImg;
 		nivo.setRenum(vo.getNum());
 		nivo.setId(vo.getId());
-		int result = sql.selectOne("recipe.reviewCheck",nivo);
+		int result = sql.selectOne("recipeReview.check",nivo);
 		if(result == 0) {
 			likeImg = "/eatoday/resource/images/like.png";
 		} else {
@@ -312,12 +312,12 @@ public class Recipe {
 		String likeImg;
 		nivo.setRenum(vo.getNum());
 		nivo.setId(vo.getId());
-		int result = sql.selectOne("recipe.reviewCheck",nivo);
+		int result = sql.selectOne("recipeReview.check",nivo);
 		if(result == 0) {
-			sql.insert("recipe.reviewNiceInsert",nivo);
+			sql.insert("recipeReview.niceInsert",nivo);
 			likeImg = "/eatoday/resource/images/like2.png";
 		} else {
-			sql.delete("recipe.reviewNiceDelete",nivo);
+			sql.delete("recipeReview.niceDelete",nivo);
 			likeImg = "/eatoday/resource/images/like.png";
 		}
 		model.addAttribute("likeImg",likeImg);
@@ -327,7 +327,7 @@ public class Recipe {
 	// 좋아요 갯수 카운트
 	@RequestMapping("niceCountCheck.eat")
 	public String niceCount(int renum,Model model) {
-		int niceCountCheck = (Integer)sql.selectOne("recipe.niceCount",renum);
+		int niceCountCheck = (Integer)sql.selectOne("recipeReview.niceCount",renum);
 		model.addAttribute("niceCountCheck",niceCountCheck);
 		return "/homepage/niceCountCheck";
 	}

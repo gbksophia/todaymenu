@@ -68,7 +68,7 @@ public class adminpage {
 				String page = request.getParameter("page");
 				
 				//리뷰 카운트
-				int recount = sql.selectOne("recipe.ReviewCount");
+				int recount = sql.selectOne("recipeReview.count");
 				
 				if (page == null) {
 					page ="1";
@@ -81,7 +81,7 @@ public class adminpage {
 				pageList.put("startRow",startRow);
 				pageList.put("endRow",endRow);
 	
-				List recipeReviewVO = sql.selectList("recipe.reviewSelect",pageList);
+				List recipeReviewVO = sql.selectList("recipeReview.select",pageList);
 				
 				// 페이지 계산
 				int pageCount = recount / row + (recount % row == 0? 0:1);
@@ -98,12 +98,12 @@ public class adminpage {
 	
 	@RequestMapping("restaurantReview.eat")
 	public String restaurantReview(HttpServletRequest request,Model model) {
-		//레시피 리뷰 가져오기
+		//레스토랑 리뷰 가져오기
 		int row = 20;
 		String page = request.getParameter("page");
 		
 		//리뷰 카운트
-		int recount = sql.selectOne("restaurant.ReviewCount");
+		int recount = sql.selectOne("restaurantReview.count");
 		
 		if (page == null) {
 			page ="1";
@@ -116,7 +116,7 @@ public class adminpage {
 		pageList.put("startRow",startRow);
 		pageList.put("endRow",endRow);
 
-		List restaurantReviewVO = sql.selectList("restaurant.reviewSelect",pageList);
+		List restaurantReviewVO = sql.selectList("restaurantReview.select",pageList);
 		
 		// 페이지 계산
 		int pageCount = recount / row + (recount % row == 0? 0:1);
@@ -135,7 +135,7 @@ public class adminpage {
 	public String recipeReviewRemove(int num,HttpSession session) {
 		String admin = (String)session.getAttribute("loginID");
 		if(admin.equals("admin@eatoday.com")) {
-			sql.delete("recipe.reviewDelete",num);
+			sql.delete("recipeReview.delete",num);
 		}
 		return "/admin/reviewRemove";
 	}
@@ -144,7 +144,7 @@ public class adminpage {
 	public String restaurantReviewRemove(int num,HttpSession session) {
 		String admin = (String)session.getAttribute("loginID");
 		if(admin.equals("admin@eatoday.com")) {
-			sql.delete("restaurant.reviewDelete",num);
+			sql.delete("restaurantReview.delete",num);
 		}
 		return "/admin/reviewRemove";
 	}

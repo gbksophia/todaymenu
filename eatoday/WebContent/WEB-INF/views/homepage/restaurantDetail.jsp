@@ -355,6 +355,7 @@
                   </p>
                   <c:if test="${restaurantReviewVO.img != null }">
                   	<img src="/eatoday/resource/RecipeReview/${restaurantReviewVO.img }" height="400px">
+                 <br>
                   </c:if>
                   <c:if test="${sessionScope.loginID == restaurantReviewVO.id }">
            		
@@ -399,7 +400,6 @@
  				</c:if>
                    </div>
               </ul>
-    
       <!-- 댓글 달기 -->
               <div class="comment-form-wrap pt-5">
               	<c:choose>
