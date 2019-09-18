@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <title>addr+kwd</title>
-<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <style>
 .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap {position:relative;width:100%;height:350px;}
@@ -37,7 +37,7 @@
 </head>
 <body>
 <div id="map" style="width:100%;height:500px;"></div>
-
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=112ecff57900a2dd120c152f6c326b7b&libraries=services"></script>
 <script>
 //HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
@@ -162,8 +162,6 @@ function cateSearch(data){
 	}
 }
 </script>
-<h3>현재 접속위치 주변 추천 식당입니다!</h3>
-<p>현재 접속위치는 <a id="addr"></a> 입니다.</p>
-<p><a id="search"></a> 검색결과입니다!</p>
+<p><a id="addr"></a>주변의 ${cate} 검색결과입니다!</p>
 </body>
 </html>
