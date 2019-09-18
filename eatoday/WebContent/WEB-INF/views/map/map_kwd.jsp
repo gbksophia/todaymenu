@@ -206,7 +206,7 @@ function displayMarker(place) {
                 	<div class="icon">
 	                  <span class="icon-search"></span>
                   </div>
-                  <input type="text" name="search" id="search" class="form-control" placeholder="Search...">
+                  <input type="text" name="search" id="search" class="form-control" placeholder="Search... ex)관악구 카페">
                 </div>
               </form>
             </div>
