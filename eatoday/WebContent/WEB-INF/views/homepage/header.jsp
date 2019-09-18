@@ -32,6 +32,7 @@
 							<a class="dropdown-item" href="/eatoday/memberpage/jjimList.eat?">recipeNice</a>
 							<a class="dropdown-item" href="/eatoday/memberpage/recipeReview.eat">recipeReview</a>
 							<a class="dropdown-item" href="/eatoday/memberpage/restaurantReview.eat">restaurantReview</a>
+							<a class="dropdown-item" href="/eatoday/memberpage/logout.eat">logout</a>
 						</div>
 					</li>
 				</c:if>

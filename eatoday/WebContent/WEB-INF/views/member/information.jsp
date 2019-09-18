@@ -33,12 +33,6 @@
 		 document.frm.method="post";
 		 document.frm.submit();
 	}
-	function logout(){
-		 document.frm.action="logout.eat";
-		 document.frm.method="post";
-		 document.frm.submit();
-		}
-
 </script>
 </head>
 <body>
@@ -66,9 +60,6 @@
 					
 						
 					<div class="text-right p-t-8 p-b-31">
-					<a href="javascript:logout()">
-							로그아웃
-						</a>
 						<c:if test="${sessionScope.socialLogin == null }">
 						&nbsp;|&nbsp;
 						<a href="javascript:remove()">
