@@ -260,13 +260,6 @@ public class homepage {
 	public String mySupportList(HttpSession session,Model model,HttpServletRequest request) {
 		String id = (String)session.getAttribute("loginID");    // 로그인 중 아이디 가져오기
 		int result = 0;
-		if(id != null) {  // 로그인 중 일때 리스트 출력
-			List supportList = sql.selectList("support.myList",id);
-			result = 1;
-			model.addAttribute("supportList",supportList);
-			
-		}
-		
 		
 		// 페이지 나누기
 		int row = 20;
@@ -282,9 +275,16 @@ public class homepage {
 		int startRow = (currentPage-1) * row +1;
 		int endRow = currentPage * row;
 		Map pageList = new HashMap();
-
+		pageList.put("id",id);
 		pageList.put("startRow",startRow);
 		pageList.put("endRow",endRow);
+		
+		if(id != null) {  // 로그인 중 일때 리스트 출력
+			List supportList = sql.selectList("support.myList",pageList);
+			result = 1;
+			model.addAttribute("supportList",supportList);
+			
+		}
 		
 		// 페이지 계산
 		int pageCount = count / row + (count % row == 0? 0:1);
