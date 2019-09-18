@@ -103,7 +103,7 @@
 <c:if test="${sessionScope.loginID !=null }">
  <div class="form-group">
    <div class="text-right">
-   <input type="button" value="내 글 보기" class="btn py-3 px-4 btn-primary" onclick="location='mySupportList.eat'">
+   <input type="button" value="모든 글 보기" class="btn py-3 px-4 btn-primary" onclick="location='supportList.eat'">
    <input type="button" value="글 쓰기" class="btn py-3 px-4 btn-primary" onclick="location='supportWrite.eat'">
     </div>
   </div>

@@ -48,7 +48,11 @@
 		select * from support where num =#{value}
 	</select>
 	
-	<select id="myList" parameterType="String" resultType="supportVO">
-		select * from support where id = #{value}
+	<select id="myList" parameterType="map" resultType="supportVO">
+		<![CDATA[ select num,id,subject,content,img,notice,reg_date,nick,comments, r
+		from (select num,id,subject,content,img,notice,reg_date,nick,comments,rownum r
+		from (select num,id,subject,content,img,notice,reg_date, nick,comments
+		from support where id=#{id} order by reg_date desc ))
+	 	where r>=#{startRow} and r<=#{endRow} ]]>
 	</select>
 </mapper>
