@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import eatoday.vo.recipeReviewNiceVO;
-import eatoday.vo.recipeReviewVO;
+import eatoday.vo.restaurantReviewVO;
 import eatoday.vo.restaurantVO;
 
 @Controller
@@ -128,7 +128,7 @@ public class Restaurant {
 		request.setCharacterEncoding("UTF-8");
 		MultipartFile mf = request.getFile("img");
 		String orgName = mf.getOriginalFilename();
-		recipeReviewVO vo = new recipeReviewVO();
+		restaurantReviewVO vo = new restaurantReviewVO();
 		if(orgName != "") {
 		//이미지 업로드
 		String path = request.getRealPath("//resource//restaurantReview");
@@ -164,7 +164,7 @@ public class Restaurant {
 	
 	//리뷰 수정
 	@RequestMapping("restaurantReviewUpdate.eat")
-	public String reviewUpdate(recipeReviewVO vo,Model model) {
+	public String reviewUpdate(restaurantReviewVO vo,Model model) {
 		sql.update("restaurantReview.update",vo);
 		String text = sql.selectOne("restaurantReview.text", vo.getNum());
 		model.addAttribute("text",text);
@@ -180,7 +180,7 @@ public class Restaurant {
 	
 	// 페이지 첫 실행시만 사용 댓글 클릭 여부 체크
 	@RequestMapping("restaurantNice.eat")
-	public String restaurantNice(recipeReviewVO vo,Model model) {
+	public String restaurantNice(restaurantReviewVO vo,Model model) {
 		recipeReviewNiceVO nivo = new recipeReviewNiceVO();
 		String likeImg;
 		nivo.setRenum(vo.getNum());
@@ -197,7 +197,7 @@ public class Restaurant {
 	
 	// 댓글 좋아요 클릭 이벤트
 	@RequestMapping("restaurantNiceClick.eat")
-	public String restaurantNiceClick(recipeReviewVO vo,Model model) {
+	public String restaurantNiceClick(restaurantReviewVO vo,Model model) {
 		recipeReviewNiceVO nivo = new recipeReviewNiceVO();
 		String likeImg;
 		nivo.setRenum(vo.getNum());
