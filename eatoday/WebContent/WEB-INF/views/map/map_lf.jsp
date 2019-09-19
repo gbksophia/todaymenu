@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>addr+kwd</title>
+<title>map+lf</title>
 
 <style>
 .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
@@ -14,7 +14,7 @@
 #category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
 #category li:last-child{margin-right:0;border-right:0;}
 #category li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
-#category li .category_bg {background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
+#category li .category_bg {background:url(/eatoday/resource/images/places_category.png) no-repeat;}
 #category li .bank {background-position: -10px 0;}
 #category li .mart {background-position: -10px -36px;}
 #category li .pharmacy {background-position: -10px -72px;}
@@ -37,7 +37,7 @@
 </head>
 <body>
 <div id="map" style="width:100%;height:500px;"></div>
-<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="/eatoday/resource/js/jquery.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=112ecff57900a2dd120c152f6c326b7b&libraries=services"></script>
 <script>
 //HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
@@ -45,7 +45,6 @@ if (navigator.geolocation) {
 
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다 (위치 정보)
 	navigator.geolocation.getCurrentPosition(function(position) {
-        
 		var lat = position.coords.latitude, // 위도
             lon = position.coords.longitude; // 경도
                     
@@ -71,6 +70,7 @@ if (navigator.geolocation) {
 						console.log("ajax success");
 						cateSearch(data.trim());
 
+						document.getElementById('cate').innerHTML=data.substr(data.length-3,3);
 					}
 				});
 			}
@@ -84,8 +84,7 @@ if (navigator.geolocation) {
 
 ////////////////////////////////////////////////////////////////
 function cateSearch(data){
-	
-	console.log('cateSearch'+data);
+	console.log('cateSearch: '+data);
 	// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 	var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
 	    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
@@ -161,6 +160,9 @@ function cateSearch(data){
 	}
 }
 </script>
-<p><a id="addr"></a>주변의 ${cate} 검색결과입니다!</p>
+<p id="addr"></p>
+&nbsp;주변의
+<p id="cate"></p>
+&nbsp;검색결과입니다!
 </body>
 </html>

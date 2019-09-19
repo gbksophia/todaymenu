@@ -39,7 +39,7 @@
 	background: #1d150b;
 }
 </style>
-    
+
 </head>
 <body>
 <jsp:include page="header.jsp" />
@@ -53,8 +53,8 @@
 					<span class="subheading">Welcome</span>
 					<h1 class="mb-4">오늘 뭐 먹지? 고민은 끝났다.</h1>
 					<p class="mb-4 mb-md-5">망쳐도 부담 없고 어설퍼도 괜찮은 레시피와 매일 주변에서 먹을만한 맛집 메뉴가 찾아온다!</p>
-					<p><a href="menu.eat" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
-					   <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
+					<p><a href="#rest" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
+					   <a href="#reci" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
 				</div>
 			</div>
 		</div>
@@ -69,8 +69,8 @@
 					<h1 class="mb-4">Struggling with<br> What to Eat Today? </h1>
 					<p class="mb-4 mb-md-5">Here are the Quick and Healthy Meal Recipes And Best Places to Eat in Korea<br>
 					For You To Choose!</p>
-					<p><a href="menu.eat" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
-					   <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
+					<p><a href="#rest" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
+					   <a href="#reci" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
 				</div>
 			</div>
 		</div>
@@ -86,8 +86,8 @@
 					<p class="mb-4 mb-md-5">망쳐도 부담 없고 어설퍼도 괜찮은 레시피와 매일 주변에서 먹을만한 맛집 메뉴가 찾아온다! 
 					Here are the Quick and Healthy Meal Recipes And Best Places to Eat in Korea<br>
 					For You To Choose!</p>
-					<p><a href="menu.eat" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
-					   <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
+					<p><a href="#rest" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
+					   <a href="#reci" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
 				</div>
 			</div>
 		</div>
@@ -107,13 +107,12 @@
 	</div>
 </section>
 
-
 <!-- 로그인 하지 않은 상태일때 표시되는 섹션 - 레스토랑 카테고리 -->
 <c:if test="${sessionScope.loginID == null}">
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resource/images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 	<div class="overlay"></div>
 	<div class="container">
-		<div class="row justify-content-center">
+		<div id="rest" class="row justify-content-center">
 		<h1>레스토랑</h1>
 			<!--============================= FIND PLACES =============================-->
 			<section class="main-block">
@@ -229,7 +228,7 @@
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resourceimages/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 	<div class="overlay"></div>
 	<div class="container">
-		<div class="row justify-content-center">
+		<div id="reci"class="row justify-content-center">
 			<h1>${sessionScope.loginID }님의 추천 레시피</h1><br/>
 			<div class="row" style = "margin-top:100px;">
 				<c:forEach var="rcp" items="${recipeList }">
@@ -262,7 +261,7 @@
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resourceimages/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 	<div class="overlay"></div>
 	<div class="container">
-		<div class="row justify-content-center">
+		<div id="rest" class="row justify-content-center">
 			<h1>${sessionScope.loginID }님의 추천 식당</h1><br/>
 			<jsp:include page="/map/map_lf.eat" />
 		</div>
