@@ -180,4 +180,9 @@
  	<select id="cateImg" resultType="String" parameterType="String">
  	 <![CDATA[	select main_name from( select main_name from recipe where cate=#{value} order by DBMS_RANDOM.RANDOM ) where rownum <= 1 ]]>
  	</select>
+ 	
+ 	<!-- 레시피 삭제 -->
+ 	<delete id="delete" parameterType="String">
+ 		delete from recipe where cnum=#{value}
+ 	</delete>
 </mapper>

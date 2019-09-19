@@ -651,4 +651,18 @@ public class Recipe {
 
 		return "/homepage/recipeCreateDetailPro";
 	}
+	
+	
+	//레시피 삭제
+	@RequestMapping("recipeDelete.eat")
+	public String recipeDelete(Model model,HttpSession session,String cnum,String cate) {
+		String admin = (String)session.getAttribute("loginID");
+		if(admin.equals("admin@eatoday.com")) {
+			sql.delete("recipe.delete",cnum);
+		}
+		model.addAttribute("cate",cate);
+		return "/homepage/recipeDelete";
+	}
+	
+	
 }

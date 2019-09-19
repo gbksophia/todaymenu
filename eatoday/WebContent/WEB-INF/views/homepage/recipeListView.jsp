@@ -224,10 +224,6 @@
 		            </div> <!-- "nav ftco-animate nav-pills justify-content-center" -->
 		          </div> <!-- "col-md-12 nav-link-wrap mb-5" -->
 
-		          
-				<div class="text-right">
-   					<input type="button" value="레시피 등록" class="btn py-3 px-4 btn-primary" onclick="location='recipeCreate.eat'">
-    			</div> <!--"text-right"  -->
     			
     			</div> <!-- "row" -->
 		        </div> <!-- "col-lg-12 ftco-animate p-md-5" -->
