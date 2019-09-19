@@ -241,12 +241,8 @@
 		    <c:forEach var = "rcp" items = "${recipeList}" >	              	
 		     <div class="col-md-3">
 				<div class="menu-entry">
-				<c:if test="${main_name == ''}">
-				<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/default.jpg);"></a>
-				</c:if>
-				<c:if test = "${main_name != '' }">
 					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcp.getMain_name()});"></a>
-					</c:if>
+
 					<div class="text text-center pt-4">
 						<h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">${rcp.getTitle() }</a></h3>
 						<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">자세히보기</a>	
