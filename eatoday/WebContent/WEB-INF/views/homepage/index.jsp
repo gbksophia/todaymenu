@@ -97,17 +97,6 @@
 <section class="ftco-intro">
 </section>
 
-<!-- 현재위치 주변 카테고리 지도 -->
-<section id="mapbg" class="ftco-section">
-	<div class="container">
-		<div class="row">
-			<div class="catMap">
-				<jsp:include page="/map/map_gc.eat"/>
-			</div>
-		</div>
-	</div>
-</section>
-
 <section class="ftco-counter ftco-bg-dark img" style="background-image: url(/eatoday/resource/images/bg_2.jpg);">
 <!-- 비회원 식당 출력 -->
 <c:if test="${sessionScope.loginID == null}">
@@ -333,6 +322,20 @@
 		</div>
 	</div>
 </section>
+
+
+
+</section>
+
+<!-- 현재위치 주변 카테고리 지도 -->
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="opacity: 0.7;">
+	<div class="container">
+		<div class="row">
+			<div class="catMap">
+				<jsp:include page="/map/map_gc.eat"/>
+			</div>
+		</div>
+	</div>
 </section>
 <jsp:include page="footer.jsp" />
 
