@@ -9,6 +9,11 @@
 		values (#{cate}, #{cnum}, #{main_name}, #{title}, #{mate}, #{pro})
 	</insert>
 	
+	<!-- 레시피 세부 사진 저장 -->
+	<insert id = "insertImg" parameterType="recipeImgVO">
+		insert into recipe_pro(cnum, img1, img2)
+		values (#{cnum}, #{img1}, #{img2})
+	</insert>
 	<!-- 레시피 갯수 -->
 	<select id="count" resultType="int">
 		select count(*) from recipe
@@ -118,7 +123,10 @@
  	cnum이 일정한 분류가 없어서 +1000을 한다음 순차적으로 생성되게 하였습니다.
  	-->
  	<select id = "recipeCnum" parameterType = "recipeVO" resultType = "int">
+ 	<!--  
  	 <![CDATA[	select cnum+1 from recipe where rownum <=1 ]]>
+ 	 -->
+ 	 select count(*) + 1000 from recipe
  	</select>
  	
  	<!-- 레시피 찜 추가 -->

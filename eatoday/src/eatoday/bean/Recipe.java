@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import eatoday.vo.recipeImgVO;
 import eatoday.vo.recipeReviewNiceVO;
 import eatoday.vo.recipeReviewVO;
 import eatoday.vo.recipeVO;
@@ -437,5 +438,57 @@ public class Recipe {
 		sql.insert("recipe.insert", vo);
 		
 		return "/homepage/recipeCreatePro";
+	}
+	
+	@RequestMapping("recipeCreateDetail.eat")
+	public String recipeCreateDetail(Model model) {
+		int recipeCnum = sql.selectOne("recipe.recipeCnum");
+		
+		model.addAttribute("recipeCnum", recipeCnum);
+		return "/homepage/recipeCreateDetail";
+	}
+	
+	@RequestMapping("recipeCreateDetailPro.eat")
+	public String recipeCreateDetailPro(MultipartHttpServletRequest request, Model model, HttpSession session) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		recipeImgVO vo = new recipeImgVO();
+		
+		String cnum = request.getParameter("cnum");
+		vo.setCnum(cnum);
+		//¿ÃπÃ¡ˆ
+		MultipartFile mf = request.getFile("img1");
+		String orgName = mf.getOriginalFilename();
+		
+		MultipartFile mf2 = request.getFile("img2");
+		String orgName1 = mf2.getOriginalFilename();
+
+		if(orgName != "") {
+			String path = request.getRealPath("//resource/RecipePro");
+			String ext = orgName.substring(orgName.lastIndexOf('.'));
+			sql.insert("recipeReview.imgCountInsert");
+			int num = sql.selectOne("recipeReview.imgCount");
+			
+			String newName = "image"+num+ext;
+			File copyFile = new File(path + "//" + newName);
+			mf.transferTo(copyFile);
+			vo.setImg1(newName);
+		}
+		
+		if(orgName1 != "") {
+			String path = request.getRealPath("//resource/RecipePro");
+			String ext = orgName1.substring(orgName1.lastIndexOf('.'));
+			sql.insert("recipeReview.imgCountInsert");
+			int num = sql.selectOne("recipeReview.imgCount");
+			
+			String newName1 = "image"+num+ext;
+			File copyFile = new File(path + "//" + newName1);
+			mf2.transferTo(copyFile);;
+			vo.setImg2(newName1);
+		}
+		
+		sql.insert("recipe.insertImg", vo);
+		
+		
+		return "/homepage/recipeCreateDetailPro";
 	}
 }

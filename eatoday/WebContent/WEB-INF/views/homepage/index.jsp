@@ -79,7 +79,7 @@
 					<p class="mb-4 mb-md-5">망쳐도 부담 없고 어설퍼도 괜찮은 레시피와 매일 주변에서 먹을만한 맛집 메뉴가 찾아온다! 
 					Here are the Quick and Healthy Meal Recipes And Best Places to Eat in Korea<br>
 					For You To Choose!</p>
-					<p><a href="menu.eat" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
+					<p><a href="#restaurant" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
 					   <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
 				</div>
 			</div>
@@ -249,7 +249,7 @@
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row justify-content-center">
-			<h1>${sessionScope.loginID }님의 추천 식당</h1><br/>
+			<h1 class = "restaurant">${sessionScope.loginID }님의 추천 식당</h1><br/>
 			<jsp:include page="/map/map_lf.eat" />
 		</div>
 	</div>
