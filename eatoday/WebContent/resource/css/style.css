@@ -8762,7 +8762,8 @@ textarea.form-control {
 
 #section-counter {
   position: relative;
-  z-index: 0; }
+  z-index: 0;
+ }
   #section-counter .overlay {
     position: absolute;
     top: 0;
@@ -8770,7 +8771,8 @@ textarea.form-control {
     right: 0;
     bottom: 0;
     background: #000;
-    opacity: .5; }
+    opacity: .5;
+ }
 
 .ftco-counter {
   padding: 7em 0; }

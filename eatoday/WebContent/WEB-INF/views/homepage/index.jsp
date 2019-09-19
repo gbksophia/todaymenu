@@ -108,9 +108,10 @@
 	</div>
 </section>
 
+<section class="ftco-counter ftco-bg-dark img" style="background-image: url(/eatoday/resource/images/bg_2.jpg);">
 <!-- 비회원 식당 출력 -->
 <c:if test="${sessionScope.loginID == null}">
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resource/images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="opacity: 0.7;">
 	<div class="overlay"></div>
 	<div class="container">
 		<div id="rest" class="row justify-content-center">
@@ -222,7 +223,7 @@
 	</div>
 </section>
 <!-- 비회원 추천레시피(랜덤) -->
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resource/images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="opacity: 0.7;">
 	<div class="overlay"></div>
 	<div class="container">
 		<div id="reci"class="row justify-content-center">
@@ -258,7 +259,7 @@
 <!-- 로그인 했을때만 보이는 섹션 -->
 <c:if test="${sessionScope.loginID != null}">
 <!-- 개인 추천 레시피 -->
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resource/images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="opacity: 0.7;">
 	<div class="overlay"></div>
 	<div class="container">
 		<div id="reci"class="row justify-content-center">
@@ -291,7 +292,7 @@
 </section>
 
 <!-- 개인 추천 식당 -->
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resource/images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="opacity: 0.7;">
 	<div class="overlay"></div>
 	<div class="container">
 		<div id="rest" class="row justify-content-center">
@@ -302,7 +303,7 @@
 </section>
 </c:if>
 
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resource/images/bg_2.jpg);" data-stellar-background-ratio="0.5">
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="opacity: 0.7;">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row justify-content-center">
@@ -332,7 +333,7 @@
 		</div>
 	</div>
 </section>
-
+</section>
 <jsp:include page="footer.jsp" />
 
 <!-- loader -->
