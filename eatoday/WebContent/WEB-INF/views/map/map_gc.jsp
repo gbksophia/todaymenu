@@ -6,22 +6,22 @@
     <meta charset="utf-8">
     <title>geo+cat</title>
 <style>
-.map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
-.map_wrap {position:relative;width:100%;height:350px;}
-#category {position:absolute;top:50px;left:50px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
-#category li {float:left;list-style: none;width:50px;px;border-right:1px solid #acacac;padding:6px 0;text-align: center; cursor: pointer;}
-#category li.on {background: #eee;}
-#category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
-#category li:last-child{margin-right:0;border-right:0;}
-#category li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
-#category li .category_bg {background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
-#category li .bank {background-position: -10px 0;}
-#category li .mart {background-position: -10px -36px;}
-#category li .pharmacy {background-position: -10px -72px;}
-#category li .oil {background-position: -10px -108px;}
-#category li .cafe {background-position: -10px -144px;}
-#category li .store {background-position: -10px -180px;}
-#category li.on .category_bg {background-position-x:-46px;}
+.map_wrapc, .map_wrapc * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
+.map_wrapc {position:relative;width:100%;height:350px;}
+#categoryc {position:absolute;top:50px;left:50px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
+#categoryc li {float:left;list-style: none;width:50px;px;border-right:1px solid #acacac;padding:6px 0;text-align: center; cursor: pointer;}
+#categoryc li.on {background: #eee;}
+#categoryc li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
+#categoryc li:last-child{margin-right:0;border-right:0;}
+#categoryc li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
+#categoryc li .category_bg {background:url(/eatoday/resource/images/places_category.png) no-repeat;}
+#categoryc li .bank {background-position: -10px 0;}
+#categoryc li .mart {background-position: -10px -36px;}
+#categoryc li .pharmacy {background-position: -10px -72px;}
+#categoryc li .oil {background-position: -10px -108px;}
+#categoryc li .cafe {background-position: -10px -144px;}
+#categoryc li .store {background-position: -10px -180px;}
+#categoryc li.on .category_bg {background-position-x:-46px;}
 .placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
 .placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
 .placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
@@ -36,9 +36,9 @@
 </head>
 <body>
 
-<div class="map_wrap">
-    <div id="map" style="width:100%;height:500px;position:relative;overflow:hidden;"></div>
-    <ul id="category">
+<div class="map_wrapc">
+    <div id="mapc" style="width:100%;height:350px;position:relative;overflow:hidden;"></div>
+    <ul id="categoryc">
     	<li id="FD6" data-order="1"> 
             <span class="category_bg mart"></span>
             음식점
@@ -67,7 +67,7 @@ var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}),
     markers = [], // 마커를 담을 배열입니다
     currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
  
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+var mapContainer = document.getElementById('mapc'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
@@ -212,7 +212,7 @@ function displayPlaceInfo (place) {
 
 // 각 카테고리에 클릭 이벤트를 등록합니다
 function addCategoryClickEvent() {
-    var category = document.getElementById('category'),
+    var category = document.getElementById('categoryc'),
         children = category.children;
 
     for (var i=0; i<children.length; i++) {
@@ -240,7 +240,7 @@ function onClickCategory() {
 
 // 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
 function changeCategoryClass(el) {
-    var category = document.getElementById('category'),
+    var category = document.getElementById('categoryc'),
         children = category.children,
         i;
 

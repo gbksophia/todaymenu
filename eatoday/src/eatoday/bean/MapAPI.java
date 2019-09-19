@@ -89,6 +89,7 @@ public class MapAPI {
 					kwd = d3+cate;
 					System.out.println(kwd);
 					model.addAttribute("kwd", kwd);
+					model.addAttribute("cate", cate);
 				}
 			}
 		} catch (Exception e) {

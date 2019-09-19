@@ -25,14 +25,21 @@
 	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <style type="text/css">
-    	.owl-carousel .home-slider .slider-item .slider-text .subheading{
-    		font-weight:300;
-    	}
-    
-    </style>
-    
-    
+<style type="text/css">
+.owl-carousel .home-slider .slider-item .slider-text .subheading{
+	font-weight:300;
+}
+
+.catMap {
+	width: 100%;
+	margin: -100px auto;
+}
+
+#mapbg {
+	background: #1d150b;
+}
+</style>
+
 </head>
 <body>
 <jsp:include page="header.jsp" />
@@ -46,8 +53,8 @@
 					<span class="subheading">Welcome</span>
 					<h1 class="mb-4">오늘 뭐 먹지? 고민은 끝났다.</h1>
 					<p class="mb-4 mb-md-5">망쳐도 부담 없고 어설퍼도 괜찮은 레시피와 매일 주변에서 먹을만한 맛집 메뉴가 찾아온다!</p>
-					<p><a href="menu.eat" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
-					   <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
+					<p><a href="#rest" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
+					   <a href="#reci" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
 				</div>
 			</div>
 		</div>
@@ -62,8 +69,8 @@
 					<h1 class="mb-4">Struggling with<br> What to Eat Today? </h1>
 					<p class="mb-4 mb-md-5">Here are the Quick and Healthy Meal Recipes And Best Places to Eat in Korea<br>
 					For You To Choose!</p>
-					<p><a href="menu.eat" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
-					   <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
+					<p><a href="#rest" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
+					   <a href="#reci" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
 				</div>
 			</div>
 		</div>
@@ -79,8 +86,13 @@
 					<p class="mb-4 mb-md-5">망쳐도 부담 없고 어설퍼도 괜찮은 레시피와 매일 주변에서 먹을만한 맛집 메뉴가 찾아온다! 
 					Here are the Quick and Healthy Meal Recipes And Best Places to Eat in Korea<br>
 					For You To Choose!</p>
+<<<<<<< HEAD
 					<p><a href="#restaurant" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
 					   <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
+=======
+					<p><a href="#rest" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
+					   <a href="#reci" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
+>>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
 				</div>
 			</div>
 		</div>
@@ -90,15 +102,22 @@
 <section class="ftco-intro">
 </section>
 
-<section class="ftco-about d-md-flex">
+<section id="mapbg" class="ftco-section">
+	<div class="container">
+		<div class="row">
+			<div class="catMap">
+				<jsp:include page="/map/map_gc.eat"/>
+			</div>
+		</div>
+	</div>
 </section>
 
 <!-- 로그인 하지 않은 상태일때 표시되는 섹션 - 레스토랑 카테고리 -->
 <c:if test="${sessionScope.loginID == null}">
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resource/images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 	<div class="overlay"></div>
 	<div class="container">
-		<div class="row justify-content-center">
+		<div id="rest" class="row justify-content-center">
 		<h1>레스토랑</h1>
 			<!--============================= FIND PLACES =============================-->
 			<section class="main-block">
@@ -203,7 +222,6 @@
 					</div>
 				</div>
 			</section>
-			<jsp:include page="/map/map_gc.eat"/>
 		</div>
 	</div>
 </section>
@@ -215,7 +233,7 @@
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resourceimages/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 	<div class="overlay"></div>
 	<div class="container">
-		<div class="row justify-content-center">
+		<div id="reci"class="row justify-content-center">
 			<h1>${sessionScope.loginID }님의 추천 레시피</h1><br/>
 			<div class="row" style = "margin-top:100px;">
 				<c:forEach var="rcp" items="${recipeList }">
@@ -248,8 +266,12 @@
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resourceimages/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 	<div class="overlay"></div>
 	<div class="container">
+
 		<div class="row justify-content-center">
 			<h1 class = "restaurant">${sessionScope.loginID }님의 추천 식당</h1><br/>
+
+		<div id="rest" class="row justify-content-center">
+			<h1>${sessionScope.loginID }님의 추천 식당</h1><br/>
 			<jsp:include page="/map/map_lf.eat" />
 		</div>
 	</div>
@@ -263,7 +285,7 @@
 			<div class="col-md-10">
 				<h1>우리의 레시피 & 식당 갯수는?</h1><br/>
 				<div class="row">
-					<div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+					<div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 						<div class="block-18 text-center">
 							<div class="text">
 								<div class="icon"><span class="flaticon-choices"></span></div>
@@ -272,7 +294,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+					<div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 						<div class="block-18 text-center">
 							<div class="text">
 								<div class="icon"><span class="flaticon-coffee-cup"></span></div>
@@ -281,24 +303,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-						<div class="block-18 text-center">
-							<div class="text">
-								<div class="icon"><span class="flaticon-coffee-cup"></span></div>
-								<strong class="number" data-number="10567">0</strong>
-								<span>일식</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-						<div class="block-18 text-center">
-							<div class="text">
-								<div class="icon"><span class="flaticon-coffee-cup"></span></div>
-								<strong class="number" data-number="900">0</strong>
-								<span>양식</span>
-							</div>
-						</div>
-					</div> -->
 				</div>
 			</div>
 		</div>
