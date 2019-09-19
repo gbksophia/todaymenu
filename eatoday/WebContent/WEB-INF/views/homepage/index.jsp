@@ -25,13 +25,20 @@
 	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <style type="text/css">
-    	.owl-carousel .home-slider .slider-item .slider-text .subheading{
-    		font-weight:300;
-    	}
-    
-    </style>
-    
+<style type="text/css">
+.owl-carousel .home-slider .slider-item .slider-text .subheading{
+	font-weight:300;
+}
+
+.catMap {
+	width: 100%;
+	margin: -100px auto;
+}
+
+#mapbg {
+	background: #1d150b;
+}
+</style>
     
 </head>
 <body>
@@ -90,12 +97,20 @@
 <section class="ftco-intro">
 </section>
 
-<section class="ftco-about d-md-flex">
+<section id="mapbg" class="ftco-section">
+	<div class="container">
+		<div class="row">
+			<div class="catMap">
+				<jsp:include page="/map/map_gc.eat"/>
+			</div>
+		</div>
+	</div>
 </section>
+
 
 <!-- 로그인 하지 않은 상태일때 표시되는 섹션 - 레스토랑 카테고리 -->
 <c:if test="${sessionScope.loginID == null}">
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resource/images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row justify-content-center">
@@ -203,7 +218,6 @@
 					</div>
 				</div>
 			</section>
-			<jsp:include page="/map/map_gc.eat"/>
 		</div>
 	</div>
 </section>
@@ -263,7 +277,7 @@
 			<div class="col-md-10">
 				<h1>우리의 레시피 & 식당 갯수는?</h1><br/>
 				<div class="row">
-					<div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+					<div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 						<div class="block-18 text-center">
 							<div class="text">
 								<div class="icon"><span class="flaticon-choices"></span></div>
@@ -272,7 +286,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+					<div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 						<div class="block-18 text-center">
 							<div class="text">
 								<div class="icon"><span class="flaticon-coffee-cup"></span></div>
@@ -281,24 +295,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-						<div class="block-18 text-center">
-							<div class="text">
-								<div class="icon"><span class="flaticon-coffee-cup"></span></div>
-								<strong class="number" data-number="10567">0</strong>
-								<span>일식</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-						<div class="block-18 text-center">
-							<div class="text">
-								<div class="icon"><span class="flaticon-coffee-cup"></span></div>
-								<strong class="number" data-number="900">0</strong>
-								<span>양식</span>
-							</div>
-						</div>
-					</div> -->
 				</div>
 			</div>
 		</div>

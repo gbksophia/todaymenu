@@ -37,7 +37,7 @@
 <body>
 
 <div class="map_wrap">
-    <div id="map" style="width:100%;height:500px;position:relative;overflow:hidden;"></div>
+    <div id="map" style="width:100%;height:350px;position:relative;overflow:hidden;"></div>
     <ul id="category">
     	<li id="FD6" data-order="1"> 
             <span class="category_bg mart"></span>

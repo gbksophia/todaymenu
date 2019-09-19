@@ -48,7 +48,6 @@
 <script src="/eatoday/resource/js/bootstrap-datepicker.js"></script>
 <script src="/eatoday/resource/js/jquery.timepicker.min.js"></script>
 <script src="/eatoday/resource/js/scrollax.min.js"></script>
-<script src="/eatoday/resource/js/google-map.js"></script>
 <script src="/eatoday/resource/js/main.js"></script>
     
 </body>
