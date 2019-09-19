@@ -86,13 +86,8 @@
 					<p class="mb-4 mb-md-5">망쳐도 부담 없고 어설퍼도 괜찮은 레시피와 매일 주변에서 먹을만한 맛집 메뉴가 찾아온다! 
 					Here are the Quick and Healthy Meal Recipes And Best Places to Eat in Korea<br>
 					For You To Choose!</p>
-<<<<<<< HEAD
-					<p><a href="#restaurant" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
-					   <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
-=======
 					<p><a href="#rest" class="btn btn-primary p-3 px-xl-4 py-xl-3">식당 찾기</a>
 					   <a href="#reci" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">만들어 먹기</a></p>
->>>>>>> branch 'master' of https://github.com/muzmj/todaymenu
 				</div>
 			</div>
 		</div>
@@ -223,6 +218,14 @@
 				</div>
 			</section>
 		</div>
+		<div id="reci" class="row justify-content-center">
+			<h1>레시피</h1>
+			<section class="main-block">
+				<div class="container">
+					<p>요기에다가 비회원 랜덤 레시피 촤라라락</p>
+				</div>
+			</section>
+		</div>
 	</div>
 </section>
 </c:if>
@@ -266,10 +269,6 @@
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resourceimages/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 	<div class="overlay"></div>
 	<div class="container">
-
-		<div class="row justify-content-center">
-			<h1 class = "restaurant">${sessionScope.loginID }님의 추천 식당</h1><br/>
-
 		<div id="rest" class="row justify-content-center">
 			<h1>${sessionScope.loginID }님의 추천 식당</h1><br/>
 			<jsp:include page="/map/map_lf.eat" />

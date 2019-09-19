@@ -117,12 +117,22 @@
 <jsp:include page="header.jsp" />
 <!-- END nav -->
 <section class="home-slider owl-carousel">
-	<div class="slider-item" style="background-image: url(/eatoday/resource/images/recipe_bg.jpg);" data-stellar-background-ratio="0.5">
+	<!-- <div class="slider-item" style="background-image: url(/eatoday/resource/images/recipe_bg.jpg);" data-stellar-background-ratio="0.5"> -->
+	<c:set var = "cate" value = "${cate}"/>
+	<c:choose>
+		<c:when test="${cate == '한식' }"><div class="slider-item" style="background-image: url(/eatoday/resource/images/rest_hs.jpg);" data-stellar-background-ratio="0.5"></c:when>
+		<c:when test="${cate == '중식' }"><div class="slider-item" style="background-image: url(/eatoday/resource/images/rest_js.jpg);" data-stellar-background-ratio="0.5"></c:when>
+		<c:when test="${cate == '일식' }"><div class="slider-item" style="background-image: url(/eatoday/resource/images/rest_is.jpg);" data-stellar-background-ratio="0.5"></c:when>
+		<c:when test="${cate == '양식' }"><div class="slider-item" style="background-image: url(/eatoday/resource/images/rest_ys.jpg);" data-stellar-background-ratio="0.5"></c:when>
+		<c:when test="${cate == '분식' }"><div class="slider-item" style="background-image: url(/eatoday/resource/images/rest_bs.jpg);" data-stellar-background-ratio="0.5"></c:when>
+		<c:when test="${cate == '카페' }"><div class="slider-item" style="background-image: url(/eatoday/resource/images/rest_cf.jpg);" data-stellar-background-ratio="0.5"></c:when>
+		<c:when test="${cate == '기타' }"><div class="slider-item" style="background-image: url(/eatoday/resource/images/rest_guitar.png);" data-stellar-background-ratio="0.5"></c:when>
+	</c:choose>
 	<div class="overlay"></div>
 		<div class="container">
 			<div class="row slider-text justify-content-center align-items-center">
 				<div class="col-md-7 col-sm-12 text-center ftco-animate">
-					<c:set var = "cate" value = "${cate}"/>     	
+					<c:set var = "cate" value = "${cate}"/>
 					<c:choose>
 						<c:when test="${cate == '한식' }"><h1 class="mb-3 mt-5 bread">한식</h1></c:when>
 						<c:when test="${cate == '중식' }"><h1 class="mb-3 mt-5 bread">중식</h1></c:when>
@@ -140,18 +150,18 @@
 </section>
 
 <!-- 식당 검색기능 -->
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5";>
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" data-stellar-background-ratio="0.5";>
 	<div class="container">
-            <div class="hd_column2">
-              <form name="searchBar" action="searchResult.eat" onSubmit="return searchCheck();" class="search-form">
-                <div class="form-group">
-                	<div class="icon">
-	                  <span class="icon-search"></span>
-                  </div>
-                  <input type="text" name="search" id="search" class="form-control" placeholder="Search... ex)관악구 카페">
-                </div>
-              </form>
-            </div>
+	    <div class="hd_column2">
+	      <form name="searchBar" action="searchResult.eat" onSubmit="return searchCheck();" class="search-form">
+	        <div class="form-group">
+	        	<div class="icon">
+	           <span class="icon-search"></span>
+	          </div>
+	          <input type="text" name="search" id="search" class="form-control" placeholder="Search... ex)관악구 카페">
+	        </div>
+	      </form>
+	    </div>
 	</div>
 </section>
 
