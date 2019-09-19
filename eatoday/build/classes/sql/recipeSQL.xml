@@ -80,7 +80,7 @@
 	
 	
 	<select id="recipeRandomMain" resultType="recipeVO">
-	<![CDATA[	select * from recipe where rownum <=9 order by DBMS_RANDOM.RANDOM]]>
+	<![CDATA[select * from (select * from recipe order by DBMS_RANDOM.RANDOM)where rownum <=9]]>
 	</select>
 	
 	<!-- 관련 레시피 랜덤 출력 -->
