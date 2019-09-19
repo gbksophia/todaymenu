@@ -160,18 +160,17 @@
 	<br>
 <h4>재료를 입력하세요</h4>	
 	<div class="form-group">
-	<textarea name="mate" cols="30" rows="10" class="form-control" placeholder="재료를 입력하세요"></textarea>
+	<textarea name="mate" cols="30" rows="10" class="form-control" placeholder="ex)주재료 Enter 밥,김가루... Enter 양념  Enter 간장....Enter"></textarea>
 	</div> 
 	<br>
 <h4>조리법을 입력하세요</h4>
 	<div class="form-group">
-	<textarea name="pro" cols="30" rows="10" class="form-control" placeholder="조리법을 입력하세요"></textarea>
+	<textarea name="pro" cols="30" rows="10" class="form-control" placeholder="ex)1.밥을 준비합니다. Enter 2.뭉칩니다. Enter ..."></textarea>
 	</div> 
        <div class="form-group">
-      <input type="submit" value="레시피 등록"  class="btn py-3 px-4 btn-primary"  />
+      <input type="submit" value="다음으로"  class="btn py-3 px-4 btn-primary"  />
       </div>
 </form>
-   
  </div>
 </div>
 <jsp:include page="footer.jsp" />
