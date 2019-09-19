@@ -58,20 +58,29 @@
 
  <h1>${recipeCnum - 1}</h1><br>
  
-<h4>카테고리를 선택해주세요</h4><br>
+<h4>레시피 세부 사진을 등록해주세요 (*사진은 8개까지만 등록됩니다!)</h4><br>
 
 <input type="hidden" name="cnum" value="${recipeCnum - 1}">
 <br><br>
-<h4>레시피 사진을 등록해주세요</h4>
+<h4>레시피 1번 사진을 등록해주세요</h4>
 	<div class="form-group">
 	<input type="file" name="img1" class="form-control"  />
 	</div>
 	<br>
-<h4>레시피 사진을 등록해주세요</h4>
+<h4>레시피 2번 사진을 등록해주세요</h4>
 	<div class="form-group">
 	<input type="file" name="img2" class="form-control"  />
 	</div>
+
+<h4>레시피 3번 사진을 등록해주세요</h4>
+	<div class="form-group">
+	<input type="file" name="img3" class="form-control"  />
+	</div>
 	
+<h4>레시피 4번 사진을 등록해주세요</h4>
+	<div class="form-group">
+	<input type="file" name="img4" class="form-control"  />
+	</div>	
 	       <div class="form-group">
       <input type="submit" value="레시피 등록"  class="btn py-3 px-4 btn-primary"  />
       </div>

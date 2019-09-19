@@ -14,6 +14,12 @@
 		insert into recipe_pro(cnum, img1, img2)
 		values (#{cnum}, #{img1}, #{img2})
 	</insert>
+	
+		<insert id = "insertImg1" parameterType="recipeImgVO">
+		insert into recipe_pro(cnum, img1, img2)
+		values (#{cnum}, #{img1}, #{img2})
+	</insert>
+	
 	<!-- 레시피 갯수 -->
 	<select id="count" resultType="int">
 		select count(*) from recipe
