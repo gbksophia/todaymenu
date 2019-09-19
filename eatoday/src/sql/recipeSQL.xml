@@ -73,7 +73,7 @@
 	</select>
 	
 	
-	<select id="recipeRandomMain">
+	<select id="recipeRandomMain" resultType="recipeVO">
 	<![CDATA[	select * from recipe where rownum <=9 order by DBMS_RANDOM.RANDOM]]>
 	</select>
 	

@@ -97,6 +97,7 @@
 <section class="ftco-intro">
 </section>
 
+<!-- 현재위치 주변 카테고리 지도 -->
 <section id="mapbg" class="ftco-section">
 	<div class="container">
 		<div class="row">
@@ -107,7 +108,7 @@
 	</div>
 </section>
 
-<!-- 로그인 하지 않은 상태일때 표시되는 섹션 - 레스토랑 카테고리 -->
+<!-- 비회원 식당 출력 -->
 <c:if test="${sessionScope.loginID == null}">
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resource/images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 	<div class="overlay"></div>
@@ -218,13 +219,37 @@
 				</div>
 			</section>
 		</div>
-		<div id="reci" class="row justify-content-center">
-			<h1>레시피</h1>
-			<section class="main-block">
-				<div class="container">
-					<p>요기에다가 비회원 랜덤 레시피 촤라라락</p>
-				</div>
-			</section>
+	</div>
+</section>
+<!-- 비회원 추천레시피(랜덤) -->
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resource/images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
+	<div class="overlay"></div>
+	<div class="container">
+		<div id="reci"class="row justify-content-center">
+			<h1>추천 레시피</h1><br/>
+			<div class="row" style = "margin-top:100px;">
+				<c:forEach var="rnd" items="${rndReci}">
+					<!-- Small Receipe Area -->
+					<div class="col-12 col-sm-6 col-lg-4">
+						<div class="single-small-receipe-area d-flex">
+							<!-- Receipe Thumb -->
+							<div class="receipe-thumb">
+								<a href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${rnd.getCnum()}"></c:param>
+									<c:param name="cate" value="${rnd.getCate()}"></c:param></c:url>">
+									<img src="/eatoday/resource/RecipeImages/${rnd.getMain_name()}" alt="" width="100px" height="100px"></a>
+							</div>
+							<!-- Receipe Content -->
+							<div class="receipe-content">
+								<a href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${rnd.getCnum()}"></c:param>
+									<c:param name="cate" value = "${rnd.getCate()}"></c:param></c:url>">
+									<h5>${rnd.getTitle()}</h5></a>
+								<p>&nbsp;<a class="btn btn-primary btn-outline-primary" href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${rcp.getCnum()}"></c:param>
+									<c:param name="cate" value="${rnd.getCate()}"></c:param></c:url>">자세히보기</a></p>
+							</div><br/>
+						</div><br/>
+					</div><br/>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 </section>
@@ -233,7 +258,7 @@
 <!-- 로그인 했을때만 보이는 섹션 -->
 <c:if test="${sessionScope.loginID != null}">
 <!-- 개인 추천 레시피 -->
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resourceimages/bg_2.jpg);" data-stellar-background-ratio="0.5";>
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resource/images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 	<div class="overlay"></div>
 	<div class="container">
 		<div id="reci"class="row justify-content-center">
@@ -266,7 +291,7 @@
 </section>
 
 <!-- 개인 추천 식당 -->
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resourceimages/bg_2.jpg);" data-stellar-background-ratio="0.5";>
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/eatoday/resource/images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 	<div class="overlay"></div>
 	<div class="container">
 		<div id="rest" class="row justify-content-center">
