@@ -72,6 +72,11 @@
 <![CDATA[	order by DBMS_RANDOM.RANDOM )where rownum <=9 ]]>
 	</select>
 	
+	
+	<select id="recipeRandomMain">
+	<![CDATA[	select * from recipe where rownum <=9 order by DBMS_RANDOM.RANDOM]]>
+	</select>
+	
 	<!-- 관련 레시피 랜덤 출력 -->
 	<select id="randomSelect" resultType="recipeVO" parameterType="recipeVO">
 	<![CDATA[select * from (select * from recipe where cate=#{cate} order by DBMS_RANDOM.RANDOM ) where rownum <=5 and not cnum like #{cnum} ]]>
