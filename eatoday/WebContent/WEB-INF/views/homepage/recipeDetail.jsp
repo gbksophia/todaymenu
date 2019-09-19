@@ -68,7 +68,7 @@
 	        	  document.getElementById(id).appendChild(categori);	
 	        	  }
 	    	  });
-	   }
+	   		}
 	   }
 	
    
@@ -142,7 +142,7 @@
 				async: false,
 				data: { renum : renum},
 			  success: function(data) {
-	  		  var elem = document.createElement("span");
+	  		 var elem = document.createElement("span");
 	  		 elem.innerHTML = data;
       	  	 document.getElementById(id).appendChild(elem);	
 					}
@@ -280,23 +280,24 @@
 	  }
   </script>
 
-<style>
+	<style>
 		
-		textarea {
-			color: #585858;
-			background-color: #000000;
-		}
+	textarea {
+		color: #585858;
+		background-color: #000000;
+	}
 
-	  .wrap {
-      width: 500px;
+	.wrap {
+     	width: 500px;
     }
+    
     .wrap textarea {
-      width: 100%;
-      resize: none;
-      overflow-y: hidden; /* prevents scroll bar flash */
-      padding: 1.1em; /* prevents text jump on Enter keypress */
-      padding-bottom: 0.2em;
-      line-height: 1.6;
+     	width: 100%;
+      	resize: none;
+      	overflow-y: hidden; /* prevents scroll bar flash */
+      	padding: 1.1em; /* prevents text jump on Enter keypress */
+      	padding-bottom: 0.2em;
+      	line-height: 1.6;
     }
 
     textarea:disabled{
@@ -305,8 +306,9 @@
     	border: 0;
     	overflow-y:hidden;
     } 
-</style>
-  </head>
+    
+	</style>
+ </head>
   
  
   <body>
@@ -527,16 +529,33 @@
              <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
               <div class="categories">
                 <h3>관심 있는 레시피</h3>
-                <c:forEach var="recipeVO" items="${recipeList }" >
-               <li> 
-               <div class="text-left p-t-8 p-b-31">
-               <a  href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${recipeVO.cnum}"></c:param><c:param name = "cate" value = "${recipeVO.cate}"></c:param></c:url>">
-               <img src="/eatoday/resource/RecipeImages/${recipeVO.main_name }" style="width: 100px; height: 100px"/>
-               	${recipeVO.title }
-               </a>
-               </div>
+                <c:choose>
+                	<c:when test="${sessionScope.loginID ==null }">
+                		<c:forEach var="recipeVO" items="${recipeList }" >
+              			 <li> 
+              			 <div class="text-left p-t-8 p-b-31">
+               			<a  href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${recipeVO.cnum}"></c:param><c:param name = "cate" value = "${recipeVO.cate}"></c:param></c:url>">
+               			<img src="/eatoday/resource/RecipeImages/${recipeVO.main_name }" style="width: 100px; height: 100px"/>
+               			${recipeVO.title }
+               	</a>
+               	</div>
                 </li>
               </c:forEach>
+                	</c:when>
+                	<c:otherwise>
+                		<c:forEach var="recipeVO" items="${recipeList }" >
+              			 <li> 
+              			 <div class="text-left p-t-8 p-b-31">
+             	 		 <a  href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${recipeVO.cnum}"></c:param><c:param name = "cate" value = "${recipeVO.cate}"></c:param></c:url>">
+               			<img src="/eatoday/resource/RecipeImages/${recipeVO.main_name }" style="width: 100px; height: 100px"/>
+               			${recipeVO.title }
+               			</a>
+               		</div>
+                	</li>
+              </c:forEach>
+                	</c:otherwise>
+                </c:choose>
+                
               </div>
             </div>
             
