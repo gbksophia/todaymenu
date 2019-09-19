@@ -404,6 +404,7 @@ public class Recipe {
 		String mate = request.getParameter("mate");
 		String pro = request.getParameter("pro");
 		pro = pro.replace("\r\n", "next");
+		mate = mate.replace("\r\n", "next");
 		
 		vo.setCate(cate);
 		vo.setCnum(cnum);
@@ -517,8 +518,10 @@ public class Recipe {
 				File copyFile = new File(path + "//" + newName2);
 				mf3.transferTo(copyFile);
 				vo1.setImg1(newName2);
-				
+				if(orgName3 == "") {
+				vo1.setImg2("noimage");
 				sql.insert("recipe.insertImg1", vo1);
+				}
 				
 			}
 			
