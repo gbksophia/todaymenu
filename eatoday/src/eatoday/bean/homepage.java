@@ -302,4 +302,5 @@ public class homepage {
 		model.addAttribute("result",result);	
 		return "/homepage/mySupportList";
 	}
+
 }
