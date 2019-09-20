@@ -48,6 +48,8 @@ public class Restaurant {
 		model.addAttribute("area", area);
 		model.addAttribute("cate", cate);
 		model.addAttribute("raList", raList);
+		
+		System.out.println(cate+area);
 		return "/homepage/restaurantList";
 	}
 
