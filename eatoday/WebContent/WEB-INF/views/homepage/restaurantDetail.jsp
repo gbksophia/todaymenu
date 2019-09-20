@@ -283,126 +283,105 @@ textarea:disabled{
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 ftco-animate">
-			<div class="vcard bio">
-				식당이름
+			<div class="vcard bio">식당이름
 				<h3 class="mb-3">${rvo.getStore()}</h3>
 			</div>
-						
-			<div class="vcard bio">
-				주소
+			<div class="vcard bio">주소
 				<h3 class="mb-3">${rvo.getAddr()}</h3>
 			</div>
-			
-			<div class="vcard bio">
-				전화번호
+			<div class="vcard bio">전화번호
 				<h2 class="mb-3">${rvo.getTel()}</h2>
 			</div>
-			
-			<div class="vcard bio">
-				위치
+			<div class="vcard bio">위치
 				<jsp:include page="/map/map_kwd_rest.eat"/>
 			</div>
-			
-		<!-- 댓글 -->
+			<!-- 댓글 -->
             <div class="pt-5 mt-5">
-              <h3 id="Comments" class="mb-5">${recount} Comments</h3>
-              <ul class="comment-list">
-              <c:set var="i" value="0"/>
-              	<c:forEach var="restaurantReviewVO" items="${revo }">
-              	<c:set var="i" value="${i+1 }" />
-              	<c:set var="likeImg" value="javascript:imgcheck('${restaurantReviewVO.getNum() }')"/>
-              	 <li id="comment${i}" class="comment">
-                  <div class="comment-body">
-                  <h3>${restaurantReviewVO.nick }</h3>
-                  <div class="meta">${restaurantReviewVO.reg_date }</div>
-                  <p id="reviewtext${i }">
-                   <textarea id="textarea${i }" disabled>${restaurantReviewVO.text}</textarea>
-                  </p>
-                  <c:if test="${restaurantReviewVO.img != null }">
-                  	<img src="/eatoday/resource/RecipeReview/${restaurantReviewVO.img }" height="400px">
-                 <br>
-                  </c:if>
-                  <c:if test="${sessionScope.loginID == restaurantReviewVO.id }">
-           		
-					<a href="javascript:reviewUpdate('${restaurantReviewVO.getNum() }','${i }')">
-							수정
-						</a>
-						&nbsp;|&nbsp;
-						<a href="javascript:reviewRemove('${restaurantReviewVO.getNum() }','${i }','${rvo.cnum }')">
-							삭제
-						</a>
-						 <div class="text-right">
-						<div class="form-group">
-                   <div id="UpdateBtn${i}" class="text-right"></div>
-                   </div>
-                   </div>
-				</c:if>
-                   <div class="text-right">
-                   <div id="niceCount${i}"></div>
-                   <a id="likeImg${i }" onclick="javascript:niceClick('${restaurantReviewVO.num}','${i }')">
-                   </a>
-                    </div> 
-                  </div>  
-                </li>
-                <script>
-                    niceCheck('${restaurantReviewVO.num}','${i}');
-                    niceCountCheck('${restaurantReviewVO.num}','${i}');
- 				 	</script>
- 				 	<div id="textUpdate${i}"></div>
-              	</c:forEach>
-              	 <div class="text-center">           	 
-              	 <c:if test="${startPage >10 }">
- 			 <a href="restaurantDetail.eat?page=${startPage-10 }&cate=${rvo.cate}&cnum=${rvo.cnum}">&nbsp;<< &nbsp;</a>
- 				</c:if>
-              	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
-              	 <a href="restaurantDetail.eat?page=${i }&cate=${rvo.cate}&cnum=${rvo.cnum}">${i }</a>
-              	 	<c:if test="${i!=endPage}">
-              	 &nbsp;|&nbsp;
-              	 </c:if>
-              	 </c:forEach>
-              	 <c:if test="${endPage < pageCount }">
- 					 <a href="restaurantDetail.eat?page=${startPage+10 }&cate=${rvo.cate}&cnum=${rvo.cnum}"> &nbsp;>>&nbsp; </a>
- 				</c:if>
-                   </div>
-              </ul>
-      <!-- 댓글 달기 -->
-              <div class="comment-form-wrap pt-5">
-              	<c:choose>
-              		<c:when test="${sessionScope.loginID == null }">
-              			<form>
-              			<div class="form-group">
-              				<input class="btn py-3 px-4 btn-primary" type="button" value="로그인 후 댓글 쓰기 가능" onclick="location='/eatoday/loginpage/login.eat'">
-              				</div>
-              			</form>
-              		</c:when>
-              		<c:otherwise>
-              		 <form id="reviewWriteForm" action="javascript:reviewWrite()" method="post" enctype="multipart/form-data">
-                	<input type="hidden" name="cnum" value="${rvo.getCnum() }">
-                	<input type="hidden" name="id" value="${sessionScope.loginID }">
-                  <div class="form-group">
-                    <textarea name="text" id="text" cols="30" rows="10" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
-                  </div>
-                  
-                  <div class="form-group">
-                    <input  class="form-control" type="text" name="nick"  placeholder="닉네임" />
-                  </div>
-                  
-                  <div class="form-group">
-                    <input type="file" name="img"  />
-                  </div>
-                  <div class="form-group">
-                  	<div class="text-right">
-                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
-                  </div>
-                  </div>
-                </form>
-              		</c:otherwise>
-              	</c:choose>
-              </div>
-              </div>
-             </div>
-             
-             
+				<h3 id="Comments" class="mb-5">${recount} Comments</h3>
+				<ul class="comment-list">
+					<c:set var="i" value="0"/>
+              		<c:forEach var="restaurantReviewVO" items="${revo}">
+              			<c:set var="i" value="${i+1}" />
+              			<c:set var="likeImg" value="javascript:imgcheck('${restaurantReviewVO.getNum()}')"/>
+              	 		<li id="comment${i}" class="comment">
+                  			<div class="comment-body">
+                  				<h3>${restaurantReviewVO.nick}</h3>
+                  				<div class="meta">${restaurantReviewVO.reg_date}</div>
+                  				<p id="reviewtext${i}">
+                   					<textarea id="textarea${i}" disabled>${restaurantReviewVO.text}</textarea></p>
+                  				<c:if test="${restaurantReviewVO.img != null }">
+                  					<img src="/eatoday/resource/RecipeReview/${restaurantReviewVO.img}" height="400px"><br/>
+                  				</c:if>
+                  				<c:if test="${sessionScope.loginID == restaurantReviewVO.id}">
+									<a href="javascript:reviewUpdate('${restaurantReviewVO.getNum()}','${i}')">수정	</a>
+									&nbsp;|&nbsp;
+									<a href="javascript:reviewRemove('${restaurantReviewVO.getNum()}','${i}','${rvo.cnum }')">삭제</a>
+						 			<div class="text-right">
+										<div class="form-group">
+                   							<div id="UpdateBtn${i}" class="text-right"></div>
+                   						</div>
+                   					</div>
+								</c:if>
+	                  			<div class="text-right">
+	                   				<div id="niceCount${i}"></div>
+	                  		 			<a id="likeImg${i}" onclick="javascript:niceClick('${restaurantReviewVO.num}','${i}')"></a>
+	                    		</div> 
+                  			</div>  
+						</li>
+<script>
+	niceCheck('${restaurantReviewVO.num}','${i}');
+	niceCountCheck('${restaurantReviewVO.num}','${i}');
+</script>
+						<div id="textUpdate${i}"></div>
+					</c:forEach>
+					<div class="text-center">           	 
+	              		<c:if test="${startPage >10}">
+							<a href="restaurantDetail.eat?page=${startPage-10 }&cate=${rvo.cate}&cnum=${rvo.cnum}">&nbsp;<< &nbsp;</a>
+						</c:if>
+						<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+							<a href="restaurantDetail.eat?page=${i }&cate=${rvo.cate}&cnum=${rvo.cnum}">${i }</a>
+		              	 	<c:if test="${i!=endPage}">&nbsp;|&nbsp;</c:if>
+	              	 	</c:forEach>
+	              	 	<c:if test="${endPage < pageCount }">
+	 						<a href="restaurantDetail.eat?page=${startPage+10 }&cate=${rvo.cate}&cnum=${rvo.cnum}"> &nbsp;>>&nbsp; </a>
+	 					</c:if>
+					</div>
+				</ul>
+      			<!-- 댓글 달기 -->
+              	<div class="comment-form-wrap pt-5">
+              		<c:choose>
+              			<c:when test="${sessionScope.loginID == null }">
+              				<form>
+              					<div class="form-group">
+              						<input class="btn py-3 px-4 btn-primary" type="button" value="로그인 후 댓글 쓰기 가능" onclick="location='/eatoday/loginpage/login.eat'">
+              					</div>
+              				</form>
+              			</c:when>
+              			<c:otherwise>
+              		 		<form id="reviewWriteForm" action="javascript:reviewWrite()" method="post" enctype="multipart/form-data">
+                				<input type="hidden" name="cnum" value="${rvo.getCnum() }">
+                				<input type="hidden" name="id" value="${sessionScope.loginID }">
+                  				<div class="form-group">
+                    				<textarea name="text" id="text" cols="30" rows="10" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
+                  				</div>
+                  				<div class="form-group">
+                    				<input class="form-control" type="text" name="nick"  placeholder="닉네임" />
+                  				</div>
+                  				<div class="form-group">
+                    				<input type="file" name="img"  />
+                  				</div>
+                  				<div class="form-group">
+                  					<div class="text-right">
+                    					<input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                  					</div>
+                  				</div>
+                			</form>
+              			</c:otherwise>
+              		</c:choose>
+              	</div>
+			</div>
+		</div>
+<!--  -->             
             <div class="col-md-4 sidebar ftco-animate fadeInUp ftco-animated">
             <div class="sidebar-box">
               <form name="searchBar" action="searchResult.eat" onSubmit="return searchCheck();" class="search-form">
