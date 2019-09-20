@@ -116,6 +116,12 @@
         }
      }
 
+	//레시피 삭제 전 메세지창!
+    function delchk(){
+		return confirm("삭제하시겠습니까?");
+    }
+
+
     </script>
     
   </head>
@@ -223,12 +229,19 @@
 		            
 		            </div> <!-- "nav ftco-animate nav-pills justify-content-center" -->
 		          </div> <!-- "col-md-12 nav-link-wrap mb-5" -->
-
-    			
+					
     			</div> <!-- "row" -->
 		        </div> <!-- "col-lg-12 ftco-animate p-md-5" -->
 		      
+	<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		   
+		<div class="text-left">
+   			<input type="button" value="레시피 등록" class="btn py-3 px-4 btn-primary" onclick="location='recipeCreate.eat'">
+    	</div>
+    </c:if>
+		      
 		    </div> <!-- "row d-md-flex" -->
+		    
+
 		
 		<!-- -------------------------------------------------------------------------------- -->
 		<!-- 카테고리별 레시피 출력 파트 -->  
@@ -236,17 +249,25 @@
     		<div class="row justify-content-center mb-5 pb-3">
         	</div>
         
+
         
-        	<div class="row">		              	
-		    <c:forEach var = "rcp" items = "${recipeList}" >	              	
+        	<div class="row">	          	
+		    <c:forEach var = "rcp" items = "${recipeList}" >	         	
 		     <div class="col-md-3">
 				<div class="menu-entry">
 					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcp.getMain_name()});"></a>
 
 					<div class="text text-center pt-4">
 						<h3><a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">${rcp.getTitle() }</a></h3>
-						<a class="btn btn-primary btn-outline-primary" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">자세히보기</a>	
+						<a class="btn btn-primary btn-outline-primary"  id="showRbtn" href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">자세히보기</a>	
+						
+						<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		
+							<a class="btn btn-primary btn-outline-primary" id="editRbtn" href="<c:url value = "recipeEdit.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">수정</a>	
+							<a class="btn btn-primary btn-outline-primary" id="deleteRbtn"  onclick="return delchk();" href="<c:url value = "recipeDelete.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">삭제</a>	
+						</c:if>
+						
 					</div>
+
 				</div>
 			</div>
 		    </c:forEach>	
@@ -270,14 +291,7 @@
        
        </div>	 <!-- "container" -->
        <!-- -------------------------------------------------------------------------------- -->
-		    
-	<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		   
-		<div class="text-right">
-   			<input type="button" value="레시피 등록" class="btn py-3 px-4 btn-primary" onclick="location='recipeCreate.eat'">
-    	</div>
-    </c:if>
-    
-    
+
    	</div> <!--"container"   -->
     </section> <!--"ftco-menu mb-5 pb-5"   -->
     

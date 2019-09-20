@@ -663,5 +663,25 @@ public class Recipe {
 		return "/homepage/recipeDelete";
 	}
 	
+	@RequestMapping("recipeEdit.eat")
+	public String recipeEdit(Model model,HttpSession session, String cnum, String cate, recipeVO vo ) {
+		//String admin = (String)session.getAttribute("loginID");
+		/*
+		if(admin.equals("admin@eatoday.com")) {
+			vo=sql.selectOne("recipe.info", cnum);
+			model.addAttribute("vo", vo);
+		}
+		*/
+		vo=sql.selectOne("recipe.info", cnum);
+		
+		String mate = vo.getMate().replace("next","");
+		String pro = vo.getPro().replace("next","");
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("mate", mate);
+		model.addAttribute("pro", pro);
+		return "/homepage/recipeEdit";
+	}
+	
 	
 }
