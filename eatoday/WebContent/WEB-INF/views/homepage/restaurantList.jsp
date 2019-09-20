@@ -203,7 +203,7 @@
 														<h3>
 														<a href="<c:url value="restaurantDetail.eat">
 																<c:param name="cnum" value="${rest.getCnum()}"></c:param><c:param name="cate" value="${cate}"></c:param>
-																</c:url>" class="img" style="background-image: url(/eatoday/resource/RestaurantImages/restaurantDefault.jpg});">${rest.getStore()}<br/>${rest.getArea1()} ${rest.getArea2()}</a></h3>
+																</c:url>" class="img" style="background-image: url(/eatoday/resource/RestaurantImages/restaurantDefault.jpg);">${rest.getStore()}<br/>${rest.getArea1()} ${rest.getArea2()}</a></h3>
 														<a class="btn btn-primary btn-outline-primary" href="<c:url value ="restaurantDetail.eat">
 																<c:param name="cnum" value="${rest.getCnum()}"></c:param><c:param name="cate" value="${cate}"></c:param></c:url>">자세히보기</a>
 													</div>
