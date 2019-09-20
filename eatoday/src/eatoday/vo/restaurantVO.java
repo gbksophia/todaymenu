@@ -10,7 +10,16 @@ public class restaurantVO {
 	private String addr;
 	private String tel;
 	private String cate;
+	private String img;
 	
+	
+	
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 	public int getNum() {
 		return num;
 	}
