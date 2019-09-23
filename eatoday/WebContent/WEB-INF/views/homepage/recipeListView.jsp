@@ -116,12 +116,23 @@
         }
      }
 
-	//레시피 삭제 전 메세지창!
-    function delchk(){
-		return confirm("삭제하시겠습니까?");
+	//레시피 삭제 
+    function delchk(cnum,i){
+		var result = confirm("삭제하시겠습니까?");
+		var tag = "#object"+i;
+		if(result){
+			$.ajax({
+				url: "recipeDelete.eat",
+				type: "post",
+				data:  {cnum:cnum },
+				success: function(data) {
+					$(tag).remove();
+				}
+			});
+			}
     }
 
-
+	
     </script>
     
   </head>
@@ -136,7 +147,6 @@
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
-
 		         <c:choose>
 		         <c:when test = "${cate == 1 }"><h1 class="mb-3 mt-5 bread">밥요리</h1></c:when>
 		         <c:when test = "${cate == 2 }"><h1 class="mb-3 mt-5 bread">국&탕</h1></c:when>
@@ -251,9 +261,11 @@
         
 
         
-        	<div class="row">	          	
-		    <c:forEach var = "rcp" items = "${recipeList}" >	         	
-		     <div class="col-md-3">
+        	<div class="row">
+        	<c:set var="i" value="0"/>	          	
+		    <c:forEach var = "rcp" items = "${recipeList}" >
+		    <c:set var="i" value="${i+1 }"/>	         	
+		     <div id="object${i}" class="col-md-3">
 				<div class="menu-entry">
 					<a href="<c:url value = "recipeDetail.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcp.getMain_name()});"></a>
 
@@ -263,7 +275,7 @@
 						
 						<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		
 							<a class="btn btn-primary btn-outline-primary" id="editRbtn" href="<c:url value = "recipeEdit.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">수정</a>	
-							<a class="btn btn-primary btn-outline-primary" id="deleteRbtn"  onclick="return delchk();" href="<c:url value = "recipeDelete.eat"><c:param name = "cnum" value = "${rcp.getCnum()}"></c:param><c:param name = "cate" value = "${cate}"></c:param></c:url>">삭제</a>	
+							<a class="btn btn-primary btn-outline-primary" id="deleteRbtn"  onclick="return delchk('${rcp.cnum}','${i }');">삭제</a>	
 						</c:if>
 						
 					</div>

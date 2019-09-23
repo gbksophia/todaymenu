@@ -23,215 +23,218 @@
 	<link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
 	<link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
 	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
-	
+
 <script src="/eatoday/resource/js/jquery.min.js"></script>
 <script src="/eatoday/resource/js/jquery-migrate-3.0.1.min.js"></script>
 <script>
-	// 카테고리 카운트 가져오기
-	window.onload =function(){ 
-	var cate = ["한식","중식","일식","양식","분식","카페","기타"];
-	for(var i=0;i<7;i++){
-		var j = i+1;
-		var id = "cate("+j+")";
-		var item = cate[i];
+// 카테고리 카운트 가져오기
+window.onload =function(){ 
+var cate = ["한식","중식","일식","양식","분식","카페","기타"];
+for(var i=0;i<7;i++){
+	var j = i+1;
+	var id = "cate("+j+")";
+	var item = cate[i];
+	$.ajax({
+		url: "restaurantCateCount.eat",
+		type: "post",
+		data: {cate : item},
+		async: false,
+		success: function(data) {
+			var categori = document.createElement("span");
+			var data = "("+data+")";
+			categori.innerHTML = data;
+			document.getElementById(id).appendChild(categori);	
+		}
+	});
+	}
+}
+
+// 댓글 좋아요 클릭 이벤트
+function niceClick(num,i) {
+	var id = '${sessionScope.loginID}';
+	var img = "img"+i;
+
+	if(${sessionScope.loginID == null}){
+		alert("로그인후 이용해주십시오.");
+	}else {
 		$.ajax({
-			url: "restaurantCateCount.eat",
+			url: "restaurantNiceClick.eat",
 			type: "post",
-			data: {cate : item},
-			async: false,
+			data: {id : id, num : num },
 			success: function(data) {
-				var categori = document.createElement("span");
-				var data = "("+data+")";
-				categori.innerHTML = data;
-				document.getElementById(id).appendChild(categori);	
+				document.getElementById(img).src=data;
+				niceCountClick(num,i);
 			}
 		});
-		}
 	}
-
-	// 댓글 좋아요 클릭 이벤트
-	function niceClick(num,i) {
-		var id = '${sessionScope.loginID}';
-		var img = "img"+i;
-
-		if(${sessionScope.loginID == null}){
-			alert("로그인후 이용해주십시오.");
-		}else {
-			$.ajax({
-				url: "restaurantNiceClick.eat",
-				type: "post",
-				data: {id : id, num : num },
-				success: function(data) {
-					document.getElementById(img).src=data;
-					niceCountClick(num,i);
-				}
-			});
+}
+ 
+// 댓글 좋아요 이미지 체크
+function niceCheck(num,i){
+	var img = "likeImg"+i;
+	var id = "img"+i;
+	$.ajax({
+		url: "restaurantNice.eat",
+		type: "post",
+		async: false,
+		data: {id : '${sessionScope.loginID}', num : num},
+		success: function(data) {
+			var elem = document.createElement("img");
+			elem.setAttribute("src", data);
+			elem.setAttribute("height", "20px");
+			elem.setAttribute("width", "20px");
+			elem.setAttribute("id", id);
+			document.getElementById(img).appendChild(elem);	
 		}
-	}
+	});
+}
+
+// 댓글 좋아요 갯수 체크
+function niceCountCheck(renum,i){
+	id = "niceCount"+i;
+	$.ajax({
+		url: "restaurantNiceCountCheck.eat",
+		type: "post",
+		async: false,
+		data: { renum : renum},
+		success: function(data) {
+  			var elem = document.createElement("span");
+			elem.innerHTML = data;
+			document.getElementById(id).appendChild(elem);	
+		}
+	});
+}
+ 
+// 댓글 좋아요 갯수 클릭
+function niceCountClick(renum,i){
+	id = "niceCount"+i;
+	$.ajax({
+		url: "restaurantNiceCountCheck.eat",
+		type: "post",
+		data: { renum : renum},
+		success: function(data) {
+			document.getElementById(id).innerHTML = data;
+		}
+	});
+}  
   
-	// 댓글 좋아요 이미지 체크
-	function niceCheck(num,i){
-		var img = "likeImg"+i;
-		var id = "img"+i;
-		$.ajax({
-			url: "restaurantNice.eat",
-			type: "post",
-			async: false,
-			data: {id : '${sessionScope.loginID}', num : num},
-			success: function(data) {
-				var elem = document.createElement("img");
-				elem.setAttribute("src", data);
-				elem.setAttribute("height", "20px");
-				elem.setAttribute("width", "20px");
-				elem.setAttribute("id", id);
-				document.getElementById(img).appendChild(elem);	
-			}
-		});
+//검색 유효성 검사
+function searchCheck() {
+	var str = document.getElementById('search');
+	var blank = /^[\s]/g;
+
+	//검색어 입력필수
+	if (str.value == '' || str.value == null) {
+		alert("검색어를 입력하세요.");
+        return false;
 	}
 
-	// 댓글 좋아요 갯수 체크
-	function niceCountCheck(renum,i){
-		id = "niceCount"+i;
-		$.ajax({
-			url: "restaurantNiceCountCheck.eat",
-			type: "post",
-			async: false,
-			data: { renum : renum},
-			success: function(data) {
-	  			var elem = document.createElement("span");
-				elem.innerHTML = data;
-				document.getElementById(id).appendChild(elem);	
-			}
-		});
+    //공백금지
+    if (blank.test(str.value) == true) {
+    	alert("제대로 좀 입력하세요.")
+        return false;
 	}
+}
+ 
+//업데이트 폼 생성
+function reviewUpdate(num,i){
+	var reviewtext = "reviewtext"+i;
+	var UpdateBtn = "UpdateBtn"+i;
+	var check = document.getElementById("textUpdate");
+	var textId = "#textarea"+i;
+	var text = $(textId).val();
+	if(check == null){
+		//업데이트 텍스트 에어리어 생성
+		var elem = document.createElement("textarea");
+		elem.setAttribute("class", "form-control");
+		elem.setAttribute("rows", "10");
+		elem.setAttribute("cols", "30");
+		elem.setAttribute("id", "textUpdate");
+		elem.setAttribute("name", "textUpdate");
+		elem.innerHTML = text;
+		document.getElementById(reviewtext).appendChild(elem);
   
-	// 댓글 좋아요 갯수 클릭
-	function niceCountClick(renum,i){
-		id = "niceCount"+i;
-		$.ajax({
-			url: "restaurantNiceCountCheck.eat",
-			type: "post",
-			data: { renum : renum},
-			success: function(data) {
-				document.getElementById(id).innerHTML = data;
-			}
-		});
-	}  
-	  
-	//검색 유효성 검사
-	function searchCheck() {
-		var str = document.getElementById('search');
-		var blank = /^[\s]/g;
+		//업데이트 버튼 생성
+		var btn = document.createElement("input");
+		var onclick ="Update('"+num+"','"+textId+"')";
+		btn.setAttribute("type","button");
+		btn.setAttribute("value","Update Comment");
+		btn.setAttribute("class","btn py-3 px-4 btn-primary");
+		btn.setAttribute("onclick",onclick);
+		btn.setAttribute("id", "UpdateBtn");
+		document.getElementById(UpdateBtn).appendChild(btn);
+	} else {
+		$("#textUpdate").remove();
+		$("#UpdateBtn").remove();
+	}
+}
 
-		//검색어 입력필수
-		if (str.value == '' || str.value == null) {
-			alert("검색어를 입력하세요.");
-	        return false;
-		}
-	
-	    //공백금지
-	    if (blank.test(str.value) == true) {
-	    	alert("제대로 좀 입력하세요.")
-	        return false;
-		}
-	}
-  
-	//업데이트 폼 생성
-	function reviewUpdate(num,i){
-		var reviewtext = "reviewtext"+i;
-		var UpdateBtn = "UpdateBtn"+i;
-		var check = document.getElementById("textUpdate");
-		var textId = "#textarea"+i;
-		var text = $(textId).val();
-		if(check == null){
-			//업데이트 텍스트 에어리어 생성
-			var elem = document.createElement("textarea");
-			elem.setAttribute("class", "form-control");
-			elem.setAttribute("rows", "10");
-			elem.setAttribute("cols", "30");
-			elem.setAttribute("id", "textUpdate");
-			elem.setAttribute("name", "textUpdate");
-			elem.innerHTML = text;
-			document.getElementById(reviewtext).appendChild(elem);
-	  
-			//업데이트 버튼 생성
-			var btn = document.createElement("input");
-			var onclick ="Update('"+num+"','"+textId+"')";
-			btn.setAttribute("type","button");
-			btn.setAttribute("value","Update Comment");
-			btn.setAttribute("class","btn py-3 px-4 btn-primary");
-			btn.setAttribute("onclick",onclick);
-			btn.setAttribute("id", "UpdateBtn");
-			document.getElementById(UpdateBtn).appendChild(btn);
-		} else {
+// 리뷰 업데이트 적용
+function Update(num,id){
+	var text = $("#textUpdate").val();
+	$.ajax({
+		url: "restaurantReviewUpdate.eat",
+		type: "post",
+		data: { text : text, num : num},
+		success: function(data) {
 			$("#textUpdate").remove();
 			$("#UpdateBtn").remove();
+			$(id).val(data);
 		}
-	}
-
-	// 리뷰 업데이트 적용
-	function Update(num,id){
-		var text = $("#textUpdate").val();
+	});
+}
+ 
+//리뷰 삭제
+function reviewRemove(num,i,cnum){
+	var conf = confirm("리뷰를 삭제하시겠습니까?");
+		if(conf){
+		var id = "#comment"+i;
 		$.ajax({
-			url: "restaurantReviewUpdate.eat",
+			url: "restaurantReviewRemove.eat",
 			type: "post",
-			data: { text : text, num : num},
-			success: function(data) {
-				$("#textUpdate").remove();
-				$("#UpdateBtn").remove();
-				$(id).val(data);
+			data: { num : num},
+			success: function() {
+				$(id).remove();
+				reviewCount(cnum);
 			}
 		});
 	}
-  
-	//리뷰 삭제
-	function reviewRemove(num,i,cnum){
-		var conf = confirm("리뷰를 삭제하시겠습니까?");
-			if(conf){
-			var id = "#comment"+i;
-			$.ajax({
-				url: "restaurantReviewRemove.eat",
-				type: "post",
-				data: { num : num},
-				success: function() {
-					$(id).remove();
-					reviewCount(cnum);
-				}
-			});
+}
+ 
+// 리뷰 삭제 후 갯수 초기화
+function reviewCount(cnum){
+	$.ajax({
+		url: "restaurantReviewCount.eat",
+		type: "post",
+		data: { cnum : cnum},
+		success: function(data) {
+			var data = data+" Comments";
+			document.getElementById("Comments").innerHTML = data;
 		}
-	}
-  
-	// 리뷰 삭제 후 갯수 초기화
-	function reviewCount(cnum){
-		$.ajax({
-			url: "restaurantReviewCount.eat",
-			type: "post",
-			data: { cnum : cnum},
-			success: function(data) {
-				var data = data+" Comments";
-				document.getElementById("Comments").innerHTML = data;
-			}
-		});
-	}
+	});
+}
 
-	//리뷰 쓰기
-	function reviewWrite(){
-		var form = $("#reviewWriteForm")[0];
-		var data = new FormData(form);
-		$.ajax({
-			url: "restaurantRePro.eat",
-			enctype: 'multipart/form-data',
-			type: "post",
-			processData: false,
-			contentType: false,
-			cache: false,
-			data: data,
-			success: function(data) {
-				location.reload();
-				document.getElementById('Comments').scrollIntoView();
-			}
-		});
-	}
+//리뷰 쓰기
+function reviewWrite(){
+	var form = $("#reviewWriteForm")[0];
+	var data = new FormData(form);
+	$.ajax({
+		url: "restaurantRePro.eat",
+		enctype: 'multipart/form-data',
+		type: "post",
+		processData: false,
+		contentType: false,
+		cache: false,
+		data: data,
+		success: function(data) {
+			location.reload();
+			document.getElementById('Comments').scrollIntoView();
+		}
+	});
+}
+
+niceCheck('${restaurantReviewVO.num}','${i}');
+niceCountCheck('${restaurantReviewVO.num}','${i}');
 </script>
   
 <style>
@@ -310,7 +313,7 @@ textarea:disabled{
                   				<p id="reviewtext${i}">
                    					<textarea id="textarea${i}" disabled>${restaurantReviewVO.text}</textarea></p>
                   				<c:if test="${restaurantReviewVO.img != null }">
-                  					<img src="/eatoday/resource/RecipeReview/${restaurantReviewVO.img}" height="400px"><br/>
+                  					<img src="/eatoday/resource/RestaurantReview/${restaurantReviewVO.img}" height="400px"><br/>
                   				</c:if>
                   				<c:if test="${sessionScope.loginID == restaurantReviewVO.id}">
 									<a href="javascript:reviewUpdate('${restaurantReviewVO.getNum()}','${i}')">수정	</a>
@@ -328,10 +331,6 @@ textarea:disabled{
 	                    		</div> 
                   			</div>  
 						</li>
-<script>
-	niceCheck('${restaurantReviewVO.num}','${i}');
-	niceCountCheck('${restaurantReviewVO.num}','${i}');
-</script>
 						<div id="textUpdate${i}"></div>
 					</c:forEach>
 					<div class="text-center">           	 
@@ -381,34 +380,34 @@ textarea:disabled{
               	</div>
 			</div>
 		</div>
-<!--  -->             
-            <div class="col-md-4 sidebar ftco-animate fadeInUp ftco-animated">
-            <div class="sidebar-box">
-              <form name="searchBar" action="searchResult.eat" onSubmit="return searchCheck();" class="search-form">
-                <div class="form-group">
-                	<div class="icon">
-	                  <span class="icon-search"></span>
-                  </div>
-                  <input type="text" name="search" id="search" class="form-control" placeholder="Search...">
-                </div>
-              </form>
-            </div>
-            <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
-              <div class="categories">
-                <h3>Categories</h3>
-                <ul>
-                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="한식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(1)">한식</a></li>
-                <li><a href=<c:url value= "/homepage/restaurantList.eat"><c:param name="cate" value="중식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(2)">중식 </a></li>
-                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="일식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(3)">일식 </a></li>
-                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="양식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(4)">양식 </a></li>
-                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="분식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(5)">분식 </a></li>
-                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="카페"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(6)">카페</a></li>
-                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="기타"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(7)">기타</a></li>
-                </ul>
-				</div>
-            </div>
+             
+		<div class="col-md-4 sidebar ftco-animate fadeInUp ftco-animated">
+        	<div class="sidebar-box">
+            	<form name="searchBar" action="searchResult.eat" onSubmit="return searchCheck();" class="search-form">
+                	<div class="form-group">
+                		<div class="icon">
+	                  		<span class="icon-search"></span>
+                  		</div>
+                  		<input type="text" name="search" id="search" class="form-control" placeholder="Search...">
+                	</div>
+              	</form>
+			</div>
+		<div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+        	<div class="categories">
+            	<h3>Categories</h3>
+                	<ul>
+		                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="한식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(1)">한식</a></li>
+		                <li><a href=<c:url value= "/homepage/restaurantList.eat"><c:param name="cate" value="중식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(2)">중식 </a></li>
+		                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="일식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(3)">일식 </a></li>
+		                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="양식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(4)">양식 </a></li>
+		                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="분식"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(5)">분식 </a></li>
+		                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="카페"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(6)">카페</a></li>
+		                <li><a href="<c:url value="/homepage/restaurantList.eat"><c:param name="cate" value="기타"></c:param><c:param name="area" value="서울"></c:param></c:url>" id="cate(7)">기타</a></li>
+					</ul>
+			</div>
 		</div>
-		</div> 
+	</div>
+</div> 
 </section> <!-- .section -->
 <jsp:include page="footer.jsp" />
 

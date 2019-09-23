@@ -277,7 +277,7 @@ public class Recipe {
 		vo.setText(text);
 		
 		sql.insert("recipeReview.insert",vo);
-			return "/homepage/recipeRePro";
+			return "/homepage/recipeDetail";
 		}
 	
 	//리뷰 수정
@@ -293,7 +293,7 @@ public class Recipe {
 	@RequestMapping("reviewRemove.eat")
 	public String reviewRemove(int num) {
 		sql.delete("recipeReview.delete",num);
-		return "/homepage/reviewRemove";
+		return "/homepage/recipeDetail";
 	}
 	
 	// 페이지 첫 실행시만 사용 댓글 좋아요 클릭 여부 체크
@@ -329,7 +329,7 @@ public class Recipe {
 			likeImg = "/eatoday/resource/images/like.png"; // 좋아요를 안눌렀을때 이미지
 		}
 		model.addAttribute("likeImg",likeImg);
-		return "/homepage/niceClick";
+		return "/homepage/nice";
 	}
 	
 	// 좋아요 갯수 카운트
@@ -660,7 +660,7 @@ public class Recipe {
 			sql.delete("recipe.delete",cnum);
 		}
 		model.addAttribute("cate",cate);
-		return "/homepage/recipeDelete";
+		return "/homepage/recipeDetail";
 	}
 	
 	@RequestMapping("recipeEdit.eat")

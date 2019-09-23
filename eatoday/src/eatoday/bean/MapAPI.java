@@ -27,13 +27,11 @@ public class MapAPI {
 		return "/map/map_kwd";
 	}
 	
-	
 	// 현위치 주변 카테고리별 지도에 표시 - restaurant 페이지
 	@RequestMapping("map_gc.eat")
 	public String map_gc() {
 		return "/map/map_gc";
 	}
-	
 	
 	//접속위치 + 카카오 DB에 등록된 식당위치 표시
 	@RequestMapping("map_gn")
@@ -47,13 +45,13 @@ public class MapAPI {
 		return "/map/map_gn";
 	}
 	
-	
 	//접속위치+선호식당카테고리로 검색후 지도에 출력 ===> 로그인 후 이용가능하게 / 로그아웃상태면 로그인페이지로 이동
 	@RequestMapping("map_lf.eat")
-	public String map_loc(String d1, String d2 , String d3, Model model, HttpServletRequest request) {
+	public String map_loc() {
 		return "/map/map_lf";
 	}
-
+	
+	//map_lf에서 ajax로 보낸 데이터를 처리, map_lf_t로 리턴
 	@RequestMapping("map_lf2.eat")
 	public String map_loc2(String d1, String d2 , String d3, Model model, HttpServletRequest request, HttpSession session) {
 		String kwd ="";
@@ -62,7 +60,6 @@ public class MapAPI {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			if (d1!=null) {
-				
 				if (id!=null) {
 					int gnum = sql.selectOne("restaurant.greatest", id);
 					List cates = sql.selectList("restaurant.cate", gnum);
@@ -98,7 +95,6 @@ public class MapAPI {
 		return "/map/map_lf_t";
 	}
 	
-	
 	// 식당 위치 지도
 	@RequestMapping("map_kwd_rest.eat")
 	public String map_kwd_rest(HttpServletRequest request, Model model) {
@@ -109,9 +105,8 @@ public class MapAPI {
 		String area2 = rvo.getArea2();
 		String addr = rvo.getAddr();
 		String store = rvo.getStore();
-		
 		System.out.println(area1+"//"+area2+"//"+addr+"//"+store);
-				
+
 		model.addAttribute("addr", area1+" "+area2+" "+store);
 		model.addAttribute("addr2", addr+" "+store);
 		return "/map/map_kwd_rest";

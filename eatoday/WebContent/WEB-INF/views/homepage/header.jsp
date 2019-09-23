@@ -36,7 +36,7 @@
 						</div>
 					</li>
 				</c:if>
-				<li class="nav-item"><a href="/eatoday/homepage/supportList.eat?" class="nav-link">support</a></li>
+				<li class="nav-item"><a href="/eatoday/support/supportList.eat?" class="nav-link">support</a></li>
 			</ul>
 		</div>
 	</div>
