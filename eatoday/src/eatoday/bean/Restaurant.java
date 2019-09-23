@@ -137,7 +137,7 @@ public class Restaurant {
 		// 파일 유무 조건
 		if(orgName != "") {   // 파일이 존재할 때 실행
 			//이미지 업로드
-			String path = request.getRealPath("//resource//restaurantReview");
+			String path = request.getRealPath("//resource//RestaurantReview");
 			String ext = orgName.substring(orgName.lastIndexOf('.'));
 			sql.insert("restaurantReview.imgCountInsert");  // 이미지 숫자 증가
 			int num = sql.selectOne("restaurantReview.imgCount"); // 이미지 숫자 가져오기

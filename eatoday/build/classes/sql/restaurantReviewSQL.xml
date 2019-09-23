@@ -4,15 +4,14 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="restaurantReview">
  	<!-- 레스토랑 리뷰 이미지 이름 숫자 카운트 업 -->
- 	<insert id="ImgcountInsert">
+ 	<insert id="imgCountInsert">
  		insert into fileNum values(fileNum_seq.nextval)
  	</insert>
  	
  	<!-- 레스토랑 리뷰 이미지 이름 숫자 카운트 가져오기 -->
- 	<select id="ImgCount" resultType="int">
+ 	<select id="imgCount" resultType="int">
  		select max(num) from fileNum
  	</select>
- 	
 	<!-- 레스토랑 리뷰 쓰기 -->
  	<insert id="insert" parameterType="restaurantReviewVO">
  		insert into restaurant_re(num,cnum,id,nick,text,img,reg_date) values (restaurant_re_seq.nextval,#{cnum},#{id},#{nick},#{text},#{img},sysdate)

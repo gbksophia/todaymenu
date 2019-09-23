@@ -313,7 +313,7 @@ textarea:disabled{
                   				<p id="reviewtext${i}">
                    					<textarea id="textarea${i}" disabled>${restaurantReviewVO.text}</textarea></p>
                   				<c:if test="${restaurantReviewVO.img != null }">
-                  					<img src="/eatoday/resource/RecipeReview/${restaurantReviewVO.img}" height="400px"><br/>
+                  					<img src="/eatoday/resource/RestaurantReview/${restaurantReviewVO.img}" height="400px"><br/>
                   				</c:if>
                   				<c:if test="${sessionScope.loginID == restaurantReviewVO.id}">
 									<a href="javascript:reviewUpdate('${restaurantReviewVO.getNum()}','${i}')">수정	</a>
