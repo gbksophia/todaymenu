@@ -239,4 +239,10 @@ public class Restaurant {
 		model.addAttribute("CateCount", CateCount);
 		return "/restaurant/CateCount";
 	}
+	
+	@RequestMapping("searchResult.eat")
+	public String searchResult(String search, HttpServletRequest request) {
+		request.setAttribute("kwd", search);
+		return "/restaurant/searchResult";
+	}
 }
