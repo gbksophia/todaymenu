@@ -239,4 +239,59 @@ public class Restaurant {
 		model.addAttribute("CateCount", CateCount);
 		return "/restaurant/CateCount";
 	}
+	
+	@RequestMapping("searchResult.eat")
+	public String searchResult(String search, HttpServletRequest request) {
+		request.setAttribute("kwd", search);
+		return "/restaurant/searchResult";
+	}
+
+	//레스토랑 추가
+	@RequestMapping("restaurantCreate.eat")
+	public String restaurantCreate(Model model) {
+		int restaurantCnum = sql.selectOne("restaurant.restaurantCnum");
+		
+		model.addAttribute("restaurantCnum", restaurantCnum);
+		return "/restaurant/restaurantCreate";
+	}
+	
+	//레스토랑 추가
+	@RequestMapping("restaurantCreatePro.eat")
+	public String restaurantCreatePro(HttpServletRequest request, Model model, HttpSession session) throws Exception{
+		request.setCharacterEncoding("UTF-8");
+		restaurantVO vo = new restaurantVO();
+		
+		String admin = (String)session.getAttribute("loginID");
+		String cnum = request.getParameter("cnum");
+		String store = request.getParameter("store");
+		String area1 = request.getParameter("area1");
+		String area2 = request.getParameter("area2");
+		String addr = request.getParameter("addr");
+		String tel = request.getParameter("tel");
+		String cate = request.getParameter("cate");
+		String img = request.getParameter("img");
+		
+		vo.setCnum(cnum);
+		vo.setStore(store);
+		vo.setArea1(area1);
+		vo.setArea2(area2);
+		vo.setAddr(addr);
+		vo.setTel(tel);
+		vo.setCate(cate);
+		vo.setImg(img);
+		
+		System.out.println(cnum);
+		System.out.println(store);
+		System.out.println(area1);
+		System.out.println(area2);
+		System.out.println(addr);
+		System.out.println(tel);
+		System.out.println(cate);
+
+		sql.insert("restaurant.insert", vo);
+		
+		return "/restaurant/restaurantCreatePro";
+	}
+	
+
 }

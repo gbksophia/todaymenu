@@ -48,5 +48,9 @@
 	    <error-code>500</error-code>
 	    <location>/WEB-INF/views/errorpage/errorpage500.jsp</location>
 	</error-page>
-
+	
+	<error-page>
+	    <error-code>400</error-code>
+	    <location>/WEB-INF/views/errorpage/errorpage400.jsp</location>
+	</error-page>
 </web-app>

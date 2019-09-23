@@ -16,4 +16,9 @@ public class errorpage {
 	public String errorpage500() {
 		return "/errorpage/errorpage500";
 	}
+	
+	@RequestMapping("errorpage400.eat")
+	public String errorpage400() {
+		return "/errorpage/errorpage400";
+	}
 }

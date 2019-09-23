@@ -125,7 +125,7 @@ public class memberpage {
 			sql.insert("recipe.jjimInsert",vo);
 		}
 		model.addAttribute("img",img);
-		return "/member/recipeJjimClick";
+		return "/member/recipeJjim";
 	}
 	
 	
@@ -321,7 +321,7 @@ public class memberpage {
 			sql.delete("recipeReview.delete",num);
 			}
 			
-			return "/member/reviewRemove";
+			return "/member/recipeReview";
 		}
 		
 		// 레스토랑 리뷰 삭제
@@ -334,6 +334,6 @@ public class memberpage {
 			sql.delete("restaurantReview.delete",num);  // 저장된 아이디와 로그인중인 아이디 비교
 			}
 					
-			return "/member/reviewRemove";
+			return "/member/restaurantReview";
 		}	
 }

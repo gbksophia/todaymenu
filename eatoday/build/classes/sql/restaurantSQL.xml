@@ -71,4 +71,8 @@
 		select count(*) from (select distinct area1 from restaurant where cate=#{value})
 	</select>
 	
+	<select id = "restaurantCnum" parameterType = "restaurantVO" resultType = "int">
+		select count(*) + 1000 from restaurant
+	</select>
+	
 </mapper>
