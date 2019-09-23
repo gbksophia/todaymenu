@@ -376,13 +376,6 @@ textarea:disabled{
 					<div style="text-align: center">
 						<a id="jjimImg" onclick="javascript:jjimClick()"></a>
 					</div>
-					
-				<c:if test="${sessionScope.loginID.equals('admin@eatoday.com')}">
-					<div style="text-align: right">
-						<input type="button" value="삭제" class="btn py-3 px-4 btn-primary" onclick="location.href='recipeDelete.eat?cnum=${rvo.cnum}&cate=${rvo.cate}'" />
-						<input type="button" value="수정" class="btn py-3 px-4 btn-primary" />
-					</div>
-				</c:if>
 			</div>
 
 <!-- 댓글 -->
