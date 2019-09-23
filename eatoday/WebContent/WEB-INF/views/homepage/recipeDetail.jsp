@@ -266,6 +266,8 @@ function reviewWrite(){
 		}
 	});
 }
+niceCheck('${recipeReviewVO.num}','${i}');
+niceCountCheck('${recipeReviewVO.num}','${i}');
 </script>
 
 <style>
@@ -350,89 +352,86 @@ textarea:disabled{
 				</c:forEach>
 			</p>
 			<h2 class="mb-3 mt-5">조리법</h2>
-				<div class="vcard bio">
-					<c:forEach begin="1" end="${proCount }" step="1" var="i">
-						<c:if test="${i==1 }">
-							<c:set var="j" value="0" />
-						</c:if>
-					<c:set var="rcpro" value="${pro[i-1]}" />
-						<c:choose>
-							<c:when test="${i%2 == 1 }">
-								<c:set var="img" value="${ivo[j]}" />
-								<img src="/eatoday/resource/RecipePro/${img.getImg1()}" alt="" class="img-fluid" width="400px" height="200px">
-							</c:when>
-							
-							<c:otherwise>
-								<img src="/eatoday/resource/RecipePro/${img.getImg2()}" alt="" class="img-fluid" width="400px" height="200px">
-								<c:set var="j" value="${j+1}" />
-							</c:otherwise>
-						</c:choose>
-						<p>  ${rcpro} </p>
-						<br><br>
-					</c:forEach>
-						<div style="text-align: center">
-							<a id="jjimImg" onclick="javascript:jjimClick()"></a>
-						</div>
-						
-					<c:if test="${sessionScope.loginID.equals('admin@eatoday.com')}">
-						<div style="text-align: right">
-							<input type="button" value="삭제" class="btn py-3 px-4 btn-primary" onclick="location.href='recipeDelete.eat?cnum=${rvo.cnum}&cate=${rvo.cate}'" />
-							<input type="button" value="수정" class="btn py-3 px-4 btn-primary" />
-						</div>
+			
+			<div class="vcard bio">
+				<c:forEach begin="1" end="${proCount }" step="1" var="i">
+					<c:if test="${i==1 }">
+						<c:set var="j" value="0" />
 					</c:if>
-				</div>
+				<c:set var="rcpro" value="${pro[i-1]}" />
+					<c:choose>
+						<c:when test="${i%2 == 1 }">
+							<c:set var="img" value="${ivo[j]}" />
+							<img src="/eatoday/resource/RecipePro/${img.getImg1()}" alt="" class="img-fluid" width="400px" height="200px">
+						</c:when>
+						
+						<c:otherwise>
+							<img src="/eatoday/resource/RecipePro/${img.getImg2()}" alt="" class="img-fluid" width="400px" height="200px">
+							<c:set var="j" value="${j+1}" />
+						</c:otherwise>
+					</c:choose>
+					<p>  ${rcpro} </p>
+					<br><br>
+				</c:forEach>
+					<div style="text-align: center">
+						<a id="jjimImg" onclick="javascript:jjimClick()"></a>
+					</div>
+					
+				<c:if test="${sessionScope.loginID.equals('admin@eatoday.com')}">
+					<div style="text-align: right">
+						<input type="button" value="삭제" class="btn py-3 px-4 btn-primary" onclick="location.href='recipeDelete.eat?cnum=${rvo.cnum}&cate=${rvo.cate}'" />
+						<input type="button" value="수정" class="btn py-3 px-4 btn-primary" />
+					</div>
+				</c:if>
+			</div>
 
 <!-- 댓글 -->
-<div class="pt-5 mt-5">
-<h3 id="Comments" class="mb-5">${recount} Comments</h3>
-<ul class="comment-list">
-<c:set var="i" value="0"/>
-<c:forEach var="recipeReviewVO" items="${revo}">
-<c:set var="i" value="${i+1 }" />
-<c:set var="likeImg" value="javascript:imgcheck('${recipeReviewVO.getNum()}')"/>
-<li id="comment${i}" class="comment">
-<div class="comment-body">
-<h3>${recipeReviewVO.nick}</h3>
-<div class="meta">${recipeReviewVO.reg_date}</div>
-<p id="reviewtext${i}"><textarea id="textarea${i}" disabled>${recipeReviewVO.text} </textarea></p>
-<c:if test="${recipeReviewVO.img != null}">
-<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img}" height="300px">
-</c:if>
+			<div class="pt-5 mt-5">
+				<h3 id="Comments" class="mb-5">${recount} Comments</h3>
+					<ul class="comment-list">
+					<c:set var="i" value="0"/>
+						<c:forEach var="recipeReviewVO" items="${revo}">
+							<c:set var="i" value="${i+1 }" />
+								<c:set var="likeImg" value="javascript:imgcheck('${recipeReviewVO.getNum()}')"/>
+								<li id="comment${i}" class="comment">
+									<div class="comment-body">
+										<h3>${recipeReviewVO.nick}</h3>
+											<div class="meta">${recipeReviewVO.reg_date}</div>
+										<p id="reviewtext${i}"><textarea id="textarea${i}" disabled>${recipeReviewVO.text} </textarea></p>
+											<c:if test="${recipeReviewVO.img != null}">
+												<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img}" height="300px">
+											</c:if>
 
-<c:if test="${sessionScope.loginID == recipeReviewVO.id}"><br/>
-<a href="javascript:reviewUpdate('${recipeReviewVO.getNum()}','${i}')">수정	</a> &nbsp;|&nbsp;
-<a href="javascript:reviewRemove('${recipeReviewVO.getNum()}','${i}','${rvo.cnum }')">삭제</a>
-<div class="text-right">
-<div class="form-group">
-<div id="UpdateBtn${i}" class="text-right"></div>
-</div>
-</div>
-</c:if>
+											<c:if test="${sessionScope.loginID == recipeReviewVO.id}"><br/>
+												<a href="javascript:reviewUpdate('${recipeReviewVO.getNum()}','${i}')">수정	</a> &nbsp;|&nbsp;
+												<a href="javascript:reviewRemove('${recipeReviewVO.getNum()}','${i}','${rvo.cnum }')">삭제</a>
+												<div class="text-right">
+												<div class="form-group">
+												<div id="UpdateBtn${i}" class="text-right"></div>
+												</div>
+												</div>
+											</c:if>
 
-<div class="text-right">
-<div id="niceCount${i}"></div>
-<a id="likeImg${i}" onclick="javascript:niceClick('${recipeReviewVO.num}','${i}')"></a>
-</div> 
-</div>  
-</li>
-<script>
-niceCheck('${recipeReviewVO.num}','${i}');
-niceCountCheck('${recipeReviewVO.num}','${i}');
-</script>
-</c:forEach>
-</ul>
-<div class="text-center">
-<c:if test="${startPage >10}">
-<a href="recipeDetail.eat?page=${startPage-10}&cate=${rvo.cate}&cnum=${rvo.cnum}">&nbsp;<< &nbsp;</a>
-</c:if>
-<c:forEach begin="${startPage}" end="${endPage}" step="1" var="i">
-<a href="recipeDetail.eat?page=${i}&cate=${rvo.cate}&cnum=${rvo.cnum}">${i}</a>
-<c:if test="${i!=endPage}">&nbsp;|&nbsp;</c:if>
-</c:forEach>
-<c:if test="${endPage < pageCount}">
-<a href="recipeDetail.eat?page=${startPage+10}&cate=${rvo.cate}&cnum=${rvo.cnum}"> &nbsp;>>&nbsp;</a>
-</c:if>
-</div>
+										<div class="text-right">
+										<div id="niceCount${i}"></div>
+										<a id="likeImg${i}" onclick="javascript:niceClick('${recipeReviewVO.num}','${i}')"></a>
+										</div> 
+									</div>  
+								</li>
+						</c:forEach>
+					</ul>
+						<div class="text-center">
+								<c:if test="${startPage >10}">
+									<a href="recipeDetail.eat?page=${startPage-10}&cate=${rvo.cate}&cnum=${rvo.cnum}">&nbsp;<< &nbsp;</a>
+								</c:if>
+								<c:forEach begin="${startPage}" end="${endPage}" step="1" var="i">
+									<a href="recipeDetail.eat?page=${i}&cate=${rvo.cate}&cnum=${rvo.cnum}">${i}</a>
+										<c:if test="${i!=endPage}">&nbsp;|&nbsp;</c:if>
+								</c:forEach>
+							<c:if test="${endPage < pageCount}">
+								<a href="recipeDetail.eat?page=${startPage+10}&cate=${rvo.cate}&cnum=${rvo.cnum}"> &nbsp;>>&nbsp;</a>
+							</c:if>
+						</div>
        		<!-- END comment-list -->
 
 
