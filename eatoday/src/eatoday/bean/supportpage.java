@@ -216,5 +216,17 @@ public class supportpage {
 			model.addAttribute("result",result);	
 			return "/support/mySupportList";
 		}
-
+		
+		//문의 글 삭제
+		@RequestMapping("removePro.eat")
+		public String removePro(supportVO vo,HttpSession session, Model model) {
+			String id = (String)session.getAttribute("loginID");
+			int result = 0;
+			if(id.equals(vo.getId())){
+				sql.delete("support.delete",vo.getNum());
+				result = 1;
+			}
+			model.addAttribute("result",result);
+			return "/support/mySupportList";
+		} 
 }

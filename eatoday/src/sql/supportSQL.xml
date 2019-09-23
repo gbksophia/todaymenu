@@ -8,19 +8,6 @@
 		values(support_seq.nextval,#{id},#{nick},#{subject},#{content},#{img},#{notice},sysdate)
 	</insert>
 	
-	<update id="update" parameterType="supportVO" >
-		update support set 
-		<choose>
-			<when test="comments == null">
-				content=#{content} , img=#{img}, notice=#{notice} 
-			</when>
-			<otherwise>
-				comments=#{comments}
-			</otherwise>
-		</choose>
-		where num=#{num}
-	</update>
-	
 	<delete id="delete" parameterType="int">
 		delete from support where num=#{num}
 	</delete>

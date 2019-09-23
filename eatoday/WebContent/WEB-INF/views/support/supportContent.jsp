@@ -71,7 +71,7 @@
     });
  </script>
  <script>
- function remove(){
+ function commentRemove(){
 		var result = confirm("답변을 삭제하시겠습니까?");
 
 		if(result){
@@ -79,7 +79,7 @@
 			location = "supportCommentRemove.eat?num=${supportVO.num}";
 			}
 }
-	function update(){
+	function commentUpdate(){
 		var text = $("#comments").val();
 		var check = document.getElementById("commentUp");
 		var num = '${supportVO.num}';
@@ -103,6 +103,14 @@
 			  });
 		}
 	}
+
+	function remove() {
+		var result = confirm("해당 질문을 지우시겠습니까?");
+
+		if(result) {
+			location = "removePro.eat?num=${supportVO.num}&id=${supportVO.id}";
+			}
+		}
  </script>
 </head>
 <body>
@@ -168,8 +176,8 @@
 				<tr>
 					<td>
 						<div class="text-right">
-						<input class="btn py-3 px-4 btn-primary" type="button" value="삭제하기" onclick="javascript:remove()">
-						<input class="btn py-3 px-4 btn-primary" type="button" value="수정하기" onclick="javascript:update()">
+						<input class="btn py-3 px-4 btn-primary" type="button" value="삭제하기" onclick="javascript:commentRemove()">
+						<input class="btn py-3 px-4 btn-primary" type="button" value="수정하기" onclick="javascript:commentUpdate()">
 						</div>
 					</td>
 				</tr>

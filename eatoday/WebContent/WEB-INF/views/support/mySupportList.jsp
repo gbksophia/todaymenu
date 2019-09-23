@@ -34,18 +34,17 @@
 
 <body>
 <script type="text/javascript">
-	function remove(num,i){
+	function remove(num,id){
 			var result = confirm("글을 지우시겠습니까?");
-			var tag = "#list"+i;
 			if(!result){
 				alert("취소되었습니다.");
 			} else {
 				 $.ajax({
-						url: "/eatoday/adminpage/supportRemove.eat",
+						url: "removePro.eat",
 						type: "post",
-						data: { num : num},
+						data: { num : num, id: id},
 						success: function(data) {
-						$(tag).remove();
+							location.reload();
 						}
 				});	
 			}
@@ -68,9 +67,7 @@
 		<td> 제목 </td>
 		<td> 닉네임 </td>
 		<td> 작성일 </td>
-		<c:if test="${sessionScope.loginID.equals('admin@eatoday.com') }">
 		<td>삭제</td>
-		</c:if>
 	</tr>
 	<c:set var="i" value="1"/>
 	<c:forEach var="supportVO" items="${supportList }">
@@ -91,11 +88,18 @@
 		<td> <a href="supportContent.eat?num=${supportVO.num }">${supportVO.subject }</a></td>		
 		<td>${supportVO.nick }</td>
 		<td>${supportVO.reg_date }</td>
-		<c:if test="${sessionScope.loginID.equals('admin@eatoday.com') }">
-		<td> 
-		<input type="button" value="삭제"  onclick="remove('${supportVO.num}','${i }')">
-		</td>
-		</c:if>
+		<c:choose>
+			<c:when test="${supportVO.comments == null }">
+				<td> 
+					<input class="btn py-3 px-4 btn-primary" type="button" value="삭제"  onclick="remove('${supportVO.num}','${supportVO.id }')">
+				</td>
+			</c:when>
+			<c:otherwise>
+				<td> 
+					
+				</td>
+			</c:otherwise>
+		</c:choose>
 	</tr>
 	<c:set var="i" value="${i+1}"/>
 	</c:forEach>
