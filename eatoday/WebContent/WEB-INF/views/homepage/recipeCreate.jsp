@@ -56,7 +56,7 @@
 
 <form action="recipeCreatePro.eat" method="post" enctype="multipart/form-data">
 
- <h1>레시피 등록하기</h1><br>
+ <h1>${recipeCnum } 레시피 등록하기</h1><br>
  
 <h4>카테고리를 선택해주세요</h4><br>
 <table>
