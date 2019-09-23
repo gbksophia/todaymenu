@@ -142,10 +142,7 @@ function displayPlaces(places) {
     // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
     var order = document.getElementById(currCategory).getAttribute('data-order');
 
-    
-
     for ( var i=0; i<places.length; i++ ) {
-
             // 마커를 생성하고 지도에 표시합니다
             var marker = addMarker(new kakao.maps.LatLng(places[i].y, places[i].x), order);
 
@@ -209,7 +206,6 @@ function displayPlaceInfo (place) {
     placeOverlay.setMap(map);  
 }
 
-
 // 각 카테고리에 클릭 이벤트를 등록합니다
 function addCategoryClickEvent() {
     var category = document.getElementById('categoryc'),
@@ -253,15 +249,7 @@ function changeCategoryClass(el) {
     } 
 } 
 
-		//****** GeoLocation ******//
-/* var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-mapOption = { 
-    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    level: 10 // 지도의 확대 레벨 
-}; 
-
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다 */
-
+	//****** GeoLocation ******//
 //HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
 

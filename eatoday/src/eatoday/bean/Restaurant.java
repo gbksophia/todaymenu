@@ -232,11 +232,11 @@ public class Restaurant {
 		return "/restaurant/niceCountCheck";
 	}
 	
-   // 사이드메뉴  카테고리 카운트
-   @RequestMapping("restaurantCateCount.eat")
-   public String restaurantCateCount(String cate,Model model) {
-      int CateCount = sql.selectOne("restaurant.count",cate);
-      model.addAttribute("CateCount", CateCount);
-      return "/restaurant/CateCount";
-   }
+	// 사이드메뉴  카테고리 카운트
+	@RequestMapping("restaurantCateCount.eat")
+	public String restaurantCateCount(String cate,Model model) {
+		int CateCount = sql.selectOne("restaurant.count",cate);
+		model.addAttribute("CateCount", CateCount);
+		return "/restaurant/CateCount";
+	}
 }

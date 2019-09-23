@@ -79,7 +79,7 @@ function placesSearchCB (data, status, pagination) {
 
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
         map.setBounds(bounds);
-///////////////
+
         console.log('1===='+status);
 		//addr로 검색이 되지 않을 경우 addr2로 검색
 	} else if (status === kakao.maps.services.Status.ZERO_RESULT){
@@ -90,7 +90,6 @@ function placesSearchCB (data, status, pagination) {
 		console.log('3===='+status);
 		alert('gg');
 	}
-///////////////	
 }
 
 // 지도에 마커를 표시하는 함수입니다
@@ -124,7 +123,6 @@ function displayMarker(place) {
     });
 }
 </script>
-<%-- ${addr} <br/> --%>
 ${addr2}<br/>
 (검색결과는 나오지 않거나 여러개일 수 있습니다.)
 </body>
