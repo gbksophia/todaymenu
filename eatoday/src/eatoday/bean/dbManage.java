@@ -24,7 +24,7 @@ public class dbManage {
 	@Autowired
 	private SqlSessionTemplate sql = null;
 	
-		// 레시피 내용, 메인이미지를 recipe DB에 입력
+	// 레시피 내용, 메인이미지를 recipe DB에 입력
 	//http://localhost:8080/eatoday/csvtodb/recipedb.eat
 	@RequestMapping("recipedb.eat")
 	public String csvdb(HttpServletRequest request) throws Exception {
@@ -55,33 +55,27 @@ public class dbManage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return "/csvtodb/recipedb";
 	}
 	
-		// DB의 레시피 정보를 출력하는 테스트 페이지
+	// DB의 레시피 정보를 출력하는 테스트 페이지
 	//http://localhost:8080/eatoday/csvtodb/showreci.eat
 	@RequestMapping("showreci.eat")
 	public String showdb(Model model, HttpServletRequest request) throws Exception {
 		try {
 			int count = (Integer)sql.selectOne("recipe.count");
-//			int rowCount = (Integer)sql.selectOne("recipe.rowCount");
-//			ArrayList rcp = new ArrayList();
 			List rcpList = sql.selectList("recipe.select");
-			
 			System.out.println(count);
-			//System.out.println(rcpList);
 
 			model.addAttribute("recipeList", rcpList);
 			model.addAttribute("count", count);
-//			model.addAttribute("rowCount", rowCount);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "/csvtodb/showreci";
 	}
 	
-		// 레시피 조리법을 DB에 입력
+	// 레시피 조리법을 DB에 입력
 	//http://localhost:8080/eatoday/csvtodb/reciimg.eat
 	@RequestMapping("reciimg")
 	public String reciimg(HttpServletRequest request) {
@@ -102,7 +96,6 @@ public class dbManage {
 				rimgvo.setImg1(s[2][j]);
 				rimgvo.setImg2(s[3][j]);
 				sql.insert("recipe.imginsert", rimgvo);
-				//System.out.println(s[3][j]);
 			}
 			System.out.println("recipeIMG CSV -> DB");
 
@@ -113,7 +106,7 @@ public class dbManage {
 		return "/csvtodb/reciimg";
 	}
 	
-		// 레스토랑 정보를 restaurant DB에 입력
+	// 레스토랑 정보를 restaurant DB에 입력
 	//http://localhost:8080/eatoday/csvtodb/restdb.eat
 	@RequestMapping("restdb.eat")
 	public String restdb(HttpServletRequest request) {
@@ -130,7 +123,6 @@ public class dbManage {
 			}
 			
 			for(int j=0; j<list.at(0).length(); j++) {
-				//restVO.setCnum(s[0][j]);
 				restVO.setCnum(s[1][j]);
 				restVO.setStore(s[2][j]);
 				restVO.setArea1(s[3][j]);
@@ -139,7 +131,6 @@ public class dbManage {
 				restVO.setTel(s[6][j]);
 				restVO.setCate(s[7][j]);
 				sql.insert("restaurant.insert", restVO);
-				//System.out.println(s[2][j]);
 			}
 			System.out.println("restaurant CSV -> DB");
 			
@@ -149,17 +140,14 @@ public class dbManage {
 		return "/csvtodb/restdb";
 	}
 	
-		// DB의 레스토랑 정보를 출력하는 테스트 페이지 
+	// DB의 레스토랑 정보를 출력하는 테스트 페이지 
 	//http://localhost:8080/eatoday/csvtodb/showrest.eat
 	@RequestMapping("showrest.eat")
 	public String showrest(Model model, HttpServletRequest request) throws Exception {
 		try {
 			int count = (Integer)sql.selectOne("restaurant.count");
-//			ArrayList rest = new ArrayList();
 			List restList = sql.selectList("restaurant.select");
-			
 			System.out.println(count);
-//			System.out.println(rcpList);
 
 			model.addAttribute("restList", restList);
 			model.addAttribute("count", count);
@@ -168,7 +156,6 @@ public class dbManage {
 		}
 		return "/csvtodb/showrest";
 	}
-	
 	
 }
 
