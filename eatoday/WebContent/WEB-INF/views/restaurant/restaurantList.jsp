@@ -142,7 +142,7 @@
 						<c:when test="${cate == '카페'}"><h1 class="mb-3 mt-5 bread">카페</h1></c:when>
 						<c:when test="${cate == '기타'}"><h1 class="mb-3 mt-5 bread">기타</h1></c:when>
 					</c:choose>
-					<p class="breadcrumbs"><span class="mr-2"><a href="index.eat">Home</a></span></p>
+					<p class="breadcrumbs"><span class="mr-2"><a href="/eatoday/homepage/index.eat">Home</a></span></p>
 				</div>
 			</div>
 		</div>
@@ -153,7 +153,7 @@
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" data-stellar-background-ratio="0.5";>
 	<div class="container">
 	    <div class="hd_column2">
-	      <form name="searchBar" action="searchResult.eat" onSubmit="return searchCheck();" class="search-form">
+	      <form name="searchBar" action="../restaurant/searchResult.eat" onSubmit="return searchCheck();" class="search-form">
 	        <div class="form-group">
 	        	<div class="icon">
 	           <span class="icon-search"></span>

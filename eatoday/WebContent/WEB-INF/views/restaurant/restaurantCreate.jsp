@@ -98,67 +98,67 @@
 	<thead>
 		<tr>
 			<th>
-				<input type = "radio" name = "AREA1" value = "서울" class = "input1" required>서울
+				<input type = "radio" name = "area1" value = "서울" class = "input1" required>서울
 			</th>
 			<th>
-				<input type = "radio" name = "AREA1" value = "충청남도" class = "input2" required>충청남도
+				<input type = "radio" name = "area1" value = "충청남도" class = "input2" required>충청남도
 			</th>
 			<th>
-				<input type = "radio" name = "AREA1" value = "세종특별자치시" class = "input2" required>세종시
+				<input type = "radio" name = "area1" value = "세종특별자치시" class = "input2" required>세종시
 			</th>
 			<th>
-				<input type = "radio" name = "AREA1" value = "부산" class = "input2" required>부산
+				<input type = "radio" name = "area1" value = "부산" class = "input2" required>부산
 			</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<th>
-				<input type = "radio" name = "AREA1" value = "인천" class = "input1" required>인천
+				<input type = "radio" name = "area1" value = "인천" class = "input1" required>인천
 			</th>
 			<th>
-				<input type = "radio" name = "AREA1" value = "울산" class = "input2" required>울산
+				<input type = "radio" name = "area1" value = "울산" class = "input2" required>울산
 			</th>
 			<th>
-				<input type = "radio" name = "AREA1" value = "충청북도" class = "input2" required>충청북도
+				<input type = "radio" name = "area1" value = "충청북도" class = "input2" required>충청북도
 			</th>
 			<th>
-				<input type = "radio" name = "AREA1" value = "경상북도" class = "input2" required>경상북도
-			</th>
-		</tr>
-
-		<tr>
-			<th>
-				<input type = "radio" name = "AREA1" value = "강원도" class = "input1" required>강원도
-			</th>
-			<th>
-				<input type = "radio" name = "AREA1" value = "전라남도" class = "input2" required>전라남도
-			</th>
-			<th>
-				<input type = "radio" name = "AREA1" value = "대전" class = "input2" required>대전
-			</th>
-			<th>
-				<input type = "radio" name = "AREA1" value = "광주" class = "input2" required>광주
-			</th>
-		</tr>
-		<tr>
-			<th>
-				<input type = "radio" name = "AREA1" value = "경기도" class = "input1" required>경기도
-			</th>
-			<th>
-				<input type = "radio" name = "AREA1" value = "전라북도" class = "input2" required>전라북도
-			</th>
-			<th>
-				<input type = "radio" name = "AREA1" value = "제주도" class = "input2" required>제주도
-			</th>
-			<th>
-				<input type = "radio" name = "AREA1" value = "대구" class = "input2" required>대구
+				<input type = "radio" name = "area1" value = "경상북도" class = "input2" required>경상북도
 			</th>
 		</tr>
 
 		<tr>
 			<th>
-				<input type = "radio" name = "AREA1" value = "경상남도" class = "input1" required>경상남도
+				<input type = "radio" name = "area1" value = "강원도" class = "input1" required>강원도
+			</th>
+			<th>
+				<input type = "radio" name = "area1" value = "전라남도" class = "input2" required>전라남도
+			</th>
+			<th>
+				<input type = "radio" name = "area1" value = "대전" class = "input2" required>대전
+			</th>
+			<th>
+				<input type = "radio" name = "area1" value = "광주" class = "input2" required>광주
+			</th>
+		</tr>
+		<tr>
+			<th>
+				<input type = "radio" name = "area1" value = "경기도" class = "input1" required>경기도
+			</th>
+			<th>
+				<input type = "radio" name = "area1" value = "전라북도" class = "input2" required>전라북도
+			</th>
+			<th>
+				<input type = "radio" name = "area1" value = "제주도" class = "input2" required>제주도
+			</th>
+			<th>
+				<input type = "radio" name = "area1" value = "대구" class = "input2" required>대구
+			</th>
+		</tr>
+
+		<tr>
+			<th>
+				<input type = "radio" name = "area1" value = "경상남도" class = "input1" required>경상남도
 			</th>
 
 		</tr>
@@ -167,6 +167,7 @@
 
 
 <input type="hidden" name="cnum" value="${restaurantCnum }">
+<input type = "hidden" name = "img" value = "null"/>
 <br><br>
 
 	<br>

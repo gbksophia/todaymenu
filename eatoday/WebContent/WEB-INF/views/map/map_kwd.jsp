@@ -200,7 +200,7 @@ function displayMarker(place) {
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 <div class="container">
 	<div class="hd_column2">
-		<form name="searchBar" action="searchResult.eat" onSubmit="return searchCheck();" class="search-form">
+		<form name="searchBar" action="../restaurant/searchResult.eat" onSubmit="return searchCheck();" class="search-form">
 			<div class="form-group">
 				<div class="icon">
 					<span class="icon-search"></span>
