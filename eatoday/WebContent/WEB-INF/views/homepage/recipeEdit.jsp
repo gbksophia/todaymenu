@@ -63,8 +63,19 @@
 
  <h1>레시피 수정하기</h1><br>
  
-<h4>카테고리를 선택해주세요</h4><br>
+ <script>
+$(document).ready(function(){
+	if(${cate}==1){
+		${".cate:input[value=1]"}.prop("checked", true);
+	}
+});
+ 
+ </script>
+ 
+ 
+<h4>카테고리를 선택해주세요</h4><br> ${cate}
 <table>
+	
 	<thead>
 		<tr>
 			<th>

@@ -677,6 +677,7 @@ public class Recipe {
 		String mate = vo.getMate().replace("next","");
 		String pro = vo.getPro().replace("next","");
 		
+		
 		model.addAttribute("vo", vo);
 		model.addAttribute("mate", mate);
 		model.addAttribute("pro", pro);
