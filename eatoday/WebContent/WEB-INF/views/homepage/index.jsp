@@ -233,7 +233,7 @@
 								<a href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${rnd.getCnum()}"></c:param>
 									<c:param name="cate" value="${rnd.getCate()}"></c:param></c:url>">
 									<h5>${rnd.getTitle()}</h5></a>
-								<p>&nbsp;<a class="btn btn-primary btn-outline-primary" href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${rcp.getCnum()}"></c:param>
+								<p>&nbsp;<a class="btn btn-primary btn-outline-primary" href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${rnd.getCnum()}"></c:param>
 									<c:param name="cate" value="${rnd.getCate()}"></c:param></c:url>">자세히보기</a></p>
 							</div><br/>
 						</div><br/>
