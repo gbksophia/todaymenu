@@ -173,7 +173,7 @@ public class Restaurant {
 		vo.setText(text);
 		sql.insert("restaurantReview.insert",vo);
 		
-		return "/homepage/recipeRePro";
+		return "/homepage/restaurantDetail";
 		}
 	
 	//¸®ºä ¼öÁ¤

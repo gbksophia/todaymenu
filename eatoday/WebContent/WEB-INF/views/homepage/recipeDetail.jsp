@@ -343,28 +343,31 @@ textarea:disabled{
     	<div class="row">
         	<div class="col-md-8 ftco-animate">
             	<h2 class="mb-3">재료</h2>
-				<p><c:set var="str" value="${rvo.getMate()}"/>
-					<c:forEach var="spt" items="${fn:replace(str, 'next', '<br>')}" varStatus="status">
-						<img src="images/image_2.jpg" alt="" class="img-fluid">${spt}
-					</c:forEach></p>
+				<p>
+				<c:set var="str" value="${rvo.getMate()}"/>
+				<c:forEach var="spt" items="${fn:replace(str, 'next', '<br>')}" varStatus="status">
+					<img src="images/image_2.jpg" alt="" class="img-fluid">${spt}
+				</c:forEach>
+				</p>
             	<h2 class="mb-3 mt-5">조리법</h2>
 	            <div class="vcard bio">
 		            <c:forEach begin="1" end="${proCount }" step="1" var="i">
-	            	<c:if test="${i==1 }">
-	            		<c:set var="j" value="0" />
-	            	</c:if>
-					<c:set var="rcpro" value="${pro[i-1]}" />
-					<c:choose>
-						<c:when test="${i%2 == 1 }">
-							<c:set var="img" value="${ivo[j]}" />
-							<img src="/eatoday/resource/RecipePro/${img.getImg1()}" alt="" class="img-fluid" width="400px" height="200px">
-						</c:when>
-						<c:otherwise>
-							<img src="/eatoday/resource/RecipePro/${img.getImg2()}" alt="" class="img-fluid" width="400px" height="200px">
-							<c:set var="j" value="${j+1}" />
-						</c:otherwise>
-					</c:choose>
-						<p>  ${rcpro} </p><br><br>
+	            		<c:if test="${i==1 }">
+	            			<c:set var="j" value="0" />
+	            		</c:if>
+						<c:set var="rcpro" value="${pro[i-1]}" />
+							<c:choose>
+								<c:when test="${i%2 == 1 }">
+									<c:set var="img" value="${ivo[j]}" />
+									<img src="/eatoday/resource/RecipePro/${img.getImg1()}" alt="" class="img-fluid" width="400px" height="200px">
+								</c:when>
+								<c:otherwise>
+									<img src="/eatoday/resource/RecipePro/${img.getImg2()}" alt="" class="img-fluid" width="400px" height="200px">
+									<c:set var="j" value="${j+1}" />
+								</c:otherwise>
+							</c:choose>
+						<p>  ${rcpro} </p>
+						<br><br>
 					</c:forEach>
 					<div style="text-align: center">
 						<a id="jjimImg" onclick="javascript:jjimClick()"></a>
@@ -382,20 +385,20 @@ textarea:disabled{
               		<h3 id="Comments" class="mb-5">${recount} Comments</h3>
               		<ul class="comment-list">
               			<c:set var="i" value="0"/>
-              			<c:forEach var="recipeReviewVO" items="${revo}">
-              				<c:set var="i" value="${i+1 }" />
-              				<c:set var="likeImg" value="javascript:imgcheck('${recipeReviewVO.getNum()}')"/>
-              	 			<li id="comment${i}" class="comment">
-								<div class="comment-body">
+              				<c:forEach var="recipeReviewVO" items="${revo}">
+              					<c:set var="i" value="${i+1 }" />
+              					<c:set var="likeImg" value="javascript:imgcheck('${recipeReviewVO.getNum()}')"/>
+              	 				<li id="comment${i}" class="comment">
+									<div class="comment-body">
 									<h3>${recipeReviewVO.nick}</h3>
-									<div class="meta">${recipeReviewVO.reg_date}</div>
+										<div class="meta">${recipeReviewVO.reg_date}</div>
 									<p id="reviewtext${i}"><textarea id="textarea${i}" disabled>${recipeReviewVO.text} </textarea></p>
 									<c:if test="${recipeReviewVO.img != null}">
 										<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img}" height="300px">
 									</c:if>
+									
 									<c:if test="${sessionScope.loginID == recipeReviewVO.id}"><br/>
-										<a href="javascript:reviewUpdate('${recipeReviewVO.getNum()}','${i}')">수정	</a>
-										&nbsp;|&nbsp;
+										<a href="javascript:reviewUpdate('${recipeReviewVO.getNum()}','${i}')">수정	</a> &nbsp;|&nbsp;
 										<a href="javascript:reviewRemove('${recipeReviewVO.getNum()}','${i}','${rvo.cnum }')">삭제</a>
 										<div class="text-right">
 											<div class="form-group">
@@ -403,17 +406,18 @@ textarea:disabled{
 											</div>
 										</div>
 									</c:if>
-									<div class="text-right">
-										<div id="niceCount${i}"></div>
-										<a id="likeImg${i}" onclick="javascript:niceClick('${recipeReviewVO.num}','${i}')"></a>
-									</div> 
-								</div>  
-							</li>
-<script>
-niceCheck('${recipeReviewVO.num}','${i}');
-niceCountCheck('${recipeReviewVO.num}','${i}');
-</script>
-							</c:forEach>
+									
+										<div class="text-right">
+											<div id="niceCount${i}"></div>
+											<a id="likeImg${i}" onclick="javascript:niceClick('${recipeReviewVO.num}','${i}')"></a>
+										</div> 
+									</div>  
+								</li>
+									<script>
+									niceCheck('${recipeReviewVO.num}','${i}');
+									niceCountCheck('${recipeReviewVO.num}','${i}');
+									</script>
+								</c:forEach>
 							<div class="text-center">
 								<c:if test="${startPage >10}">
 									<a href="recipeDetail.eat?page=${startPage-10}&cate=${rvo.cate}&cnum=${rvo.cnum}">&nbsp;<< &nbsp;</a>
@@ -428,6 +432,8 @@ niceCountCheck('${recipeReviewVO.num}','${i}');
 							</div>
 						</ul>
              			<!-- END comment-list -->
+             			
+             			
 				<!-- 댓글 달기 -->
 				<div class="comment-form-wrap pt-5">
               	<c:choose>
@@ -435,131 +441,131 @@ niceCountCheck('${recipeReviewVO.num}','${i}');
               			<form>
               			<div class="form-group">
               				<input class="btn py-3 px-4 btn-primary" type="button" value="로그인 후 댓글 쓰기 가능" onclick="location='/eatoday/loginpage/login.eat'">
-              				</div>
+              			</div>
               			</form>
               		</c:when>
               		<c:otherwise>
-              		 <form id="reviewWriteForm" action="javascript:reviewWrite()" method="post" enctype="multipart/form-data">
-                	<input type="hidden" name="cnum" value="${rvo.getCnum()}">
-                	<input type="hidden" name="cate" value="${rvo.getCate()}">
-                	<input type="hidden" name="id" value="${sessionScope.loginID}">
-                  <div class="form-group">
-                    <textarea name="text" id="text" cols="30" rows="10" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
-                  </div>
+              			<form id="reviewWriteForm" action="javascript:reviewWrite()" method="post" enctype="multipart/form-data">
+                		<input type="hidden" name="cnum" value="${rvo.getCnum()}">
+                		<input type="hidden" name="cate" value="${rvo.getCate()}">
+                		<input type="hidden" name="id" value="${sessionScope.loginID}">
+                		
+                  		<div class="form-group">
+                    		<textarea name="text" id="text" cols="30" rows="10" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
+                 		</div>
                   
-                  <div class="form-group">
-                    <input  class="form-control" type="text" name="nick"  placeholder="닉네임" />
-                  </div>
+                 		 <div class="form-group">
+                    		<input  class="form-control" type="text" name="nick"  placeholder="닉네임" />
+                 		</div>
                   
-                  <div class="form-group">
-                    <input type="file" name="img"  />
-                  </div>
-                  <div class="form-group">
-                  	<div class="text-right">
-                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
-                  </div>
-                  </div>
-                </form>
+                  		<div class="form-group">
+                    		<input type="file" name="img"  />
+                  		</div>
+                  		<div class="form-group">
+                  			<div class="text-right">
+                    			<input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                  			</div>
+                  		</div>
+                		</form>
               		</c:otherwise>
               	</c:choose>
-              </div>
-              </div>
-             </div>
+              	</div>
+			</div>
+		</div>
              
-            <div class="col-md-4 sidebar ftco-animate fadeInUp ftco-animated">
-            <div class="sidebar-box">
-              <form name="searchBar" action="SearchRecipe.eat" onSubmit="return searchCheck();" class="search-form">
-                <div class="form-group">
-                	<div class="icon">
-	                  <span class="icon-search"></span>
-                  </div>
-                  <input type="text" name="search" id="search" class="form-control" placeholder="Search...">
-                </div>
-              </form>
-            </div>
+		<div class="col-md-4 sidebar ftco-animate fadeInUp ftco-animated">
+			<div class="sidebar-box">
+				<form name="searchBar" action="SearchRecipe.eat" onSubmit="return searchCheck();" class="search-form">
+					<div class="form-group">
+						<div class="icon">
+							<span class="icon-search"></span>
+						</div>
+						<input type="text" name="search" id="search" class="form-control" placeholder="Search...">
+					</div>
+				</form>
+			</div>
            
-            <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
-              <div class="categories">
-                <h3>Categories</h3>
-                <ul>
-                <li><a href="recipeListView.eat?cate=1" id="cate(1)">밥요리</a></li>
-                <li><a href="recipeListView.eat?cate=2" id="cate(2)">국&탕 </a></li>
-                <li><a href="recipeListView.eat?cate=3" id="cate(3)">찌개&전골 </a></li>
-                <li><a href="recipeListView.eat?cate=4" id="cate(4)">밑반찬 </a></li>
-                <li><a href="recipeListView.eat?cate=5" id="cate(5)">볶음요리 </a></li>
-                <li><a href="recipeListView.eat?cate=6" id="cate(6)">구이(고기/생선)</a></li>
-                <li><a href="recipeListView.eat?cate=7" id="cate(7)">찜&조림</a></li>
-                <li><a href="recipeListView.eat?cate=8" id="cate(8)">손님상 </a></li>
-                <li><a href="recipeListView.eat?cate=9" id="cate(9)">아이 반찬 </a></li>
-                <li><a href="recipeListView.eat?cate=10" id="cate(10)">김치 장아찌</a></li>
-                <li><a href="recipeListView.eat?cate=11" id="cate(11)">도시락</a></li>
-                <li><a href="recipeListView.eat?cate=12" id="cate(12)">튀김 </a></li>
-                <li><a href="recipeListView.eat?cate=13" id="cate(13)">면요리</a></li>
-             	<li><a href="recipeListView.eat?cate=14" id="cate(14)">샐러드</a></li>
-             	<li><a href="recipeListView.eat?cate=15" id="cate(15)">야식&술안주</a></li>
-             	<li><a href="recipeListView.eat?cate=16" id="cate(16)">스파게티 </a></li>
-             	<li><a href="recipeListView.eat?cate=17" id="cate(17)">간식&분식 </a></li>
-             	<li><a href="recipeListView.eat?cate=18" id="cate(18)">토스트&샌드위치</a></li>
-             	<li><a href="recipeListView.eat?cate=19" id="cate(19)">베이킹</a></li>
-             	<li><a href="recipeListView.eat?cate=20" id="cate(20)">디저트 </a></li>
-             	<li><a href="recipeListView.eat?cate=21" id="cate(21)">주스&음료 </a></li>
-             	<li><a href="recipeListView.eat?cate=22" id="cate(22)">술&칵테일</a></li>
-             	<li><a href="recipeListView.eat?cate=23" id="cate(23)">명절요리</a></li>
-             	</ul>
-              </div>
-            </div>
+		<div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+			<div class="categories">
+				<h3>Categories</h3>
+				<ul>
+					<li><a href="recipeListView.eat?cate=1" id="cate(1)">밥요리</a></li>
+					<li><a href="recipeListView.eat?cate=2" id="cate(2)">국&탕 </a></li>
+					<li><a href="recipeListView.eat?cate=3" id="cate(3)">찌개&전골 </a></li>
+					<li><a href="recipeListView.eat?cate=4" id="cate(4)">밑반찬 </a></li>
+					<li><a href="recipeListView.eat?cate=5" id="cate(5)">볶음요리 </a></li>
+					<li><a href="recipeListView.eat?cate=6" id="cate(6)">구이(고기/생선)</a></li>
+					<li><a href="recipeListView.eat?cate=7" id="cate(7)">찜&조림</a></li>
+					<li><a href="recipeListView.eat?cate=8" id="cate(8)">손님상 </a></li>
+					<li><a href="recipeListView.eat?cate=9" id="cate(9)">아이 반찬 </a></li>
+					<li><a href="recipeListView.eat?cate=10" id="cate(10)">김치 장아찌</a></li>
+					<li><a href="recipeListView.eat?cate=11" id="cate(11)">도시락</a></li>
+					<li><a href="recipeListView.eat?cate=12" id="cate(12)">튀김 </a></li>
+					<li><a href="recipeListView.eat?cate=13" id="cate(13)">면요리</a></li>
+					<li><a href="recipeListView.eat?cate=14" id="cate(14)">샐러드</a></li>
+					<li><a href="recipeListView.eat?cate=15" id="cate(15)">야식&술안주</a></li>
+					<li><a href="recipeListView.eat?cate=16" id="cate(16)">스파게티 </a></li>
+					<li><a href="recipeListView.eat?cate=17" id="cate(17)">간식&분식 </a></li>
+					<li><a href="recipeListView.eat?cate=18" id="cate(18)">토스트&샌드위치</a></li>
+					<li><a href="recipeListView.eat?cate=19" id="cate(19)">베이킹</a></li>
+					<li><a href="recipeListView.eat?cate=20" id="cate(20)">디저트 </a></li>
+					<li><a href="recipeListView.eat?cate=21" id="cate(21)">주스&음료 </a></li>
+					<li><a href="recipeListView.eat?cate=22" id="cate(22)">술&칵테일</a></li>
+					<li><a href="recipeListView.eat?cate=23" id="cate(23)">명절요리</a></li>
+				</ul>
+			</div>
+		</div>
             
-             <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
-              <div class="categories">
-                <h3>관심 있는 레시피</h3>
-                <c:choose>
-                	<c:when test="${sessionScope.loginID ==null }">
-                		<c:forEach var="recipeVO" items="${recipeList }" >
-              			 <li> 
-              			 <div class="text-left p-t-8 p-b-31">
-               			<a  href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${recipeVO.cnum}"></c:param><c:param name="cate" value="${recipeVO.cate}"></c:param></c:url>">
-               			<img src="/eatoday/resource/RecipeImages/${recipeVO.main_name }" style="width: 100px; height: 100px"/>
-               			${recipeVO.title }
-               	</a>
-               	</div>
-                </li>
-              </c:forEach>
-                	</c:when>
-                	<c:otherwise>
-                		<c:forEach var="recipeVO" items="${recipeList }" >
-              			 <li> 
-              			 <div class="text-left p-t-8 p-b-31">
-             	 		 <a href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${recipeVO.cnum}"></c:param><c:param name="cate" value="${recipeVO.cate}"></c:param></c:url>">
-               			<img src="/eatoday/resource/RecipeImages/${recipeVO.main_name }" style="width: 100px; height: 100px"/>
-               			${recipeVO.title }
-               			</a>
-               		</div>
-                	</li>
-              </c:forEach>
-                	</c:otherwise>
-                </c:choose>
-                
-              </div>
-            </div>
+			<div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+				<div class="categories">
+					<h3>관심 있는 레시피</h3>
+					<c:choose>
+						<c:when test="${sessionScope.loginID ==null }">
+							<c:forEach var="recipeVO" items="${recipeList }" >
+								<li> 
+									<div class="text-left p-t-8 p-b-31">
+										<a href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${recipeVO.cnum}"></c:param><c:param name="cate" value="${recipeVO.cate}"></c:param></c:url>">
+										<img src="/eatoday/resource/RecipeImages/${recipeVO.main_name }" style="width: 100px; height: 100px"/>
+										${recipeVO.title }
+										</a>
+									</div>
+								</li>
+							</c:forEach>
+						</c:when>                		
+						<c:otherwise>
+							<c:forEach var="recipeVO" items="${recipeList }" >
+								<li> 
+									<div class="text-left p-t-8 p-b-31">
+										<a href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${recipeVO.cnum}"></c:param><c:param name="cate" value="${recipeVO.cate}"></c:param></c:url>">
+										<img src="/eatoday/resource/RecipeImages/${recipeVO.main_name }" style="width: 100px; height: 100px"/>
+										${recipeVO.title }
+										</a>
+									</div>
+								</li>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>                
+				</div>
+			</div>
             
             <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
               <div class="categories">
                 <h3>관련 레시피</h3>
-                <c:forEach var="randomVO" items="${randomList }" >
-               <li> 
-               <div class="text-left p-t-8 p-b-31">
-               <a  href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${randomVO.cnum}"></c:param><c:param name="cate" value="${randomVO.cate}"></c:param></c:url>">
-               <img src="/eatoday/resource/RecipeImages/${randomVO.main_name }" style="width: 100px; height: 100px"/>
-               	${randomVO.title }
-               </a>
-               </div>
-                </li>
-              </c:forEach>
-              </div>
-            </div>
+              		<c:forEach var="randomVO" items="${randomList }" >
+	               		<li> 
+	               			<div class="text-left p-t-8 p-b-31">
+	               				<a  href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${randomVO.cnum}"></c:param><c:param name="cate" value="${randomVO.cate}"></c:param></c:url>">
+	               				<img src="/eatoday/resource/RecipeImages/${randomVO.main_name }" style="width: 100px; height: 100px"/>
+	               				${randomVO.title }
+	               				</a>
+	               			</div>
+	                	</li>
+              		</c:forEach>
+				</div>
+			</div>
 		</div>
-		</div>
-        </div>
+	</div>
+</div>
 </section> <!-- .section -->
 
 <jsp:include page="footer.jsp" />
