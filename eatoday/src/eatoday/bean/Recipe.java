@@ -384,9 +384,6 @@ public class Recipe {
 	//레시피 등록
 	@RequestMapping("recipeCreate.eat")
 	public String recipeCreate(Model model) {
-		int recipeCnum = sql.selectOne("recipe.recipeCnum");
-		
-		model.addAttribute("recipeCnum", recipeCnum);
 		return "/homepage/recipeCreate";
 	}
 	
@@ -395,10 +392,8 @@ public class Recipe {
 	public String recipeCreatePro(MultipartHttpServletRequest request, Model model, HttpSession session) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		recipeVO vo = new recipeVO();
-		
-		String admin = (String)session.getAttribute("loginID");
+
 		String cate = request.getParameter("cate");
-		String cnum = request.getParameter("cnum");
 		String title = request.getParameter("title");
 		String mate = request.getParameter("mate");
 		String pro = request.getParameter("pro");
@@ -406,7 +401,6 @@ public class Recipe {
 		mate = mate.replace("\r\n", "next");
 		
 		vo.setCate(cate);
-		vo.setCnum(cnum);
 		vo.setTitle(title);
 		vo.setMate(mate);
 		vo.setPro(pro);
@@ -426,7 +420,6 @@ public class Recipe {
 			String ext = orgName.substring(orgName.lastIndexOf('.'));
 			sql.insert("recipeReview.imgCountInsert");
 			int num = sql.selectOne("recipeReview.imgCount");
-		
 			
 			String newName = "image"+num+ext;
 			File copyFile = new File(path +"//"+ newName);
@@ -435,17 +428,17 @@ public class Recipe {
 		} else {
 			vo.setMain_name("");
 		}
-		
+		sql.insert("recipe.cnumCount");
+		String cnum = sql.selectOne("recipe.getCnum");
+		vo.setCnum(cnum);
 		sql.insert("recipe.insert", vo);
-		
+		model.addAttribute("cnum",cnum);
 		return "/homepage/recipeCreatePro";
 	}
 	
 	@RequestMapping("recipeCreateDetail.eat")
-	public String recipeCreateDetail(Model model) {
-		int recipeCnum = sql.selectOne("recipe.recipeCnum");
-		
-		model.addAttribute("recipeCnum", recipeCnum);
+	public String recipeCreateDetail(Model model,String cnum) {
+		model.addAttribute("cnum",cnum);
 		return "/homepage/recipeCreateDetail";
 	}
 	

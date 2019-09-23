@@ -6,9 +6,19 @@
 		<!-- 레시피 정보 입력 -->
 	<insert id="insert" parameterType="recipeVO">
 		insert into recipe(cate, cnum, main_name, title, mate, pro) 
-		values (#{cate}, #{cnum}, #{main_name}, #{title}, #{mate}, #{pro})
+		values (#{cate}, cnum_seq.nextval, #{main_name}, #{title}, #{mate}, #{pro})
 	</insert>
 	
+	
+	<!-- cnum값  카운트 업 -->
+ 	<insert id="cnumCount">
+ 		insert into cnum values(cnum_seq.nextval)
+ 	</insert>
+ 	
+ 	<!-- 레시피 리뷰 이미지 이름 숫자 카운트 가져오기 -->
+ 	<select id="getCnum" resultType="String">
+ 		select max(cnum) from cnum
+ 	</select>
 	<!-- 레시피 세부 사진 저장 -->
 	<insert id = "insertImg" parameterType="recipeImgVO">
 		insert into recipe_pro(cnum, img1, img2)
@@ -130,17 +140,7 @@
  	  select count(*) from recipe_jjim where id=#{id} and cnum=#{cnum}
  	</select>
  	
- 	<!-- 레시피 cnum 생성 
- 	cnum이 일정한 분류가 없어서 +1000을 한다음 순차적으로 생성되게 하였습니다.
- 	-->
- 	<select id = "recipeCnum" parameterType = "recipeVO" resultType = "int">
- 	<!--  
- 	 <![CDATA[	select cnum+1 from recipe where rownum <=1 ]]>
- 	 -->
- 	 select count(*) + 1000 from recipe
- 	</select>
- 	
- 	<!-- 레시피 찜 추가 -->
+	<!-- 레시피 찜 추가 -->
  	<insert id="jjimInsert" parameterType="recipeJjimVO">
  		insert into recipe_jjim values(recipe_jjim_seq.nextval,#{id},#{cnum})
  	</insert>
