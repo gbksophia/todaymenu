@@ -240,13 +240,12 @@ public class Restaurant {
 		return "/restaurant/CateCount";
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping("searchResult.eat")
 	public String searchResult(String search, HttpServletRequest request) {
 		request.setAttribute("kwd", search);
 		return "/restaurant/searchResult";
 	}
-=======
+
 	//레스토랑 추가
 	@RequestMapping("restaurantCreate.eat")
 	public String restaurantCreate() {
@@ -255,5 +254,5 @@ public class Restaurant {
 	}
 	
 	
->>>>>>> refs/remotes/origin/master
+
 }
