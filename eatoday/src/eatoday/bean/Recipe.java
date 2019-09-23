@@ -33,7 +33,7 @@ public class Recipe {
 	public String recipeKorView(Model model, HttpServletRequest request) throws Exception {
 		
 		String cate = request.getParameter("cate");  // 카테고리 값 가져오기
-		String cateImg = sql.selectOne("recipe.cateImg",cate); // 카테고리에 해당하는 랜덤 이미지 가져오기
+		String cateImg = sql.selectOne("recipe.cateImg",cate ); // 카테고리에 해당하는 랜덤 이미지 가져오기
 
 		int count = sql.selectOne("recipe.cateCount",cate); // 레시피 갯수 (페이지 기능)
 			

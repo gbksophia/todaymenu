@@ -111,6 +111,22 @@
 	       return false;
 	    }
 	 }
+
+	//레시피 삭제 
+    function delchk(cnum,i){
+		var result = confirm("삭제하시겠습니까?");
+		var tag = "#object"+i;
+		if(result){
+			$.ajax({
+				url: "restaurantDelete.eat",
+				type: "post",
+				data:  {cnum:cnum },
+				success: function(data) {
+					$(tag).remove();
+				}
+			});
+			}
+    }
 </script>
 </head>
 <body>
@@ -194,7 +210,7 @@
 				</div>
 										<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		   
 		<div class="text-left">
-   			<input type="button" value="레시피 등록" class="btn py-3 px-4 btn-primary" onclick="location='restaurantCreate.eat'">
+   			<input type="button" value="식당 등록" class="btn py-3 px-4 btn-primary" onclick="location='restaurantCreate.eat'">
     	</div>
     </c:if>
 					<div class="col-md-12 d-flex align-items-center">
@@ -212,6 +228,10 @@
 																</c:url>">${rest.getStore()}<br/>${rest.getArea1()} ${rest.getArea2()}</a></h3>
 														<a class="btn btn-primary btn-outline-primary" href="<c:url value ="/restaurant/restaurantDetail.eat">
 																<c:param name="cnum" value="${rest.getCnum()}"></c:param><c:param name="cate" value="${cate}"></c:param></c:url>">자세히보기</a>
+																						<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		
+							
+							<a class="btn btn-primary btn-outline-primary" id="deleteRbtn"  onclick="return delchk('${rest.cnum}','${i }');">삭제</a>	
+						</c:if>
 													</div>
 												</div>
 											</div>

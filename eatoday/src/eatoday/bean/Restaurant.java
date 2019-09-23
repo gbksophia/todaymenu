@@ -293,5 +293,14 @@ public class Restaurant {
 		return "/restaurant/restaurantCreatePro";
 	}
 	
+	@RequestMapping("restaurantDelete.eat")
+	public String recipeDelete(Model model,HttpSession session,String cnum,String cate) {
+		String admin = (String)session.getAttribute("loginID");
+		if(admin.equals("admin@eatoday.com")) {
+			sql.delete("restaurant.delete",cnum);
+		}
+		model.addAttribute("cate",cate);
+		return "/homepage/recipeDetail";
+	}
 
 }
