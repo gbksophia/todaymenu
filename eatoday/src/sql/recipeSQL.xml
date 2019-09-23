@@ -185,4 +185,23 @@
  	<delete id="delete" parameterType="String">
  		delete from recipe where cnum=#{value}
  	</delete>
+ 	
+ 	<!-- 레시피 수정 -->
+ 	<update id="updateRecipe" parameterType="recipeVO">
+ 		update recipe set cate=#{cate}, main_name=#{main_name},
+ 		title=#{title}, mate=#{mate}, pro=#{pro} where cnum=#{cnum}
+ 	</update>
+ 	
+ 	 <update id="updateImg" parameterType="String">
+ 		update recipe_pro set img1=#{img1}, img2=#{img2} where cnum=#{cnum}
+ 	</update>
+ 	
+ 	<update id="updateImg1" parameterType="String">
+ 		update recipe_pro set img1=#{img1}, img2=#{img2} where cnum=#{cnum}
+ 	</update>
+ 	
+ 	<!--recipe_pro에 이미지 등록된 여부 확인  -->
+ 	<select id="containImg" parameterType="String" resultType="int">
+ 		select count(*) from recipe_pro where cnum=#{cnum}
+ 	</select>
 </mapper>

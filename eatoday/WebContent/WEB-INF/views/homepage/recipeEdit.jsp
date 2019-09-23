@@ -46,10 +46,6 @@
     	}
     </style>
     
-    <script>
-		var cateR=document.getElementByName("cate").value
-
-    </script>
     
 <body>
 
@@ -59,110 +55,103 @@
 <br><br><br><br>
  <div class="comment-form-wrap pt-5">
 
-<form action="recipeCreatePro.eat" method="post" enctype="multipart/form-data">
+<form action="recipeEditPro.eat" method="post" enctype="multipart/form-data">
 
  <h1>레시피 수정하기</h1><br>
  
- <script>
-$(document).ready(function(){
-	if(${cate}==1){
-		${".cate:input[value=1]"}.prop("checked", true);
-	}
-});
- 
- </script>
+
  
  
-<h4>카테고리를 선택해주세요</h4><br> ${cate}
+<h4>카테고리를 선택해주세요</h4><br> 
 <table>
 	
 	<thead>
 		<tr>
 			<th>
-				<input type = "radio" name = "cate" value = "1" class = "input1" required>밥요리
+				<input type = "radio" name = "cate" value = "1" class = "input1" id="rice" required>밥요리
 			</th>
 			<th>
-				<input type = "radio" name = "cate" value = "2" class = "input2" required>국&탕
+				<input type = "radio" name = "cate" value = "2" class = "input2" id="soup" required>국&탕
 			</th>
 			<th>
-				<input type = "radio" name = "cate" value = "3" class = "input2" required>찌개&전골
+				<input type = "radio" name = "cate" value = "3" class = "input2" id="jeongol"required>찌개&전골
 			</th>
 			<th>
-				<input type = "radio" name = "cate" value = "4" class = "input2" required>밑반찬 
+				<input type = "radio" name = "cate" value = "4" class = "input2"id="side" required>밑반찬 
 			</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<th>
-				<input type = "radio" name = "cate" value = "5" class = "input1" required>볶음요리
+				<input type = "radio" name = "cate" value = "5" class = "input1" id="shake" required>볶음요리
 			</th>
 			<th>
-				<input type = "radio" name = "cate" value = "6" class = "input2" required>구이(고기/생선)
+				<input type = "radio" name = "cate" value = "6" class = "input2" id="gui" required>구이(고기/생선)
 			</th>
 			<th>
-				<input type = "radio" name = "cate" value = "7" class = "input2" required>찜&조림
+				<input type = "radio" name = "cate" value = "7" class = "input2" id="jjim" required>찜&조림
 			</th>
 			<th>
-				<input type = "radio" name = "cate" value = "8" class = "input2" required>손님상
-			</th>
-		</tr>
-		<tr>
-			<th>
-				<input type = "radio" name = "cate" value = "9" class = "input1" required>아이 반찬
-			</th>
-			<th>
-				<input type = "radio" name = "cate" value = "10" class = "input2" required>김치 장아찌
-			</th>
-			<th>
-				<input type = "radio" name = "cate" value = "11" class = "input2" required>도시락
-			</th>
-			<th>
-				<input type = "radio" name = "cate" value = "12" class = "input2" required>튀김
-			</th>
-		<tr>
-			<th>
-				<input type = "radio" name = "cate" value = "13" class = "input1" required>면요리
-			</th>
-			<th>
-				<input type = "radio" name = "cate" value = "14" class = "input2" required>샐러드
-			</th>
-			<th>
-				<input type = "radio" name = "cate" value = "15" class = "input2" required>야식&술안주
-			</th>
-			<th>
-				<input type = "radio" name = "cate" value = "16" class = "input2" required>스파게티
+				<input type = "radio" name = "cate" value = "8" class = "input2" id="guest"required>손님상
 			</th>
 		</tr>
 		<tr>
 			<th>
-				<input type = "radio" name = "cate" value = "17" class = "input1" required>간식&분식
+				<input type = "radio" name = "cate" value = "9" class = "input1" id="children" required>아이 반찬
 			</th>
 			<th>
-				<input type = "radio" name = "cate" value = "18" class = "input2" required>토스트&샌드위치
+				<input type = "radio" name = "cate" value = "10" class = "input2" id="kimchi" required>김치 장아찌
 			</th>
 			<th>
-				<input type = "radio" name = "cate" value = "19" class = "input2" required>베이킹
+				<input type = "radio" name = "cate" value = "11" class = "input2" id="dosi" required>도시락
 			</th>
 			<th>
-				<input type = "radio" name = "cate" value = "20" class = "input2" required>디저트
+				<input type = "radio" name = "cate" value = "12" class = "input2" id="fry" required>튀김
+			</th>
+		<tr>
+			<th>
+				<input type = "radio" name = "cate" value = "13" class = "input1" id="noodle" required>면요리
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "14" class = "input2" id="salad" required>샐러드
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "15" class = "input2" id="drink"required>야식&술안주
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "16" class = "input2" id="spa"required>스파게티
 			</th>
 		</tr>
 		<tr>
 			<th>
-				<input type = "radio" name = "cate" value = "21" class = "input1" required>주스&음료
+				<input type = "radio" name = "cate" value = "17" class = "input1" id="snack"required>간식&분식
 			</th>
 			<th>
-				<input type = "radio" name = "cate" value = "22" class = "input2" required>술&칵테일
+				<input type = "radio" name = "cate" value = "18" class = "input2" id="toast" required>토스트&샌드위치
 			</th>
 			<th>
-				<input type = "radio" name = "cate" value = "23" class = "input2" required>명절요리
+				<input type = "radio" name = "cate" value = "19" class = "input2" id="baking" required>베이킹
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "20" class = "input2" id="dessert" required>디저트
+			</th>
+		</tr>
+		<tr>
+			<th>
+				<input type = "radio" name = "cate" value = "21" class = "input1" id="juice" required>주스&음료
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "22" class = "input2" id="cocktail" required>술&칵테일
+			</th>
+			<th>
+				<input type = "radio" name = "cate" value = "23" class = "input2" id="holiday" required>명절요리
 			</th>
 		</tr>
 	</tbody>
 </table>
 
-<input type="hidden" name="cnum" value="${recipeCnum }">
+<input type="hidden" name="cnum" value="${cnum }">
 <br><br>
 <h4>썸네일을 등록해주세요</h4>
 	<div class="form-group">

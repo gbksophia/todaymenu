@@ -681,7 +681,260 @@ public class Recipe {
 		model.addAttribute("vo", vo);
 		model.addAttribute("mate", mate);
 		model.addAttribute("pro", pro);
+		model.addAttribute("cnum", cnum);
 		return "/homepage/recipeEdit";
+	}
+	
+	@RequestMapping("recipeEditPro")
+	public String recipeEditPro(MultipartHttpServletRequest request, Model model, HttpSession session) throws Exception {
+		//레시피 수정 pro 페이지
+		request.setCharacterEncoding("UTF-8");
+		recipeVO vo = new recipeVO();
+			
+		String admin = (String)session.getAttribute("loginID");
+		String cate = request.getParameter("cate");
+		String cnum = request.getParameter("cnum");
+		String title = request.getParameter("title");
+		String mate = request.getParameter("mate");
+		String pro = request.getParameter("pro");
+		pro = pro.replace("\r\n", "next");
+		mate = mate.replace("\r\n", "next");
+			
+		vo.setCate(cate);
+		vo.setCnum(cnum);
+		vo.setTitle(title);
+		vo.setMate(mate);
+		vo.setPro(pro);
+
+		//이미지
+		MultipartFile mf = request.getFile("main_name");
+		String orgName = mf.getOriginalFilename();
+		
+		if(orgName != "") {
+			String path = request.getRealPath("//resource//RecipeImages");
+			String ext = orgName.substring(orgName.lastIndexOf('.'));
+			sql.insert("recipeReview.imgCountInsert");
+			int num = sql.selectOne("recipeReview.imgCount");			
+				
+			String newName = "image"+num+ext;
+			File copyFile = new File(path +"//"+ newName);
+			mf.transferTo(copyFile);
+			vo.setMain_name(newName);
+		} else {
+			vo.setMain_name("");
+		}	
+		sql.update("recipe.updateRecipe", vo);
+		model.addAttribute("cnum", cnum);
+		return "/homepage/recipeEditPro";
+	}
+	
+	@RequestMapping("recipeEditDetail")
+	public String recipeEditDetail() {	
+		return "/homepage/recipeEditDetail";
+	}
+	
+	@RequestMapping("recipeEditDetailPro")
+	public String recipeEditDetailPro(MultipartHttpServletRequest request, Model model, HttpSession session) throws Exception {	
+		request.setCharacterEncoding("UTF-8");
+		recipeImgVO vo = new recipeImgVO();
+		
+		String cnum = request.getParameter("cnum");
+		
+		int ynImg=sql.selectOne("recipe.containImg", cnum);
+		
+		vo.setCnum(cnum);
+		//이미지
+		MultipartFile mf = request.getFile("img1");
+		String orgName = mf.getOriginalFilename();
+		
+		MultipartFile mf2 = request.getFile("img2");
+		String orgName1 = mf2.getOriginalFilename();
+
+		if(orgName != "") {
+			String path = request.getRealPath("//resource/RecipePro");
+			String ext = orgName.substring(orgName.lastIndexOf('.'));
+			sql.insert("recipeReview.imgCountInsert");
+			int num = sql.selectOne("recipeReview.imgCount");
+			
+			String newName = "image"+num+ext;
+			File copyFile = new File(path + "//" + newName);
+			mf.transferTo(copyFile);
+			vo.setImg1(newName);
+		}
+		
+		if(orgName1 != "") {
+			String path = request.getRealPath("//resource/RecipePro");
+			String ext = orgName1.substring(orgName1.lastIndexOf('.'));
+			sql.insert("recipeReview.imgCountInsert");
+			int num = sql.selectOne("recipeReview.imgCount");
+			
+			String newName1 = "image"+num+ext;
+			File copyFile = new File(path + "//" + newName1);
+			mf2.transferTo(copyFile);;
+			vo.setImg2(newName1);
+		}
+		
+		else if (orgName1 == ""){
+			vo.setImg2("noimage");
+		}
+		sql.update("recipe.updateImg", vo);
+		
+
+		
+		//이미지
+		MultipartFile mf3 = request.getFile("img3");
+		String orgName2 = mf3.getOriginalFilename();
+		
+		MultipartFile mf4 = request.getFile("img4");
+		String orgName3 = mf4.getOriginalFilename();
+
+		recipeImgVO vo1 = new recipeImgVO();
+		String cnum1 = request.getParameter("cnum");
+		
+			if(orgName2 != "") {
+
+				
+				vo1.setCnum(cnum1);
+				String path = request.getRealPath("//resource/RecipePro");
+				String ext = orgName2.substring(orgName2.lastIndexOf('.'));
+				sql.insert("recipeReview.imgCountInsert");
+				int num = sql.selectOne("recipeReview.imgCount");
+				
+				String newName2 = "image"+num+ext;
+				File copyFile = new File(path + "//" + newName2);
+				mf3.transferTo(copyFile);
+				vo1.setImg1(newName2);
+				if(orgName3 == "") {
+				vo1.setImg2("noimage");
+				sql.update("recipe.updateImg1", vo1);
+				}
+				
+			}
+			
+			else if(orgName2 == "") {
+				System.out.println("없다");
+			}
+			
+			if(orgName3 != "") {
+
+				vo1.setCnum(cnum1);
+				String path = request.getRealPath("//resource/RecipePro");
+				String ext = orgName3.substring(orgName3.lastIndexOf('.'));
+				sql.insert("recipeReview.imgCountInsert");
+				int num = sql.selectOne("recipeReview.imgCount");
+				
+				String newName3 = "image"+num+ext;
+				File copyFile = new File(path + "//" + newName3);
+				mf4.transferTo(copyFile);;
+				vo1.setImg2(newName3);
+				sql.update("recipe.updateImg1", vo1);
+			}
+			else if(orgName3 == "") {
+				System.out.println("없다");
+			}
+			
+			
+			
+			
+			//이미지
+			MultipartFile mf5 = request.getFile("img5");
+			String orgName4 = mf5.getOriginalFilename();
+			
+			MultipartFile mf6 = request.getFile("img6");
+			String orgName5 = mf6.getOriginalFilename();
+
+			
+				if(orgName4 != "") {
+
+					
+					vo1.setCnum(cnum1);
+					String path = request.getRealPath("//resource/RecipePro");
+					String ext = orgName4.substring(orgName4.lastIndexOf('.'));
+					sql.insert("recipeReview.imgCountInsert");
+					int num = sql.selectOne("recipeReview.imgCount");
+					
+					String newName4 = "image"+num+ext;
+					File copyFile = new File(path + "//" + newName4);
+					mf5.transferTo(copyFile);
+					vo1.setImg1(newName4);
+					if(orgName5 == "") {
+					vo1.setImg2("noimage");
+					sql.update("recipe.updateImg1", vo1);
+					}
+					
+				}
+				
+				else if(orgName4 == "") {
+					System.out.println("없다");
+				}
+				
+				if(orgName5 != "") {
+
+					vo1.setCnum(cnum1);
+					String path = request.getRealPath("//resource/RecipePro");
+					String ext = orgName5.substring(orgName5.lastIndexOf('.'));
+					sql.insert("recipeReview.imgCountInsert");
+					int num = sql.selectOne("recipeReview.imgCount");
+					
+					String newName5 = "image"+num+ext;
+					File copyFile = new File(path + "//" + newName5);
+					mf6.transferTo(copyFile);;
+					vo1.setImg2(newName5);
+					sql.update("recipe.updateImg1", vo1);
+				}
+				else if(orgName5 == "") {
+					System.out.println("없다");
+				}
+		
+				//이미지
+				MultipartFile mf7 = request.getFile("img7");
+				String orgName6 = mf7.getOriginalFilename();
+				
+				MultipartFile mf8 = request.getFile("img8");
+				String orgName7 = mf8.getOriginalFilename();
+
+					if(orgName6 != "") {
+
+						
+						vo1.setCnum(cnum1);
+						String path = request.getRealPath("//resource/RecipePro");
+						String ext = orgName6.substring(orgName6.lastIndexOf('.'));
+						sql.insert("recipeReview.imgCountInsert");
+						int num = sql.selectOne("recipeReview.imgCount");
+						
+						String newName6 = "image"+num+ext;
+						File copyFile = new File(path + "//" + newName6);
+						mf7.transferTo(copyFile);
+						vo1.setImg1(newName6);
+						if(orgName7 == "") {
+						vo1.setImg2("noimage");
+						sql.update("recipe.updateImg1", vo1);
+						}
+						
+					}
+					
+					else if(orgName6 == "") {
+						System.out.println("없다");
+					}
+					
+					if(orgName7 != "") {
+
+						vo1.setCnum(cnum1);
+						String path = request.getRealPath("//resource/RecipePro");
+						String ext = orgName7.substring(orgName7.lastIndexOf('.'));
+						sql.insert("recipeReview.imgCountInsert");
+						int num = sql.selectOne("recipeReview.imgCount");
+						
+						String newName7 = "image"+num+ext;
+						File copyFile = new File(path + "//" + newName7);
+						mf8.transferTo(copyFile);;
+						vo1.setImg2(newName7);
+						sql.update("recipe.updateImg1", vo1);
+					}
+					else if(orgName7 == "") {
+						System.out.println("없다");
+					}
+		return "/homepage/recipeEditDetailPro";
 	}
 	
 	
