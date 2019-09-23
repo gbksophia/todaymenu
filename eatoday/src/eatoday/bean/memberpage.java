@@ -125,7 +125,7 @@ public class memberpage {
 			sql.insert("recipe.jjimInsert",vo);
 		}
 		model.addAttribute("img",img);
-		return "/member/recipeJjimClick";
+		return "/member/recipeJjim";
 	}
 	
 	
