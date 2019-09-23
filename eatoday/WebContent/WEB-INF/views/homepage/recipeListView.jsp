@@ -137,7 +137,7 @@
     
   </head>
   <body>
-  	<jsp:include page="/eatoday/homepage/header.eat" />
+  	<jsp:include page="header.jsp" />
     <!-- END nav -->
 
     <section class="home-slider owl-carousel">
@@ -308,7 +308,7 @@
     </section> <!--"ftco-menu mb-5 pb-5"   -->
     
     
-    <jsp:include page="/eatoday/homepage/footer.eat" />
+    <jsp:include page="footer.jsp" />
     
   
 
