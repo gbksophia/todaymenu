@@ -447,7 +447,7 @@ public class Recipe {
 		request.setCharacterEncoding("UTF-8");
 		recipeImgVO vo = new recipeImgVO();
 		
-		String cnum = request.getParameter("cnum");
+		String cnum = request.getParameter("cnum");		
 		vo.setCnum(cnum);
 		//ÀÌ¹ÌÁö
 		MultipartFile mf = request.getFile("img1");
