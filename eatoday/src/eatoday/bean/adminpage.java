@@ -1,6 +1,5 @@
 package eatoday.bean;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import eatoday.vo.memberVO;
 
 @Controller
 @RequestMapping("/adminpage/")
@@ -58,7 +55,7 @@ public class adminpage {
 		if(admin.equals("admin@eatoday.com")) {
 			sql.delete("member.delete",id);
 		}
-		return "/admin/memberRemove";
+		return "/admin/member";
 	}
 	
 	@RequestMapping("recipeReview.eat")
@@ -137,7 +134,7 @@ public class adminpage {
 		if(admin.equals("admin@eatoday.com")) {
 			sql.delete("recipeReview.delete",num);
 		}
-		return "/admin/reviewRemove";
+		return "/admin/recipeReview";
 	}
 	
 	@RequestMapping("restaurantReviewRemove.eat")
@@ -146,7 +143,7 @@ public class adminpage {
 		if(admin.equals("admin@eatoday.com")) {
 			sql.delete("restaurantReview.delete",num);
 		}
-		return "/admin/reviewRemove";
+		return "/admin/restaurantReview";
 	}
 	
 	@RequestMapping("supportRemove.eat")
