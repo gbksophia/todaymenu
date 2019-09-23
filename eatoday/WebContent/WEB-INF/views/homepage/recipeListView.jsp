@@ -174,7 +174,7 @@
 		         
 		         </c:choose>
             	
-	            <p class="breadcrumbs"><span class="mr-2"><a href="index.eat">Home</a></span> <span>Shop</span></p>
+	            <p class="breadcrumbs"><span class="mr-2"><a href="index.eat">Home</a></span></p>
             </div>
 
           </div>
