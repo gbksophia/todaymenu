@@ -239,4 +239,13 @@ public class Restaurant {
 		model.addAttribute("CateCount", CateCount);
 		return "/restaurant/CateCount";
 	}
+	
+	//레스토랑 추가
+	@RequestMapping("restaurantCreate.eat")
+	public String restaurantCreate() {
+		
+		return "/restaurant/restaurantCreate";
+	}
+	
+	
 }

@@ -181,6 +181,7 @@
 						<a class="nav-link" id="v-pills-6-tab" href="<c:url value="/restaurant/restaurantList.eat"><c:param name="cate" value="기타"></c:param><c:param name="area" value="서울"></c:param></c:url>" role="tab" aria-selected="false">기타</a>
 					</div>
 					<br/>
+
 					<div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 						<c:forEach begin="0" end="${areaCnt-1}" step="1" var="i">
 						<c:set var="area" value="${areaList[i]}"/>
@@ -191,6 +192,11 @@
 						</c:forEach>
 					</div>
 				</div>
+										<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		   
+		<div class="text-left">
+   			<input type="button" value="레시피 등록" class="btn py-3 px-4 btn-primary" onclick="location='restaurantCreate.eat'">
+    	</div>
+    </c:if>
 					<div class="col-md-12 d-flex align-items-center">
 						<div class="tab-content ftco-animate" id="v-pills-tabContent">
 							<div class="tab-pane fade show active" id="v-pills-0" role="tabpanel" aria-labelledby="v-pills-0-tab">
