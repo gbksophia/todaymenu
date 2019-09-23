@@ -8,12 +8,10 @@
  		insert into fileNum values(fileNum_seq.nextval)
  	</insert>
  	
- 	
  	<!-- 레스토랑 리뷰 이미지 이름 숫자 카운트 가져오기 -->
  	<select id="ImgCount" resultType="int">
  		select max(num) from fileNum
  	</select>
- 	
  	
 	<!-- 레스토랑 리뷰 쓰기 -->
  	<insert id="insert" parameterType="restaurantReviewVO">
@@ -32,27 +30,25 @@
  	<select id="memCount" parameterType="String" resultType="int">
  		select count(*) from restaurant_re where id=#{value}
  	</select>
- 	
-	
+
 	<!-- 레스토랑 리뷰 가져오기 -->
- 	<select id="select" parameterType="map" resultType="restaurantReviewVO">
- 	   select num,cnum,id,nick,text,img,reg_date,r 
- 	   from (select num,cnum,id,nick,text,img,reg_date,rownum r
- 	   from (select num,cnum,id,nick,text,img,reg_date  
- 	   <choose>
- 	   	<when test="cnum != null">
- 	   	<![CDATA[from restaurant_re where cnum=#{cnum} order by reg_date desc)order by reg_date desc)]]>
- 	   	</when>
- 	   	<when test="id !=null">
- 	   	<![CDATA[from restaurant_re where id=#{id} order by reg_date desc)order by reg_date desc)]]>
- 	   	</when>
- 	   	<otherwise>
- 	   	 <![CDATA[from restaurant_re order by reg_date desc)order by reg_date desc)]]>
- 	   	</otherwise>
- 	   </choose>
- 	      <![CDATA[  where r>=#{startRow} and r<=#{endRow} ]]>
- 	</select>
- 	
+	<select id="select" parameterType="map" resultType="restaurantReviewVO">
+		select num,cnum,id,nick,text,img,reg_date,r 
+		from (select num,cnum,id,nick,text,img,reg_date,rownum r
+		from (select num,cnum,id,nick,text,img,reg_date  
+		<choose>
+			<when test="cnum != null">
+				<![CDATA[from restaurant_re where cnum=#{cnum} order by reg_date desc)order by reg_date desc)]]>
+			</when>
+			<when test="id !=null">
+				<![CDATA[from restaurant_re where id=#{id} order by reg_date desc)order by reg_date desc)]]>
+			</when>
+			<otherwise>
+				<![CDATA[from restaurant_re order by reg_date desc)order by reg_date desc)]]>
+			</otherwise>
+		</choose>
+		<![CDATA[  where r>=#{startRow} and r<=#{endRow} ]]>
+	</select>
  	
  	<!-- 레스토랑 리뷰 삭제 아이디값 비교 -->
  	<select id="idSelect" parameterType="int" resultType="String">
@@ -68,7 +64,6 @@
  	<update id="update" parameterType="restaurantReviewVO">
  		update restaurant_re set text=#{text} where num=#{num} 
  	</update>
- 	
  	
  	<!-- 레스토랑 리뷰 텍스트 가져오기 -->
  	<select id="text" parameterType="int" resultType="String">
@@ -94,4 +89,5 @@
  	<delete id="niceDelete" parameterType="restaurantReviewNiceVO">
  		delete from restaurant_re_nice where id=#{id} and renum= #{renum}
  	</delete>
+ 	
 </mapper>
