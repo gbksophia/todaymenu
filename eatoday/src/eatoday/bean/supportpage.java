@@ -61,14 +61,14 @@ public class supportpage {
 			model.addAttribute("startPage",startPage);
 			model.addAttribute("endPage",endPage);
 			model.addAttribute("pageCount",pageCount);
-			return "/homepage/supportList";
+			return "/support/supportList";
 		}
 
 		
 		// 글쓰기 폼
 		@RequestMapping("supportWrite.eat")
 		public String supportWrite() {
-			return "/homepage/supportWrite";
+			return "/support/supportWrite";
 		}
 		
 		
@@ -102,8 +102,8 @@ public class supportpage {
 				//이미지 업로드
 				String path = request.getRealPath("//resource//support");
 				String ext = orgName.substring(orgName.lastIndexOf('.'));
-				sql.insert("recipe.ImgcountInsert");
-				int num = sql.selectOne("recipe.ImgCount");
+				sql.insert("support.imgCountInsert");
+				int num = sql.selectOne("support.imgCount");
 					
 				String newName = "image"+num+ext;
 				File copyFile = new File(path +"//"+ newName);
@@ -124,7 +124,7 @@ public class supportpage {
 			vo.setSubject(subject);
 			vo.setNick(nick);
 			sql.insert("support.insert",vo);
-			return "/homepage/supportWritePro";
+			return "/support/supportWritePro";
 		}
 		
 		
@@ -135,7 +135,7 @@ public class supportpage {
 			vo = sql.selectOne("support.select",num);
 			
 			model.addAttribute("supportVO",vo);
-			return "/homepage/supportContent";
+			return "/support/supportContent";
 		}
 		
 		
@@ -147,7 +147,7 @@ public class supportpage {
 				sql.update("support.update",vo);  // 어드민 일 때만 댓글 쓰기
 			}
 			model.addAttribute("num",vo.getNum());
-			return "/homepage/commentPro";
+			return "/support/commentPro";
 		}
 		
 		// 답변 삭제
@@ -158,7 +158,7 @@ public class supportpage {
 				sql.update("support.commentRemove",num);
 			}
 			model.addAttribute("num",num);
-			return "/homepage/supportCommentRemove";
+			return "/support/supportCommentRemove";
 		}
 		
 		// 답변 수정
@@ -169,7 +169,7 @@ public class supportpage {
 				sql.update("support.commentUpdate",vo);
 			}
 			model.addAttribute("comment",vo.getComments());
-			return "/homepage/supportCommentUpdate";
+			return "/support/supportCommentUpdate";
 		}
 		
 		// 회원 글 리스트
@@ -214,7 +214,7 @@ public class supportpage {
 			model.addAttribute("endPage",endPage);
 			model.addAttribute("pageCount",pageCount);
 			model.addAttribute("result",result);	
-			return "/homepage/mySupportList";
+			return "/support/mySupportList";
 		}
 
 }

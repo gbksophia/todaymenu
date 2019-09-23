@@ -127,6 +127,9 @@
 				<div class="wrap">
 				<textarea id="content" disabled >${supportVO.content }</textarea>
 				</div>
+				<c:if test="${supportVO.img != null }">
+				<img src="/eatoday/resource/support/${supportVO.img}" width="500px">
+				</c:if>
 				<c:if test="${sessionScope.loginID.equals('admin@eatoday.com') && supportVO.comments == null && supportVO.notice != 1 }">
 				<br><br>
 				<h5>답변하기</h5> 
@@ -136,13 +139,6 @@
 					<h5>답변</h5>
 				</c:if>
 				</td>
-			</tr>
-			<tr>
-			<td>
-			<c:if test="${supportVO.img != null }">
-				<img src="/eatoday/resource/support/${supportVO.img}" width="200px">
-			</c:if>
-			</td>
 			</tr>
 			
 			<c:if test="${sessionScope.loginID.equals('admin@eatoday.com') && supportVO.comments == null&& supportVO.notice != 1 }">
@@ -183,9 +179,10 @@
 		</form>	
 	</div>
 </div>
-<jsp:include page="footer.jsp" />
+<jsp:include page="../homepage/footer.jsp" />
 <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
 
 
   <script src="/eatoday/resource/js/jquery.min.js"></script>

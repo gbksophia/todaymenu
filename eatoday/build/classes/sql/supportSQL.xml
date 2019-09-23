@@ -55,4 +55,14 @@
 		from support where id=#{id} order by reg_date desc ))
 	 	where r>=#{startRow} and r<=#{endRow} ]]>
 	</select>
+	
+	<!-- 서포트  이미지 이름 숫자 카운트 업 -->
+ 	<insert id="imgCountInsert">
+ 		insert into fileNum values(fileNum_seq.nextval)
+ 	</insert>
+ 	
+ 	<!-- 서포트 이미지 이름 숫자 카운트 가져오기 -->
+ 	<select id="imgCount" resultType="int">
+ 		select max(num) from fileNum
+ 	</select>
 </mapper>
