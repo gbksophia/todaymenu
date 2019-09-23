@@ -22,7 +22,7 @@ import eatoday.vo.restaurantReviewVO;
 import eatoday.vo.restaurantVO;
 
 @Controller
-@RequestMapping("/homepage/")
+@RequestMapping("/restaurant/")
 public class Restaurant {
 	
 	@Autowired
@@ -48,7 +48,7 @@ public class Restaurant {
 		model.addAttribute("area", area);
 		model.addAttribute("cate", cate);
 		model.addAttribute("raList", raList);
-		return "/homepage/restaurantList";
+		return "/restaurant/restaurantList";
 	}
 		
 	// 레스토랑 가게 정보 페이지 
@@ -115,7 +115,7 @@ public class Restaurant {
 		model.addAttribute("startPage",startPage);
 		model.addAttribute("endPage",endPage);
 		model.addAttribute("pageCount",pageCount);
-		return "/homepage/restaurantDetail";
+		return "/restaurant/restaurantDetail";
 	}
 	
 	//리뷰 카운트
@@ -123,7 +123,7 @@ public class Restaurant {
 	public String restaurantReviewCount(String cnum,Model model) {
 		int recount = (Integer)sql.selectOne("restaurantReview.count", cnum);
 		model.addAttribute("recount",recount);
-		return "/homepage/reviewCount";
+		return "/restaurant/reviewCount";
 	}
 	
 	//리뷰 쓰기
@@ -168,7 +168,7 @@ public class Restaurant {
 		vo.setText(text);
 		sql.insert("restaurantReview.insert",vo);
 		
-		return "/homepage/restaurantDetail";
+		return "/restaurant/restaurantDetail";
 		}
 	
 	//리뷰 수정
@@ -177,14 +177,14 @@ public class Restaurant {
 		sql.update("restaurantReview.update",vo);
 		String text = sql.selectOne("restaurantReview.text", vo.getNum()); // 변경된 내용 가져오기
 		model.addAttribute("text",text);
-		return "/homepage/reviewUpdate";
+		return "/restaurant/reviewUpdate";
 	}
 	
 	//리뷰 삭제
 	@RequestMapping("restaurantReviewRemove.eat")
 	public String restaurantReviewRemove(int num) {
 		sql.delete("restaurantReview.delete",num);
-		return "/homepage/reviewRemove";
+		return "/restaurant/reviewRemove";
 	}
 	
 	// 페이지 첫 실행시만 사용 댓글 좋아요 클릭 여부 체크
@@ -201,7 +201,7 @@ public class Restaurant {
 			likeImg = "/eatoday/resource/images/like2.png";
 		}
 		model.addAttribute("likeImg",likeImg);
-		return "/homepage/nice";
+		return "/restaurant/nice";
 	}
 	
 	// 댓글 좋아요 클릭 이벤트
@@ -221,7 +221,7 @@ public class Restaurant {
 			likeImg = "/eatoday/resource/images/like.png";  // 좋아요 안눌렀을때 이미지
 		}
 		model.addAttribute("likeImg",likeImg);
-		return "/homepage/niceClick";
+		return "/restaurant/niceClick";
 	}
 	
 	// 좋아요 갯수 카운트
@@ -229,14 +229,14 @@ public class Restaurant {
 	public String restaurantNiceCountCheck(int renum,Model model) {
 		int niceCountCheck = (Integer)sql.selectOne("restaurantReview.niceCount",renum);
 		model.addAttribute("niceCountCheck",niceCountCheck);
-		return "/homepage/niceCountCheck";
+		return "/restaurant/niceCountCheck";
 	}
 	
-   // 사이드메뉴  카테고리 카운트
-   @RequestMapping("restaurantCateCount.eat")
-   public String restaurantCateCount(String cate,Model model) {
-      int CateCount = sql.selectOne("restaurant.count",cate);
-      model.addAttribute("CateCount", CateCount);
-      return "/homepage/CateCount";
-   }
+	// 사이드메뉴  카테고리 카운트
+	@RequestMapping("restaurantCateCount.eat")
+	public String restaurantCateCount(String cate,Model model) {
+		int CateCount = sql.selectOne("restaurant.count",cate);
+		model.addAttribute("CateCount", CateCount);
+		return "/restaurant/CateCount";
+	}
 }

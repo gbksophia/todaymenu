@@ -34,18 +34,17 @@
 
 <body>
 <script type="text/javascript">
-	function remove(num,i){
+	function remove(num,id){
 			var result = confirm("글을 지우시겠습니까?");
-			var tag = "#list"+i;
 			if(!result){
 				alert("취소되었습니다.");
 			} else {
 				 $.ajax({
-						url: "/eatoday/adminpage/supportRemove.eat",
+						url: "removePro.eat",
 						type: "post",
-						data: { num : num},
+						data: { num : num, id: id},
 						success: function(data) {
-						$(tag).remove();
+							location.reload();
 						}
 				});	
 			}
@@ -55,16 +54,20 @@
 <jsp:include page="../homepage/header.jsp" />
 <div class="container">
 <br><br><br><br>
-
-<table class="table table-bordered">
+<c:choose>
+	<c:when test="${result ==0 }">
+		<script>
+		alert("로그인후 이용 하실수 있습니다.")
+		</script>
+	</c:when>
+<c:otherwise>
+		<table class="table table-bordered">
 	<tr> 
 		<td> 분류  </td>
 		<td> 제목 </td>
 		<td> 닉네임 </td>
 		<td> 작성일 </td>
-		<c:if test="${sessionScope.loginID.equals('admin@eatoday.com') }">
 		<td>삭제</td>
-		</c:if>
 	</tr>
 	<c:set var="i" value="1"/>
 	<c:forEach var="supportVO" items="${supportList }">
@@ -85,11 +88,18 @@
 		<td> <a href="supportContent.eat?num=${supportVO.num }">${supportVO.subject }</a></td>		
 		<td>${supportVO.nick }</td>
 		<td>${supportVO.reg_date }</td>
-		<c:if test="${sessionScope.loginID.equals('admin@eatoday.com') }">
-		<td> 
-		<input type="button" value="삭제"  onclick="remove('${supportVO.num}','${i }')">
-		</td>
-		</c:if>
+		<c:choose>
+			<c:when test="${supportVO.comments == null }">
+				<td> 
+					<input class="btn py-3 px-4 btn-primary" type="button" value="삭제"  onclick="remove('${supportVO.num}','${supportVO.id }')">
+				</td>
+			</c:when>
+			<c:otherwise>
+				<td> 
+					
+				</td>
+			</c:otherwise>
+		</c:choose>
 	</tr>
 	<c:set var="i" value="${i+1}"/>
 	</c:forEach>
@@ -97,7 +107,7 @@
 <c:if test="${sessionScope.loginID !=null }">
  <div class="form-group">
    <div class="text-right">
-   <input type="button" value="내 글 보기" class="btn py-3 px-4 btn-primary" onclick="location='mySupportList.eat'">
+   <input type="button" value="모든 글 보기" class="btn py-3 px-4 btn-primary" onclick="location='supportList.eat'">
    <input type="button" value="글 쓰기" class="btn py-3 px-4 btn-primary" onclick="location='supportWrite.eat'">
     </div>
   </div>
@@ -116,9 +126,14 @@
  					 <a href="supportList.eat?page=${startPage+10 }"> &nbsp;>>&nbsp; </a>
  				</c:if>
             </div>
- 
+<jsp:include page="../homepage/footer.jsp" />
+</c:otherwise>
+</c:choose> 
 </div>
-<jsp:include page="footer.jsp" />
+
+
+
+
 <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
