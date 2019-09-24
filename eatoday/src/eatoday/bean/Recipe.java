@@ -722,7 +722,8 @@ public class Recipe {
 	}
 	
 	@RequestMapping("recipeEditDetail")
-	public String recipeEditDetail() {	
+	public String recipeEditDetail(Model model, String cnum) {	
+		model.addAttribute("cnum",cnum);
 		return "/homepage/recipeEditDetail";
 	}
 	
