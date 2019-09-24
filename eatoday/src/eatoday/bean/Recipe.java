@@ -667,8 +667,8 @@ public class Recipe {
 		*/
 		vo=sql.selectOne("recipe.info", cnum);
 		
-		String mate = vo.getMate().replace("next","");
-		String pro = vo.getPro().replace("next","");
+		String mate = vo.getMate().replace("next","\r\n");
+		String pro = vo.getPro().replace("next","\r\n");
 		
 		
 		model.addAttribute("vo", vo);
