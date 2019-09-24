@@ -185,8 +185,11 @@
 	<div class="container">
 		<div class="row d-md-flex">
 			<div class="col-lg-12 ftco-animate p-md-5">
+			
 				<div class="row">
+				
 				<div class="col-md-12 nav-link-wrap mb-5">
+				
 					<div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 						<a class="nav-link" id="v-pills-0-tab" href="<c:url value="/restaurant/restaurantList.eat"><c:param name="cate" value="한식"></c:param><c:param name="area" value="서울"></c:param></c:url>" role="tab" aria-selected="false">한식</a>
 						<a class="nav-link" id="v-pills-1-tab" href="<c:url value="/restaurant/restaurantList.eat"><c:param name="cate" value="중식"></c:param><c:param name="area" value="서울"></c:param></c:url>" role="tab" aria-selected="false">중식</a>
@@ -195,10 +198,11 @@
 						<a class="nav-link" id="v-pills-4-tab" href="<c:url value="/restaurant/restaurantList.eat"><c:param name="cate" value="분식"></c:param><c:param name="area" value="서울"></c:param></c:url>" role="tab" aria-selected="false">분식</a>
 						<a class="nav-link" id="v-pills-5-tab" href="<c:url value="/restaurant/restaurantList.eat"><c:param name="cate" value="카페"></c:param><c:param name="area" value="서울"></c:param></c:url>" role="tab" aria-selected="false">카페</a>
 						<a class="nav-link" id="v-pills-6-tab" href="<c:url value="/restaurant/restaurantList.eat"><c:param name="cate" value="기타"></c:param><c:param name="area" value="서울"></c:param></c:url>" role="tab" aria-selected="false">기타</a>
-					</div>
+					</div><!--div="nav ftco-animate nav-pills justify-content-center"  -->
 					<br/>
+					
 
-					<div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+					<div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">					
 						<c:forEach begin="0" end="${areaCnt-1}" step="1" var="i">
 						<c:set var="area" value="${areaList[i]}"/>
 							<a class="nav-link" id="v-pills-${i}-tab" 
@@ -206,22 +210,37 @@
 									<c:param name="cate" value="${cate}"></c:param>
 									<c:param name="area" value="${area.getArea1()}"></c:param></c:url>" role="tab" aria-selected="false">${area.getArea1()}</a>
 						</c:forEach>
-					</div>
-				</div>
+					</div> <!--div="nav ftco-animate nav-pills justify-content-center"  -->
+				
+				</div><!-- div="col-md-12 nav-link-wrap mb-5" -->
+				
+				</div><!-- div="row" -->
+				
+				
 				<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		   
 					<div class="text-left">
 	   					<input type="button" value="식당 등록" class="btn py-3 px-4 btn-primary" onclick="location='restaurantCreate.eat'">
 	    			</div>
 	    		</c:if>
-					<div class="col-md-12 d-flex align-items-center">
+
+	<!--==================================================================================================  -->		    		
+	    		
+	    	<div class="container">
+    			<div class="row justify-content-center mb-5 pb-3">
+        		</div>
+	    		
+	    		
+<!-- 					<div class="col-md-12 d-flex align-items-center">
 						<div class="tab-content ftco-animate" id="v-pills-tabContent">
-							<div class="tab-pane fade show active" id="v-pills-0" role="tabpanel" aria-labelledby="v-pills-0-tab">
+							<div class="tab-pane fade show active" id="v-pills-0" role="tabpanel" aria-labelledby="v-pills-0-tab"> -->
+								
 								<div class="row">
 									<c:forEach begin="0" end="${areaCnt}" step="1" var="i">
 										<c:set var="rest" value="${raList[i]}" />
 										<c:if test="${rest.getCate() == cate}">
 											<div class="col-md-3">
 												<div class="menu-entry">
+												
 													<div class="text text-center pt-4">
 														<h3><a href="<c:url value="/restaurant/restaurantDetail.eat">
 																<c:param name="cnum" value="${rest.getCnum()}"></c:param><c:param name="cate" value="${cate}"></c:param>
@@ -231,19 +250,26 @@
 																<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		
 														<a class="btn btn-primary btn-outline-primary" id="deleteRbtn"  onclick="return delchk('${rest.cnum}','${i }');">삭제</a>	
 																</c:if>
-													</div>
-												</div>
-											</div>
+													</div> <!-- div="text text-center pt-4"-->
+													
+												</div> <!-- div="menu-entry" -->
+											</div> <!-- div= "col-md-3"-->
 										</c:if>
 									</c:forEach>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+								</div> <!-- div="row" -->
+							
+					<!-- 			
+							</div> div="tab-pane fade show active"
+						</div>  div="tab-content ftco-animate"
+					</div> div="col-md-12 d-flex align-items-center" -->
+					
+					
+				</div> <!-- div="container" -->
+	<!--==================================================================================================  -->			
+				
+			</div> <!-- div="col-lg-12 ftco-animate p-md-5" -->
+		</div> <!-- div="row d-md-flex" -->
+	</div><!--div="container"  -->
 </section>
 
 <jsp:include page="../homepage/footer.jsp"/>
