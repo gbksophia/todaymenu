@@ -133,8 +133,8 @@
 <jsp:include page="../homepage/header.jsp" />
 <!-- END nav -->
 <section class="home-slider owl-carousel">
-	<!-- <div class="slider-item" style="background-image: url(/eatoday/resource/images/recipe_bg.jpg);" data-stellar-background-ratio="0.5"> -->
-	<c:set var = "cate" value = "${cate}"/>
+	<!-- 식당 분류별 상단 이미지 변경 -->
+	<c:set var="cate" value="${cate}"/>
 	<c:choose>
 		<c:when test="${cate == '한식'}"><div class="slider-item" style="background-image: url(/eatoday/resource/images/rest_hs.jpg);" data-stellar-background-ratio="0.5"></c:when>
 		<c:when test="${cate == '중식'}"><div class="slider-item" style="background-image: url(/eatoday/resource/images/rest_js.jpg);" data-stellar-background-ratio="0.5"></c:when>
@@ -208,11 +208,11 @@
 						</c:forEach>
 					</div>
 				</div>
-										<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		   
-		<div class="text-left">
-   			<input type="button" value="식당 등록" class="btn py-3 px-4 btn-primary" onclick="location='restaurantCreate.eat'">
-    	</div>
-    </c:if>
+				<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		   
+					<div class="text-left">
+	   					<input type="button" value="식당 등록" class="btn py-3 px-4 btn-primary" onclick="location='restaurantCreate.eat'">
+	    			</div>
+	    		</c:if>
 					<div class="col-md-12 d-flex align-items-center">
 						<div class="tab-content ftco-animate" id="v-pills-tabContent">
 							<div class="tab-pane fade show active" id="v-pills-0" role="tabpanel" aria-labelledby="v-pills-0-tab">
@@ -228,10 +228,9 @@
 																</c:url>">${rest.getStore()}<br/>${rest.getArea1()} ${rest.getArea2()}</a></h3>
 														<a class="btn btn-primary btn-outline-primary" href="<c:url value ="/restaurant/restaurantDetail.eat">
 																<c:param name="cnum" value="${rest.getCnum()}"></c:param><c:param name="cate" value="${cate}"></c:param></c:url>">자세히보기</a>
-																						<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		
-							
-							<a class="btn btn-primary btn-outline-primary" id="deleteRbtn"  onclick="return delchk('${rest.cnum}','${i }');">삭제</a>	
-						</c:if>
+																<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		
+														<a class="btn btn-primary btn-outline-primary" id="deleteRbtn"  onclick="return delchk('${rest.cnum}','${i }');">삭제</a>	
+																</c:if>
 													</div>
 												</div>
 											</div>
