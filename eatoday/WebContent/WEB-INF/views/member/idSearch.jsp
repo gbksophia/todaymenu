@@ -62,7 +62,6 @@
 					<span class="login100-form-title p-b-49">
 						Search
 					</span>
-
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
 						<span class="label-input100">code</span>
 						<input class="input100" type="password" name="code" placeholder="Type your password">
@@ -82,25 +81,16 @@
 		</div>
 	</div>
 	
-
 	<div id="dropDownSelect1"></div>
 	<jsp:include page="../homepage/footer.jsp" />
-<!--===============================================================================================-->
 	<script src="/eatoday/resource/login/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
 	<script src="/eatoday/resource/login/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
 	<script src="/eatoday/resource/login/vendor/bootstrap/js/popper.js"></script>
 	<script src="/eatoday/resource/login/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
 	<script src="/eatoday/resource/login/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
 	<script src="/eatoday/resource/login/vendor/daterangepicker/moment.min.js"></script>
 	<script src="/eatoday/resource/login/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
 	<script src="/eatoday/resource/login/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
 	<script src="/eatoday/resource/login/js/main.js"></script>
-
 </body>
 </html>

@@ -20,15 +20,12 @@
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 <!-- 테마 -->
 <link rel="stylesheet" href="/eatoday/resource/css/style.css">
-
-
-
 <script type="text/javascript">
 	function change(){
-					document.frm.action = "changePro.eat";
-					document.frm.method = "post";
-					document.frm.submit();
-							}
+		document.frm.action = "changePro.eat";
+		document.frm.method = "post";
+		document.frm.submit();
+	}
 </script>
 </head>
 <body>
@@ -63,12 +60,11 @@
 								변경 하기
 							</button>
 						</div>
-					</div>
+						</div>
 					</form>
-					
+				</div>
 			</div>
 		</div>
-	</div>
 		</c:when>
 		<c:otherwise>
 			<script>
@@ -79,8 +75,6 @@
 	</c:choose>
 <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
   <script src="/eatoday/resource/js/jquery.min.js"></script>
   <script src="/eatoday/resource/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/eatoday/resource/js/popper.min.js"></script>
@@ -95,8 +89,6 @@
   <script src="/eatoday/resource/js/bootstrap-datepicker.js"></script>
   <script src="/eatoday/resource/js/jquery.timepicker.min.js"></script>
   <script src="/eatoday/resource/js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="/eatoday/resource/js/google-map.js"></script>
   <script src="/eatoday/resource/js/main.js"></script>	
 </body>
 </html>
