@@ -7,19 +7,8 @@
 </head>
 <body>
 <h1>${count}</h1>
-<%-- <c:forEach begin="0" end="${count}" step="1" var="i">
-<c:set var="rcp" value="${recipeList[i]}" />
-	<table border="1">
-		<tr><td>${rcp.getCate()}</td></tr>
-		<tr><td>${rcp.getName()}</td></tr>
-		<tr><td>${rcp.getMate()}</td></tr>
-		<tr><td>${rcp.getPro()}</td></tr>
-	</table>
-	<br/>
-</c:forEach> --%>
 
-
-	<c:forEach begin="0" end="${count}" step="1" var="i">
+<c:forEach begin="0" end="${count}" step="1" var="i">
 	<c:set var="rest" value="${restList[i]}" />
 	<c:if test="${rest.getCate() == 'ÇÑ½Ä'}">
 		<table border="1">
@@ -32,9 +21,8 @@
 			<tr><td>${rest.getCate()}</td></tr>
 		</table>
 		<br/>
-		</c:if>
-	</c:forEach>
-
+	</c:if>
+</c:forEach>
 
 </body>
 </html>

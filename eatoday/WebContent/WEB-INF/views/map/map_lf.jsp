@@ -33,10 +33,11 @@
 .placeinfo .tel {color:#0f7833;}
 .placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
 </style>
-    
 </head>
+
 <body>
 <div id="map" style="width:100%;height:500px;"></div>
+
 <script src="/eatoday/resource/js/jquery.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=112ecff57900a2dd120c152f6c326b7b&libraries=services"></script>
 <script>
@@ -159,6 +160,7 @@ function cateSearch(data){
 	}
 }
 </script>
+
 <p id="addr"></p>
 &nbsp;주변의
 <p id="cate"></p>

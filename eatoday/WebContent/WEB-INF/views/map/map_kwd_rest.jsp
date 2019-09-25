@@ -34,6 +34,7 @@
 .placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
 </style>
 </head>
+
 <body>
 <div id="map" style="width:500px;height:500px;"></div>
 
@@ -123,6 +124,7 @@ function displayMarker(place) {
     });
 }
 </script>
+
 ${addr2}<br/>
 (검색결과는 나오지 않거나 여러개일 수 있습니다.)
 </body>

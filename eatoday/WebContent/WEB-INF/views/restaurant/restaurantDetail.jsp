@@ -395,15 +395,15 @@ textarea:disabled{
 		<div class="sidebar-box ftco-animate fadeInUp ftco-animated">
         	<div class="categories">
             	<h3>Categories</h3>
-	               	<ul>
-		                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="한식"></c:param><c:param name="area" value="서울"></c:param></c:url>">한식</a></li>
-		                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="중식"></c:param><c:param name="area" value="서울"></c:param></c:url>">중식 </a></li>
-		                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="일식"></c:param><c:param name="area" value="서울"></c:param></c:url>">일식 </a></li>
-		                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="양식"></c:param><c:param name="area" value="서울"></c:param></c:url>">양식 </a></li>
-		                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="분식"></c:param><c:param name="area" value="서울"></c:param></c:url>">분식 </a></li>
-		                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="카페"></c:param><c:param name="area" value="서울"></c:param></c:url>">카페</a></li>
-		                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="기타"></c:param><c:param name="area" value="서울"></c:param></c:url>">기타</a></li>
-					</ul>
+               	<ul>
+	                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="한식"></c:param><c:param name="area" value="서울"></c:param></c:url>">한식</a></li>
+	                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="중식"></c:param><c:param name="area" value="서울"></c:param></c:url>">중식 </a></li>
+	                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="일식"></c:param><c:param name="area" value="서울"></c:param></c:url>">일식 </a></li>
+	                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="양식"></c:param><c:param name="area" value="서울"></c:param></c:url>">양식 </a></li>
+	                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="분식"></c:param><c:param name="area" value="서울"></c:param></c:url>">분식 </a></li>
+	                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="카페"></c:param><c:param name="area" value="서울"></c:param></c:url>">카페</a></li>
+	                <li><a href="<c:url value="restaurantList.eat"><c:param name="cate" value="기타"></c:param><c:param name="area" value="서울"></c:param></c:url>">기타</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -413,7 +413,6 @@ textarea:disabled{
 
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
 <script src="/eatoday/resource/js/jquery.min.js"></script>
 <script src="/eatoday/resource/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="/eatoday/resource/js/popper.min.js"></script>

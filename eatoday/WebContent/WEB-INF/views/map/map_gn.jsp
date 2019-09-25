@@ -33,8 +33,8 @@
 .placeinfo .tel {color:#0f7833;}
 .placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
 </style>
-
 </head>
+
 <body>
 <div id="map" style="width:100%;height:500px;"></div>
 
