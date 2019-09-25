@@ -484,7 +484,7 @@ public class Recipe {
 			sql.insert("recipe.insertImg1", vo1);
 			}
 		} else if(orgName2 == "") {
-			System.out.println("없다");
+			//System.out.println("없다");
 		}
 			
 		if(orgName3 != "") {
@@ -500,7 +500,7 @@ public class Recipe {
 			vo1.setImg2(newName3);
 			sql.insert("recipe.insertImg1", vo1);
 		} else if(orgName3 == "") {
-			System.out.println("없다");
+			//System.out.println("없다");
 		}
 			
 		//이미지
@@ -526,7 +526,7 @@ public class Recipe {
 			sql.insert("recipe.insertImg1", vo1);
 			}
 		} else if(orgName4 == "") {
-			System.out.println("없다");
+			//System.out.println("없다");
 		}
 			
 		if(orgName5 != "") {
@@ -542,7 +542,7 @@ public class Recipe {
 			vo1.setImg2(newName5);
 			sql.insert("recipe.insertImg1", vo1);
 		} else if(orgName5 == "") {
-			System.out.println("없다");
+			//System.out.println("없다");
 		}
 	
 		//이미지
@@ -568,7 +568,7 @@ public class Recipe {
 			sql.insert("recipe.insertImg1", vo1);
 			}
 		} else if(orgName6 == "") {
-			System.out.println("없다");
+			//System.out.println("없다");
 		}
 				
 		if(orgName7 != "") {
@@ -584,7 +584,7 @@ public class Recipe {
 			vo1.setImg2(newName7);
 			sql.insert("recipe.insertImg1", vo1);
 		} else if(orgName7 == "") {
-			System.out.println("없다");
+			//System.out.println("없다");
 		}
 		return "/homepage/recipeCreateDetailPro";
 	}
