@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!-- Icons purchased via Iconfinder under Basic License -->
-
 <%
    response.setStatus(HttpServletResponse.SC_OK);
 %>
-
-
-
 <body class="permission_denied">
   <div id="particles-js"></div>
   <div class="denied__wrapper">
@@ -15,13 +11,9 @@
     <h3>죄송합니다.<span>먹지마</span> </h3>
     <h3>요청하신 페이지를 찾을 수 없습니다.</h3>
     <svg id="astronaut" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-    <style>
-    
-    
+    <style>  
     @import url("https://fonts.googleapis.com/css?family=Dosis:300,400,700,800");
-
 /** Styles for the 403 Page **/
-
 .particle-error,
 .permission_denied,
 #particles-js {
@@ -178,10 +170,7 @@
     transform: translateY(-3px);
   }
 }
-    
-    
-    
-      .st0{fill:none;} .st1{fill:#504E55;} .st2{fill:#F39E72;} .st3{fill:#FFFFFF;} .st4{opacity:0.24;} .st5{fill:#77574E;} .st6{fill:#FBD68D;} .st7{fill:#ECECEC;} .st8{fill:#F4A89C;} .st9{fill:#CFC9E5;} .st10{opacity:0.28;} .st11{opacity:0.25;} .st12{fill:#6F635C;} .st13{fill:#DAE7BE;} .st14{fill:#FFE0A6;} .st15{fill:#5F5E60;} .st16{fill:#CFE1AF;} .st17{fill:#EBE9F5;} .st18{fill:#53515A;} .st19{opacity:0.42;} .st20{fill:#53515B;}
+.st0{fill:none;} .st1{fill:#504E55;} .st2{fill:#F39E72;} .st3{fill:#FFFFFF;} .st4{opacity:0.24;} .st5{fill:#77574E;} .st6{fill:#FBD68D;} .st7{fill:#ECECEC;} .st8{fill:#F4A89C;} .st9{fill:#CFC9E5;} .st10{opacity:0.28;} .st11{opacity:0.25;} .st12{fill:#6F635C;} .st13{fill:#DAE7BE;} .st14{fill:#FFE0A6;} .st15{fill:#5F5E60;} .st16{fill:#CFE1AF;} .st17{fill:#EBE9F5;} .st18{fill:#53515A;} .st19{opacity:0.42;} .st20{fill:#53515B;}
     </style>
     <circle cx="256.8" cy="255.3" r="247.9" class="st0"/>
     <path d="M346.4 475H164.9V244.8c0-14 11.4-25.4 25.4-25.4H321c14 0 25.4 11.4 25.4 25.4V475z" class="st2"/>
