@@ -11,9 +11,9 @@
 	</c:when>	
 	<c:otherwise>
 		<c:redirect url="loginPro.eat">
-		<c:param name="id" value="${id }"/>
-		<c:param name="pw" value="${pw }"/>
-		<c:param name="sign" value="0"/>
-	</c:redirect>
+			<c:param name="id" value="${id }"/>
+			<c:param name="pw" value="${pw }"/>
+			<c:param name="sign" value="0"/>
+		</c:redirect>
 	</c:otherwise>
 </c:choose>
