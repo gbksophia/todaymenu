@@ -3,4 +3,5 @@
 
 <c:redirect url="recipeCreateDetail.eat">
 	<c:param name="cnum" value="${cnum }"></c:param>
+	<c:param name="cate" value="${cate }"></c:param>
 </c:redirect>

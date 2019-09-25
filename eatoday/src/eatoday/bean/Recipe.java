@@ -409,12 +409,14 @@ public class Recipe {
 		vo.setCnum(cnum);
 		sql.insert("recipe.insert", vo);
 		model.addAttribute("cnum",cnum);
+		model.addAttribute("cate", cate);
 		return "/homepage/recipeCreatePro";
 	}
 	
 	@RequestMapping("recipeCreateDetail.eat")
-	public String recipeCreateDetail(Model model,String cnum) {
+	public String recipeCreateDetail(Model model,String cnum, String cate) {
 		model.addAttribute("cnum",cnum);
+		model.addAttribute("cate",cate);
 		return "/homepage/recipeCreateDetail";
 	}
 	
@@ -423,6 +425,7 @@ public class Recipe {
 		request.setCharacterEncoding("UTF-8");
 		recipeImgVO vo = new recipeImgVO();
 		String cnum = request.getParameter("cnum");		
+		String cate = request.getParameter("cate");
 		vo.setCnum(cnum);
 		//이미지
 		MultipartFile mf = request.getFile("img1");
@@ -586,6 +589,7 @@ public class Recipe {
 		} else if(orgName7 == "") {
 			//System.out.println("없다");
 		}
+		model.addAttribute("cate",cate);
 		return "/homepage/recipeCreateDetailPro";
 	}
 	
