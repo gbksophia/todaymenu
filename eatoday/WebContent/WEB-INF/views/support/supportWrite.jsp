@@ -30,12 +30,12 @@
     <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
-    <style>
-    	form {
-    		margin: 0 auto;
-    		width:500px;
-    	}
-    </style>
+<style>
+	form {
+		margin: 0 auto;
+		width:500px;
+	}
+</style>
     
 <body>
 
@@ -43,31 +43,30 @@
 <jsp:include page="../homepage/header.jsp" />
 <div class="container">
 <br><br><br><br>
- <div class="comment-form-wrap pt-5">
-<form action="supportWritePro.eat?" method="post" enctype="multipart/form-data">
-<input type="hidden" name="id" value="${sessionScope.loginID }">
-	<div class="form-group">
-	<input class="form-control" type="text" name="subject" placeholder="제목을 입력하세요." >  
+	<div class="comment-form-wrap pt-5">
+		<form action="supportWritePro.eat?" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="id" value="${sessionScope.loginID }">
+			<div class="form-group">
+				<input class="form-control" type="text" name="subject" placeholder="제목을 입력하세요." >  
+			</div>
+						
+			<div class="form-group">
+				<textarea name="content" cols="30" rows="10" class="form-control" placeholder="내용"></textarea>
+			</div> 
+				
+			<div class="form-group">
+				<input  class="form-control" type="text" name="nick"  placeholder="닉네임" />
+			</div>
+			                  
+			<div class="form-group">
+				<input type="file" name="img" class="form-control"  />
+			</div>
+			      
+			<div class="form-group">
+				<input type="submit" value="글 쓰기"  class="btn py-3 px-4 btn-primary"  />
+			</div>
+		</form>	   
 	</div>
-			
-	<div class="form-group">
-	<textarea name="content" cols="30" rows="10" class="form-control" placeholder="내용"></textarea>
-	</div> 
-	
-	<div class="form-group">
-     <input  class="form-control" type="text" name="nick"  placeholder="닉네임" />
-     </div>
-                  
-      <div class="form-group">
-      <input type="file" name="img" class="form-control"  />
-      </div>
-      
-       <div class="form-group">
-      <input type="submit" value="글 쓰기"  class="btn py-3 px-4 btn-primary"  />
-      </div>
-</form>
-   
- </div>
 </div>
 <jsp:include page="../homepage/footer.jsp" />
 <!-- loader -->
@@ -88,8 +87,6 @@
   <script src="/eatoday/resource/js/bootstrap-datepicker.js"></script>
   <script src="/eatoday/resource/js/jquery.timepicker.min.js"></script>
   <script src="/eatoday/resource/js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="/eatoday/resource/js/google-map.js"></script>
   <script src="/eatoday/resource/js/main.js"></script>
 </body>
 </html>

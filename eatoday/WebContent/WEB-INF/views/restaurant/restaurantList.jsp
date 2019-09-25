@@ -18,8 +18,9 @@
 	<link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
 	<link rel="stylesheet" href="/eatoday/resource/css/style.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<style>    
-        /*********************************************SEARCH INPUT************/
+
+<style>
+/*********************************************SEARCH INPUT************/
 @import
    url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
 
@@ -129,6 +130,7 @@ function delchk(cnum,i){
 }
 </script>
 </head>
+
 <body>
 <jsp:include page="../homepage/header.jsp" />
 <!-- END nav -->
@@ -173,9 +175,9 @@ function delchk(cnum,i){
 	      <form name="searchBar" action="../restaurant/searchResult.eat" onSubmit="return searchCheck();" class="search-form">
 	        <div class="form-group">
 	        	<div class="icon">
-	           <span class="icon-search"></span>
-	          </div>
-	          <input type="text" name="search" id="search" class="form-control" placeholder="Search... ex)관악구 카페">
+	           		<span class="icon-search"></span>
+	          	</div>
+	          	<input type="text" name="search" id="search" class="form-control" placeholder="Search... ex)관악구 카페">
 	        </div>
 	      </form>
 	    </div>
@@ -207,7 +209,7 @@ function delchk(cnum,i){
 									<c:param name="cate" value="${cate}"></c:param>
 									<c:param name="area" value="${area.getArea1()}"></c:param></c:url>" role="tab" aria-selected="false">${area.getArea1()}</a>
 						</c:forEach>
-					</div> <!--div="nav ftco-animate nav-pills justify-content-center"  -->
+					</div><!--div="nav ftco-animate nav-pills justify-content-center"  -->
 				</div><!-- div="col-md-12 nav-link-wrap mb-5" -->
 				</div><!-- div="row" -->
 				<!-- 관리자 로그인 체크 -->				
@@ -217,36 +219,31 @@ function delchk(cnum,i){
 	    			</div>
 	    		</c:if>
 			
-			<!-- 식당 리스트 본문  -->		    		
-	    	<div class="container">
-    			<div class="row justify-content-center mb-5 pb-3">
-        		</div>
-				<div class="row">
-					<c:forEach begin="0" end="${areaCnt}" step="1" var="i">
-						<c:set var="rest" value="${raList[i]}" />
-						<c:if test="${rest.getCate() == cate}">
-							<div class="col-md-3">
-								<div class="menu-entry">
-								
-									<div class="text text-center pt-4">
-										<h3><a href="<c:url value="/restaurant/restaurantDetail.eat">
-												<c:param name="cnum" value="${rest.getCnum()}"></c:param><c:param name="cate" value="${cate}"></c:param>
-												</c:url>">${rest.getStore()}<br/>${rest.getArea1()} ${rest.getArea2()}</a></h3>
-										<a class="btn btn-primary btn-outline-primary" href="<c:url value ="/restaurant/restaurantDetail.eat">
-												<c:param name="cnum" value="${rest.getCnum()}"></c:param><c:param name="cate" value="${cate}"></c:param></c:url>">자세히보기</a>
-												<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		
-										<a class="btn btn-primary btn-outline-primary" id="deleteRbtn"  onclick="return delchk('${rest.cnum}','${i }');">삭제</a>	
-												</c:if>
-									</div> <!-- div="text text-center pt-4"-->
-									
-								</div> <!-- div="menu-entry" -->
-							</div> <!-- div= "col-md-3"-->
-						</c:if>
-					</c:forEach>
-				</div> <!-- div="row" -->
-				</div> <!-- div="container" -->
-				<!-- 식당 리스트 본문 끝  -->			
-				
+				<!-- 식당 리스트 본문  -->		    		
+		    	<div class="container">
+	    			<div class="row justify-content-center mb-5 pb-3"></div>
+					<div class="row">
+						<c:forEach begin="0" end="${areaCnt}" step="1" var="i">
+							<c:set var="rest" value="${raList[i]}" />
+							<c:if test="${rest.getCate() == cate}">
+								<div class="col-md-3">
+									<div class="menu-entry">
+										<div class="text text-center pt-4">
+											<h3><a href="<c:url value="/restaurant/restaurantDetail.eat">
+													<c:param name="cnum" value="${rest.getCnum()}"></c:param><c:param name="cate" value="${cate}"></c:param>
+													</c:url>">${rest.getStore()}<br/>${rest.getArea1()} ${rest.getArea2()}</a></h3>
+											<a class="btn btn-primary btn-outline-primary" href="<c:url value ="/restaurant/restaurantDetail.eat">
+													<c:param name="cnum" value="${rest.getCnum()}"></c:param><c:param name="cate" value="${cate}"></c:param></c:url>">자세히보기</a>
+													<c:if test = "${sessionScope.loginID.equals('admin@eatoday.com') }">		
+											<a class="btn btn-primary btn-outline-primary" id="deleteRbtn"  onclick="return delchk('${rest.cnum}','${i }');">삭제</a>	
+													</c:if>
+										</div> <!-- div="text text-center pt-4"-->
+									</div> <!-- div="menu-entry" -->
+								</div> <!-- div= "col-md-3"-->
+							</c:if>
+						</c:forEach>
+					</div> <!-- div="row" -->
+				</div> <!-- div="container" --> <!-- 식당 리스트 본문 끝  -->			
 			</div> <!-- div="col-lg-12 ftco-animate p-md-5" -->
 		</div> <!-- div="row d-md-flex" -->
 	</div><!--div="container"  -->

@@ -34,6 +34,7 @@
 
 <body>
 <script type="text/javascript">
+	//관리자만 사용가능한 문의글 삭제 기능
 	function remove(num,i){
 			var result = confirm("글을 지우시겠습니까?");
 			var tag = "#list"+i;
@@ -56,67 +57,65 @@
 <div class="container">
 <br><br><br><br>
 
-<table class="table table-bordered">
-	<tr> 
-		<td> 분류  </td>
-		<td> 제목 </td>
-		<td> 닉네임 </td>
-		<td> 작성일 </td>
-		<c:if test="${sessionScope.loginID.equals('admin@eatoday.com') }">
-		<td>삭제</td>
+	<table class="table table-bordered">
+		<tr> 
+			<td> 분류  </td>
+			<td> 제목 </td>
+			<td> 닉네임 </td>
+			<td> 작성일 </td>
+				<c:if test="${sessionScope.loginID.equals('admin@eatoday.com') }"> <!-- 접속한사람이 관리자일때 삭제  보임 -->
+					<td>삭제</td>
+				</c:if>
+		</tr>
+		
+		<c:set var="i" value="1"/> <!-- 글 삭제 할때 아이디값을 가져오기 위해 선언 -->
+		<c:forEach var="supportVO" items="${supportList }">
+			<tr id="list${i }">
+				<td>
+					<!-- notice 값과 커맨트 유무로 공지,문의,해결 구분 -->
+					<c:choose>
+						<c:when test="${supportVO.notice == 1}">[공지]</c:when>
+						<c:when test="${supportVO.comments != null }">[해결]</c:when>
+						<c:otherwise>[문의]</c:otherwise>
+					</c:choose>
+				</td>
+				
+				<td> <a href="supportContent.eat?num=${supportVO.num }">${supportVO.subject }</a></td>		
+				<td>${supportVO.nick }</td>
+				<td>${supportVO.reg_date }</td>
+				<!-- 접속한 사람이 관리자일때 삭제 버튼 생성 -->
+				<c:if test="${sessionScope.loginID.equals('admin@eatoday.com') }">
+				<td><input type="button" value="삭제"  onclick="remove('${supportVO.num}','${i }')"></td>
+				</c:if>
+			</tr>
+		<c:set var="i" value="${i+1}"/>
+		</c:forEach>
+	</table>
+	
+	<c:if test="${sessionScope.loginID !=null }">
+		<div class="form-group">
+			<div class="text-right">
+				<input type="button" value="내 글 보기" class="btn py-3 px-4 btn-primary" onclick="location='mySupportList.eat'">
+				<input type="button" value="글 쓰기" class="btn py-3 px-4 btn-primary" onclick="location='supportWrite.eat'">
+			</div>
+		</div>
+	</c:if>
+	<div class="text-center">
+		<c:if test="${startPage >10 }">
+			<a href="supportList.eat?page=${startPage-10 }">&nbsp;<< &nbsp;</a>
 		</c:if>
-	</tr>
-	<c:set var="i" value="1"/>
-	<c:forEach var="supportVO" items="${supportList }">
-	<tr id="list${i }">
-		<td>
-		<c:choose>
-			<c:when test="${supportVO.notice == 1}">
-				[공지]
-			</c:when>
-			<c:when test="${supportVO.comments != null }">
-				[해결]
-			</c:when>
-			<c:otherwise>
-				[문의]
-			</c:otherwise>
-		</c:choose>
-		</td>
-		<td> <a href="supportContent.eat?num=${supportVO.num }">${supportVO.subject }</a></td>		
-		<td>${supportVO.nick }</td>
-		<td>${supportVO.reg_date }</td>
-		<c:if test="${sessionScope.loginID.equals('admin@eatoday.com') }">
-		<td> 
-		<input type="button" value="삭제"  onclick="remove('${supportVO.num}','${i }')">
-		</td>
+		
+		<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+			<a href="supportList.eat?page=${i }">${i }</a>
+				<c:if test="${i!=endPage}">
+					&nbsp;|&nbsp;
+				</c:if>
+		</c:forEach>
+		
+		<c:if test="${endPage < pageCount }">
+			<a href="supportList.eat?page=${startPage+10 }"> &nbsp;>>&nbsp; </a>
 		</c:if>
-	</tr>
-	<c:set var="i" value="${i+1}"/>
-	</c:forEach>
-</table>
-<c:if test="${sessionScope.loginID !=null }">
- <div class="form-group">
-   <div class="text-right">
-   <input type="button" value="내 글 보기" class="btn py-3 px-4 btn-primary" onclick="location='mySupportList.eat'">
-   <input type="button" value="글 쓰기" class="btn py-3 px-4 btn-primary" onclick="location='supportWrite.eat'">
-    </div>
-  </div>
-</c:if>
- <div class="text-center">
- 				<c:if test="${startPage >10 }">
- 					 <a href="supportList.eat?page=${startPage-10 }">&nbsp;<< &nbsp;</a>
- 				</c:if>
-              	<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
-              	 <a href="supportList.eat?page=${i }">${i }</a>
-              	 	<c:if test="${i!=endPage}">
-              	 &nbsp;|&nbsp;
-              	 </c:if>
-              	 </c:forEach>
-              	 <c:if test="${endPage < pageCount }">
- 					 <a href="supportList.eat?page=${startPage+10 }"> &nbsp;>>&nbsp; </a>
- 				</c:if>
-            </div>
- 
+	</div> 
 </div>
 <jsp:include page="../homepage/footer.jsp" />
 <!-- loader -->
@@ -137,8 +136,6 @@
   <script src="/eatoday/resource/js/bootstrap-datepicker.js"></script>
   <script src="/eatoday/resource/js/jquery.timepicker.min.js"></script>
   <script src="/eatoday/resource/js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="/eatoday/resource/js/google-map.js"></script>
   <script src="/eatoday/resource/js/main.js"></script>
 </body>
 </html>

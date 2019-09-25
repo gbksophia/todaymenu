@@ -9,7 +9,7 @@
 <h1>${count}</h1>
 
 Recipe List
-	<c:forEach begin="0" end="${count}" step="1" var="i">
+<c:forEach begin="0" end="${count}" step="1" var="i">
 	<c:set var="rcp" value="${recipeList[i]}" />
 	<c:if test="${rcp.getCate() == 10}">
 		<table border="1">
@@ -21,9 +21,8 @@ Recipe List
 			<tr><td>pro: ${rcp.getPro()}</td></tr>
 		</table>
 		<br/>
-		</c:if>
-	</c:forEach>
-
+	</c:if>
+</c:forEach>
 
 </body>
 </html>

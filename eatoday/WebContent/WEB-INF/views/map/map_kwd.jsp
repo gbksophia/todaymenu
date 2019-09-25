@@ -93,7 +93,6 @@
 .ftco-counter .icon span{
 	color:#bfbfbf;
 }
-
 </style>
 
 <script type = "text/javascript">
@@ -114,8 +113,8 @@ function searchCheck() {
     }
  }
 </script>
-    
 </head>
+
 <body>
 <div id="map" style="width:100%;height:500px;"></div>
 
@@ -196,7 +195,6 @@ function displayMarker(place) {
 </script>
 
 <br/>
-
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
 <div class="container">
 	<div class="hd_column2">

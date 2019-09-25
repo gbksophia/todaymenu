@@ -4,8 +4,8 @@
 <c:choose>
 	<c:when test="${result ==1 }">
 		<script>
-		alert("재발급이 완료되었습니다. 메일을 확인해주십시오.");
-		location ="/eatoday/loginpage/login.eat";
+			alert("재발급이 완료되었습니다. 메일을 확인해주십시오.");
+			location ="/eatoday/loginpage/login.eat";
 		</script>
 	</c:when>
 	<c:otherwise>
