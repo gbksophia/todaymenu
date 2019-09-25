@@ -11,22 +11,15 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-
     <link rel="stylesheet" href="/eatoday/resource/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/eatoday/resource/css/animate.css">
-    
     <link rel="stylesheet" href="/eatoday/resource/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/eatoday/resource/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/eatoday/resource/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/eatoday/resource/css/aos.css">
-
     <link rel="stylesheet" href="/eatoday/resource/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/eatoday/resource/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/eatoday/resource/css/jquery.timepicker.css">
-
-    
     <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
@@ -120,7 +113,6 @@
 <jsp:include page="../homepage/footer.jsp" />
 <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
 
   <script src="/eatoday/resource/js/jquery.min.js"></script>
   <script src="/eatoday/resource/js/jquery-migrate-3.0.1.min.js"></script>
