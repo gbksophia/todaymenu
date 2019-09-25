@@ -6,32 +6,24 @@
     <title>Search Recipe</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-
     <link rel="stylesheet" href="/eatoday/resource/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/eatoday/resource/css/animate.css">
-    
     <link rel="stylesheet" href="/eatoday/resource/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/eatoday/resource/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/eatoday/resource/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/eatoday/resource/css/aos.css">
-
     <link rel="stylesheet" href="/eatoday/resource/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/eatoday/resource/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/eatoday/resource/css/jquery.timepicker.css">
-
-    
     <link rel="stylesheet" href="/eatoday/resource/css/flaticon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/icomoon.css">
     <link rel="stylesheet" href="/eatoday/resource/css/style.css">
     
-    <style>    
-        /*********************************************SEARCH INPUT************/
+<style>    
+/*********************************************SEARCH INPUT************/
 @import
    url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
 
@@ -113,140 +105,128 @@
 .ftco-counter .icon span{
 	color:#bfbfbf;
 }
-
-    </style>
+</style>
     
-    <script type = "text/javascript">
-    function searchCheck() {
-        var str = document.getElementById('search');
-        var blank = /^[\s]/g;
+<script type = "text/javascript">
+function searchCheck() {
+	var str = document.getElementById('search');
+	var blank = /^[\s]/g;
 
-        //검색어 입력필수
-        if (str.value == '' || str.value == null) {
-           alert("검색어를 입력하세요.");
-           return false;
-        }
+    //검색어 입력필수
+    if (str.value == '' || str.value == null) {
+    	alert("검색어를 입력하세요.");
+        return false;
+	}
 
-        //공백금지
-        if (blank.test(str.value) == true) {
-           alert("제대로 좀 입력하세요.")
-           return false;
-        }
-     }
+    //공백금지
+    if (blank.test(str.value) == true) {
+    	alert("제대로 좀 입력하세요.")
+        return false;
+	}
+}
+</script>
 
-    </script>
-    
-    
-    
-    
-    
-  </head>
-  <body>
- <jsp:include page="header.jsp" />
-    <!-- END nav -->
+</head>
 
-    <section class="home-slider owl-carousel">
-
-      <div class="slider-item" style="background-image: url(/eatoday/resource/images/recipe2.jpg); background-size:cover;" >
-      	<div class="overlay"></div>
-        <div class="container">
-          <div class="row slider-text justify-content-center align-items-center">
-
-            <div class="col-md-7 col-sm-12 text-center ftco-animate">
-            	<h1 class="mb-3 mt-5 bread">"${srch}"에 대한 검색결과</h1>
-	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Product Detail</span></p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-		             <!--  검색  -->
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
- 	<div class="container">
-
-            <div class="hd_column2">
-              <form name="searchBar" action="SearchRecipe.eat" onSubmit="return searchCheck();" class="search-form">
-                <div class="form-group">
-                	<div class="icon">
-	                  <span class="icon-search"></span>
-                  </div>
-                  <input type="text" name="search" id="search" class="form-control" placeholder="Search...">
-                </div>
-              </form>
-            </div>
-         
+<body>
+<jsp:include page="header.jsp" />
+<!-- END nav -->
+<section class="home-slider owl-carousel">
+	<div class="slider-item" style="background-image: url(/eatoday/resource/images/recipe2.jpg); background-size:cover;" >
+    	<div class="overlay"></div>
+        	<div class="container">
+          		<div class="row slider-text justify-content-center align-items-center">
+            		<div class="col-md-7 col-sm-12 text-center ftco-animate">
+            			<h1 class="mb-3 mt-5 bread">"${srch}"에 대한 검색결과</h1>
+	            		<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Product Detail</span></p>
+            		</div>
+          		</div>
+        	</div>
 	</div>
 </section>
 
-
-
+<!--  검색  -->
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5";>
+	<div class="container">
+		<div class="hd_column2">
+        	<form name="searchBar" action="SearchRecipe.eat" onSubmit="return searchCheck();" class="search-form">
+            	<div class="form-group">
+                	<div class="icon">
+	                	<span class="icon-search"></span>
+                  	</div>
+                  	<input type="text" name="search" id="search" class="form-control" placeholder="Search...">
+                </div>
+			</form>
+		</div>
+	</div>
+</section>
 
 <c:set var = "s" value = "${srch}"/> 
-
-    <section class="ftco-section">
-    	<div class="container">
-    		<div class="row justify-content-center mb-5 pb-3">
-        </div>
-
-
+<section class="ftco-section">
+	<div class="container">
+    	<div class="row justify-content-center mb-5 pb-3"></div>
         <h2 class="mb-3">재료에서 검색한 결과 </h2>
-        <div class="row">
-        <c:if test="${countM!=0 }" >        	
-          <c:forEach var="rcpMatVO" items="${rcpMat}">
-			<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${rcpMatVO.getCnum()}"></c:param><c:param name="cate" value="${rcpMatVO.getCate()}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcpMatVO.getMain_name()});"></a>
-						<div class="text text-center pt-4">
-						    <h3><a href="<c:url value = "recipeDetail.eat"><c:param name="cnum" value="${rcpMatVO.getCnum()}"></c:param><c:param name="cate" value="${rcpMatVO.getCate()}"></c:param></c:url>">${rcpMatVO.getTitle() }</a></h3>
-						    	<a class="btn btn-primary btn-outline-primary" href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${rcpMatVO.getCnum()}"></c:param><c:param name="cate" value="${rcpMatVO.getCate()}"></c:param></c:url>">자세히보기</a>
-						  </div>
-    				</div>
+        	<div class="row">
+        		<c:if test="${countM!=0 }" >        	
+          			<c:forEach var="rcpMatVO" items="${rcpMat}">
+						<div class="col-md-3">
+        					<div class="menu-entry">
+    							<a href="<c:url value="recipeDetail.eat">
+    								<c:param name="cnum" value="${rcpMatVO.getCnum()}"></c:param>
+    								<c:param name="cate" value="${rcpMatVO.getCate()}"></c:param></c:url>" 
+    								class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcpMatVO.getMain_name()});"></a>
+								<div class="text text-center pt-4">
+						    		<h3><a href="<c:url value = "recipeDetail.eat">
+						    			<c:param name="cnum" value="${rcpMatVO.getCnum()}"></c:param>
+						    			<c:param name="cate" value="${rcpMatVO.getCate()}"></c:param></c:url>">${rcpMatVO.getTitle() }</a></h3>
+						    		<a class="btn btn-primary btn-outline-primary" href="<c:url value="recipeDetail.eat">
+						    			<c:param name="cnum" value="${rcpMatVO.getCnum()}"></c:param>
+						    			<c:param name="cate" value="${rcpMatVO.getCate()}"></c:param></c:url>">자세히보기</a>
+						  		</div>
+    						</div>
+        				</div>
+        			</c:forEach>
+        		</c:if>
+        		<c:if test="${countM==0 }" > 
+        			<blockquote><h5>해당하는 검색결과가 없습니다.</h5></blockquote>
+        		</c:if>
         	</div>
-        	</c:forEach>
-        	</c:if>
-        	<c:if test="${countM==0 }" > 
-        		<blockquote><h5>해당하는 검색결과가 없습니다.</h5></blockquote>
-        	</c:if>
-        	</div>
-        	
         <div class="container">
     		<div class="row justify-content-center mb-5 pb-3">
         </div>
         
         <h2 class="mb-3">이름에서 검색한 결과</h2>
-       
         <div class="row">
-        <c:if test="${countT!=0 }" >         	
-          <c:forEach var="rcpTitVO" items="${rcpTit}">
-			<div class="col-md-3">
-        		<div class="menu-entry">
-    					<a href="<c:url value = "recipeDetail.eat"><c:param name="cnum" value="${rcpTitVO.getCnum()}"></c:param><c:param name="cate" value="${rcpTitVO.getCate()}"></c:param></c:url>" class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcpTitVO.getMain_name()});"></a>
-						<div class="text text-center pt-4">
-						    <h3><a href="<c:url value = "recipeDetail.eat"><c:param name="cnum" value="${rcpTitVO.getCnum()}"></c:param><c:param name="cate" value="${rcpTitVO.getCate()}"></c:param></c:url>">${rcpTitVO.getTitle() }</a></h3>
-						    	<a class="btn btn-primary btn-outline-primary" href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${rcpTitVO.getCnum()}"></c:param><c:param name="cate" value="${rcpTitVO.getCate()}"></c:param></c:url>">자세히보기</a>
-						  </div>
-    				</div>
-        	</div>
-        	</c:forEach>
+        	<c:if test="${countT!=0 }" >         	
+          		<c:forEach var="rcpTitVO" items="${rcpTit}">
+					<div class="col-md-3">
+        				<div class="menu-entry">
+    						<a href="<c:url value = "recipeDetail.eat">
+    							<c:param name="cnum" value="${rcpTitVO.getCnum()}"></c:param>
+    							<c:param name="cate" value="${rcpTitVO.getCate()}"></c:param></c:url>" 
+    							class="img" style="background-image: url(/eatoday/resource/RecipeImages/${rcpTitVO.getMain_name()});"></a>
+							<div class="text text-center pt-4">
+						    	<h3><a href="<c:url value = "recipeDetail.eat">
+						    		<c:param name="cnum" value="${rcpTitVO.getCnum()}"></c:param>
+						    		<c:param name="cate" value="${rcpTitVO.getCate()}"></c:param></c:url>">${rcpTitVO.getTitle() }</a></h3>
+						    	<a class="btn btn-primary btn-outline-primary" href="<c:url value="recipeDetail.eat">
+						    		<c:param name="cnum" value="${rcpTitVO.getCnum()}"></c:param>
+						    		<c:param name="cate" value="${rcpTitVO.getCate()}"></c:param></c:url>">자세히보기</a>
+						  	</div>
+    					</div>
+        			</div>
+        		</c:forEach>
         	</c:if>
         	<c:if test="${countT==0 }" >
 				<blockquote><h5>해당하는 검색결과가 없습니다.</h5></blockquote>        	 	
         	</c:if>
         </div>
-        	
-    </section>
-
+</section>
     
 <jsp:include page="footer.jsp" />
-  
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
   <script src="/eatoday/resource/js/jquery.min.js"></script>
   <script src="/eatoday/resource/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/eatoday/resource/js/popper.min.js"></script>
@@ -261,47 +241,37 @@
   <script src="/eatoday/resource/js/bootstrap-datepicker.js"></script>
   <script src="/eatoday/resource/js/jquery.timepicker.min.js"></script>
   <script src="/eatoday/resource/js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="/eatoday/resource/js/google-map.js"></script>
   <script src="/eatoday/resource/js/main.js"></script>
 
-  <script>
-		$(document).ready(function(){
+<script>
+$(document).ready(function(){
+	var quantitiy=0;
+	$('.quantity-right-plus').click(function(e){
+        
+    	// Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var quantity = parseInt($('#quantity').val());
+        
+        // If is not undefined
+        $('#quantity').val(quantity + 1);
+		// Increment
+	});
 
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
-
-		          
-		            // Increment
-		        
-		    });
-
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
-		});
-	</script>
-
+	$('.quantity-left-minus').click(function(e){
+    	// Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var quantity = parseInt($('#quantity').val());
+        
+        // If is not undefined
+		// Increment
+        if(quantity>0){
+        	$('#quantity').val(quantity - 1);
+		}
+	});
+});
+</script>
     
-  </body>
+</body>
 </html>

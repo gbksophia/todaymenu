@@ -345,14 +345,13 @@ textarea:disabled{
 	<div class="row">
 		<div class="col-md-8 ftco-animate">
 			<h2 class="mb-3">재료</h2>
-			<p>
-			<c:set var="str" value="${rvo.getMate()}"/>
+			<p><c:set var="str" value="${rvo.getMate()}"/>
 				<c:forEach var="spt" items="${fn:replace(str, 'next', '<br>')}" varStatus="status">
 					<img src="images/image_2.jpg" alt="" class="img-fluid">${spt}
 				</c:forEach>
 			</p>
-			<h2 class="mb-3 mt-5">조리법</h2>
 			
+			<h2 class="mb-3 mt-5">조리법</h2>
 			<div class="vcard bio">
 				<c:forEach begin="1" end="${proCount }" step="1" var="i">
 					<c:if test="${i==1 }">
@@ -390,7 +389,7 @@ textarea:disabled{
 									<div class="comment-body">
 										<h3>${recipeReviewVO.nick}</h3>
 											<div class="meta">${recipeReviewVO.reg_date}</div>
-										<p id="reviewtext${i}"><textarea id="textarea${i}" disabled>${recipeReviewVO.text} </textarea></p>
+												<p id="reviewtext${i}"><textarea id="textarea${i}" disabled>${recipeReviewVO.text} </textarea></p>
 											<c:if test="${recipeReviewVO.img != null}">
 												<img src="/eatoday/resource/RecipeReview/${recipeReviewVO.img}" height="300px">
 											</c:if>
@@ -399,15 +398,15 @@ textarea:disabled{
 												<a href="javascript:reviewUpdate('${recipeReviewVO.getNum()}','${i}')">수정	</a> &nbsp;|&nbsp;
 												<a href="javascript:reviewRemove('${recipeReviewVO.getNum()}','${i}','${rvo.cnum }')">삭제</a>
 												<div class="text-right">
-												<div class="form-group">
-												<div id="UpdateBtn${i}" class="text-right"></div>
-												</div>
+													<div class="form-group">
+														<div id="UpdateBtn${i}" class="text-right"></div>
+													</div>
 												</div>
 											</c:if>
 
 										<div class="text-right">
-										<div id="niceCount${i}"></div>
-										<a id="likeImg${i}" onclick="javascript:niceClick('${recipeReviewVO.num}','${i}')"></a>
+											<div id="niceCount${i}"></div>
+												<a id="likeImg${i}" onclick="javascript:niceClick('${recipeReviewVO.num}','${i}')"></a>
 										</div> 
 									</div>  
 								</li>
@@ -433,34 +432,34 @@ textarea:disabled{
 					<c:choose>
 						<c:when test="${sessionScope.loginID == null}">
 							<form>
-							<div class="form-group">
-							<input class="btn py-3 px-4 btn-primary" type="button" value="로그인 후 댓글 쓰기 가능" onclick="location='/eatoday/loginpage/login.eat'">
-							</div>
+								<div class="form-group">
+									<input class="btn py-3 px-4 btn-primary" type="button" value="로그인 후 댓글 쓰기 가능" onclick="location='/eatoday/loginpage/login.eat'">
+								</div>
 							</form>
 						</c:when>
 						
 						<c:otherwise>
 							<form id="reviewWriteForm" action="javascript:reviewWrite()" method="post" enctype="multipart/form-data">
-							<input type="hidden" name="cnum" value="${rvo.getCnum()}">
-							<input type="hidden" name="cate" value="${rvo.getCate()}">
-							<input type="hidden" name="id" value="${sessionScope.loginID}">
+								<input type="hidden" name="cnum" value="${rvo.getCnum()}">
+								<input type="hidden" name="cate" value="${rvo.getCate()}">
+								<input type="hidden" name="id" value="${sessionScope.loginID}">
 							
-							<div class="form-group">
-							<textarea name="text" id="text" cols="30" rows="10" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
-							</div>
+								<div class="form-group">
+									<textarea name="text" id="text" cols="30" rows="10" class="form-control" placeholder="댓글을 입력해주세요"></textarea>
+								</div>
 							
-							<div class="form-group">
-							<input  class="form-control" type="text" name="nick"  placeholder="닉네임" />
-							</div>
+								<div class="form-group">
+									<input  class="form-control" type="text" name="nick"  placeholder="닉네임" />
+								</div>
 							
-							<div class="form-group">
-							<input type="file" name="img"  />
-							</div>
-							<div class="form-group">
-							<div class="text-right">
-							<input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
-							</div>
-							</div>
+								<div class="form-group">
+									<input type="file" name="img"  />
+								</div>
+								<div class="form-group">
+									<div class="text-right">
+										<input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+									</div>
+								</div>
 							</form>
 						</c:otherwise>
 					</c:choose>
@@ -521,8 +520,7 @@ textarea:disabled{
 									<div class="text-left p-t-8 p-b-31">
 										<a href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${recipeVO.cnum}"></c:param><c:param name="cate" value="${recipeVO.cate}"></c:param></c:url>">
 										<img src="/eatoday/resource/RecipeImages/${recipeVO.main_name }" style="width: 100px; height: 100px"/>
-										${recipeVO.title }
-										</a>
+											${recipeVO.title }</a>
 									</div>
 								</li>
 							</c:forEach>
@@ -533,8 +531,7 @@ textarea:disabled{
 									<div class="text-left p-t-8 p-b-31">
 										<a href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${recipeVO.cnum}"></c:param><c:param name="cate" value="${recipeVO.cate}"></c:param></c:url>">
 										<img src="/eatoday/resource/RecipeImages/${recipeVO.main_name }" style="width: 100px; height: 100px"/>
-										${recipeVO.title }
-										</a>
+											${recipeVO.title }</a>
 									</div>
 								</li>
 							</c:forEach>
@@ -549,10 +546,9 @@ textarea:disabled{
               		<c:forEach var="randomVO" items="${randomList }" >
 	               		<li> 
 	               			<div class="text-left p-t-8 p-b-31">
-	               				<a  href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${randomVO.cnum}"></c:param><c:param name="cate" value="${randomVO.cate}"></c:param></c:url>">
+	               				<a href="<c:url value="recipeDetail.eat"><c:param name="cnum" value="${randomVO.cnum}"></c:param><c:param name="cate" value="${randomVO.cate}"></c:param></c:url>">
 	               				<img src="/eatoday/resource/RecipeImages/${randomVO.main_name }" style="width: 100px; height: 100px"/>
-	               				${randomVO.title }
-	               				</a>
+	               					${randomVO.title }</a>
 	               			</div>
 	                	</li>
               		</c:forEach>
