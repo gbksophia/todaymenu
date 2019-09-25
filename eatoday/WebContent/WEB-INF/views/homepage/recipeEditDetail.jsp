@@ -64,7 +64,7 @@
 
 <input type="hidden" name="cnum" value="${cnum}">
 <br><br>
-<h4>레시피 1번 사진을 등록해주세요</h4>
+<h4>${cnum }레시피 1번 사진을 등록해주세요</h4>
 	<div class="form-group">
 	<input type="file" name="img1" class="form-control"  />
 	</div>
