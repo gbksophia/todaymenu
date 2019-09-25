@@ -1,7 +1,6 @@
 package eatoday.bean;
 
-import java.io.File;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,10 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import eatoday.vo.supportVO;
 
 @Controller
 @RequestMapping("/homepage/")
@@ -40,7 +35,6 @@ public class homepage {
 		if (id != null) {
 			try {
 				request.setCharacterEncoding("UTF-8");
-				
 				int count = (Integer)sql.selectOne("recipe.count");			
 				int greatest = sql.selectOne("recipe.greatest",id);
 				//recipe.greatest=mem 테이블에서 가장 선호하는 카테고리의 값
@@ -59,7 +53,7 @@ public class homepage {
 				} else if (like_cate.equals("SOUP") || like_cate.equals("JEONGOL")) { 
 					like_parameter.put("key1","2");
 					like_parameter.put("key2","3");
-				}  else if (like_cate.equals("SIDE")  || like_cate.equals("SHAKE")  || like_cate.equals("GUI")
+				} else if (like_cate.equals("SIDE")  || like_cate.equals("SHAKE")  || like_cate.equals("GUI")
 						 || like_cate.equals("JJIM")  || like_cate.equals("CHILDREN")  || like_cate.equals("KIMCHI")) 
 				{
 					like_parameter.put("key1","4");
@@ -69,16 +63,16 @@ public class homepage {
 					like_parameter.put("key5","9");
 					like_parameter.put("key6","10");
 					
-				}  else if (like_cate.equals("DOSI")) {
+				} else if (like_cate.equals("DOSI")) {
 					like_parameter.put("key1","11");
 					
-				}  else if (like_cate.equals("NOODLE") || like_cate.equals("SPA") ) {
+				} else if (like_cate.equals("NOODLE") || like_cate.equals("SPA") ) {
 					like_parameter.put("key1","13");
 					like_parameter.put("key2","16");
-				}  else if (like_cate.equals("SALAD")) {
+				} else if (like_cate.equals("SALAD")) {
 					like_parameter.put("key1","14");
 					
-				}  else if (like_cate.equals("SNACK")  || like_cate.equals("FRY")  || like_cate.equals("TOAST")
+				} else if (like_cate.equals("SNACK")  || like_cate.equals("FRY")  || like_cate.equals("TOAST")
 						 || like_cate.equals("BAKING")  || like_cate.equals("DESSERT")) {
 					like_parameter.put("key1","12");
 					like_parameter.put("key2","15");
@@ -86,10 +80,10 @@ public class homepage {
 					like_parameter.put("key4","18");
 					like_parameter.put("key5","19");
 					like_parameter.put("key6","20");
-				}  else if (like_cate.equals("JUICE") || like_cate.equals("COCKTAIL")) {
+				} else if (like_cate.equals("JUICE") || like_cate.equals("COCKTAIL")) {
 					like_parameter.put("key1","21");
 					like_parameter.put("key2","22");
-				}  else if (like_cate.equals("GUEST") || like_cate.equals("HOLIDAY")) {
+				} else if (like_cate.equals("GUEST") || like_cate.equals("HOLIDAY")) {
 					like_parameter.put("key1","8");
 					like_parameter.put("key2","23");;
 				}
@@ -105,10 +99,8 @@ public class homepage {
 		} else {
 			//비회원일 때 랜덤으로 레시피 출력
 			List rnd = sql.selectList("recipe.recipeRandomMain");
-			
 			model.addAttribute("rndReci", rnd);
 			return "/homepage/index";
 		}
-		
 	}
 }

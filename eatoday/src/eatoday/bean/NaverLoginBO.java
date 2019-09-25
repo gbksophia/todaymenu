@@ -1,6 +1,5 @@
 package eatoday.bean;
 
-
 import java.io.IOException;
 import java.util.UUID;
 
@@ -43,13 +42,14 @@ public class NaverLoginBO {
 		
 		return oauthService.getAuthorizationUrl();
 	}
+	
 	/*네이버 아이디로 Callback 처리 및 AccessToken 획득 Method*/
 	public OAuth2AccessToken getAccessToken(HttpSession session, String code, String state) throws IOException{
 		/*Callback으로  전달받은 세션 검증용 난수값과 세션에 저장되어 있는 값이 일치하는지 확인*/
 		String sessionState = getSession(session);
 		if(StringUtils.pathEquals(sessionState,state)) {
 			OAuth20Service oauthService = new ServiceBuilder()
-                    .apiKey(CLIENT_ID)
+					.apiKey(CLIENT_ID)
                     .apiSecret(CLIENT_SECRET)
                     .callback(REDIRECT_URI)
                     .state(state)
@@ -79,13 +79,11 @@ public class NaverLoginBO {
     
     /* Access Token을 이용하여 네이버 사용자 프로필 API를 호출 */
     public String getUserProfile(OAuth2AccessToken oauthToken) throws IOException{
-
         OAuth20Service oauthService =new ServiceBuilder()
                 .apiKey(CLIENT_ID)
                 .apiSecret(CLIENT_SECRET)
                 .callback(REDIRECT_URI).build(NaverLoginApi.instance());
-
-            OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL, oauthService);
+        OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL, oauthService);
         oauthService.signRequest(oauthToken, request);
         Response response = request.send();
         return response.getBody();
