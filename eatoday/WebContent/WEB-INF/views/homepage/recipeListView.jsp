@@ -137,6 +137,10 @@ function delchk(cnum,i){
 <body>
 <jsp:include page="header.jsp" />
 <!-- END nav -->
+
+<div="container"  style="padding-down:300px;"></div>
+
+
 <section class="home-slider owl-carousel">
 	<div class="slider-item" style="background-image: url(/eatoday/resource/RecipeImages/${cateImg}); ">
     <div class="overlay"></div>

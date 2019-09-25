@@ -295,12 +295,18 @@ textarea:disabled{
    	border: 0;
    	overflow-y:hidden;
 } 
+
+.owl-carousel.home-slider .slider-item{
+	background-size:contain;
+}
+
 </style>
 </head>
  
 <body>
 <jsp:include page="header.jsp" />
 <!-- END nav --> 
+
 <section class="home-slider owl-carousel">
 	<div class="slider-item" style="background-image: url(/eatoday/resource/RecipeImages/${rvo.getMain_name()});">
     	<div class="overlay"></div>
