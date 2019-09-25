@@ -404,12 +404,6 @@ public class Recipe {
 		vo.setTitle(title);
 		vo.setMate(mate);
 		vo.setPro(pro);
-
-		//System.out.println(cate);
-		//System.out.println(cnum);
-		//System.out.println(title);
-		//System.out.println(mate);
-		//System.out.println(pro);
 		
 		//이미지
 		MultipartFile mf = request.getFile("main_name");
@@ -498,8 +492,6 @@ public class Recipe {
 		String cnum1 = request.getParameter("cnum");
 		
 			if(orgName2 != "") {
-
-				
 				vo1.setCnum(cnum1);
 				String path = request.getRealPath("//resource/RecipePro");
 				String ext = orgName2.substring(orgName2.lastIndexOf('.'));
@@ -514,7 +506,6 @@ public class Recipe {
 				vo1.setImg2("noimage");
 				sql.insert("recipe.insertImg1", vo1);
 				}
-				
 			}
 			
 			else if(orgName2 == "") {
@@ -522,7 +513,6 @@ public class Recipe {
 			}
 			
 			if(orgName3 != "") {
-
 				vo1.setCnum(cnum1);
 				String path = request.getRealPath("//resource/RecipePro");
 				String ext = orgName3.substring(orgName3.lastIndexOf('.'));
@@ -539,20 +529,14 @@ public class Recipe {
 				System.out.println("없다");
 			}
 			
-			
-			
-			
 			//이미지
 			MultipartFile mf5 = request.getFile("img5");
 			String orgName4 = mf5.getOriginalFilename();
 			
 			MultipartFile mf6 = request.getFile("img6");
 			String orgName5 = mf6.getOriginalFilename();
-
 			
 				if(orgName4 != "") {
-
-					
 					vo1.setCnum(cnum1);
 					String path = request.getRealPath("//resource/RecipePro");
 					String ext = orgName4.substring(orgName4.lastIndexOf('.'));
@@ -575,7 +559,6 @@ public class Recipe {
 				}
 				
 				if(orgName5 != "") {
-
 					vo1.setCnum(cnum1);
 					String path = request.getRealPath("//resource/RecipePro");
 					String ext = orgName5.substring(orgName5.lastIndexOf('.'));
@@ -600,8 +583,6 @@ public class Recipe {
 				String orgName7 = mf8.getOriginalFilename();
 
 					if(orgName6 != "") {
-
-						
 						vo1.setCnum(cnum1);
 						String path = request.getRealPath("//resource/RecipePro");
 						String ext = orgName6.substring(orgName6.lastIndexOf('.'));
@@ -624,7 +605,6 @@ public class Recipe {
 					}
 					
 					if(orgName7 != "") {
-
 						vo1.setCnum(cnum1);
 						String path = request.getRealPath("//resource/RecipePro");
 						String ext = orgName7.substring(orgName7.lastIndexOf('.'));
@@ -640,10 +620,8 @@ public class Recipe {
 					else if(orgName7 == "") {
 						System.out.println("없다");
 					}
-
 		return "/homepage/recipeCreateDetailPro";
 	}
-	
 	
 	//레시피 삭제
 	@RequestMapping("recipeDelete.eat")
@@ -669,7 +647,6 @@ public class Recipe {
 		
 		String mate = vo.getMate().replace("next","\r\n");
 		String pro = vo.getPro().replace("next","\r\n");
-		
 		
 		model.addAttribute("vo", vo);
 		model.addAttribute("mate", mate);
@@ -773,8 +750,6 @@ public class Recipe {
 		}
 		sql.update("recipe.updateImg", vo);
 		
-
-		
 		//이미지
 		MultipartFile mf3 = request.getFile("img3");
 		String orgName2 = mf3.getOriginalFilename();
@@ -786,8 +761,6 @@ public class Recipe {
 		String cnum1 = request.getParameter("cnum");
 		
 			if(orgName2 != "") {
-
-				
 				vo1.setCnum(cnum1);
 				String path = request.getRealPath("//resource/RecipePro");
 				String ext = orgName2.substring(orgName2.lastIndexOf('.'));
@@ -802,7 +775,6 @@ public class Recipe {
 				vo1.setImg2("noimage");
 				sql.update("recipe.updateImg1", vo1);
 				}
-				
 			}
 			
 			else if(orgName2 == "") {
@@ -810,7 +782,6 @@ public class Recipe {
 			}
 			
 			if(orgName3 != "") {
-
 				vo1.setCnum(cnum1);
 				String path = request.getRealPath("//resource/RecipePro");
 				String ext = orgName3.substring(orgName3.lastIndexOf('.'));
@@ -827,9 +798,6 @@ public class Recipe {
 				System.out.println("없다");
 			}
 			
-			
-			
-			
 			//이미지
 			MultipartFile mf5 = request.getFile("img5");
 			String orgName4 = mf5.getOriginalFilename();
@@ -839,8 +807,6 @@ public class Recipe {
 
 			
 				if(orgName4 != "") {
-
-					
 					vo1.setCnum(cnum1);
 					String path = request.getRealPath("//resource/RecipePro");
 					String ext = orgName4.substring(orgName4.lastIndexOf('.'));
@@ -863,7 +829,6 @@ public class Recipe {
 				}
 				
 				if(orgName5 != "") {
-
 					vo1.setCnum(cnum1);
 					String path = request.getRealPath("//resource/RecipePro");
 					String ext = orgName5.substring(orgName5.lastIndexOf('.'));
@@ -888,8 +853,6 @@ public class Recipe {
 				String orgName7 = mf8.getOriginalFilename();
 
 					if(orgName6 != "") {
-
-						
 						vo1.setCnum(cnum1);
 						String path = request.getRealPath("//resource/RecipePro");
 						String ext = orgName6.substring(orgName6.lastIndexOf('.'));
@@ -906,13 +869,12 @@ public class Recipe {
 						}
 						
 					}
-					
+
 					else if(orgName6 == "") {
 						System.out.println("없다");
 					}
 					
 					if(orgName7 != "") {
-
 						vo1.setCnum(cnum1);
 						String path = request.getRealPath("//resource/RecipePro");
 						String ext = orgName7.substring(orgName7.lastIndexOf('.'));
@@ -930,6 +892,4 @@ public class Recipe {
 					}
 		return "/homepage/recipeEditDetailPro";
 	}
-	
-	
 }
