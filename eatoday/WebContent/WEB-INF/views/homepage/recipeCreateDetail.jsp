@@ -47,8 +47,7 @@ form {
 		<form action="recipeCreateDetailPro.eat" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="cnum" value="${cnum+1 }">
 			<input type="hidden" name="cate" value="${cate }">
-		 	${cnum +1}
-			<h4>${cate }레시피 세부 사진을 등록해주세요 </h4>
+			<h4>레시피 세부 사진을 등록해주세요 </h4>
 			<h4> (조리법 갯수에 맞춰서 이미지를 올리면 깔끔하게 보입니다.)</h4>
 			<h4> (*사진은 8개까지만 등록됩니다!)</h4><br/><br/><br/>
 			<h4>레시피 1번 사진을 등록해주세요</h4>
