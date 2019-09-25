@@ -59,7 +59,7 @@ public class Restaurant {
 		 
 		// 로그인 중인 아이디가 존재 할떄 실행
 		if(session.getAttribute("loginID")!=null  && cate!=null) {
-		String id = (String)session.getAttribute("loginID");
+			String id = (String)session.getAttribute("loginID");
 			if(cate.equals("한식")) {
 				sql.update("member.korCountUp",id); // 한식 카운트 증가
 			} else if (cate.equals("중식")) {
@@ -93,8 +93,8 @@ public class Restaurant {
 		int currentPage = Integer.parseInt(page);   // 인트형으로 변환
 		int startRow = (currentPage-1) * row +1;    // 각 페이지당 시작하는 번호 ex) row = 10일때 startRow = 1 , 11 , 21 ....
 		int endRow = currentPage * row;    // 각 페이지당 끝나는 번호 ex) row = 10일때 startRow = 10 , 20, 30 ....
+
 		Map pageList = new HashMap();     // sql 문에 보내주기 위해 생성
-		 
 		pageList.put("cnum", cnum);
 		pageList.put("startRow",startRow);
 		pageList.put("endRow",endRow);
@@ -250,7 +250,6 @@ public class Restaurant {
 	@RequestMapping("restaurantCreate.eat")
 	public String restaurantCreate(Model model) {
 		int restaurantCnum = sql.selectOne("restaurant.restaurantCnum");
-		
 		model.addAttribute("restaurantCnum", restaurantCnum);
 		return "/restaurant/restaurantCreate";
 	}
@@ -289,7 +288,6 @@ public class Restaurant {
 		System.out.println(cate);
 
 		sql.insert("restaurant.insert", vo);
-		
 		return "/restaurant/restaurantCreatePro";
 	}
 	
