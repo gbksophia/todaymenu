@@ -24,12 +24,6 @@
 		insert into recipe_pro(cnum, img1, img2)
 			values (#{cnum}, #{img1}, #{img2})
 	</insert>
-	
-	<insert id = "insertImg1" parameterType="recipeImgVO">
-		insert into recipe_pro(cnum, img1, img2)
-			values (#{cnum}, #{img1}, #{img2})
-	</insert>
-	
 	<!-- 레시피 갯수 -->
 	<select id="count" resultType="int">
 		select count(*) from recipe
@@ -189,16 +183,10 @@
  			title=#{title}, mate=#{mate}, pro=#{pro} where cnum=#{cnum}
  	</update>
  	
- 	 <update id="updateImg" parameterType="String">
- 		update recipe_pro set img1=#{img1}, img2=#{img2} where cnum=#{cnum}
- 	</update>
- 	
- 	<update id="updateImg1" parameterType="String">
- 		update recipe_pro set img1=#{img1}, img2=#{img2} where cnum=#{cnum}
- 	</update>
- 	
- 	<!--recipe_pro에 이미지 등록된 여부 확인  -->
- 	<select id="containImg" parameterType="String" resultType="int">
- 		select count(*) from recipe_pro where cnum=#{cnum}
+ 	 <delete id="deleteImg" parameterType="String">
+ 		delete from recipe_pro where cnum=#{value}
+ 	</delete>
+ 	<select id="getImg" parameterType="String" resultType="recipeImgVO">
+ 		select * from recipe_pro where cnum=#{value}
  	</select>
 </mapper>
