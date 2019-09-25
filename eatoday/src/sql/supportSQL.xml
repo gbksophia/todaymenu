@@ -5,7 +5,7 @@
 <mapper namespace="support">
 	<insert id="insert" parameterType="supportVO" >
 		insert into support(num,id,nick,subject,content,img,notice,reg_date) 
-		values(support_seq.nextval,#{id},#{nick},#{subject},#{content},#{img},#{notice},sysdate)
+			values(support_seq.nextval,#{id},#{nick},#{subject},#{content},#{img},#{notice},sysdate)
 	</insert>
 	
 	<delete id="delete" parameterType="int">
@@ -15,6 +15,7 @@
 	<update id="commentRemove" parameterType="int">
 		update support set comments=null where num=#{num}
 	</update>
+	
 	<update id="commentUpdate" parameterType="supportVO">
 		update support set comments=#{comments} where num=#{num}
 	</update>
@@ -24,11 +25,11 @@
 	</select>
 	
 	<select id="List" parameterType="map" resultType="supportVO">
-<![CDATA[ select num,id,subject,content,img,notice,reg_date,nick,comments, r
-		from (select num,id,subject,content,img,notice,reg_date,nick,comments,rownum r
-		from (select num,id,subject,content,img,notice,reg_date, nick,comments
-		from support order by notice desc,reg_date desc ))
-	 	where r>=#{startRow} and r<=#{endRow} ]]>
+		<![CDATA[select num,id,subject,content,img,notice,reg_date,nick,comments, r
+			from (select num,id,subject,content,img,notice,reg_date,nick,comments,rownum r
+			from (select num,id,subject,content,img,notice,reg_date, nick,comments
+			from support order by notice desc,reg_date desc ))
+		 	where r>=#{startRow} and r<=#{endRow}]]>
 	</select>
 	
 	<select id="select" parameterType="int" resultType="supportVO" >
@@ -36,11 +37,11 @@
 	</select>
 	
 	<select id="myList" parameterType="map" resultType="supportVO">
-		<![CDATA[ select num,id,subject,content,img,notice,reg_date,nick,comments, r
-		from (select num,id,subject,content,img,notice,reg_date,nick,comments,rownum r
-		from (select num,id,subject,content,img,notice,reg_date, nick,comments
-		from support where id=#{id} order by reg_date desc ))
-	 	where r>=#{startRow} and r<=#{endRow} ]]>
+		<![CDATA[select num,id,subject,content,img,notice,reg_date,nick,comments, r
+			from (select num,id,subject,content,img,notice,reg_date,nick,comments,rownum r
+			from (select num,id,subject,content,img,notice,reg_date, nick,comments
+			from support where id=#{id} order by reg_date desc ))
+		 	where r>=#{startRow} and r<=#{endRow}]]>
 	</select>
 	
 	<!-- 서포트  이미지 이름 숫자 카운트 업 -->

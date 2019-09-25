@@ -59,7 +59,7 @@
  	
  	<!-- 어드민을 제외한 나머지 멤버 리스트 -->
  	<select id="List" resultType="memberVO" parameterType="map">
- 	<![CDATA[ select id from (select id,rownum r from mem where id !='admin@eatoday.com') where r>=#{startRow} and r<=#{endRow}]]>
+ 		<![CDATA[ select id from (select id,rownum r from mem where id !='admin@eatoday.com') where r>=#{startRow} and r<=#{endRow}]]>
  	</select>
 
  	<!-- 밥 카테고리 값 증가 -->	

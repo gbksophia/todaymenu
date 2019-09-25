@@ -5,7 +5,7 @@
 <mapper namespace="restaurant">
 	<insert id="insert" parameterType="restaurantVO">
 		insert into restaurant(num, cnum, store, area1, area2, addr, tel, cate, img) 
-		values (restaurant_seq.nextval, #{cnum}, #{store}, #{area1}, #{area2}, #{addr}, #{tel}, #{cate}, #{img})
+			values (restaurant_seq.nextval, #{cnum}, #{store}, #{area1}, #{area2}, #{addr}, #{tel}, #{cate}, #{img})
 	</insert>
 	
 	<!-- 카테고리 갯수 -->
