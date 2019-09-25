@@ -12,6 +12,7 @@
  	<select id="imgCount" resultType="int">
  		select max(num) from fileNum
  	</select>
+
 	<!-- 레스토랑 리뷰 쓰기 -->
  	<insert id="insert" parameterType="restaurantReviewVO">
  		insert into restaurant_re(num,cnum,id,nick,text,img,reg_date) values (restaurant_re_seq.nextval,#{cnum},#{id},#{nick},#{text},#{img},sysdate)
@@ -19,39 +20,39 @@
  	
 	<!-- 레스토랑 리뷰 갯수 -->
  	<select id="count" parameterType="String" resultType="int">
- 		select count(*) from restaurant_re
- 		<if test="value != null">
- 		 where cnum=#{value}
- 		 </if>
+		select count(*) from restaurant_re
+	 		<if test="value != null">
+	 			where cnum=#{value}
+	 		</if>
  	</select>
 	
 	<!-- 회원 레시피 리뷰 관리 갯수  -->
  	<select id="memCount" parameterType="String" resultType="int">
- 		select count(*) from restaurant_re where id=#{value}
+		select count(*) from restaurant_re where id=#{value}
  	</select>
 
 	<!-- 레스토랑 리뷰 가져오기 -->
 	<select id="select" parameterType="map" resultType="restaurantReviewVO">
 		select num,cnum,id,nick,text,img,reg_date,r 
-		from (select num,cnum,id,nick,text,img,reg_date,rownum r
-		from (select num,cnum,id,nick,text,img,reg_date  
-		<choose>
-			<when test="cnum != null">
-				<![CDATA[from restaurant_re where cnum=#{cnum} order by reg_date desc)order by reg_date desc)]]>
-			</when>
-			<when test="id !=null">
-				<![CDATA[from restaurant_re where id=#{id} order by reg_date desc)order by reg_date desc)]]>
-			</when>
-			<otherwise>
-				<![CDATA[from restaurant_re order by reg_date desc)order by reg_date desc)]]>
-			</otherwise>
-		</choose>
-		<![CDATA[  where r>=#{startRow} and r<=#{endRow} ]]>
+			from (select num,cnum,id,nick,text,img,reg_date,rownum r
+			from (select num,cnum,id,nick,text,img,reg_date  
+			<choose>
+				<when test="cnum != null">
+					<![CDATA[from restaurant_re where cnum=#{cnum} order by reg_date desc)order by reg_date desc)]]>
+				</when>
+				<when test="id !=null">
+					<![CDATA[from restaurant_re where id=#{id} order by reg_date desc)order by reg_date desc)]]>
+				</when>
+				<otherwise>
+					<![CDATA[from restaurant_re order by reg_date desc)order by reg_date desc)]]>
+				</otherwise>
+			</choose>
+			<![CDATA[where r>=#{startRow} and r<=#{endRow}]]>
 	</select>
  	
  	<!-- 레스토랑 리뷰 삭제 아이디값 비교 -->
  	<select id="idSelect" parameterType="int" resultType="String">
- 	  select id from restaurant_re where num=#{num}
+		select id from restaurant_re where num=#{num}
  	</select>
  	
  	<!-- 레스토랑 리뷰 삭제 -->

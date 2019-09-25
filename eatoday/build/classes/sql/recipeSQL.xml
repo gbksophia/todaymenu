@@ -6,9 +6,8 @@
 		<!-- 레시피 정보 입력 -->
 	<insert id="insert" parameterType="recipeVO">
 		insert into recipe(cate, cnum, main_name, title, mate, pro) 
-		values (#{cate}, cnum_seq.nextval, #{main_name}, #{title}, #{mate}, #{pro})
+			values (#{cate}, cnum_seq.nextval, #{main_name}, #{title}, #{mate}, #{pro})
 	</insert>
-	
 	
 	<!-- cnum값  카운트 업 -->
  	<insert id="cnumCount">
@@ -19,15 +18,16 @@
  	<select id="getCnum" resultType="String">
  		select max(cnum) from cnum
  	</select>
+
 	<!-- 레시피 세부 사진 저장 -->
 	<insert id = "insertImg" parameterType="recipeImgVO">
 		insert into recipe_pro(cnum, img1, img2)
-		values (#{cnum}, #{img1}, #{img2})
+			values (#{cnum}, #{img1}, #{img2})
 	</insert>
 	
-		<insert id = "insertImg1" parameterType="recipeImgVO">
+	<insert id = "insertImg1" parameterType="recipeImgVO">
 		insert into recipe_pro(cnum, img1, img2)
-		values (#{cnum}, #{img1}, #{img2})
+			values (#{cnum}, #{img1}, #{img2})
 	</insert>
 	
 	<!-- 레시피 갯수 -->
@@ -37,65 +37,62 @@
 	
 	<!-- 레시피 리스트  출력 -->
 	<select id="select" resultType="recipeVO" parameterType="map">
-	  select cate,cnum,main_name,title,mate,pro,r 
- 	   from (select cate,cnum,main_name,title,mate,pro,rownum r
- 	   from (select cate,cnum,main_name,title,mate,pro  
- 	   from recipe where cate=#{cate} ))
- 	   <![CDATA[ where r>=#{startRow} and r<=#{endRow}	]]>
+		select cate,cnum,main_name,title,mate,pro,r 
+			from (select cate,cnum,main_name,title,mate,pro,rownum r
+	 	   	from (select cate,cnum,main_name,title,mate,pro  
+	 	   	from recipe where cate=#{cate} ))
+	 	   	<![CDATA[ where r>=#{startRow} and r<=#{endRow}]]>
 	</select>
 
 	<!-- 회원 관심 카테고리   출력 -->
 	<select id="memRandomSelect" resultType="recipeVO" parameterType="map">
-	select * from 
-	(select * from recipe where cate=#{key1} 
-	<if test="key2 != null ">
-		or cate=#{key2} 
-	</if>
-	 <if test="key3 != null">
-		or cate=#{key3} 
-	</if>
-	<if test="key4 != null">
-		or cate=#{key4} 
-	</if>
-	<if test="key5 != null">
-		or cate=#{key5} 
-	</if>
-	<if test="key6 != null">
-		or cate=#{key6} 
-	</if> 
-<![CDATA[	order by DBMS_RANDOM.RANDOM )where rownum <=5 ]]>
+		select * from (select * from recipe where cate=#{key1} 
+			<if test="key2 != null ">
+				or cate=#{key2} 
+			</if>
+			<if test="key3 != null">
+				or cate=#{key3} 
+			</if>
+			<if test="key4 != null">
+				or cate=#{key4} 
+			</if>
+			<if test="key5 != null">
+				or cate=#{key5} 
+			</if>
+			<if test="key6 != null">
+				or cate=#{key6} 
+			</if> 
+		<![CDATA[order by DBMS_RANDOM.RANDOM )where rownum <=5]]>
 	</select>
 	
 	<!-- 관심 레시피 랜덤 출력 - 메인페이지 -->
 	<select id="randomSelectMain" resultType="recipeVO" parameterType="map">
-	select * from 
-	(select * from recipe where cate=#{key1} 
-	<if test="key2 != null ">
-		or cate=#{key2} 
-	</if>
-	 <if test="key3 != null">
-		or cate=#{key3} 
-	</if>
-	<if test="key4 != null">
-		or cate=#{key4} 
-	</if>
-	<if test="key5 != null">
-		or cate=#{key5} 
-	</if>
-	<if test="key6 != null">
-		or cate=#{key6} 
-	</if> 
-<![CDATA[	order by DBMS_RANDOM.RANDOM )where rownum <=9 ]]>
+		select * from (select * from recipe where cate=#{key1} 
+			<if test="key2 != null ">
+				or cate=#{key2} 
+			</if>
+			<if test="key3 != null">
+				or cate=#{key3} 
+			</if>
+			<if test="key4 != null">
+				or cate=#{key4} 
+			</if>
+			<if test="key5 != null">
+				or cate=#{key5} 
+			</if>
+			<if test="key6 != null">
+				or cate=#{key6} 
+			</if> 
+		<![CDATA[order by DBMS_RANDOM.RANDOM )where rownum <=9]]>
 	</select>
 	
-	
 	<select id="recipeRandomMain" resultType="recipeVO">
-	<![CDATA[select * from (select * from recipe order by DBMS_RANDOM.RANDOM)where rownum <=9]]>
+		<![CDATA[select * from (select * from recipe order by DBMS_RANDOM.RANDOM)where rownum <=9]]>
 	</select>
 	
 	<!-- 관련 레시피 랜덤 출력 -->
 	<select id="randomSelect" resultType="recipeVO" parameterType="recipeVO">
-	<![CDATA[select * from (select * from recipe where cate=#{cate} order by DBMS_RANDOM.RANDOM ) where rownum <=5 and not cnum like #{cnum} ]]>
+		<![CDATA[select * from (select * from recipe where cate=#{cate} order by DBMS_RANDOM.RANDOM ) where rownum <=5 and not cnum like #{cnum}]]>
 	</select>
 	
 	<!-- 레시피 정보 출력 -->
@@ -152,19 +149,19 @@
 
  	<!-- 레시피 찜 리스트 -->
  	<select id="jjimList" parameterType="map" resultType="recipeVO">
- 	 <![CDATA[	select cate,cnum,main_name,title,mate,pro,r  
-	 from (select cate,cnum,main_name,title,mate,pro,rownum r
- 	 from (select cate,re.cnum,main_name,title,mate,pro  
- 	 from recipe re, recipe_jjim j where re.cnum=j.cnum and j.id=#{id})) where r>=#{startRow} and r<=#{endRow} ]]>
+		<![CDATA[select cate,cnum,main_name,title,mate,pro,r  
+			from (select cate,cnum,main_name,title,mate,pro,rownum r
+			from (select cate,re.cnum,main_name,title,mate,pro  
+			from recipe re, recipe_jjim j where re.cnum=j.cnum and j.id=#{id})) where r>=#{startRow} and r<=#{endRow}]]>
  	</select>
  	
 	<!-- 레시피 이름으로 검색 -->
 	 <select id="countSrTitle" parameterType="String" resultType="int" >
-		<![CDATA[ select count(*) from recipe where title like '%'||#{value}||'%']]>
+		<![CDATA[select count(*) from recipe where title like '%'||#{value}||'%']]>
 	</select>
 		
  	<select id="searchRecTitle" parameterType="String" resultType="recipeVO" >
-		<![CDATA[ select * from recipe where title like '%'||#{value}||'%']]>
+		<![CDATA[select * from recipe where title like '%'||#{value}||'%']]>
 	</select>
 	
 	<!-- 레시피 재료로 검색 -->
@@ -178,7 +175,7 @@
 	
 	<!-- 리스트 카테고리 상단 이미지 -->
  	<select id="cateImg" resultType="String" parameterType="String">
- 	 <![CDATA[	select main_name from( select main_name from recipe where cate=#{value} order by DBMS_RANDOM.RANDOM ) where rownum <= 1 ]]>
+		<![CDATA[select main_name from( select main_name from recipe where cate=#{value} order by DBMS_RANDOM.RANDOM ) where rownum <= 1]]>
  	</select>
  	
  	<!-- 레시피 삭제 -->
@@ -189,7 +186,7 @@
  	<!-- 레시피 수정 -->
  	<update id="updateRecipe" parameterType="recipeVO">
  		update recipe set cate=#{cate}, main_name=#{main_name},
- 		title=#{title}, mate=#{mate}, pro=#{pro} where cnum=#{cnum}
+ 			title=#{title}, mate=#{mate}, pro=#{pro} where cnum=#{cnum}
  	</update>
  	
  	 <update id="updateImg" parameterType="String">
