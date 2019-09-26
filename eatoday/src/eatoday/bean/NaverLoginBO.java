@@ -20,8 +20,8 @@ public class NaverLoginBO {
 		//state: 애플리케이션이 생성한 상태 토큰
 	
 	private final static String CLIENT_ID = "KWYaG88AllEPGhuXun_4";
-	private final static String CLIENT_SECRET = "qxvPTt71M3";
-	private final static String REDIRECT_URI = "http://localhost:8080/eatoday/loginpage/callback.eat";
+	private final static String CLIENT_SECRET = "qpqUvMEZZw";
+	private final static String REDIRECT_URI = "http://192.168.0.53:8080/eatoday/loginpage/callback.eat";
 	private final static String SESSION_STATE = "oauth_state";
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me"; // 프로필 조회
 	
