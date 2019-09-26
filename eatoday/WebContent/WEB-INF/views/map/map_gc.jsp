@@ -32,6 +32,9 @@
 .placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
 .placeinfo .tel {color:#0f7833;}
 .placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
+/* 닫기버튼 */
+.placeinfo .closeMapc {position: absolute;top: 100px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+.placeinfo .closeMapc:hover {cursor: pointer;}
 </style>
 </head>
 <body>
@@ -188,22 +191,28 @@ function removeMarker() {
 // 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
 function displayPlaceInfo (place) {
     var content = '<div class="placeinfo">' +
-                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
+                  '<a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';
 
     if (place.road_address_name) {
-        content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
-                    '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
+        content += '<span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
+                   '<span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
     }  else {
-        content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
+        content += '<span title="' + place.address_name + '">' + place.address_name + '</span>';
     }                
    
-    content += '    <span class="tel">' + place.phone + '</span>' + 
-                '</div>' + 
-                '<div class="after"></div>';
+    content += '<span class="tel">' + place.phone + '</span>' + 
+    		   '<span><div class="closeMapc" onClick="closeOverlayc()" title="닫기"></div></span>' +
+               '</div>' + 
+               '<div class="after"></div>';
 
     contentNode.innerHTML = content;
     placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
-    placeOverlay.setMap(map);  
+    placeOverlay.setMap(map); 
+}
+
+//커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlayc() {
+    placeOverlay.setMap(null);     
 }
 
 // 각 카테고리에 클릭 이벤트를 등록합니다
@@ -298,6 +307,9 @@ infowindow.open(map, marker);
 
 // 지도 중심좌표를 접속위치로 변경합니다
 map.setCenter(locPosition);      
+
+
+
 }
 </script>
 </body>

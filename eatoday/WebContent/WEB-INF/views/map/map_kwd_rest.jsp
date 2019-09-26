@@ -32,6 +32,9 @@
 .placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
 .placeinfo .tel {color:#0f7833;}
 .placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
+/* 닫기버튼 */
+.placeinfo .closeMap {position: absolute;top: 100px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+.placeinfo .closeMap:hover {cursor: pointer;}
 </style>
 </head>
 
@@ -114,15 +117,22 @@ function displayMarker(place) {
         content += '<span title="' + place.address_name + '">' + place.address_name + '</span>';
     }                
    
-    content += '<span class="tel">'
-        		 + place.phone + '</span>' + '</div>'
-        		  + '<div class="after"></div>';
+    content +=  '<span class="tel">' + place.phone + '</span>' + 
+	   		    '<span><div class="closeMap" onClick="closeOverlay()" title="닫기"></div></span>' +
+				'</div>' + 
+				'<div class="after"></div>';
 
     contentNode.innerHTML = content;
     placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
     placeOverlay.setMap(map);  
     });
 }
+
+//커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay() {
+    placeOverlay.setMap(null);     
+}
+
 </script>
 
 ${addr2}<br/>
