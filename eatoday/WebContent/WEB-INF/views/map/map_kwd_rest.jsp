@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>식당위치</title>
+<title>식당 주소 위치 지도</title>
 
 <style>
 .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}

@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>키워드로 장소검색하기</title>
+<title>키워드 검색 지도</title>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}

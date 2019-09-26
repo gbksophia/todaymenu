@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>geo+cat</title>
+    <title>geo+cat_현재위치 카테고리 지도</title>
 <style>
 .map_wrapc, .map_wrapc * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrapc {position:relative;width:100%;height:350px;}

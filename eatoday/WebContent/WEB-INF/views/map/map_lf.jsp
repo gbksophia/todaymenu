@@ -3,9 +3,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>map+lf</title>
+<title>map+lf_현재위치 회원 추천 식당 지도</title>
 
 <style>
+/*
 .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap {position:relative;width:100%;height:350px;}
 #category {position:absolute;top:100px;left:100px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
@@ -22,6 +23,7 @@
 #category li .cafe {background-position: -10px -144px;}
 #category li .store {background-position: -10px -180px;}
 #category li.on .category_bg {background-position-x:-46px;}
+*/
 .placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
 .placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
 .placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
@@ -33,8 +35,8 @@
 .placeinfo .tel {color:#0f7833;}
 .placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
 /* 닫기버튼 */
-.placeinfo .closeMaplf {position: absolute;top: 100px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-.placeinfo .closeMaplf:hover {cursor: pointer;}
+.placeinfo .closeMap {position: absolute;top: 100px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+.placeinfo .closeMap:hover {cursor: pointer;}
 </style>
 </head>
 
@@ -142,7 +144,7 @@ function cateSearch(data){
 	    // 마커에 클릭이벤트를 등록합니다
 	    kakao.maps.event.addListener(marker, 'click', function() {
 	    	var content = '<div class="placeinfo">' +
-							'<a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
+						  '<a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
 	
 		    if (place.road_address_name) {
 		        content += '<span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
@@ -152,20 +154,20 @@ function cateSearch(data){
 		    }                
 		   
 		    content +=  '<span class="tel">' + place.phone + '</span>' + 
-						'<span><div class="closeMaplf" onClick="closeOverlaylf()" title="닫기"></div></span>' +
-	        			'</div>' + 
-	       				'<div class="after"></div>';
+   		    			'<span><div class="closeMap" onClick="closeOverlaylf()" title="닫기"></div></span>' +
+						'</div>' + 
+						'<div class="after"></div>';
 	        
 		    contentNode.innerHTML = content;
 		    placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
-		    placeOverlay.setMap(map); 
+		    placeOverlay.setMap(map);
 	    });
 	}
 }
 
 //커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
 function closeOverlaylf() {
-    placeOverlay.setMap(null);
+	placeOverlay.setMap(null);
 	console.log('close??');    
 }
 </script>
