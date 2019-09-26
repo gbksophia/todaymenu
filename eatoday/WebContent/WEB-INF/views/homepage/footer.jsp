@@ -38,8 +38,8 @@
               <h2 class="ftco-heading-2">Services</h2>
               <ul class="list-unstyled">
                 <li><a href="/eatoday/homepage/recipeListView.eat?cate=1" class="py-2 d-block">Recipe</a></li>
-                <li><a href="/eatoday/homepage/restaurantList.eat?cate=한식&area=서울" class="py-2 d-block">Restaurant</a></li>
-                <li><a href="/eatoday/homepage/supportList.eat" class="py-2 d-block">Support</a></li>
+                <li><a href="/eatoday/restaurant/restaurantList.eat?cate=한식&area=서울" class="py-2 d-block">Restaurant</a></li>
+                <li><a href="/eatoday/support/supportList.eat" class="py-2 d-block">Support</a></li>
               </ul>
             </div>
           </div>
