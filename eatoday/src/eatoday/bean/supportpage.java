@@ -65,6 +65,7 @@ public class supportpage {
 	// ±Û¾²±â Æû
 	@RequestMapping("supportWrite.eat")
 	public String supportWrite() {
+		asd
 		return "/support/supportWrite";
 	}
 		
