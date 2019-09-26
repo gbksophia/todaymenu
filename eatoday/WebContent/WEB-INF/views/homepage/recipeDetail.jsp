@@ -112,7 +112,6 @@ function niceCheck(num,i){
 		$.ajax({
 			url: "nice.eat",
 			type: "post",
-			async: false,
 			data: {id : '${sessionScope.loginID}', num : num},
 		  	success: function(data) {
   		  		var elem=document.createElement("img");
@@ -127,11 +126,10 @@ function niceCheck(num,i){
 
 // 댓글 좋아요 갯수 체크
 function niceCountCheck(renum,i){
-	id="niceCount"+i;
+	var id="niceCount"+i;
 	$.ajax({
 		url: "niceCountCheck.eat",
 		type: "post",
-		async: false,
 		data: { renum : renum},
 		success: function(data) {
 	  		var elem=document.createElement("span");
@@ -266,8 +264,6 @@ function reviewWrite(){
 		}
 	});
 }
-niceCheck('${recipeReviewVO.num}','${i}');
-niceCountCheck('${recipeReviewVO.num}','${i}');
 </script>
 
 <style>
@@ -390,7 +386,10 @@ textarea:disabled{
 					<c:set var="i" value="0"/>
 						<c:forEach var="recipeReviewVO" items="${revo}">
 							<c:set var="i" value="${i+1 }" />
-								<c:set var="likeImg" value="javascript:imgcheck('${recipeReviewVO.getNum()}')"/>
+								<script>
+									niceCheck('${recipeReviewVO.num}','${i}');
+									niceCountCheck('${recipeReviewVO.num}','${i}');
+								</script>
 								<li id="comment${i}" class="comment">
 									<div class="comment-body">
 										<h3>${recipeReviewVO.nick}</h3>

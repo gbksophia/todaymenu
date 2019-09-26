@@ -76,7 +76,6 @@ function niceCheck(num,i){
 	$.ajax({
 		url: "restaurantNice.eat",
 		type: "post",
-		async: false,
 		data: {id : '${sessionScope.loginID}', num : num},
 		success: function(data) {
 			var elem = document.createElement("img");
@@ -91,11 +90,10 @@ function niceCheck(num,i){
 
 // 댓글 좋아요 갯수 체크
 function niceCountCheck(renum,i){
-	id = "niceCount"+i;
+	var id = "niceCount"+i;
 	$.ajax({
 		url: "restaurantNiceCountCheck.eat",
 		type: "post",
-		async: false,
 		data: { renum : renum},
 		success: function(data) {
   			var elem = document.createElement("span");
@@ -232,9 +230,6 @@ function reviewWrite(){
 		}
 	});
 }
-
-niceCheck('${restaurantReviewVO.num}','${i}');
-niceCountCheck('${restaurantReviewVO.num}','${i}');
 </script>
   
 <style>
@@ -305,7 +300,10 @@ textarea:disabled{
 					<c:set var="i" value="0"/>
               		<c:forEach var="restaurantReviewVO" items="${revo}">
               			<c:set var="i" value="${i+1}" />
-              			<c:set var="likeImg" value="javascript:imgcheck('${restaurantReviewVO.getNum()}')"/>
+              			<script>
+	              			niceCheck('${restaurantReviewVO.num}','${i}');
+	              			niceCountCheck('${restaurantReviewVO.num}','${i}');
+              			</script>
               	 		<li id="comment${i}" class="comment">
                   			<div class="comment-body">
                   				<h3>${restaurantReviewVO.nick}</h3>
@@ -331,7 +329,6 @@ textarea:disabled{
 	                    		</div> 
                   			</div>  
 						</li>
-						<div id="textUpdate${i}"></div>
 					</c:forEach>
 					<div class="text-center">           	 
 	              		<c:if test="${startPage >10}">
