@@ -136,7 +136,7 @@ public class supportpage {
 	public String commentPro(supportVO vo,HttpSession session,Model model) {
 		String admin = (String)session.getAttribute("loginID");
 		if(admin.equals("admin@eatoday.com")) {
-			sql.update("support.update",vo);  // 어드민 일 때만 댓글 쓰기
+			sql.update("support.commentUpdate",vo);  // 어드민 일 때만 댓글 쓰기
 		}
 		model.addAttribute("num",vo.getNum());
 		return "/support/commentPro";

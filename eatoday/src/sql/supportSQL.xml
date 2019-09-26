@@ -15,6 +15,7 @@
 	<update id="commentRemove" parameterType="int">
 		update support set comments=null where num=#{num}
 	</update>
+
 	
 	<update id="commentUpdate" parameterType="supportVO">
 		update support set comments=#{comments} where num=#{num}
