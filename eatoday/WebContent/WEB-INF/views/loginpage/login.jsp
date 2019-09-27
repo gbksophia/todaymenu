@@ -37,7 +37,7 @@ function login(){
 }
 
 // 사용할 앱의 JavaScript 키를 설정해 주세요.
-Kakao.init('80a9e86ee162fbf07ba5299ada0e85a0');
+Kakao.init('112ecff57900a2dd120c152f6c326b7b');
 function loginWithKakao() {
 	// 로그인 창을 띄웁니다.
     Kakao.Auth.login({
