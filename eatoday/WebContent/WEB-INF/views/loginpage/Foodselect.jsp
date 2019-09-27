@@ -41,8 +41,8 @@ function sign(){
 			<form class="login100-form validate-form" name="frm">
 				<span class="login100-form-title p-b-49">개인정보</span>
 				<div data-validate = "YourInfo">
-					<span class="label-input100">소셜 로그인한 당신의 ID와 임시 비밀번호는 아래와 같습니다.<br/>
-						마이페이지에서 꼭  비밀번호를 재설정 해주세요.<br/>
+					<span class="label-input100">소셜 로그인한 당신의 ID와  비밀번호는 아래와 같습니다.<br/>
+						비밀번호 변경은 SUPPORT 게시판에 문의해주세요.<br/>
 						ID:  ${id} <br/>
 						임시 비밀번호: ${pw}<br/><br/>
 					</span>
