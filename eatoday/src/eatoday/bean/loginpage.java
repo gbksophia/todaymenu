@@ -73,7 +73,8 @@ public class loginpage {
 		
 	//회원가입 Pro
 	@RequestMapping("signPro.eat")
-	public String signPro(Model model,HttpServletRequest request,memberVO vo) throws Exception {
+	public String signPro(Model model,HttpServletRequest 
+			request,memberVO vo) throws Exception {
 		String [] food = request.getParameterValues("food");
 		int result = sql.selectOne("member.idCheck",vo.getId());
 			
@@ -196,7 +197,8 @@ public class loginpage {
 	}
 	
 	@RequestMapping("CheckSocial.eat")
-	public String CheckSocial(String id, String pw, Model model, memberVO vo,HttpSession session) {
+	public String CheckSocial(String id, String pw, Model model, 
+			memberVO vo,HttpSession session) {
 		session.setAttribute("socialLogin", "on");  //소셜 로그인 체크용
 		int result = sql.selectOne("member.idCheck",id);
 		model.addAttribute("result",result);

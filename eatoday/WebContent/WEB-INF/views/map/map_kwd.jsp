@@ -210,6 +210,7 @@ function closeOverlay() {
 				<div class="icon">
 					<span class="icon-search"></span>
 				</div>
+				${kwd}에 대한 검색결과
 				<input type="text" name="search" id="search" class="form-control" placeholder="Search... ex)관악구 카페">
 			</div>
 		</form>

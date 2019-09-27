@@ -154,9 +154,9 @@ function closeOverlaylf() {
 }
 </script>
 
-<p id="addr"></p>
-&nbsp;주변의&nbsp;
-<p id="cate"></p>
-&nbsp;검색결과입니다!
+<h4 id="addr"></h4>
+<h4>&nbsp;주변의&nbsp;</h4>
+<h4 id="cate"></h4>
+<h4 >&nbsp;검색결과입니다!</h4>
 </body>
 </html>

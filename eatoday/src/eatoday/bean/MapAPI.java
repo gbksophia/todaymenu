@@ -53,7 +53,8 @@ public class MapAPI {
 	
 	//map_lf에서 ajax로 보낸 데이터를 처리, map_lf_t로 리턴
 	@RequestMapping("map_lf2.eat")
-	public String map_loc2(String d1, String d2 , String d3, Model model, HttpServletRequest request, HttpSession session) {
+	public String map_loc2(String d1, String d2 , String d3, 
+			Model model, HttpServletRequest request, HttpSession session) {
 		String kwd ="";
 		String cate = "";
 		String id = (String)session.getAttribute("loginID");
