@@ -81,6 +81,7 @@ function loginWithGoogle(){
 		console.log('auth2');
 		window.gauth=gapi.auth2.init({   //window.를 붙이면 어디서나 사용가능한 전역변수로 변경!
 			client_id: '594879915525-eftcqhdi5ejnj8jnktvhkl7lc8ibl239.apps.googleusercontent.com'
+				//'594879915525-t3hmv4h7s0fnnb0gfg20j4sfmnmm4lje.apps.googleusercontent.com' 이건 새 클라이언트 ID 임의로 발급한거
 		})
 	    gauth.then(function(){
 			console.log('googleAuth success'); 	
