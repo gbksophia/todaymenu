@@ -269,7 +269,7 @@ function reviewWrite(){
 <style>
 textarea {
 	color: #585858;
-	background-color: #000000;
+	background-color: rgba( 0, 0, 0,0.0 );
 }
 
 .wrap {
