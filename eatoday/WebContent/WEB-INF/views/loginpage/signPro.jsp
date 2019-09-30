@@ -7,11 +7,11 @@
 	<script>
 		alert("га╥н");
 	</script>
-		<%-- <c:redirect url="loginPro.eat">
+		 <c:redirect url="loginPro.eat">
 			<c:param name="id" value="${vo.getId()}"/>
 			<c:param name="pw" value="${vo.getPw()}"/>
 			<c:param name="sign" value="1"/>
-		</c:redirect> --%>
+		</c:redirect>
 	</c:when>	
 	<c:otherwise>
 		<script>
