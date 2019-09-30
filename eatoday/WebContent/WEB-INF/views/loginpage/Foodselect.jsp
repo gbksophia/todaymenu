@@ -45,10 +45,6 @@ function sign(){
 						비밀번호 변경/탈퇴는 SUPPORT 게시판에 문의해주세요.<br/>
 						<br/>
 					</span>
-					<span class="label-input100">사이트 가입 회원<br/>
-						비밀번호 변경/탈퇴는 MEMBER → information에서 가능합니다.<br/>
-						<br/>
-					</span>
 				</div><br/>	
 				
 				<span class="login100-form-title p-b-49">선호도</span>
