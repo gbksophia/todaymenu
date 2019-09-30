@@ -4,11 +4,14 @@
 <!-- idCheck 결과, 0=미가입  -->
 <c:choose>
 	<c:when test="${result ==0 }">
-		<c:redirect url="loginPro.eat">
+	<script>
+		alert("프로");
+	</script>
+		<%-- <c:redirect url="loginPro.eat">
 			<c:param name="id" value="${vo.getId()}"/>
 			<c:param name="pw" value="${vo.getPw()}"/>
 			<c:param name="sign" value="1"/>
-		</c:redirect>
+		</c:redirect> --%>
 	</c:when>	
 	<c:otherwise>
 		<script>

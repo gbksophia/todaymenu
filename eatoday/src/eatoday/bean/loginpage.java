@@ -41,6 +41,7 @@ public class loginpage {
 	@RequestMapping("loginPro.eat")
 	public String loginPro(Model model,HttpSession session,memberVO vo,int sign) {
 		int result = sql.selectOne("member.loginCheck",vo);
+		System.out.println("loginPro="+result);
 		if(result ==1) {
 			session.setAttribute("loginID", vo.getId());
 		} else if (session.getAttribute("socialLogin") != null) {
@@ -77,7 +78,7 @@ public class loginpage {
 			request,memberVO vo) throws Exception {
 		String [] food = request.getParameterValues("food");
 		int result = sql.selectOne("member.idCheck",vo.getId());
-			
+		System.out.println(result);	
 		// 중복 확인
 		if (result==0) {
 			if(food != null) {
