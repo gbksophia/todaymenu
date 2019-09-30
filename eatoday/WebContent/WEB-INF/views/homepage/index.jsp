@@ -299,7 +299,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-10">
-				<h1>우리의 레시피 & 식당 갯수는?</h1><br/>
+				<h1>우리의 레시피 & 식당 개수는?</h1><br/>
 				<div class="row">
 					<div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 						<div class="block-18 text-center">
